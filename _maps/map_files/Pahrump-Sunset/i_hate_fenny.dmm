@@ -26,6 +26,14 @@
 	},
 /turf/open/transparent/openspace,
 /area/f13/wasteland)
+"ag" = (
+/obj/structure/closet/locker/fridge,
+/obj/effect/spawner/lootdrop/food,
+/obj/effect/spawner/lootdrop/food,
+/obj/effect/spawner/lootdrop/f13/foodspawner,
+/obj/effect/spawner/lootdrop/f13/foodspawner,
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "ah" = (
 /obj/effect/turf_decal/trimline/neutral{
 	dir = 8;
@@ -63,6 +71,12 @@
 /obj/structure/flora/chomp/bones/lrock4,
 /turf/open/indestructible/ground/outside/desert,
 /area/f13/wasteland)
+"ap" = (
+/obj/structure/table/wood,
+/obj/item/kitchen/rollingpin,
+/obj/item/kitchen/knife,
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "ar" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/weather/dirt,
@@ -90,6 +104,11 @@
 "az" = (
 /turf/open/floor/carpet/red,
 /area/f13/building)
+"aB" = (
+/obj/structure/table/wood,
+/obj/item/newspaper,
+/turf/open/floor/carpet/red,
+/area/f13/wasteland)
 "aC" = (
 /obj/effect/turf_decal/trimline/neutral{
 	dir = 6;
@@ -104,6 +123,31 @@
 	pixel_x = -32
 	},
 /turf/open/floor/wood_fancy/wood_fancy_light,
+/area/f13/wasteland)
+"aG" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/neutral{
+	color = "#000000";
+	dir = 1;
+	icon_state = "trimline_fill"
+	},
+/obj/effect/turf_decal/trimline/neutral{
+	color = "#000000";
+	dir = 1;
+	icon_state = "trimline_fill"
+	},
+/obj/structure/railing{
+	dir = 4;
+	layer = 3;
+	pixel_x = 2;
+	pixel_y = 1
+	},
+/turf/closed/wall/f13/sunset/brick_small_light{
+	color = "#CCCCCC";
+	opacity = 0
+	},
 /area/f13/wasteland)
 "aJ" = (
 /obj/structure/flora/burnedtree3,
@@ -123,6 +167,16 @@
 	color = "#779999"
 	},
 /area/f13/wasteland)
+"aP" = (
+/obj/structure/fence/wooden{
+	density = 0;
+	dir = 1;
+	layer = 3.1;
+	pixel_x = -11;
+	pixel_y = 19
+	},
+/turf/open/indestructible/ground/outside/dirt,
+/area/f13/wasteland)
 "aS" = (
 /obj/structure/stairs/west{
 	color = "#A47449"
@@ -132,6 +186,9 @@
 	},
 /turf/open/floor/f13/wood,
 /area/f13/building)
+"aT" = (
+/turf/open/floor/plasteel/f13/vault_floor/blue/white/whitebluechess,
+/area/f13/wasteland)
 "aV" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 8
@@ -351,6 +408,20 @@
 "bU" = (
 /turf/closed/wall/f13/coyote/fortress_brick,
 /area/f13/building/hospital)
+"bY" = (
+/obj/structure/railing{
+	color = "#A47449";
+	dir = 8;
+	pixel_x = -3
+	},
+/turf/closed/wall/f13/coyote/fortress_brick,
+/area/f13/building)
+"bZ" = (
+/obj/structure/chair/sofa/right{
+	dir = 1
+	},
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "ca" = (
 /obj/structure/flora/chomp/thicket6,
 /turf/open/indestructible/ground/outside/desert,
@@ -373,6 +444,12 @@
 	color = "#d9b51c"
 	},
 /turf/open/indestructible/ground/outside/dirt,
+/area/f13/wasteland)
+"cg" = (
+/obj/structure/chair/wood/wings{
+	dir = 1
+	},
+/turf/open/floor/f13/wood,
 /area/f13/wasteland)
 "ci" = (
 /turf/open/floor/plating/dirt/dark,
@@ -531,6 +608,15 @@
 "da" = (
 /turf/closed/wall/f13/wood/house,
 /area/f13/building)
+"dc" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 8
+	},
+/obj/effect/turf_decal/weather/dirt{
+	dir = 8
+	},
+/turf/open/indestructible/ground/outside/dirt,
+/area/f13/wasteland)
 "dd" = (
 /obj/structure/flora/chomp/lbarrelcacti1,
 /turf/open/indestructible/ground/outside/desert,
@@ -596,6 +682,12 @@
 	icon_state = "trimline_fill"
 	},
 /turf/open/floor/wood_wide,
+/area/f13/wasteland)
+"dr" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 4
+	},
+/turf/open/transparent/openspace,
 /area/f13/wasteland)
 "dx" = (
 /obj/effect/decal/cleanable/generic,
@@ -733,6 +825,20 @@
 /area/f13/building)
 "dZ" = (
 /turf/open/transparent/openspace,
+/area/f13/wasteland)
+"ea" = (
+/obj/structure/railing/corner{
+	color = "#A47449";
+	dir = 8;
+	pixel_y = 33;
+	pixel_x = -3
+	},
+/turf/open/floor/plasteel/stairs{
+	barefootstep = "woodbarefoot";
+	color = "#A47449";
+	dir = 2;
+	footstep = "wood"
+	},
 /area/f13/wasteland)
 "ec" = (
 /obj/structure/barricade/bars{
@@ -1024,6 +1130,12 @@
 	},
 /turf/open/indestructible/cobble,
 /area/f13/wasteland)
+"fq" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 2
+	},
+/turf/open/transparent/openspace,
+/area/f13/bar)
 "fr" = (
 /obj/structure/table/wood,
 /obj/item/storage/keys_set,
@@ -1184,6 +1296,16 @@
 	icon_state = "floorrusty"
 	},
 /area/f13/building)
+"fS" = (
+/obj/structure/fence/wooden{
+	density = 0;
+	dir = 1;
+	layer = 3.1;
+	pixel_x = 11;
+	pixel_y = 19
+	},
+/turf/open/indestructible/ground/outside/dirt,
+/area/f13/wasteland)
 "fU" = (
 /obj/structure/flora/tree/oak_one{
 	color = "#d9b51c"
@@ -1221,6 +1343,27 @@
 	icon_state = "floorrusty"
 	},
 /area/f13/building)
+"gc" = (
+/obj/structure/sink/cupboard{
+	pixel_y = 11;
+	pixel_x = -1
+	},
+/obj/structure/mirror/alt{
+	pixel_y = 33;
+	pixel_x = -1
+	},
+/obj/item/flashlight/littlelamp{
+	pixel_x = -13;
+	pixel_y = 19;
+	light_on = 1
+	},
+/obj/machinery/light/floor{
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/showroomfloor{
+	color = "#555555"
+	},
+/area/f13/wasteland)
 "gd" = (
 /obj/structure/fence/wooden{
 	density = 0;
@@ -1262,6 +1405,15 @@
 /turf/open/floor/wood_common{
 	color = "#779999"
 	},
+/area/f13/wasteland)
+"gi" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 2
+	},
+/obj/effect/turf_decal/weather/dirt{
+	dir = 6
+	},
+/turf/open/transparent/openspace,
 /area/f13/wasteland)
 "gj" = (
 /obj/structure/closet/cabinet,
@@ -1375,6 +1527,9 @@
 /obj/structure/flora/junglebush/c,
 /turf/open/indestructible/ground/outside/dirt,
 /area/f13/wasteland)
+"gB" = (
+/turf/open/transparent/openspace,
+/area/f13/building/hospital)
 "gC" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/autolathe/ammo,
@@ -1388,6 +1543,11 @@
 	layer = 3.1
 	},
 /turf/open/indestructible/cobble,
+/area/f13/wasteland)
+"gF" = (
+/obj/structure/table/wood,
+/obj/item/weapon/spatula,
+/turf/open/floor/f13/wood,
 /area/f13/wasteland)
 "gH" = (
 /turf/open/floor/plasteel/f13/vault_floor/white,
@@ -1403,6 +1563,17 @@
 	color = "#779999"
 	},
 /area/f13/building/hospital)
+"gQ" = (
+/obj/structure/bed/wooden,
+/obj/effect/spawner/lootdrop/bedsheet,
+/obj/structure/railing/wood/post{
+	pixel_x = -16
+	},
+/obj/structure/railing/wood/post{
+	pixel_x = 14
+	},
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "gS" = (
 /obj/effect/turf_decal/trimline/neutral{
 	dir = 4;
@@ -1459,6 +1630,25 @@
 	color = "#a98c5d"
 	},
 /turf/open/indestructible/ground/outside/water,
+/area/f13/wasteland)
+"hm" = (
+/obj/item/kirbyplants{
+	icon_state = "plant-10";
+	layer = 2.9;
+	pixel_x = 4;
+	pixel_y = 23
+	},
+/turf/open/floor/f13/wood{
+	color = "#C2B280"
+	},
+/area/f13/wasteland)
+"hq" = (
+/obj/structure/railing{
+	color = "#A47449";
+	dir = 8;
+	pixel_x = -3
+	},
+/turf/open/transparent/openspace,
 /area/f13/wasteland)
 "hr" = (
 /obj/structure/fence/wooden{
@@ -1552,6 +1742,17 @@
 	dir = 8
 	},
 /area/f13/wasteland)
+"hF" = (
+/obj/structure/chair/sofa/corp/right{
+	dir = 8
+	},
+/obj/item/kirbyplants{
+	icon_state = "plant-22";
+	pixel_x = 11;
+	pixel_y = 19
+	},
+/turf/open/floor/carpet/red,
+/area/f13/wasteland)
 "hH" = (
 /obj/structure/stairs{
 	color = "#DDDDDD";
@@ -1564,6 +1765,17 @@
 "hJ" = (
 /obj/structure/flora/tree/chomp/lcactus1,
 /turf/open/indestructible/ground/outside/desert,
+/area/f13/wasteland)
+"hK" = (
+/obj/structure/railing{
+	color = "#A47449";
+	dir = 4
+	},
+/obj/structure/destructible/tribal_torch/lit,
+/obj/effect/turf_decal/weather/dirt{
+	dir = 1
+	},
+/turf/open/indestructible/ground/outside/dirt,
 /area/f13/wasteland)
 "hL" = (
 /obj/machinery/light/small{
@@ -1919,6 +2131,12 @@
 "jD" = (
 /turf/open/floor/f13/wood,
 /area/f13/building)
+"jF" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 2
+	},
+/turf/open/transparent/openspace,
+/area/f13/wasteland)
 "jH" = (
 /obj/structure/spacevine,
 /turf/open/floor/wood_wide,
@@ -1965,6 +2183,21 @@
 	color = "#779999"
 	},
 /area/f13/building)
+"kg" = (
+/obj/structure/simple_door/wood/alt,
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
+"kj" = (
+/obj/structure/window/fulltile/wood,
+/obj/structure/railing{
+	color = "#A47449";
+	dir = 4
+	},
+/obj/structure/curtain{
+	color = "#845f58"
+	},
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "kk" = (
 /obj/structure/chair/bench{
 	dir = 8
@@ -1993,6 +2226,20 @@
 	icon_state = "horizontalbottomborderbottom0"
 	},
 /area/f13/wasteland)
+"ko" = (
+/obj/structure/destructible/tribal_torch/wall/lit{
+	dir = 1;
+	pixel_y = 12
+	},
+/obj/structure/railing{
+	dir = 8;
+	pixel_x = -1;
+	pixel_y = 6
+	},
+/turf/closed/wall/f13/sunset/brick_small_light{
+	opacity = 0
+	},
+/area/f13/wasteland)
 "kr" = (
 /obj/structure/window/fulltile/house,
 /turf/open/floor/wood_fancy/wood_fancy_light,
@@ -2004,6 +2251,12 @@
 	icon_state = "floorrusty"
 	},
 /area/f13/building)
+"kw" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 2
+	},
+/turf/open/transparent/openspace,
+/area/f13/building/hospital)
 "kx" = (
 /obj/structure/flora/chomp/bush2{
 	color = "#338833"
@@ -2052,6 +2305,13 @@
 	icon_state = "housewood3-broken"
 	},
 /area/f13/wasteland)
+"kJ" = (
+/obj/structure/chair/sofa/corner{
+	dir = 1
+	},
+/obj/structure/rug/big/rug_red,
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "kL" = (
 /obj/structure/flora/grass/coyote/fourteen,
 /turf/open/indestructible/ground/outside/desert,
@@ -2073,6 +2333,13 @@
 "kP" = (
 /obj/structure/flora/chomp/thicket5,
 /turf/open/indestructible/ground/outside/desert,
+/area/f13/wasteland)
+"kQ" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 4;
+	pixel_y = 2
+	},
+/turf/open/transparent/openspace,
 /area/f13/wasteland)
 "kR" = (
 /obj/effect/spawner/lootdrop/f13/foodspawner,
@@ -2320,6 +2587,15 @@
 	},
 /turf/open/floor/plating/dirt/dark,
 /area/f13/wasteland)
+"lR" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 2
+	},
+/obj/effect/turf_decal/weather/dirt{
+	dir = 2
+	},
+/turf/open/transparent/openspace,
+/area/f13/wasteland)
 "lT" = (
 /obj/structure/barricade/bars,
 /turf/open/floor/f13{
@@ -2425,6 +2701,12 @@
 	dir = 4
 	},
 /area/f13/wasteland)
+"mC" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 2
+	},
+/turf/open/indestructible/ground/outside/dirt,
+/area/f13/wasteland)
 "mH" = (
 /turf/open/indestructible/ground/inside/dirt,
 /area/f13/wasteland)
@@ -2432,12 +2714,31 @@
 /obj/structure/flora/tree/african_acacia,
 /turf/open/indestructible/ground/outside/desert,
 /area/f13/wasteland)
+"mM" = (
+/obj/structure/railing{
+	color = "#A47449";
+	dir = 4
+	},
+/obj/effect/turf_decal/weather/dirt,
+/turf/open/transparent/openspace,
+/area/f13/wasteland)
 "mN" = (
 /obj/effect/turf_decal/weather/dirt{
 	color = "#a98c5d";
 	dir = 5
 	},
 /turf/open/indestructible/ground/outside/water,
+/area/f13/wasteland)
+"mP" = (
+/obj/structure/window/fulltile/wood,
+/obj/structure/curtain{
+	color = "#5c131b"
+	},
+/obj/structure/railing{
+	color = "#A47449";
+	dir = 1
+	},
+/turf/open/floor/f13/wood,
 /area/f13/wasteland)
 "mQ" = (
 /obj/structure/railing,
@@ -2476,6 +2777,12 @@
 	color = "#779999"
 	},
 /area/f13/building)
+"mW" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 1
+	},
+/turf/open/indestructible/ground/outside/dirt,
+/area/f13/building/hospital)
 "nd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/chair/right,
@@ -2587,12 +2894,21 @@
 	color = "#779999"
 	},
 /area/f13/wasteland)
+"nF" = (
+/turf/open/transparent/openspace,
+/area/f13/bar)
 "nG" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/indestructible/ground/outside/road{
 	icon_state = "horizontalinnermain0"
 	},
 /area/f13/wasteland)
+"nJ" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 1
+	},
+/turf/open/indestructible/ground/outside/dirt,
+/area/f13/building)
 "nK" = (
 /obj/structure/closet/cabinet,
 /obj/item/storage/fancy/cigarettes/cigars,
@@ -2979,6 +3295,14 @@
 	color = "#779999"
 	},
 /area/f13/wasteland)
+"pI" = (
+/obj/structure/railing{
+	color = "#A47449"
+	},
+/turf/open/floor/f13/wood{
+	color = "#C2B280"
+	},
+/area/f13/wasteland)
 "pJ" = (
 /obj/structure/sign/bank,
 /turf/closed/wall/mineral/brick,
@@ -3175,6 +3499,9 @@
 	},
 /turf/open/floor/carpet,
 /area/f13/wasteland)
+"qO" = (
+/turf/open/floor/carpet/red,
+/area/f13/wasteland)
 "qP" = (
 /obj/structure/chair/bench{
 	dir = 4
@@ -3270,6 +3597,20 @@
 	dir = 10
 	},
 /turf/open/transparent/openspace,
+/area/f13/wasteland)
+"ro" = (
+/obj/structure/nightstand/small{
+	pixel_x = 2;
+	pixel_y = 22
+	},
+/obj/item/flashlight/littlelamp{
+	pixel_x = 1;
+	pixel_y = 25;
+	light_on = 1
+	},
+/turf/open/floor/f13/wood{
+	color = "#C2B280"
+	},
 /area/f13/wasteland)
 "rp" = (
 /obj/machinery/door/window{
@@ -3527,6 +3868,15 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/indestructible/ground/outside/dirt,
 /area/f13/wasteland)
+"sB" = (
+/obj/machinery/microwave/gas_stove{
+	pixel_y = 19
+	},
+/obj/item/weapon/copperpot2{
+	pixel_y = 30
+	},
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "sE" = (
 /obj/structure/flora/branch,
 /turf/open/indestructible/ground/outside/desert,
@@ -3672,6 +4022,74 @@
 /obj/structure/flora/junglebush,
 /turf/open/floor/plating/dirt/dark,
 /area/f13/wasteland)
+"tr" = (
+/obj/structure/bed/wooden{
+	pixel_y = 15
+	},
+/obj/structure/fence/wooden{
+	opacity = 1;
+	pixel_y = 0;
+	pixel_x = 17;
+	layer = 6;
+	density = 0
+	},
+/obj/structure/fence/wooden{
+	opacity = 1;
+	pixel_y = 22;
+	pixel_x = -20;
+	layer = 6;
+	density = 0
+	},
+/obj/structure/fence/wooden{
+	opacity = 1;
+	pixel_y = 1;
+	pixel_x = -20;
+	layer = 6;
+	density = 0
+	},
+/obj/structure/fence/wooden{
+	opacity = 1;
+	pixel_y = 3;
+	pixel_x = -20;
+	layer = 6;
+	density = 0
+	},
+/obj/structure/fence/wooden{
+	opacity = 1;
+	pixel_y = 6;
+	pixel_x = -20;
+	layer = 6;
+	density = 0
+	},
+/obj/structure/fence/wooden{
+	opacity = 1;
+	pixel_y = 10;
+	pixel_x = -20;
+	layer = 6;
+	density = 0
+	},
+/obj/structure/fence/wooden{
+	opacity = 1;
+	pixel_y = 15;
+	pixel_x = -20;
+	layer = 6;
+	density = 0
+	},
+/obj/structure/curtain{
+	color = "#845f58"
+	},
+/obj/structure/fence/wooden{
+	opacity = 1;
+	pixel_y = 1;
+	pixel_x = -16;
+	layer = 6;
+	density = 0
+	},
+/obj/effect/spawner/lootdrop/bedsheet{
+	pixel_y = 16
+	},
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "ts" = (
 /obj/structure/flora/grass/coyote/thirty,
 /turf/open/indestructible/ground/outside/desert,
@@ -3708,6 +4126,15 @@
 	dir = 1
 	},
 /area/f13/wasteland)
+"tz" = (
+/obj/structure/rug/mat{
+	layer = 6;
+	pixel_y = -2;
+	pixel_x = 2;
+	color = "#CC4444"
+	},
+/turf/closed/wall/f13/coyote/tavern_wall,
+/area/f13/wasteland)
 "tB" = (
 /obj/structure/chair/stool/retro/backed{
 	dir = 4
@@ -3730,12 +4157,37 @@
 	opacity = 0
 	},
 /area/f13/wasteland)
+"tD" = (
+/obj/structure/toilet{
+	pixel_y = 17;
+	pixel_x = 3
+	},
+/obj/structure/toilet_paper{
+	pixel_y = 20;
+	pixel_x = -9
+	},
+/obj/structure/rug/mat{
+	layer = 1;
+	pixel_x = 1
+	},
+/turf/open/floor/plasteel/showroomfloor{
+	color = "#555555"
+	},
+/area/f13/wasteland)
 "tE" = (
 /obj/structure/railing/corner{
 	color = "#A47449";
 	dir = 8
 	},
 /turf/open/transparent/openspace,
+/area/f13/wasteland)
+"tG" = (
+/obj/item/flashlight/oldlamp{
+	pixel_y = -9;
+	pixel_x = -2;
+	light_on = 1
+	},
+/turf/closed/wall/f13/coyote/tavern_wall,
 /area/f13/wasteland)
 "tI" = (
 /obj/effect/decal/cleanable/dirt,
@@ -3829,6 +4281,10 @@
 	},
 /turf/open/floor/plating/dirt/dark,
 /area/f13/wasteland)
+"ud" = (
+/obj/structure/stairs/south,
+/turf/open/floor/wood_common/wood_common_dark,
+/area/f13/building)
 "ug" = (
 /turf/open/indestructible/cobble/side{
 	dir = 8
@@ -3882,6 +4338,42 @@
 	color = "#779999"
 	},
 /area/f13/building)
+"uv" = (
+/obj/structure/wood_counter{
+	pixel_y = -1;
+	layer = 6
+	},
+/obj/structure/fence/wooden{
+	dir = 4;
+	pixel_y = 9
+	},
+/obj/structure/fence/wooden{
+	dir = 4;
+	pixel_y = -2
+	},
+/obj/effect/turf_decal/trimline/white/filled/line{
+	color = "#000000";
+	pixel_y = -1;
+	pixel_x = -3;
+	name = "shadow"
+	},
+/obj/structure/railing{
+	color = "#A47449";
+	dir = 8;
+	pixel_x = 28;
+	pixel_y = 1
+	},
+/obj/structure/flora/chomp/potplant1{
+	layer = 6;
+	pixel_y = 14;
+	pixel_x = -6
+	},
+/obj/item/flashlight/lantern{
+	pixel_y = 11;
+	pixel_x = 8
+	},
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "ux" = (
 /obj/structure/railing{
 	dir = 8;
@@ -3898,6 +4390,18 @@
 /turf/open/floor/wood_common{
 	color = "#779999"
 	},
+/area/f13/wasteland)
+"uB" = (
+/obj/structure/table/wood,
+/obj/item/weapon/spatula{
+	pixel_x = -6
+	},
+/obj/item/kitchen/rollingpin,
+/obj/item/kitchen/knife,
+/obj/machinery/light/floor{
+	pixel_y = 5
+	},
+/turf/open/floor/f13/wood,
 /area/f13/wasteland)
 "uF" = (
 /obj/structure/bed/wooden,
@@ -3950,6 +4454,16 @@
 	dir = 1
 	},
 /turf/open/indestructible/cobble/side,
+/area/f13/wasteland)
+"uU" = (
+/obj/structure/railing{
+	color = "#A47449";
+	dir = 4
+	},
+/obj/effect/turf_decal/weather/dirt{
+	dir = 1
+	},
+/turf/open/transparent/openspace,
 /area/f13/wasteland)
 "uV" = (
 /obj/structure/chair/wood,
@@ -4148,6 +4662,17 @@
 	color = "#779999"
 	},
 /area/f13/wasteland)
+"vP" = (
+/obj/structure/window/fulltile/wood,
+/obj/structure/railing{
+	color = "#A47449";
+	dir = 8
+	},
+/obj/structure/curtain{
+	color = "#845f58"
+	},
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "vR" = (
 /obj/effect/turf_decal/weather/dirt{
 	color = "#a98c5d"
@@ -4167,6 +4692,18 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/f13/wood,
+/area/f13/wasteland)
+"wb" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 1
+	},
+/obj/effect/turf_decal/weather/dirt{
+	dir = 9
+	},
+/obj/effect/turf_decal/weather/dirt{
+	dir = 8
+	},
+/turf/open/transparent/openspace,
 /area/f13/wasteland)
 "wc" = (
 /turf/closed/wall/f13/wood/interior,
@@ -4231,6 +4768,16 @@
 	},
 /turf/open/floor/wood_common{
 	color = "#779999"
+	},
+/area/f13/wasteland)
+"wt" = (
+/obj/structure/railing{
+	dir = 8;
+	pixel_x = -1;
+	pixel_y = 6
+	},
+/turf/closed/wall/f13/sunset/brick_small_light{
+	opacity = 0
 	},
 /area/f13/wasteland)
 "wu" = (
@@ -4352,6 +4899,12 @@
 /turf/open/floor/wood_common{
 	color = "#779999"
 	},
+/area/f13/wasteland)
+"wU" = (
+/obj/structure/chair/sofa/corp/left{
+	dir = 8
+	},
+/turf/open/floor/carpet/red,
 /area/f13/wasteland)
 "wV" = (
 /obj/effect/decal/cleanable/dirt,
@@ -4581,6 +5134,22 @@
 	color = "#779999"
 	},
 /area/f13/building)
+"xZ" = (
+/obj/structure/stairs/south,
+/turf/open/floor/wood_common/wood_common_dark,
+/area/f13/wasteland)
+"ya" = (
+/obj/structure/table/wood,
+/obj/machinery/reagentgrinder{
+	pixel_y = 13;
+	pixel_x = 5
+	},
+/obj/machinery/processor/chopping_block{
+	pixel_y = -1;
+	pixel_x = 7
+	},
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "yc" = (
 /obj/structure/curtain{
 	color = "#845f58"
@@ -4702,6 +5271,10 @@
 /obj/structure/flora/chomp/large_boulder,
 /turf/open/indestructible/ground/outside/desert,
 /area/f13/wasteland)
+"yH" = (
+/obj/structure/simple_door/wood/alt/window,
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "yJ" = (
 /obj/structure/fence/corner/wooden{
 	dir = 4
@@ -4783,6 +5356,13 @@
 	dir = 1
 	},
 /area/f13/wasteland)
+"zf" = (
+/obj/machinery/microwave/gas_stove{
+	pixel_y = 1;
+	pixel_x = 1
+	},
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "zh" = (
 /obj/structure/chair/wood{
 	dir = 8
@@ -4818,6 +5398,15 @@
 /turf/open/floor/wood_common{
 	color = "#779999"
 	},
+/area/f13/wasteland)
+"zt" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 1
+	},
+/obj/effect/turf_decal/weather/dirt{
+	dir = 5
+	},
+/turf/open/indestructible/ground/outside/dirt,
 /area/f13/wasteland)
 "zy" = (
 /obj/machinery/light{
@@ -4950,6 +5539,19 @@
 	icon_state = "horizontalbottombordertop2"
 	},
 /area/f13/wasteland)
+"Ap" = (
+/obj/machinery/microwave/gas_stove{
+	pixel_y = 19
+	},
+/obj/item/melee/onehanded/club/fryingpan/pot{
+	pixel_y = 26
+	},
+/obj/structure/sink{
+	pixel_y = 29;
+	pixel_x = -16
+	},
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "Aq" = (
 /obj/item/kitchen/rollingpin{
 	pixel_x = 7;
@@ -5037,6 +5639,12 @@
 	color = "#779999"
 	},
 /area/f13/building)
+"AI" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 1
+	},
+/turf/open/indestructible/ground/outside/dirt,
+/area/f13/bar)
 "AM" = (
 /obj/structure/dresser,
 /turf/open/floor/f13/wood,
@@ -5203,6 +5811,18 @@
 /obj/structure/flora/grass/coyote/four,
 /turf/open/indestructible/ground/outside/desert,
 /area/f13/wasteland)
+"By" = (
+/obj/structure/campfire/stove{
+	pixel_y = 22;
+	density = 0
+	},
+/obj/structure/chair/sofa/corp/right{
+	dir = 8;
+	pixel_y = -3;
+	pixel_x = 8
+	},
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "BA" = (
 /obj/structure/decoration/rag,
 /obj/structure/spacevine,
@@ -5294,6 +5914,17 @@
 /obj/effect/turf_decal/weather/dirt,
 /turf/open/indestructible/ground/outside/dirt,
 /area/f13/wasteland)
+"BO" = (
+/obj/structure/railing{
+	color = "#A47449";
+	dir = 8
+	},
+/obj/structure/window/fulltile/wood,
+/obj/structure/curtain{
+	color = "#5c131b"
+	},
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "BP" = (
 /obj/structure/table/wood/bar,
 /obj/item/lock_construct,
@@ -5305,6 +5936,29 @@
 /turf/open/floor/wood_common{
 	color = "#779999"
 	},
+/area/f13/wasteland)
+"BS" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 2
+	},
+/turf/open/transparent/openspace,
+/area/f13/building)
+"BU" = (
+/obj/structure/table/wood,
+/obj/structure/sink{
+	pixel_y = 22;
+	pixel_x = 16
+	},
+/obj/machinery/reagentgrinder{
+	pixel_y = 14
+	},
+/obj/item/flashlight/littlelamp{
+	pixel_x = -10;
+	pixel_y = -2;
+	light_power = 4;
+	light_on = 1
+	},
+/turf/open/floor/f13/wood,
 /area/f13/wasteland)
 "BW" = (
 /obj/machinery/light/small,
@@ -5417,6 +6071,13 @@
 	color = "#779999"
 	},
 /area/f13/wasteland)
+"Cv" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 8
+	},
+/obj/effect/turf_decal/weather/dirt,
+/turf/open/transparent/openspace,
+/area/f13/wasteland)
 "Cx" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -5504,6 +6165,14 @@
 	},
 /turf/open/floor/wood_wide,
 /area/f13/wasteland)
+"CK" = (
+/obj/structure/railing{
+	color = "#A47449";
+	dir = 8;
+	pixel_x = -3
+	},
+/turf/closed/wall/f13/coyote/fortress_brick,
+/area/f13/wasteland)
 "CN" = (
 /obj/structure/flora/jungle5,
 /turf/open/indestructible/ground/outside/desert,
@@ -5581,6 +6250,10 @@
 	color = "#aaaaaa";
 	opacity = 0
 	},
+/area/f13/wasteland)
+"CZ" = (
+/obj/effect/turf_decal/weather/dirt,
+/turf/open/transparent/openspace,
 /area/f13/wasteland)
 "Da" = (
 /obj/structure/simple_door/room,
@@ -5700,6 +6373,10 @@
 /obj/effect/landmark,
 /turf/open/transparent/openspace,
 /area/f13/building)
+"Dx" = (
+/obj/structure/stairs/north,
+/turf/open/floor/wood_common/wood_common_dark,
+/area/f13/wasteland)
 "DA" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 9
@@ -5802,6 +6479,14 @@
 /obj/structure/spacevine,
 /turf/closed/wall/f13/wood/interior,
 /area/f13/wasteland)
+"Ej" = (
+/obj/item/trash/plate,
+/obj/structure/table/wood/fancy/black,
+/obj/item/candle/infinite{
+	pixel_y = 9
+	},
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "Ek" = (
 /obj/structure/flora/burnedtree2,
 /turf/open/indestructible/ground/outside/desert,
@@ -5822,6 +6507,37 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall/f13/wood/interior,
+/area/f13/wasteland)
+"Eq" = (
+/obj/structure/bed/wooden{
+	pixel_y = 17
+	},
+/obj/effect/spawner/lootdrop/bedsheet{
+	pixel_y = 18
+	},
+/obj/structure/railing/wood/post{
+	pixel_x = 16;
+	pixel_y = 17
+	},
+/obj/structure/railing/wood/post{
+	pixel_x = -13;
+	pixel_y = 17
+	},
+/obj/structure/curtain{
+	color = "#5c131b";
+	pixel_y = 19;
+	pixel_x = 2;
+	layer = 5
+	},
+/obj/structure/curtain{
+	color = "#5c131b";
+	pixel_y = 19;
+	pixel_x = 2;
+	layer = 5
+	},
+/turf/open/floor/f13/wood{
+	color = "#C2B280"
+	},
 /area/f13/wasteland)
 "Et" = (
 /obj/effect/turf_decal/trimline/neutral{
@@ -5912,6 +6628,10 @@
 	},
 /turf/open/floor/wood_wide,
 /area/f13/wasteland)
+"EG" = (
+/obj/structure/chair/wood/wings,
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "EL" = (
 /obj/structure/chair/folding{
 	dir = 8
@@ -5984,6 +6704,11 @@
 	},
 /turf/open/floor/plasteel/f13/vault_floor/white,
 /area/f13/building/hospital)
+"Ff" = (
+/turf/open/floor/plasteel/showroomfloor{
+	color = "#555555"
+	},
+/area/f13/wasteland)
 "Fg" = (
 /obj/structure/table/wood/settler,
 /obj/machinery/light/small{
@@ -6183,6 +6908,16 @@
 	},
 /turf/open/floor/wood_wide,
 /area/f13/wasteland)
+"Gf" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 4;
+	pixel_y = 2
+	},
+/obj/effect/turf_decal/weather/dirt{
+	dir = 6
+	},
+/turf/open/indestructible/ground/outside/dirt,
+/area/f13/wasteland)
 "Gh" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/flora/ausbushes/ppflowers,
@@ -6380,6 +7115,30 @@
 	color = "#779999"
 	},
 /area/f13/wasteland)
+"He" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/neutral{
+	color = "#000000";
+	dir = 1;
+	icon_state = "trimline_fill"
+	},
+/obj/effect/turf_decal/trimline/neutral{
+	color = "#000000";
+	dir = 1;
+	icon_state = "trimline_fill"
+	},
+/obj/structure/railing{
+	dir = 8;
+	pixel_x = -1;
+	pixel_y = 6
+	},
+/turf/closed/wall/f13/sunset/brick_small_light{
+	color = "#CCCCCC";
+	opacity = 0
+	},
+/area/f13/wasteland)
 "Hf" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 8
@@ -6564,6 +7323,17 @@
 	color = "#999999"
 	},
 /area/f13/wasteland)
+"Ia" = (
+/obj/structure/flora/tree/jungle{
+	color = "#d9b51c";
+	pixel_x = -38;
+	pixel_y = -2
+	},
+/obj/effect/turf_decal/weather/dirt{
+	dir = 2
+	},
+/turf/open/indestructible/ground/outside/dirt,
+/area/f13/wasteland)
 "Ib" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/indestructible/ground/outside/dirt,
@@ -6641,6 +7411,17 @@
 	icon_state = "floorrusty"
 	},
 /area/f13/building)
+"Iz" = (
+/obj/structure/rug/carpet,
+/obj/structure/nightstand/small{
+	pixel_x = 2
+	},
+/obj/item/flashlight/littlelamp{
+	pixel_x = 1;
+	pixel_y = 2
+	},
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "IA" = (
 /obj/structure/window/fulltile/house,
 /obj/structure/curtain{
@@ -6791,6 +7572,21 @@
 	},
 /turf/open/indestructible/ground/outside/dirt,
 /area/f13/wasteland)
+"Jq" = (
+/obj/structure/chair/sofa/corp{
+	dir = 8
+	},
+/turf/open/floor/carpet/red,
+/area/f13/wasteland)
+"Jr" = (
+/obj/item/flashlight/oldlamp{
+	pixel_y = 2;
+	pixel_x = -11;
+	light_on = 1;
+	light_power = 6
+	},
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "Js" = (
 /turf/closed/wall/f13/wood/interior{
 	icon_state = "interior8"
@@ -6801,6 +7597,21 @@
 	icon_state = "interior2"
 	},
 /area/f13/building)
+"Jy" = (
+/obj/structure/destructible/tribal_torch/wall/lit{
+	dir = 1;
+	pixel_y = 12
+	},
+/obj/structure/railing{
+	dir = 4;
+	layer = 3;
+	pixel_x = 2;
+	pixel_y = 1
+	},
+/turf/closed/wall/f13/sunset/brick_small_light{
+	opacity = 0
+	},
+/area/f13/wasteland)
 "JC" = (
 /obj/structure/flora/chomp/bush1,
 /turf/open/indestructible/ground/outside/desert,
@@ -6811,6 +7622,18 @@
 	dir = 1
 	},
 /turf/open/indestructible/ground/outside/gravel,
+/area/f13/wasteland)
+"JG" = (
+/obj/structure/railing{
+	color = "#A47449";
+	dir = 8;
+	pixel_x = -3
+	},
+/obj/structure/destructible/tribal_torch/lit,
+/obj/effect/turf_decal/weather/dirt{
+	dir = 1
+	},
+/turf/open/indestructible/ground/outside/dirt,
 /area/f13/wasteland)
 "JH" = (
 /obj/effect/turf_decal/weather/dirt{
@@ -6867,6 +7690,39 @@
 	},
 /obj/structure/flora/chomp/bones/lskull_w,
 /turf/open/indestructible/ground/inside/dirt,
+/area/f13/wasteland)
+"JU" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood_common/wood_common_dark,
+/area/f13/wasteland)
+"JX" = (
+/obj/structure/closet/locker/fridge{
+	pixel_x = -11;
+	pixel_y = 21
+	},
+/obj/effect/spawner/lootdrop/f13/foodspawner{
+	pixel_x = -11;
+	pixel_y = 17
+	},
+/obj/effect/spawner/lootdrop/f13/foodspawner{
+	pixel_y = 16;
+	pixel_x = -11
+	},
+/obj/effect/spawner/lootdrop/f13/foodspawner{
+	pixel_x = -11;
+	pixel_y = 16;
+	anchored = 1
+	},
+/obj/effect/spawner/lootdrop/f13/foodspawner{
+	pixel_y = 18;
+	pixel_x = -11
+	},
+/obj/item/flashlight/oldlamp{
+	pixel_y = 25;
+	pixel_x = 4;
+	light_on = 1
+	},
+/turf/open/floor/f13/wood,
 /area/f13/wasteland)
 "Kb" = (
 /obj/structure/table/wood,
@@ -6966,6 +7822,12 @@
 "Kt" = (
 /obj/structure/flora/burnedtree5,
 /turf/open/indestructible/ground/outside/dirt,
+/area/f13/wasteland)
+"Kz" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 1
+	},
+/turf/open/transparent/openspace,
 /area/f13/wasteland)
 "KB" = (
 /obj/machinery/mineral/wasteland_vendor/weapons,
@@ -7163,6 +8025,16 @@
 	},
 /turf/open/floor/wood_wide,
 /area/f13/wasteland)
+"Ln" = (
+/obj/structure/railing{
+	color = "#A47449"
+	},
+/obj/structure/window/fulltile/wood,
+/obj/structure/curtain{
+	color = "#5c131b"
+	},
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "Lo" = (
 /obj/machinery/smoke_machine{
 	name = "HVAC Machine"
@@ -7327,6 +8199,18 @@
 /obj/structure/railing,
 /turf/open/indestructible/cobble,
 /area/f13/wasteland)
+"Mc" = (
+/obj/structure/railing{
+	dir = 4;
+	layer = 3;
+	pixel_x = 2;
+	pixel_y = 1
+	},
+/turf/closed/wall/f13/sunset/brick_small_light{
+	color = "#EEEEEE";
+	opacity = 0
+	},
+/area/f13/wasteland)
 "Md" = (
 /obj/structure/flora/grass/coyote/ten,
 /turf/open/indestructible/ground/outside/desert,
@@ -7350,6 +8234,10 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/bin/trash_fallout,
 /turf/open/floor/plasteel/f13/vault_floor/misc/vault1,
+/area/f13/wasteland)
+"Mm" = (
+/obj/item/chair/wood,
+/turf/open/floor/wood_common/wood_common_dark,
 /area/f13/wasteland)
 "Mn" = (
 /obj/structure/stairs/east{
@@ -7421,6 +8309,25 @@
 	color = "#779999"
 	},
 /area/f13/building)
+"MH" = (
+/obj/structure/fence/wooden{
+	density = 0;
+	dir = 1;
+	layer = 3.1;
+	pixel_x = -11;
+	pixel_y = 19
+	},
+/obj/structure/railing{
+	color = "#A47449";
+	dir = 8;
+	pixel_x = -3
+	},
+/obj/structure/destructible/tribal_torch/lit,
+/obj/effect/turf_decal/weather/dirt{
+	dir = 2
+	},
+/turf/open/indestructible/ground/outside/dirt,
+/area/f13/wasteland)
 "MI" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 1
@@ -7672,6 +8579,10 @@
 	color = "#779999"
 	},
 /area/f13/building)
+"NN" = (
+/obj/structure/rug/mat/welcome,
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "NP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -7787,6 +8698,19 @@
 	color = "#779999"
 	},
 /area/f13/wasteland)
+"Oo" = (
+/obj/structure/rug/big/rug_yellow{
+	pixel_y = 12
+	},
+/obj/structure/railing/corner{
+	color = "#A47449";
+	pixel_x = 4;
+	pixel_y = 0
+	},
+/turf/open/floor/f13/wood{
+	color = "#C2B280"
+	},
+/area/f13/wasteland)
 "Or" = (
 /obj/structure/decoration/vent/rusty{
 	pixel_y = 29
@@ -7827,6 +8751,25 @@
 	icon_state = "trimline_fill"
 	},
 /turf/closed/wall/f13/coyote/tavern_wall,
+/area/f13/wasteland)
+"OC" = (
+/obj/structure/railing{
+	color = "#A47449";
+	dir = 8;
+	pixel_x = -3
+	},
+/obj/effect/turf_decal/weather/dirt{
+	dir = 1
+	},
+/turf/open/transparent/openspace,
+/area/f13/wasteland)
+"OD" = (
+/obj/item/kirbyplants{
+	icon_state = "plant-18";
+	pixel_x = 8;
+	pixel_y = -2
+	},
+/turf/open/floor/f13/wood,
 /area/f13/wasteland)
 "OE" = (
 /obj/effect/decal/cleanable/dirt,
@@ -8052,6 +8995,11 @@
 	color = "#779999"
 	},
 /area/f13/wasteland)
+"PO" = (
+/obj/structure/table/wood,
+/obj/machinery/processor/chopping_block,
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "PR" = (
 /obj/structure/fence/wooden{
 	density = 0;
@@ -8176,6 +9124,17 @@
 	},
 /turf/open/indestructible/ground/outside/dirt,
 /area/f13/wasteland)
+"Qr" = (
+/obj/structure/railing{
+	dir = 4;
+	layer = 3;
+	pixel_x = 2;
+	pixel_y = 1
+	},
+/turf/closed/wall/f13/sunset/brick_small_light{
+	opacity = 0
+	},
+/area/f13/wasteland)
 "Qu" = (
 /turf/open/floor/plasteel,
 /area/f13/wasteland)
@@ -8267,8 +9226,10 @@
 	},
 /area/f13/wasteland)
 "Rd" = (
-/obj/structure/flora/burnedtree2,
-/turf/open/indestructible/ground/outside/dirt,
+/obj/effect/turf_decal/weather/dirt{
+	dir = 8
+	},
+/turf/open/transparent/openspace,
 /area/f13/wasteland)
 "Rf" = (
 /obj/effect/decal/cleanable/dirt,
@@ -8599,6 +9560,19 @@
 "SE" = (
 /obj/structure/flora/tallgrass3,
 /turf/open/indestructible/ground/outside/desert,
+/area/f13/wasteland)
+"SF" = (
+/obj/structure/decoration/vent/rusty{
+	pixel_y = 29
+	},
+/obj/structure/railing{
+	dir = 8;
+	pixel_x = -1;
+	pixel_y = 6
+	},
+/turf/closed/wall/f13/sunset/brick_small_light{
+	opacity = 0
+	},
 /area/f13/wasteland)
 "SH" = (
 /obj/structure/spacevine,
@@ -8932,6 +9906,17 @@
 	},
 /turf/open/floor/plating/dirt/dark,
 /area/f13/wasteland)
+"Up" = (
+/obj/structure/railing{
+	color = "#A47449";
+	dir = 8;
+	pixel_x = -3
+	},
+/obj/effect/turf_decal/weather/dirt{
+	dir = 2
+	},
+/turf/open/transparent/openspace,
+/area/f13/wasteland)
 "Uq" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/indestructible/ground/outside/sidewalk{
@@ -9038,6 +10023,10 @@
 	name = "tile"
 	},
 /area/f13/wasteland)
+"UT" = (
+/obj/structure/filingcabinet,
+/turf/open/floor/wood_common/wood_common_dark,
+/area/f13/wasteland)
 "UU" = (
 /obj/effect/decal/cleanable/generic,
 /obj/machinery/mineral/equipment_vendor,
@@ -9048,6 +10037,14 @@
 "UV" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall/mineral/brick,
+/area/f13/wasteland)
+"UW" = (
+/obj/machinery/door/unpowered/securedoor{
+	name = "Sheriff's Department";
+	req_access_txt = null;
+	req_one_access_txt = "62"
+	},
+/turf/open/indestructible/ground/outside/desert,
 /area/f13/wasteland)
 "UX" = (
 /obj/structure/noticeboard{
@@ -9101,6 +10098,21 @@
 "Vc" = (
 /obj/structure/car/rubbish2,
 /turf/open/indestructible/ground/outside/desert,
+/area/f13/wasteland)
+"Vd" = (
+/obj/structure/fence/wooden{
+	density = 0;
+	dir = 1;
+	pixel_x = 9;
+	pixel_y = 19
+	},
+/obj/structure/railing{
+	color = "#A47449";
+	dir = 4
+	},
+/obj/structure/destructible/tribal_torch/lit,
+/obj/effect/turf_decal/weather/dirt,
+/turf/open/indestructible/ground/outside/dirt,
 /area/f13/wasteland)
 "Vg" = (
 /obj/structure/closet/crate/bin{
@@ -9177,6 +10189,18 @@
 /obj/structure/flora/chomp/bush3,
 /turf/open/indestructible/ground/outside/desert,
 /area/f13/wasteland)
+"Vx" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 4
+	},
+/obj/effect/turf_decal/weather/dirt{
+	dir = 5
+	},
+/obj/effect/turf_decal/weather/dirt{
+	dir = 1
+	},
+/turf/open/transparent/openspace,
+/area/f13/wasteland)
 "Vz" = (
 /obj/structure/flora/jungle6,
 /turf/open/indestructible/ground/outside/desert,
@@ -9248,6 +10272,12 @@
 "VK" = (
 /obj/structure/rug/big/rug_yellow,
 /turf/open/floor/carpet,
+/area/f13/wasteland)
+"VN" = (
+/obj/structure/chair/sofa/left{
+	dir = 4
+	},
+/turf/open/floor/f13/wood,
 /area/f13/wasteland)
 "VQ" = (
 /obj/effect/turf_decal/weather/dirt{
@@ -9774,6 +10804,14 @@
 	},
 /turf/open/indestructible/ground/outside/gravel,
 /area/f13/wasteland)
+"XY" = (
+/obj/structure/chair/sofa/corp/left{
+	dir = 8;
+	pixel_y = -3;
+	pixel_x = 8
+	},
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "Ya" = (
 /obj/effect/turf_decal/weather/dirt{
 	color = "#a98c5d";
@@ -9908,6 +10946,14 @@
 	color = "#AA5555"
 	},
 /area/f13/wasteland)
+"Zd" = (
+/obj/machinery/door/unpowered/securedoor{
+	name = "Sheriff's Department";
+	req_access_txt = null;
+	req_one_access_txt = "62"
+	},
+/turf/open/floor/wood_common/wood_common_dark,
+/area/f13/building)
 "Ze" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 1
@@ -9924,6 +10970,46 @@
 	color = "#AA5555"
 	},
 /area/f13/building)
+"Zh" = (
+/obj/structure/fence/wooden{
+	dir = 4;
+	pixel_y = 6
+	},
+/obj/structure/fence/wooden{
+	dir = 4;
+	pixel_y = -5;
+	color = "#BBBBBB"
+	},
+/obj/structure/fence/wooden{
+	dir = 4;
+	pixel_y = 9
+	},
+/obj/structure/fence/wooden{
+	dir = 4;
+	pixel_y = -2
+	},
+/obj/structure/dresser{
+	pixel_y = -2;
+	pixel_x = 6
+	},
+/obj/item/flashlight/oldlamp{
+	pixel_y = 1;
+	pixel_x = -12;
+	light_on = 1
+	},
+/obj/effect/turf_decal/trimline/white/filled/line{
+	color = "#000000";
+	pixel_y = -1;
+	name = "shadow";
+	layer = 5
+	},
+/obj/structure/railing{
+	color = "#A47449";
+	dir = 8;
+	pixel_x = -3
+	},
+/turf/open/floor/f13/wood,
+/area/f13/wasteland)
 "Zi" = (
 /turf/open/indestructible/ground/outside/road{
 	icon_state = "horizontaltopborderbottom2right"
@@ -16193,8 +17279,8 @@ hz
 hz
 hz
 hz
-hz
-hz
+tb
+tb
 hz
 hz
 hz
@@ -16452,9 +17538,9 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
+tb
+tb
+tb
 hz
 hz
 hz
@@ -16711,7 +17797,7 @@ hz
 hz
 hz
 hz
-hz
+tb
 hz
 hz
 hz
@@ -16965,10 +18051,10 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
+tb
+tb
+tb
+tb
 hz
 hz
 hz
@@ -17225,7 +18311,7 @@ hz
 hz
 hz
 hz
-hz
+tb
 hz
 hz
 hz
@@ -17480,9 +18566,9 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
+tb
+tb
+tb
 hz
 hz
 hz
@@ -17735,8 +18821,8 @@ hz
 hz
 hz
 hz
-hz
-hz
+tb
+tb
 hz
 hz
 hz
@@ -17998,18 +19084,18 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
 hz
 hz
 hz
@@ -18247,26 +19333,26 @@ dZ
 hz
 hz
 hz
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
 hz
 hz
 hz
@@ -18507,23 +19593,23 @@ hz
 hz
 hz
 hz
+tb
 hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+dZ
+dZ
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+zP
+dZ
 hz
 hz
 hz
@@ -18763,24 +19849,24 @@ hz
 hz
 hz
 hz
+tb
+tb
 hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+dZ
+dZ
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+dZ
 hz
 hz
 hz
@@ -19019,25 +20105,25 @@ hz
 hz
 hz
 hz
+tb
+hz
+hz
+tb
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+dZ
+dZ
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+dZ
 hz
 hz
 hz
@@ -19275,26 +20361,26 @@ dZ
 hz
 hz
 hz
+tb
 hz
 hz
 hz
 hz
+tb
+tb
 hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+dZ
+dZ
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+dZ
 hz
 hz
 hz
@@ -19540,18 +20626,18 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+dZ
+dZ
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+dZ
 hz
 hz
 hz
@@ -19791,24 +20877,24 @@ hz
 hz
 hz
 hz
+tb
+tb
+tb
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+dZ
+dZ
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+dZ
+dZ
 hz
 hz
 hz
@@ -20048,24 +21134,24 @@ hz
 hz
 hz
 hz
+tb
 hz
+tb
 hz
+tb
 hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+dZ
+dZ
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+dZ
+dZ
 hz
 hz
 hz
@@ -20305,24 +21391,24 @@ hz
 hz
 hz
 hz
+tb
 hz
+tb
 hz
+tb
 hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+dZ
+dZ
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+dZ
+dZ
 hz
 hz
 hz
@@ -20562,24 +21648,24 @@ hz
 hz
 hz
 hz
+tb
 hz
 hz
+tb
+tb
 hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
 hz
 hz
 hz
@@ -20825,18 +21911,18 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
 hz
 hz
 hz
@@ -21333,11 +22419,11 @@ hz
 hz
 hz
 hz
+tb
 hz
 hz
 hz
-hz
-hz
+tb
 hz
 hz
 hz
@@ -21589,12 +22675,12 @@ hz
 hz
 hz
 hz
+tb
 hz
 hz
 hz
-hz
-hz
-hz
+tb
+tb
 hz
 hz
 hz
@@ -21846,12 +22932,12 @@ hz
 hz
 hz
 hz
+tb
 hz
 hz
+tb
 hz
-hz
-hz
-hz
+tb
 hz
 hz
 hz
@@ -22104,11 +23190,11 @@ hz
 hz
 hz
 hz
+tb
+tb
 hz
 hz
-hz
-hz
-hz
+tb
 hz
 hz
 hz
@@ -26179,8 +27265,8 @@ hz
 hz
 hz
 hz
-tb
-tb
+hz
+hz
 hz
 hz
 hz
@@ -26438,9 +27524,9 @@ hz
 hz
 hz
 hz
-tb
-tb
-tb
+hz
+hz
+hz
 hz
 hz
 hz
@@ -26697,7 +27783,7 @@ hz
 hz
 hz
 hz
-tb
+hz
 hz
 hz
 hz
@@ -26951,10 +28037,10 @@ hz
 hz
 hz
 hz
-tb
-tb
-tb
-tb
+hz
+hz
+hz
+hz
 hz
 hz
 hz
@@ -27211,7 +28297,7 @@ hz
 hz
 hz
 hz
-tb
+hz
 hz
 hz
 hz
@@ -27466,9 +28552,9 @@ hz
 hz
 hz
 hz
-tb
-tb
-tb
+hz
+hz
+hz
 hz
 hz
 hz
@@ -27721,8 +28807,8 @@ hz
 hz
 hz
 hz
-tb
-tb
+hz
+hz
 hz
 hz
 hz
@@ -27984,18 +29070,18 @@ hz
 hz
 hz
 hz
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
 hz
 hz
 hz
@@ -28233,26 +29319,26 @@ dZ
 hz
 hz
 hz
-tb
-tb
-tb
-tb
-tb
-tb
-tb
 hz
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
 hz
 hz
 hz
@@ -28493,23 +29579,23 @@ hz
 hz
 hz
 hz
-tb
 hz
 hz
 hz
 hz
-dZ
-dZ
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-zP
-dZ
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
 hz
 hz
 hz
@@ -28749,24 +29835,24 @@ hz
 hz
 hz
 hz
-tb
-tb
 hz
 hz
 hz
 hz
-dZ
-dZ
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-dZ
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
 hz
 hz
 hz
@@ -29005,25 +30091,25 @@ hz
 hz
 hz
 hz
-tb
-hz
-hz
-tb
 hz
 hz
 hz
-dZ
-dZ
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-dZ
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
 hz
 hz
 hz
@@ -29261,26 +30347,26 @@ dZ
 hz
 hz
 hz
-tb
 hz
 hz
 hz
 hz
-tb
-tb
 hz
-dZ
-dZ
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-dZ
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
 hz
 hz
 hz
@@ -29526,18 +30612,18 @@ hz
 hz
 hz
 hz
-dZ
-dZ
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-dZ
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
 hz
 hz
 hz
@@ -29777,24 +30863,24 @@ hz
 hz
 hz
 hz
-tb
-tb
-tb
 hz
 hz
 hz
-dZ
-dZ
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-dZ
-dZ
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
 hz
 hz
 hz
@@ -30034,24 +31120,24 @@ hz
 hz
 hz
 hz
-tb
 hz
-tb
 hz
-tb
 hz
-dZ
-dZ
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-dZ
-dZ
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
 hz
 hz
 hz
@@ -30291,24 +31377,24 @@ hz
 hz
 hz
 hz
-tb
 hz
-tb
 hz
-tb
 hz
-dZ
-dZ
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-Dg
-dZ
-dZ
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
 hz
 hz
 hz
@@ -30548,24 +31634,24 @@ hz
 hz
 hz
 hz
-tb
 hz
 hz
-tb
-tb
 hz
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
 hz
 hz
 hz
@@ -30804,87 +31890,87 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-dZ
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
 hz
 hz
 hz
@@ -31060,89 +32146,89 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+wb
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Cv
+TE
 hz
 hz
 hz
@@ -31317,89 +32403,89 @@ hz
 hz
 hz
 hz
-hz
-hz
-tb
-hz
-hz
-hz
-tb
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -31574,89 +32660,89 @@ hz
 hz
 hz
 hz
-hz
-tb
-hz
-hz
-hz
-tb
-tb
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -31831,89 +32917,89 @@ hz
 hz
 hz
 hz
-hz
-tb
-hz
-hz
-tb
-hz
-tb
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+dZ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+kQ
+dZ
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -32088,89 +33174,89 @@ hz
 hz
 hz
 hz
-hz
-hz
-tb
-tb
-hz
-hz
-tb
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+DA
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+dc
+dc
+dc
+dc
+dc
+dc
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -32345,6 +33431,12 @@ hz
 hz
 hz
 hz
+mC
+Kz
+dZ
+dZ
+lR
+TE
 hz
 hz
 hz
@@ -32416,18 +33508,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -32602,6 +33688,12 @@ hz
 hz
 hz
 hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -32673,18 +33765,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -32859,14 +33945,22 @@ hz
 hz
 hz
 hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+NA
+NA
+NA
+NA
+NA
+NA
+NA
+hj
 NA
 NA
 NA
@@ -32910,15 +34004,7 @@ NA
 NA
 NA
 NA
-NA
-NA
-NA
-NA
-NA
-NA
-NA
-NA
-NA
+hj
 NA
 NA
 NA
@@ -32936,12 +34022,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -33116,14 +34202,23 @@ hz
 hz
 hz
 hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+NA
+iT
+iT
+iT
+iT
+NA
+NA
+iT
+iT
 NA
 iT
 iT
@@ -33164,20 +34259,11 @@ iT
 iT
 iT
 iT
+NA
 iT
 iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
+NA
+NA
 iT
 iT
 iT
@@ -33193,12 +34279,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -33373,12 +34459,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 NA
@@ -33386,6 +34472,8 @@ iT
 iT
 iT
 iT
+NA
+Dx
 iT
 iT
 iT
@@ -33428,13 +34516,11 @@ iT
 iT
 iT
 iT
+NA
 iT
 iT
-iT
-iT
-iT
-iT
-iT
+xZ
+NA
 iT
 iT
 iT
@@ -33450,12 +34536,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -33630,14 +34716,23 @@ hz
 hz
 hz
 hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+NA
+iT
+iT
+iT
+iT
+NA
+CK
+iT
+iT
 NA
 iT
 iT
@@ -33678,20 +34773,11 @@ iT
 iT
 iT
 iT
+NA
 iT
 iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
+CK
+NA
 iT
 iT
 iT
@@ -33707,12 +34793,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -33887,12 +34973,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 NA
@@ -33946,7 +35032,7 @@ NA
 NA
 NA
 NA
-NA
+hj
 NA
 NA
 NA
@@ -33964,12 +35050,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -34144,12 +35230,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 NA
@@ -34221,12 +35307,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 il
 hz
 hz
@@ -34401,12 +35487,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 NA
@@ -34478,12 +35564,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -34658,12 +35744,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 NA
@@ -34735,12 +35821,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -34915,12 +36001,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 NA
@@ -34992,12 +36078,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -35172,12 +36258,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 NA
@@ -35249,12 +36335,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -35429,12 +36515,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 NA
@@ -35506,12 +36592,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -35604,7 +36690,7 @@ dZ
 dZ
 fE
 fE
-fE
+vP
 fE
 fE
 dZ
@@ -35686,12 +36772,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 NA
@@ -35763,12 +36849,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 il
 hz
 hz
@@ -35860,9 +36946,9 @@ dZ
 dZ
 dZ
 fE
-Uj
-Uj
-Uj
+ap
+gF
+ag
 fE
 dZ
 dZ
@@ -35943,12 +37029,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 NA
@@ -36020,12 +37106,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -36117,9 +37203,9 @@ dZ
 kO
 Nu
 fE
+Ap
 Uj
-Uj
-Uj
+OD
 fE
 dZ
 dZ
@@ -36200,12 +37286,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 NA
@@ -36277,12 +37363,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 Jn
 hz
@@ -36362,9 +37448,9 @@ dZ
 dZ
 fE
 fE
-fE
-fE
-fE
+BO
+BO
+BO
 fE
 fE
 fE
@@ -36373,10 +37459,10 @@ dZ
 dZ
 Yr
 Uj
-IE
+kg
 Uj
 Uj
-Uj
+Iz
 fE
 dZ
 dZ
@@ -36457,12 +37543,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-Ot
-Ot
+mC
+Kz
+dZ
+dZ
+kw
+mW
 Ot
 Ot
 bU
@@ -36479,10 +37565,10 @@ lX
 lX
 lX
 ly
-ZG
-SC
-fX
-Gy
+aG
+Mc
+Qr
+Jy
 hz
 hz
 hz
@@ -36534,12 +37620,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -36618,12 +37704,12 @@ hz
 dZ
 dZ
 fE
-Uj
-Uj
-Uj
-Uj
-Uj
-Uj
+BU
+uB
+PO
+EG
+Ej
+cg
 fE
 Nu
 rE
@@ -36631,9 +37717,9 @@ dZ
 dZ
 Cj
 fE
-Uj
-Uj
-Uj
+By
+XY
+gQ
 fE
 dZ
 dZ
@@ -36714,12 +37800,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-Ot
-Ot
+mC
+Kz
+dZ
+dZ
+kw
+mW
 Ot
 Ot
 bU
@@ -36791,14 +37877,14 @@ hz
 hz
 hz
 hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+il
 hz
 hz
 hz
@@ -36875,13 +37961,13 @@ hz
 dZ
 dZ
 fE
+sB
 Uj
 Uj
 Uj
 Uj
-Uj
-Uj
-IE
+NN
+kg
 Uj
 NT
 dZ
@@ -36890,7 +37976,7 @@ dZ
 fE
 fE
 fE
-fE
+kj
 fE
 dZ
 dZ
@@ -36971,12 +38057,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-Ot
-Ot
-Ot
+mC
+Kz
+dZ
+gB
+kw
+mW
 Ot
 Ot
 bU
@@ -37048,12 +38134,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -37132,7 +38218,7 @@ hz
 dZ
 dZ
 fE
-Uj
+JX
 Uj
 Uj
 Uj
@@ -37228,12 +38314,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-Ot
-Ot
-Ot
+mC
+Kz
+dZ
+gB
+kw
+mW
 Ot
 Ot
 bU
@@ -37305,12 +38391,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-il
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -37388,14 +38474,14 @@ tb
 hz
 dZ
 dZ
-fE
+mP
+tr
 Uj
 Uj
-Uj
-Uj
-Uj
-Uj
-fE
+qO
+aB
+qO
+Ln
 dZ
 dZ
 dZ
@@ -37485,12 +38571,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-Ot
-Ot
-Ot
+mC
+Kz
+dZ
+gB
+kw
+mW
 Ot
 Ot
 bU
@@ -37507,10 +38593,10 @@ lX
 lX
 lX
 ly
-ZG
-SC
-fX
-Gy
+He
+ux
+wt
+ko
 hz
 vU
 hz
@@ -37562,12 +38648,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 il
@@ -37646,12 +38732,12 @@ hz
 dZ
 dZ
 fE
-Uj
-Uj
-Uj
-Uj
-Uj
-Uj
+fE
+kg
+tG
+hF
+Jq
+wU
 fE
 dZ
 dZ
@@ -37742,12 +38828,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-Ot
-Ot
-Ot
+mC
+Kz
+dZ
+gB
+kw
+mW
 Ot
 Ot
 bU
@@ -37809,9 +38895,9 @@ ze
 jd
 hz
 NA
-iT
-iT
-iT
+NA
+hj
+NA
 NA
 Sc
 hz
@@ -37819,12 +38905,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -37903,8 +38989,8 @@ hz
 dZ
 dZ
 fE
-fE
-fE
+gc
+Ff
 fE
 fE
 fE
@@ -37999,12 +39085,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-Ot
-Ot
-Ot
+mC
+Kz
+dZ
+gB
+kw
+mW
 Ot
 Ot
 bU
@@ -38066,9 +39152,9 @@ ze
 jd
 xr
 NA
+Mm
 iT
-iT
-iT
+NA
 NA
 Sc
 hz
@@ -38076,12 +39162,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -38160,12 +39246,12 @@ hz
 dZ
 dZ
 fE
+tD
+Ff
+kg
 Uj
-Uj
-Uj
-Uj
-Uj
-Uj
+VN
+kJ
 fE
 dZ
 dZ
@@ -38256,12 +39342,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-Ot
-Ot
-Ot
+mC
+Kz
+dZ
+gB
+kw
+mW
 Ot
 Ot
 bU
@@ -38323,9 +39409,9 @@ ze
 jd
 hz
 NA
+JU
 iT
-iT
-iT
+xZ
 NA
 Sc
 hz
@@ -38333,12 +39419,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -38417,12 +39503,12 @@ hz
 dZ
 dZ
 fE
+fE
+fE
+fE
 Uj
 Uj
-Uj
-Uj
-Uj
-Uj
+bZ
 fE
 dZ
 dZ
@@ -38513,12 +39599,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-Ot
-Ot
-Ot
+mC
+Kz
+dZ
+gB
+kw
+mW
 Ot
 Ot
 bU
@@ -38580,9 +39666,9 @@ ze
 jd
 hz
 NA
+UT
 iT
-iT
-iT
+CK
 NA
 Sc
 hz
@@ -38590,12 +39676,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -38674,12 +39760,12 @@ hz
 dZ
 dZ
 fE
+hm
+pI
+uv
 Uj
 Uj
-Uj
-Uj
-Uj
-Uj
+Jr
 fE
 dZ
 dZ
@@ -38770,12 +39856,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-Ot
-Ot
-Ot
+mC
+Kz
+dZ
+gB
+kw
+mW
 Ot
 Ot
 bU
@@ -38837,9 +39923,9 @@ ze
 jd
 hz
 NA
-iT
-iT
-iT
+NA
+hj
+NA
 NA
 NA
 NA
@@ -38847,12 +39933,12 @@ NA
 NA
 Sc
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 il
@@ -38931,13 +40017,13 @@ hz
 dZ
 dZ
 fE
+ro
+Oo
+ea
 Uj
 Uj
-Uj
-Uj
-Uj
-Uj
-IE
+NN
+kg
 Uj
 NT
 dZ
@@ -39027,12 +40113,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-Ot
-Ot
+mC
+Kz
+dZ
+dZ
+kw
+mW
 Ot
 Ot
 bU
@@ -39104,12 +40190,12 @@ iT
 NA
 Sc
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -39187,13 +40273,13 @@ hz
 hz
 dZ
 dZ
-fE
+tz
+Eq
+pI
+Zh
 Uj
-Uj
-Uj
-Uj
-Uj
-Uj
+ya
+zf
 fE
 eg
 ae
@@ -39201,9 +40287,9 @@ dZ
 dZ
 dZ
 fE
-Uj
-Uj
-Uj
+aT
+aT
+aT
 fE
 dZ
 dZ
@@ -39284,12 +40370,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-Ot
-Ot
+mC
+Kz
+dZ
+dZ
+kw
+mW
 Ot
 Ot
 bU
@@ -39361,12 +40447,12 @@ iT
 NA
 Sc
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -39455,12 +40541,12 @@ fE
 dZ
 dZ
 dZ
-Yr
-Uj
-IE
-Uj
-Uj
-Uj
+dZ
+dZ
+fE
+aT
+aT
+aT
 fE
 dZ
 dZ
@@ -39541,12 +40627,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-Ot
-Ot
+mC
+Kz
+dZ
+dZ
+kw
+mW
 Ot
 Ot
 bU
@@ -39618,12 +40704,12 @@ iT
 NA
 Sc
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -39712,12 +40798,12 @@ dZ
 dZ
 dZ
 dZ
-tE
-eg
+dZ
+dZ
+fE
 fE
 Uj
-Uj
-Uj
+fE
 fE
 dZ
 dZ
@@ -39798,12 +40884,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-Ot
-Ot
+mC
+Kz
+dZ
+dZ
+kw
+mW
 Ot
 Ot
 bU
@@ -39875,12 +40961,12 @@ iT
 NA
 Sc
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -40055,12 +41141,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-Ot
-Ot
+mC
+Kz
+dZ
+dZ
+kw
+mW
 Ot
 Ot
 bU
@@ -40132,12 +41218,12 @@ iT
 NA
 Sc
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -40229,9 +41315,9 @@ dZ
 dZ
 dZ
 fE
-fE
-fE
-fE
+Uj
+Uj
+Uj
 fE
 dZ
 dZ
@@ -40312,12 +41398,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 NA
@@ -40389,12 +41475,12 @@ iT
 NA
 Sc
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -40483,12 +41569,12 @@ dZ
 dZ
 dZ
 dZ
-dZ
-dZ
-fE
-fE
-fE
-fE
+Yr
+Uj
+yH
+Uj
+Uj
+Uj
 fE
 dZ
 dZ
@@ -40569,12 +41655,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 NA
@@ -40646,12 +41732,12 @@ iT
 NA
 Sc
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+TN
+Kz
+dZ
+dZ
+CZ
+TE
 hz
 hz
 hz
@@ -40740,8 +41826,8 @@ dZ
 dZ
 dZ
 dZ
-dZ
-dZ
+tE
+eg
 fE
 Uj
 Uj
@@ -40826,12 +41912,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-em
-em
-em
+mC
+Kz
+dZ
+Oi
+BS
+nJ
 em
 em
 It
@@ -40903,13 +41989,13 @@ iT
 NA
 Sc
 hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+Vd
+uU
+Nu
+Nu
+mM
+hK
+fS
 hz
 hz
 hz
@@ -40997,8 +42083,8 @@ dZ
 dZ
 dZ
 dZ
-kO
-Nu
+dZ
+dZ
 fE
 Uj
 Uj
@@ -41083,12 +42169,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-em
-em
-em
+mC
+Kz
+dZ
+Oi
+BS
+nJ
 em
 em
 It
@@ -41160,12 +42246,12 @@ hj
 NA
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+qU
+qU
+qU
+qU
+qU
+qU
 hz
 hz
 hz
@@ -41254,9 +42340,9 @@ fE
 dZ
 dZ
 dZ
-Yr
-Uj
-IE
+dZ
+dZ
+fE
 Uj
 Uj
 Uj
@@ -41340,18 +42426,18 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-em
-em
-em
+mC
+Kz
+dZ
+Oi
+BS
+nJ
 em
 em
 It
-BL
-BL
-BL
+It
+Zd
+It
 It
 lX
 lX
@@ -41362,10 +42448,10 @@ lX
 lX
 lX
 ly
-ZG
-SC
-fX
-Gy
+aG
+Mc
+Qr
+Jy
 hz
 hz
 xr
@@ -41416,13 +42502,13 @@ ug
 ug
 cc
 ug
-ug
 hg
-hz
-hz
-hz
-hz
-hz
+qU
+qU
+qU
+qU
+qU
+qU
 hz
 hz
 hz
@@ -41597,18 +42683,18 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-em
-em
-em
+mC
+Kz
+dZ
+Oi
+BS
+nJ
 em
 em
 It
 BL
 BL
-BL
+It
 It
 lX
 lX
@@ -41673,13 +42759,13 @@ pq
 pq
 pq
 pq
-pq
 jd
-hz
-hz
-hz
-hz
-hz
+qU
+qU
+qU
+qU
+qU
+qU
 hz
 hz
 hz
@@ -41854,18 +42940,18 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+Oi
+BS
+nJ
 em
 em
-em
-em
-em
-It
+Zd
 BL
 BL
-BL
+ud
 It
 lX
 lX
@@ -41930,13 +43016,13 @@ pq
 pq
 pq
 YD
-YD
 gZ
-hz
-hz
-hz
-hz
-hz
+qU
+qU
+qU
+qU
+qU
+qU
 hz
 hz
 hz
@@ -42111,18 +43197,18 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-em
-em
-em
+mC
+Kz
+dZ
+Oi
+BS
+nJ
 em
 em
 It
 BL
 BL
-BL
+bY
 It
 lX
 lX
@@ -42188,12 +43274,12 @@ hj
 NA
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+qU
+qU
+qU
+qU
+qU
+qU
 hz
 hz
 hz
@@ -42368,18 +43454,18 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-em
-em
-em
+mC
+Kz
+dZ
+Oi
+BS
+nJ
 em
 em
 It
-BL
-BL
-BL
+It
+Zd
+It
 It
 lX
 lX
@@ -42390,10 +43476,10 @@ lX
 lX
 lX
 ly
-ZG
-SC
-Fl
-Gy
+He
+ux
+SF
+ko
 hz
 hz
 hz
@@ -42445,13 +43531,13 @@ iT
 NA
 Sc
 hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+MH
+OC
+hq
+hq
+Up
+JG
+aP
 hz
 hz
 hz
@@ -42625,12 +43711,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-Dn
-Dn
-Dn
+mC
+Kz
+dZ
+nF
+fq
+AI
 Dn
 Dn
 cG
@@ -42702,12 +43788,12 @@ iT
 NA
 Sc
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -42882,12 +43968,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-Dn
-Dn
-Dn
+mC
+Kz
+dZ
+nF
+fq
+AI
 Dn
 Dn
 cG
@@ -42959,12 +44045,12 @@ iT
 NA
 Sc
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -43139,12 +44225,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-Dn
-Dn
-Dn
+mC
+Kz
+dZ
+nF
+fq
+AI
 Dn
 Dn
 cG
@@ -43216,12 +44302,12 @@ iT
 NA
 Sc
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -43396,12 +44482,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-Dn
-Dn
-Dn
+mC
+Kz
+dZ
+nF
+fq
+AI
 Dn
 Dn
 cG
@@ -43473,12 +44559,12 @@ iT
 NA
 Sc
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -43653,12 +44739,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-Dn
-Dn
-Dn
+mC
+Kz
+dZ
+nF
+fq
+AI
 Dn
 Dn
 cG
@@ -43730,12 +44816,12 @@ iT
 NA
 Sc
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -43910,12 +44996,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-Dn
-Dn
-Dn
+mC
+Kz
+dZ
+nF
+fq
+AI
 Dn
 Dn
 cG
@@ -43987,12 +45073,12 @@ iT
 NA
 Sc
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -44167,12 +45253,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-Dn
-Dn
-Dn
+mC
+Kz
+dZ
+nF
+fq
+AI
 Dn
 Dn
 cG
@@ -44244,14 +45330,14 @@ iT
 NA
 Sc
 hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 il
-hz
-hz
-hz
 hz
 hz
 hz
@@ -44424,12 +45510,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-Dn
-Dn
-Dn
+mC
+Kz
+dZ
+nF
+fq
+AI
 Dn
 Dn
 cG
@@ -44491,9 +45577,9 @@ pq
 jd
 hz
 NA
-iT
-iT
-iT
+NA
+hj
+NA
 NA
 NA
 NA
@@ -44501,12 +45587,12 @@ NA
 NA
 Sc
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -44681,12 +45767,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-Dn
-Dn
-Dn
+mC
+Kz
+dZ
+nF
+fq
+AI
 Dn
 Dn
 cG
@@ -44748,9 +45834,9 @@ pq
 jd
 hz
 NA
+UT
 iT
-iT
-iT
+NA
 NA
 Sc
 hz
@@ -44758,12 +45844,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 bf
@@ -44938,12 +46024,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-Dn
+mC
+Kz
+dZ
+dZ
+jF
+AI
 Dn
 Dn
 cG
@@ -45005,9 +46091,9 @@ pq
 jd
 hz
 NA
+JU
 iT
-iT
-iT
+xZ
 NA
 Sc
 hz
@@ -45015,12 +46101,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -45195,12 +46281,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 NA
@@ -45262,22 +46348,22 @@ YD
 gZ
 hz
 NA
+Mm
 iT
-iT
-iT
+CK
 NA
 Sc
-hz
-hz
-hz
-hz
 hz
 hz
 il
 hz
 hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -45452,12 +46538,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 NA
@@ -45519,9 +46605,9 @@ hz
 hz
 hz
 NA
-iT
-iT
-iT
+NA
+hj
+NA
 NA
 Sc
 hz
@@ -45529,12 +46615,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -45709,12 +46795,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 NA
@@ -45786,12 +46872,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -45966,12 +47052,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 NA
@@ -46043,12 +47129,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 il
 hz
 hz
@@ -46223,12 +47309,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 NA
@@ -46245,10 +47331,10 @@ lX
 lX
 lX
 ly
-ZG
-SC
-fX
-Gy
+aG
+Mc
+Qr
+Jy
 hz
 hz
 hz
@@ -46300,12 +47386,12 @@ hz
 hz
 hz
 hz
-il
-hz
-hz
-hz
-hz
-hz
+Ia
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -46480,12 +47566,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 em
 It
@@ -46557,12 +47643,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -46737,12 +47823,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 em
 It
@@ -46814,12 +47900,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -46994,12 +48080,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 em
 It
@@ -47071,13 +48157,13 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 il
-hz
 hz
 hz
 hz
@@ -47251,12 +48337,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 em
 It
@@ -47273,10 +48359,10 @@ lX
 lX
 lX
 ly
-ZG
-SC
-fX
-Gy
+He
+ux
+wt
+ko
 hz
 mj
 cW
@@ -47328,12 +48414,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -47508,12 +48594,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-em
+mC
+Kz
+dZ
+dZ
+jF
+nJ
 em
 em
 It
@@ -47585,12 +48671,12 @@ vU
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 il
@@ -47765,12 +48851,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-em
+mC
+Kz
+dZ
+dZ
+jF
+nJ
 em
 em
 It
@@ -47842,12 +48928,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -48022,12 +49108,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-em
+mC
+Kz
+dZ
+dZ
+jF
+nJ
 em
 em
 It
@@ -48099,12 +49185,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 il
 hz
 hz
@@ -48279,12 +49365,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-em
+mC
+Kz
+dZ
+dZ
+jF
+nJ
 em
 em
 It
@@ -48356,12 +49442,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -48536,12 +49622,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-em
+mC
+Kz
+dZ
+dZ
+jF
+nJ
 em
 em
 It
@@ -48613,12 +49699,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -48793,12 +49879,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-em
+mC
+Kz
+dZ
+dZ
+jF
+nJ
 em
 em
 It
@@ -48870,12 +49956,12 @@ hz
 hz
 hz
 il
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -49050,12 +50136,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-em
+mC
+Kz
+dZ
+dZ
+jF
+nJ
 em
 em
 It
@@ -49127,12 +50213,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 il
 hz
@@ -49307,12 +50393,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 NA
@@ -49384,12 +50470,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -49564,12 +50650,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 NA
@@ -49623,7 +50709,7 @@ NA
 NA
 NA
 NA
-NA
+hj
 NA
 NA
 NA
@@ -49641,12 +50727,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -49821,14 +50907,23 @@ hz
 hz
 hz
 hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+NA
+iT
+iT
+iT
+iT
+NA
+NA
+iT
+iT
 NA
 iT
 iT
@@ -49869,20 +50964,11 @@ iT
 iT
 iT
 iT
+NA
 iT
 iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
+NA
+NA
 iT
 iT
 iT
@@ -49898,12 +50984,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -50078,12 +51164,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 NA
@@ -50091,6 +51177,8 @@ iT
 iT
 iT
 iT
+NA
+Dx
 iT
 iT
 iT
@@ -50133,13 +51221,11 @@ iT
 iT
 iT
 iT
+NA
 iT
 iT
-iT
-iT
-iT
-iT
-iT
+xZ
+NA
 iT
 iT
 iT
@@ -50155,12 +51241,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -50335,14 +51421,23 @@ hz
 hz
 hz
 hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+NA
+iT
+iT
+iT
+iT
+NA
+CK
+iT
+iT
 NA
 iT
 iT
@@ -50383,20 +51478,11 @@ iT
 iT
 iT
 iT
+NA
 iT
 iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
-iT
+CK
+NA
 iT
 iT
 iT
@@ -50412,12 +51498,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -50592,14 +51678,22 @@ hz
 hz
 hz
 hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+NA
+NA
+NA
+NA
+NA
+NA
+NA
+UW
 NA
 NA
 NA
@@ -50643,15 +51737,7 @@ NA
 NA
 NA
 NA
-NA
-NA
-NA
-NA
-NA
-NA
-NA
-NA
-NA
+hj
 NA
 NA
 NA
@@ -50669,12 +51755,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -50849,6 +51935,12 @@ hz
 hz
 hz
 hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -50920,18 +52012,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -51106,6 +52192,12 @@ hz
 hz
 hz
 hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -51177,18 +52269,12 @@ hz
 hz
 hz
 hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
+mC
+Kz
+dZ
+dZ
+jF
+TE
 hz
 hz
 hz
@@ -51226,6 +52312,2576 @@ hz
 hz
 "}
 (161,1,1) = {"
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+mC
+Kz
+dZ
+dZ
+jF
+zt
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Pb
+Gf
+Kz
+dZ
+dZ
+jF
+TE
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+TN
+XW
+Xr
+TE
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+"}
+(162,1,1) = {"
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+mC
+Kz
+dZ
+dZ
+dZ
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+Rd
+dZ
+dZ
+dZ
+jF
+TE
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+TN
+XW
+Xr
+TE
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+"}
+(163,1,1) = {"
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+mC
+Kz
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+jF
+TE
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+TN
+XW
+Xr
+TE
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+"}
+(164,1,1) = {"
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+mC
+Kz
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+dZ
+jF
+TE
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+il
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+"}
+(165,1,1) = {"
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+mC
+Vx
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+dr
+gi
+TE
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+il
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+"}
+(166,1,1) = {"
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+aV
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+"}
+(167,1,1) = {"
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+"}
+(168,1,1) = {"
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+"}
+(169,1,1) = {"
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+"}
+(170,1,1) = {"
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+hz
+"}
+(171,1,1) = {"
 hz
 hz
 hz
@@ -51457,10 +55113,10 @@ hz
 hz
 hz
 hz
-TN
-XW
-Xr
-TE
+hz
+hz
+hz
+hz
 hz
 hz
 hz
@@ -51482,7 +55138,7 @@ hz
 hz
 hz
 "}
-(162,1,1) = {"
+(172,1,1) = {"
 hz
 hz
 hz
@@ -51714,10 +55370,10 @@ hz
 hz
 hz
 hz
-TN
-XW
-Xr
-TE
+hz
+hz
+hz
+hz
 hz
 hz
 hz
@@ -51739,7 +55395,7 @@ hz
 hz
 hz
 "}
-(163,1,1) = {"
+(173,1,1) = {"
 hz
 hz
 hz
@@ -51971,10 +55627,10 @@ hz
 hz
 hz
 hz
-TN
-XW
-Xr
-TE
+hz
+hz
+hz
+hz
 hz
 hz
 hz
@@ -51996,7 +55652,7 @@ hz
 hz
 hz
 "}
-(164,1,1) = {"
+(174,1,1) = {"
 hz
 hz
 hz
@@ -52227,7 +55883,7 @@ hz
 hz
 hz
 hz
-il
+hz
 hz
 hz
 hz
@@ -52253,7 +55909,7 @@ hz
 hz
 hz
 "}
-(165,1,1) = {"
+(175,1,1) = {"
 hz
 hz
 hz
@@ -52490,7 +56146,7 @@ hz
 hz
 hz
 hz
-il
+hz
 hz
 hz
 hz
@@ -52510,7 +56166,7 @@ hz
 hz
 hz
 "}
-(166,1,1) = {"
+(176,1,1) = {"
 hz
 hz
 hz
@@ -52767,7 +56423,7 @@ hz
 hz
 hz
 "}
-(167,1,1) = {"
+(177,1,1) = {"
 hz
 hz
 hz
@@ -53024,7 +56680,7 @@ hz
 hz
 hz
 "}
-(168,1,1) = {"
+(178,1,1) = {"
 hz
 hz
 hz
@@ -53281,7 +56937,7 @@ hz
 hz
 hz
 "}
-(169,1,1) = {"
+(179,1,1) = {"
 hz
 hz
 hz
@@ -53538,7 +57194,7 @@ hz
 hz
 hz
 "}
-(170,1,1) = {"
+(180,1,1) = {"
 hz
 hz
 hz
@@ -53795,7 +57451,7 @@ hz
 hz
 hz
 "}
-(171,1,1) = {"
+(181,1,1) = {"
 hz
 hz
 hz
@@ -54052,7 +57708,7 @@ hz
 hz
 hz
 "}
-(172,1,1) = {"
+(182,1,1) = {"
 hz
 hz
 hz
@@ -54309,7 +57965,7 @@ hz
 hz
 hz
 "}
-(173,1,1) = {"
+(183,1,1) = {"
 hz
 hz
 hz
@@ -54566,7 +58222,7 @@ hz
 hz
 hz
 "}
-(174,1,1) = {"
+(184,1,1) = {"
 hz
 hz
 hz
@@ -54823,7 +58479,7 @@ hz
 hz
 hz
 "}
-(175,1,1) = {"
+(185,1,1) = {"
 hz
 hz
 hz
@@ -55080,7 +58736,7 @@ hz
 hz
 hz
 "}
-(176,1,1) = {"
+(186,1,1) = {"
 hz
 hz
 hz
@@ -55337,7 +58993,7 @@ hz
 hz
 hz
 "}
-(177,1,1) = {"
+(187,1,1) = {"
 hz
 hz
 hz
@@ -55594,7 +59250,7 @@ hz
 hz
 hz
 "}
-(178,1,1) = {"
+(188,1,1) = {"
 hz
 hz
 hz
@@ -55851,7 +59507,7 @@ hz
 hz
 hz
 "}
-(179,1,1) = {"
+(189,1,1) = {"
 hz
 hz
 hz
@@ -56108,7 +59764,7 @@ hz
 hz
 hz
 "}
-(180,1,1) = {"
+(190,1,1) = {"
 hz
 hz
 hz
@@ -56365,7 +60021,7 @@ hz
 hz
 hz
 "}
-(181,1,1) = {"
+(191,1,1) = {"
 hz
 hz
 hz
@@ -56622,7 +60278,7 @@ hz
 hz
 hz
 "}
-(182,1,1) = {"
+(192,1,1) = {"
 hz
 hz
 hz
@@ -56879,7 +60535,7 @@ hz
 hz
 hz
 "}
-(183,1,1) = {"
+(193,1,1) = {"
 hz
 hz
 hz
@@ -57136,7 +60792,7 @@ hz
 hz
 hz
 "}
-(184,1,1) = {"
+(194,1,1) = {"
 hz
 hz
 hz
@@ -57393,7 +61049,7 @@ hz
 hz
 hz
 "}
-(185,1,1) = {"
+(195,1,1) = {"
 hz
 hz
 hz
@@ -57650,7 +61306,7 @@ hz
 hz
 hz
 "}
-(186,1,1) = {"
+(196,1,1) = {"
 hz
 hz
 hz
@@ -57907,7 +61563,7 @@ hz
 hz
 hz
 "}
-(187,1,1) = {"
+(197,1,1) = {"
 hz
 hz
 hz
@@ -58164,7 +61820,7 @@ hz
 hz
 hz
 "}
-(188,1,1) = {"
+(198,1,1) = {"
 hz
 hz
 hz
@@ -58421,7 +62077,7 @@ hz
 hz
 hz
 "}
-(189,1,1) = {"
+(199,1,1) = {"
 hz
 hz
 hz
@@ -58678,7 +62334,7 @@ hz
 hz
 hz
 "}
-(190,1,1) = {"
+(200,1,1) = {"
 hz
 hz
 hz
@@ -58892,2576 +62548,6 @@ hz
 hz
 hz
 Lu
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-"}
-(191,1,1) = {"
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-"}
-(192,1,1) = {"
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-Rd
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-"}
-(193,1,1) = {"
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-"}
-(194,1,1) = {"
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-"}
-(195,1,1) = {"
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-"}
-(196,1,1) = {"
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-"}
-(197,1,1) = {"
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-"}
-(198,1,1) = {"
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-"}
-(199,1,1) = {"
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-"}
-(200,1,1) = {"
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
-hz
 hz
 hz
 hz
