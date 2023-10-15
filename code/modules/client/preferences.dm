@@ -85,6 +85,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/uses_glasses_colour = 0
 
+	var/show_in_directory = TRUE
+	var/directory_tag = "Unset"
+	var/directory_erptag = "Unset"
+	var/directory_ad = "Hi"
+
 	//character preferences
 	var/real_name						//our character's name
 	var/be_random_name = 0				//whether we'll have a random name every round
@@ -1120,7 +1125,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 								?_src_=prefs;
 								preference=bag;
 								task=input'>
-								Sackpack
+								[backbag]
 							</a>"}
 					dat += "<div class='undies_link'>-</div>"
 					dat += "</td>"
@@ -1131,7 +1136,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 									href='
 										?_src_=prefs;
 										preference=persistent_scars'>
-											Enabled
+											[persistent_scars ? "Enabled" : "Disabled"]
 								</a>"}
 					dat += {"<a 
 									class='undies_link' 
