@@ -454,6 +454,21 @@
 	)
 	can_suppress = FALSE
 
+/obj/item/gun/ballistic/automatic/smg/mini_uzi/rockworse
+	name = "9mm Rockwell Pistol"
+	desc = "A crude modification of the 9mm Rockwell SMG, affectionately named the \"Rockworse\". Uses Doublestack 9mm magazines."
+	icon_state = "rockworse"
+	mag_type = /obj/item/ammo_box/magazine/m9mm
+	init_mag_type = /obj/item/ammo_box/magazine/m9mm/doublestack
+	disallowed_mags = /obj/item/ammo_box/magazine/uzim9mm/rockwell
+	weapon_class = WEAPON_CLASS_NORMAL
+	damage_multiplier = GUN_LESS_DAMAGE_T1
+	init_recoil = SMG_RECOIL(2, 1.2)
+	init_firemodes = list(
+		/datum/firemode/automatic/rpm150
+	)
+	can_suppress = FALSE
+
 /obj/item/gun/ballistic/automatic/smg/mini_uzi/owengun
 	name = "9mm Owen Gun"
 	desc = "A genuine Australian machine carbine! It's favored due to its portability, weight, and reliability."
@@ -3013,12 +3028,13 @@
 	mag_type = /obj/item/ammo_box/magazine/ratling
 	init_mag_type = /obj/item/ammo_box/magazine/ratling
 	weapon_class = WEAPON_CLASS_RIFLE
+	added_spread = GUN_SPREAD_SUPERAWFUL
 	weapon_weight = GUN_TWO_HAND_ONLY
-	damage_multiplier = GUN_LESS_DAMAGE_T4
+	damage_multiplier = GUN_LESS_DAMAGE_T6
 	init_recoil = LMG_RECOIL(1.2, 1.2)
 	slowdown = GUN_SLOWDOWN_RIFLE_LMG * 2
 	init_firemodes = list(
-		/datum/firemode/automatic/rpm300
+		/datum/firemode/automatic/rpm150
 	)
 
 

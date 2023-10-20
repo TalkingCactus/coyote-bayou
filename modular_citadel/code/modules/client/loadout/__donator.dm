@@ -426,15 +426,25 @@
 	new /obj/item/ammo_box/a357(src)
 	new /obj/item/bedsheet/cult(src)
 
-/datum/gear/donator/kits/ckey
+/datum/gear/donator/kits/Delta_DavGrunt
     name = "Grunt-Cop Kit"
-    path = /obj/item/storage/box/large/custom_kit/Delta_Dav
-    ckeywhitelist = list("Delta_Dav")
+    path = /obj/item/storage/box/large/custom_kit/Delta_DavGrunt
+    ckeywhitelist = list("delta_dav")
 
-/obj/item/storage/box/large/custom_kit/Delta_Dav/PopulateContents()
+/obj/item/storage/box/large/custom_kit/Delta_DavGrunt/PopulateContents()
     new /obj/item/clothing/head/f13/ncr/steelpot_mp(src)
     new /obj/item/clothing/under/f13/ncr/ncr_dress(src)
     new /obj/item/clothing/accessory/armband/black(src)
+
+/datum/gear/donator/kits/Delta_DavTrek
+	name = "Voyager Equipment Kit"
+	path = /obj/item/storage/box/large/custom_kit/Delta_DavTrek
+	ckeywhitelist = list("delta_dav")
+
+/obj/item/storage/box/large/custom_kit/Delta_DavTrek/PopulateContents()
+	new /obj/item/clothing/under/trek/medsci/voy(src)
+	new /obj/item/gun/energy/laser/pistol/phaser(src)
+	new /obj/item/gun/energy/laser/pistol/phaser/disable(src)
 
 // E
 
@@ -1392,7 +1402,7 @@
 	new /obj/item/stack/cable_coil/thirty(src)
 	new /obj/item/gun/energy/laser/auto/nayriin(src)
 	new /obj/item/weldingtool/largetank/cylphie(src)
-	new /obj/item/clothing/under/rank/security/officer/skirt(src)
+	new /obj/item/clothing/under/dress/skirt/polychromic/pleated(src)
 
 /datum/gear/donator/kits/truedark2
 	name = "Alaskan Survival Kit"
@@ -1565,6 +1575,16 @@
 	new /obj/item/storage/backpack/satchel/eng(src)
 	new /obj/item/storage/firstaid/emergency(src)
 	new /obj/item/defibrillator/compact(src)
+
+/datum/gear/donator/kits/deltadav
+	name = "Voyager Equipment Kit"
+	path = /obj/item/storage/box/large/custom_kit/deltadav
+	ckeywhitelist = list("delta_dav")
+
+/obj/item/storage/box/large/custom_kit/deltadav/PopulateContents()
+	new /obj/item/clothing/under/trek/medsci/voy(src)
+	new /obj/item/gun/energy/laser/pistol/phaser(src)
+	new /obj/item/gun/energy/laser/pistol/phaser/disable(src)
 
 /datum/gear/donator/kits/rattles
 	name = "Box of Rattlers"
