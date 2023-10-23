@@ -515,7 +515,7 @@
 	)
 	init_recoil = LASER_SMG_RECOIL(1, 1)
 
-//Ultracite Laser pistol
+//Ultracite Laser pistol - staying commented out because the gammagun shares its sprite.
 /obj/item/gun/energy/laser/ultra_pistol
 	name = "\improper Ultracite laser pistol"
 	desc = "An ultracite enhanced energy-based laser gun that fires concentrated beams of light."
@@ -633,16 +633,17 @@
 	icon_state = "LaserAK"
 	item_state = null
 	icon = 'modular_citadel/icons/obj/guns/VGguns.dmi'
-	cell_type = "/obj/item/stock_parts/cell/ammo/mfc"
+	cell_type = "/obj/item/stock_parts/cell/ammo/breeder"
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/AK470M)
 	ammo_x_offset = 4
 	lefthand_file = 'modular_citadel/icons/mob/citadel/guns_lefthand.dmi'
 	righthand_file = 'modular_citadel/icons/mob/citadel/guns_righthand.dmi'
 	weapon_class = WEAPON_CLASS_RIFLE
 	weapon_weight = GUN_ONE_HAND_ONLY
+	damage_multiplier = GUN_LESS_DAMAGE_T1
 	init_firemodes = list(
 	/datum/firemode/semi_auto,
-	/datum/firemode/automatic/rpm300
+	/datum/firemode/automatic/rpm100
 	)
 	init_recoil = LASER_AUTORIFLE_RECOIL(1, 1)
 
@@ -699,10 +700,10 @@
 //Ultracite Laser rifle
 /obj/item/gun/energy/laser/ultra_rifle
 	name = "\improper Ultracite laser rifle"
-	desc = "A sturdy and advanced military grade pre-war service laser rifle, now enhanced with ultracite"
+	desc = "An incredibly rare variant of the AER-9 laser rifle that uses Ultracite microfusion cells."
 	icon_state = "ultra_rifle"
 	item_state = "laser-rifle9"
-	ammo_type = list(/obj/item/ammo_casing/energy/laser/lasgun)
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/lasgun/ultra)
 	cell_type = /obj/item/stock_parts/cell/ammo/ultracite
 	can_scope = FALSE
 	zoom_factor = 1
@@ -1090,10 +1091,11 @@
 
 /obj/item/gun/energy/laser/tg/carbine/pistol
 	name = "miniture laser pistol"
-	desc = "An ultracompact version of the Trident Gammaworks laser carbine, this gun is small enough to fit in a pocket or pouch. While it retains the carbine's power, its battery is less efficient due to the size."
+	desc = "An ultracompact version of the Trident Gammaworks laser carbine, this gun is small enough to fit in a pocket or pouch. While it retains most of the carbine's power, its battery is less efficient due to the size."
 	icon_state = "laspistol"
 	item_state = "laser"
 	w_class = WEIGHT_CLASS_SMALL
+	damage_multiplier = GUN_LESS_DAMAGE_T1
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/tg)
 	can_flashlight = 0
 	can_scope = FALSE
