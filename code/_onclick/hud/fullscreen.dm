@@ -1,3 +1,9 @@
+/*
+	category - unique name for this fullscreen overlay
+	type - typepath for the overlay
+	severity - number appended to the icon_state of the typepath's original icon_state
+	myalpha - (optional) will override the normal alpha of the overlay with this amount
+*/
 /mob/proc/overlay_fullscreen(category, type, severity, myalpha)
 	var/atom/movable/screen/fullscreen/screen = screens[category]
 	if (!screen || screen.type != type)
@@ -190,13 +196,23 @@
 	icon = 'icons/mob/nvd_fullscreen.dmi'
 	icon_state = "nvd_gasket"
 	show_when_dead = FALSE
-	layer = CURSE_LAYER
+	layer = FULLSCREEN_LAYER
 	plane = FULLSCREEN_PLANE
 
-/// increases the light intensity of everything in view by this much with nvd equipped
+/// subtracts blue and red light so you only see greens
+/atom/movable/screen/fullscreen/nvd_neg
+	icon = 'icons/mob/nvd_fullscreen.dmi'
+	icon_state = "nvd_neg"
+	plane = ABOVE_LIGHTING_PLANE
+	layer = ABOVE_LIGHTING_LAYER
+	blend_mode = BLEND_SUBTRACT
+	show_when_dead = FALSE
+
+/// increases the light intensity of everything in view with nvd equipped
 /atom/movable/screen/fullscreen/nvd_int
 	icon = 'icons/mob/nvd_fullscreen.dmi'
 	icon_state = "nvd_int"
-	plane = LIGHTING_PLANE
-	blend_mode = BLEND_OVERLAY
+	plane = ABOVE_LIGHTING_PLANE
+	layer = ABOVE_LIGHTING_LAYER
+	blend_mode = BLEND_ADD
 	show_when_dead = FALSE

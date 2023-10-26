@@ -588,21 +588,27 @@
 			if(glass_colour_type)
 				H.update_glasses_color(src, 1)
 
-
 /mob/living/carbon/human/proc/update_glasses_color(obj/item/clothing/glasses/G, glasses_equipped)
 	if(istype(G,/obj/item/clothing/glasses/nvd))
 		var/obj/item/clothing/glasses/nvd/N = G
 		if(client && glasses_equipped)
-			add_client_colour(N.glass_colour_type)
+			for(var/obj/item/gun/heldgun in held_items)//Unzoom from any guns you're holding
+				if(heldgun.zoomed)
+					heldgun.zoom(src,FALSE)
+			clear_fullscreen("see_through_darkness", animated = 1 SECONDS)
+			overlay_fullscreen("nvd_neg", /atom/movable/screen/fullscreen/nvd_neg)//Subtract red and blue colors
 			overlay_fullscreen("nvd_grain", /atom/movable/screen/fullscreen/nvd_grain, N.graininess)//Apply a film grain effect
-			overlay_fullscreen("nvd_int_pass1", /atom/movable/screen/fullscreen/nvd_int, N.intensity)//Light intensifier phase 1
-			overlay_fullscreen("nvd_int_pass2", /atom/movable/screen/fullscreen/nvd_int, N.intensity)//Light intensifier phase 2 (needed for a blownout effect in light areas)
+			overlay_fullscreen("nvd_int_pass1", /atom/movable/screen/fullscreen/nvd_int, myalpha =  N.intensity)//Light intensifier phase 1
+//			overlay_fullscreen("nvd_int_pass2", /atom/movable/screen/fullscreen/nvd_int, myalpha =  N.intensity)//Light intensifier phase 2
+//			overlay_fullscreen("nvd_int_pass3", /atom/movable/screen/fullscreen/nvd_int, myalpha =  N.lighting_alpha)//Light intensifier phase 3
 			overlay_fullscreen("nvd_gasket", /atom/movable/screen/fullscreen/nvd_gasket, N.darkness_view)//Reduce view range
 		else
-			remove_client_colour(N.glass_colour_type)
+			overlay_fullscreen("see_through_darkness", /atom/movable/screen/fullscreen/see_through_darkness)
 			clear_fullscreen("nvd_grain", animated = FALSE)
+			clear_fullscreen("nvd_neg", animated = FALSE)
 			clear_fullscreen("nvd_int_pass1", animated = 1 SECONDS)
-			clear_fullscreen("nvd_int_pass2", animated = 1 SECONDS)
+//			clear_fullscreen("nvd_int_pass2", animated = 1 SECONDS)
+//			clear_fullscreen("nvd_int_pass3", animated = 1 SECONDS)
 			clear_fullscreen("nvd_gasket", animated = 1 SECONDS)
 	else
 		if(client && client.prefs.uses_glasses_colour && glasses_equipped)
@@ -763,20 +769,22 @@ Several variants with differing levels of range, graininess, gain, and battery d
 	glass_colour_type = /datum/client_colour/nvd_green
 	/// (1-3) The amount of visual noise inside the nvd
 	var/graininess = 2
-	/// (1-3) How much we want to multiply the luminosity of the things in view. Higher values will increase night vision capabilities, but reduce it in bright areas.
-	var/intensity = 3
+	/// Hard to explain, but this is basically how much you want bright areas to be blown out and dark ones to be brightened up. The higher this is, the more contrast there is.
+	var/intensity = LIGHTING_PLANE_ALPHA_NVD_OKAY/2
 
 /datum/client_colour/nvd_green
 	colour = rgb(0, 255, 0)
 	priority = 1
 
-/obj/item/clothing/glasses/nvd/proc/GetWornNVD(mob/living/user)
+/// Returns a reference to some Night Vision Device if this carbon mob is wearing them. Returns null if they aren't wearing any.
+/proc/GetWornNVD(mob/living/carbon/user)
 	if(!user || !istype(user))
-		return null
-	if(istype(user.eyes, /obj/item/clothing/glasses/nvd))
-		return user.eyes
+		return
+	if(istype(user.glasses, /obj/item/clothing/glasses/nvd))
+		return user.glasses
 	else if(istype(user.head, /obj/item/clothing/glasses/nvd))
 		return user.head
+	return
 
 /obj/item/clothing/glasses/nvd/pvs5
 	name = "\improper PVS-5 night vision device"
@@ -784,6 +792,7 @@ Several variants with differing levels of range, graininess, gain, and battery d
 	icon_state = "pvs5"
 	item_state = "pvs5"
 	lighting_alpha = LIGHTING_PLANE_ALPHA_NVD_BAD
+	intensity = LIGHTING_PLANE_ALPHA_NVD_BAD/2
 	darkness_view = NVD_RANGE_BAD
 	graininess = 3
 

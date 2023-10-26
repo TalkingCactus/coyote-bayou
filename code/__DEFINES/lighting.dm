@@ -76,10 +76,10 @@
 #define LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE 128 //For lighting alpha, small amounts lead to big changes. even at 128 its hard to figure out what is dark and what is light, at 64 you almost can't even tell.
 #define LIGHTING_PLANE_ALPHA_INVISIBLE 0
 
-#define LIGHTING_PLANE_ALPHA_NVD_BAD		200
-#define LIGHTING_PLANE_ALPHA_NVD_OKAY		176
-#define LIGHTING_PLANE_ALPHA_NVD_GREAT		152
-#define LIGHTING_PLANE_ALPHA_NVD_EXCELLENT	128
+#define LIGHTING_PLANE_ALPHA_NVD_BAD		227
+#define LIGHTING_PLANE_ALPHA_NVD_OKAY		213
+#define LIGHTING_PLANE_ALPHA_NVD_GREAT		199
+#define LIGHTING_PLANE_ALPHA_NVD_EXCELLENT	185
 
 #define NVD_RANGE_AWFUL			3 //puke
 #define NVD_RANGE_BAD			4

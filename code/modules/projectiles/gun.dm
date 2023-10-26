@@ -813,17 +813,19 @@ ATTACHMENTS
 /obj/item/gun/proc/zoom(mob/living/user, forced_zoom)
 	if(!(user?.client))
 		return
-	if(var/obj/item/clothing/glasses/nvd/N = GetWornNVD(user))
-		to_chat(user,span_warning("Your night vision "))
-		return
 	if(!isnull(forced_zoom))
 		if(zoomed == forced_zoom)
 			return
 		zoomed = forced_zoom
 	else
 		zoomed = !zoomed
-
+	
+	var/obj/item/clothing/glasses/nvd/N = GetWornNVD(user) //Safe proc, returns null if no nvd found or if they're not a human mob who can wear them
+	
 	if(zoomed)//if we need to be zoomed in
+		if(!isnull(N)) //They tried using a scope with night vision goggles on.
+			to_chat(user, span_warning("Your [N] gets in the way of using your optic!"))
+			return
 		user.add_movespeed_modifier(/datum/movespeed_modifier/scoped_in)
 		var/_x = 0
 		var/_y = 0
@@ -844,6 +846,8 @@ ATTACHMENTS
 		UnregisterSignal(user, COMSIG_MOVABLE_MOVED) //pls don't conflict with anything else using this signal
 		user.visible_message(span_notice("[user] looks down the scope of [src]."), span_notice("You look down the scope of [src]."))
 	else
+		if(!isnull(N))//They equipped night vision goggles while looking through a scope.
+			to_chat(user,span_warning("You can't continue looking through your scope with \the [N] on."))
 		user.remove_movespeed_modifier(/datum/movespeed_modifier/scoped_in)
 		user.client.change_view(CONFIG_GET(string/default_view))
 		user.client.pixel_x = 0
