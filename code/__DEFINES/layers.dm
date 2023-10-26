@@ -157,7 +157,6 @@
 #define CRIT_LAYER 20.4
 #define CURSE_LAYER 20.5
 
-
 //-------------------- HUD ---------------------
 
 //HUD layer defines

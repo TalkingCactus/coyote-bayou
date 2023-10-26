@@ -1,4 +1,4 @@
-/mob/proc/overlay_fullscreen(category, type, severity)
+/mob/proc/overlay_fullscreen(category, type, severity, myalpha)
 	var/atom/movable/screen/fullscreen/screen = screens[category]
 	if (!screen || screen.type != type)
 		// needs to be recreated
@@ -10,6 +10,8 @@
 
 	screen.icon_state = "[initial(screen.icon_state)][severity]"
 	screen.severity = severity
+	if(myalpha)
+		screen.alpha = myalpha
 	if (client && screen.should_show_to(src))
 		screen.update_for_view(client.view)
 		client.screen += screen
@@ -174,3 +176,27 @@
 	plane = LIGHTING_PLANE
 	blend_mode = BLEND_ADD
 	show_when_dead = TRUE
+
+/// Night vision devices (grainy and blurry)
+/atom/movable/screen/fullscreen/nvd_grain
+	icon = 'icons/mob/nvd_fullscreen.dmi'
+	icon_state = "nvd_grain"
+	plane = LIGHTING_PLANE+1
+	blend_mode = BLEND_ADD
+	show_when_dead = FALSE
+
+/// The black outline around your vision, immitating the limited field of view from looking through a gasketed lens.
+/atom/movable/screen/fullscreen/nvd_gasket
+	icon = 'icons/mob/nvd_fullscreen.dmi'
+	icon_state = "nvd_gasket"
+	show_when_dead = FALSE
+	layer = CURSE_LAYER
+	plane = FULLSCREEN_PLANE
+
+/// increases the light intensity of everything in view by this much with nvd equipped
+/atom/movable/screen/fullscreen/nvd_int
+	icon = 'icons/mob/nvd_fullscreen.dmi'
+	icon_state = "nvd_int"
+	plane = LIGHTING_PLANE
+	blend_mode = BLEND_OVERLAY
+	show_when_dead = FALSE

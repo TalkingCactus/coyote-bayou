@@ -590,10 +590,25 @@
 
 
 /mob/living/carbon/human/proc/update_glasses_color(obj/item/clothing/glasses/G, glasses_equipped)
-	if(client && client.prefs.uses_glasses_colour && glasses_equipped)
-		add_client_colour(G.glass_colour_type)
+	if(istype(G,/obj/item/clothing/glasses/nvd))
+		var/obj/item/clothing/glasses/nvd/N = G
+		if(client && glasses_equipped)
+			add_client_colour(N.glass_colour_type)
+			overlay_fullscreen("nvd_grain", /atom/movable/screen/fullscreen/nvd_grain, N.graininess)//Apply a film grain effect
+			overlay_fullscreen("nvd_int_pass1", /atom/movable/screen/fullscreen/nvd_int, N.intensity)//Light intensifier phase 1
+			overlay_fullscreen("nvd_int_pass2", /atom/movable/screen/fullscreen/nvd_int, N.intensity)//Light intensifier phase 2 (needed for a blownout effect in light areas)
+			overlay_fullscreen("nvd_gasket", /atom/movable/screen/fullscreen/nvd_gasket, N.darkness_view)//Reduce view range
+		else
+			remove_client_colour(N.glass_colour_type)
+			clear_fullscreen("nvd_grain", animated = FALSE)
+			clear_fullscreen("nvd_int_pass1", animated = 1 SECONDS)
+			clear_fullscreen("nvd_int_pass2", animated = 1 SECONDS)
+			clear_fullscreen("nvd_gasket", animated = 1 SECONDS)
 	else
-		remove_client_colour(G.glass_colour_type)
+		if(client && client.prefs.uses_glasses_colour && glasses_equipped)
+			add_client_colour(G.glass_colour_type)
+		else
+			remove_client_colour(G.glass_colour_type)
 
 /obj/item/clothing/glasses/sunglasses/reagent
 	name = "beer goggles"
@@ -728,3 +743,73 @@
 	name = "prescription cold goggles"
 	vision_correction = 1
 
+/*
+Night Vision Devices
+Several variants with differing levels of range, graininess, gain, and battery drain.
+*/
+
+//Base type
+/obj/item/clothing/glasses/nvd
+	name = "night vision device"
+	desc = "These light-amplifying goggles will help you see in the dark and help blind you otherwise."
+	icon_state = "pvs5"
+	item_state = "pvs5"
+	w_class = WEIGHT_CLASS_NORMAL
+	custom_materials = list(/datum/material/iron = 250)
+	tint = 0
+	flash_protect = -2
+	darkness_view = NVD_RANGE_OKAY
+	lighting_alpha = LIGHTING_PLANE_ALPHA_NVD_OKAY
+	glass_colour_type = /datum/client_colour/nvd_green
+	/// (1-3) The amount of visual noise inside the nvd
+	var/graininess = 2
+	/// (1-3) How much we want to multiply the luminosity of the things in view. Higher values will increase night vision capabilities, but reduce it in bright areas.
+	var/intensity = 3
+
+/datum/client_colour/nvd_green
+	colour = rgb(0, 255, 0)
+	priority = 1
+
+/obj/item/clothing/glasses/nvd/proc/GetWornNVD(mob/living/user)
+	if(!user || !istype(user))
+		return null
+	if(istype(user.eyes, /obj/item/clothing/glasses/nvd))
+		return user.eyes
+	else if(istype(user.head, /obj/item/clothing/glasses/nvd))
+		return user.head
+
+/obj/item/clothing/glasses/nvd/pvs5
+	name = "\improper PVS-5 night vision device"
+	desc = "A GEN II binocular night vision device used as early as the Vietnam war. Whenever that was."
+	icon_state = "pvs5"
+	item_state = "pvs5"
+	lighting_alpha = LIGHTING_PLANE_ALPHA_NVD_BAD
+	darkness_view = NVD_RANGE_BAD
+	graininess = 3
+
+/obj/item/clothing/glasses/nvd/pvs7
+	name = "\improper PVS-7 night vision device"
+	desc = "An okay night vision monocular device."
+	icon_state = "pvs7"
+	item_state = "pvs7"
+	lighting_alpha = LIGHTING_PLANE_ALPHA_NVD_OKAY
+	darkness_view = NVD_RANGE_OKAY
+	graininess = 2
+
+/obj/item/clothing/glasses/nvd/pvs14
+	name = "\improper PVS-14 night vision device"
+	desc = "A pretty decent night vision binocular device."
+	icon_state = "pvs14"
+	item_state = "pvs14"
+	lighting_alpha = LIGHTING_PLANE_ALPHA_NVD_GREAT
+	darkness_view = NVD_RANGE_GREAT
+	graininess = 2
+
+/obj/item/clothing/glasses/nvd/pvs17
+	name = "\improper PVS-17 night vision device"
+	desc = "A very modern set of night vision goggles."
+	icon_state = "pvs17"
+	item_state = "pvs17"
+	lighting_alpha = LIGHTING_PLANE_ALPHA_NVD_EXCELLENT
+	darkness_view = NVD_RANGE_EXCELLENT
+	graininess = 1

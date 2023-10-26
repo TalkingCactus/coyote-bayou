@@ -813,7 +813,9 @@ ATTACHMENTS
 /obj/item/gun/proc/zoom(mob/living/user, forced_zoom)
 	if(!(user?.client))
 		return
-
+	if(var/obj/item/clothing/glasses/nvd/N = GetWornNVD(user))
+		to_chat(user,span_warning("Your night vision "))
+		return
 	if(!isnull(forced_zoom))
 		if(zoomed == forced_zoom)
 			return
