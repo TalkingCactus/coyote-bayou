@@ -164,13 +164,31 @@
 //ruby pistol. single stack bootgun, otherwise unexceptional
 /obj/item/gun/ballistic/automatic/pistol/ninemil/ruby
 	name = "Ruby"
-	desc = "A petite pocket pistol designed by Colt and used extensively by the French Army until the late '50s"
+	desc = "A petite pocket pistol designed by Colt and used extensively by the French Army until the late '50s."
 	icon = 'modular_coyote/icons/objects/pistols.dmi'
 	icon_state = "ruby"
 	init_mag_type = /obj/item/ammo_box/magazine/m9mm
 	mag_type = /obj/item/ammo_box/magazine/m9mm
 	disallowed_mags = list(/obj/item/ammo_box/magazine/m9mm/doublestack)
 	weapon_class = WEAPON_CLASS_TINY
+
+/obj/item/gun/ballistic/automatic/pistol/ninemil/ruby/rubee
+	name = "RuBee"
+	desc = "A petite pocket pistol that has been modified to accept some rather unique ammunition."
+	init_mag_type = /obj/item/ammo_box/magazine/rubee
+	mag_type = /obj/item/ammo_box/magazine/rubee
+	extra_mag_types = /obj/item/ammo_box/magazine/m9mm
+	disallowed_mags = list(/obj/item/ammo_box/magazine/m9mm/doublestack)
+
+/obj/item/gun/ballistic/automatic/pistol/ninemil/ruby/mousegun
+	name = "mouse gun"
+	desc = "Did that gun just squeak?"
+	icon = 'icons/obj/guns/projectile.dmi'
+	icon_state = "aps"
+	init_mag_type = /obj/item/ammo_box/magazine/mousegun
+	mag_type = /obj/item/ammo_box/magazine/mousegun
+	extra_mag_types = /obj/item/ammo_box/magazine/m9mm
+	disallowed_mags = list(/obj/item/ammo_box/magazine/m9mm/doublestack)
 
 //C93 pistol. damage bonus but single stack magazine. not the best gun, but hey, it's old
 /obj/item/gun/ballistic/automatic/pistol/ninemil/c93
@@ -199,8 +217,8 @@
 
 //9mm coldwar-modern sidearms. Same as the browning hipower pistol
 /obj/item/gun/ballistic/automatic/pistol/ninemil/glock
-	name = "glock Pistol"
-	desc = "A 9mm compact pistol, quite useful to have around in a holster or chest draw holster"
+	name = "Glock 19"
+	desc = "The GLOCK 19, Chambered in 9mm, is a versatile compact pistol. It fits comfortably in the hand or a chest rig, and its solid design lets it survive mud, sand, and sometimes even peanut butter "
 	icon_state = "glock"
 	item_state = "glock"
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
@@ -210,7 +228,7 @@
 
 /obj/item/gun/ballistic/automatic/pistol/ninemil/pinkglock
 	name = "Pink glock Pistol"
-	desc = "A 9mm compact pistol, quite useful to have around in a holster or chest draw holster. This one is a very vibrant pink"
+	desc = "The GLOCK 19, Chambered in 9mm, is a versatile compact pistol. It fits comfortably in the hand or a chest rig. This one hasnt seen much mud or sand, but it has fallen victim to a rather unusual colour choice. Is pink really 'tacticool?'"
 	icon_state = "plock"
 	item_state = "plock"
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
@@ -878,6 +896,7 @@
 * Muh 14mm
 * * * * * * * * * * * * */
 
+//Custom pistol for a player, see above.
 /obj/item/gun/ballistic/automatic/pistol/hellocutiepistol
 	name = "Custom K8 Assault Pistol"
 	desc = "A custom K8 Assault pistol manufactured by the Sanroo Arms company which was based in pre-war Tokyo. This heavy caliber firearm isn't easily concealable, comes chambered in a odd pistol conversion of a .577 nitro express round, and has a odd frontal magazine configuration but what it lacks in concealment and firerate, it makes up for in punch and 'kawaii' asthetic. The owner of this has engraved their name where the gun's name would be, a 'Tox Mckit'."
@@ -898,6 +917,53 @@
 	can_scope = FALSE
 	can_suppress = FALSE
 	fire_sound = 'sound/f13weapons/cyberbang.ogg'
+
+/obj/item/gun/ballistic/automatic/pistol/ticon
+	name = "Latos Systems P-36 Assault Pistol"
+	desc = "A heavy caliber pistol manufactured by Latos Systems. Chambered in 12.7mm or 14mm in pistol caliber, this heavy hitting pistol packs a wallop but requires two hands to even remotely handle the insane recoil. Comes with a built in Smart-Tek mini-dot sight. The gun itself has the ability to take in a custom ammo counter should one choose."
+	icon_state = "ticon"
+	item_state = "ticon"
+	icon = 'icons/fallout/objects/guns/ballistic.dmi'
+	lefthand_file = 'icons/fallout/onmob/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/fallout/onmob/weapons/guns_righthand.dmi'
+	init_mag_type = /obj/item/ammo_box/magazine/m14mmcustom
+	mag_type = /obj/item/ammo_box/magazine/m14mmcustom
+	weapon_class = WEAPON_CLASS_SMALL
+	weapon_weight = GUN_TWO_HAND_ONLY
+	damage_multiplier = GUN_LESS_DAMAGE_T1
+	init_recoil = HANDGUN_RECOIL(2, 2)
+	init_firemodes = list(
+		/datum/firemode/semi_auto/slower
+	)
+	can_scope = FALSE
+	can_suppress = FALSE
+	fire_sound = 'sound/f13weapons/cyberbang.ogg'
+
+
+
+/obj/item/gun/ballistic/automatic/pistol/needlerpistol
+	name = "NP-149/40"
+	desc = "A NP-149/40 pistol. This unique and odd prototype of a pistol was manufactured by Latos Systems before the way. It uses a peculiar type of ammunition. The ammo itself, when inserted, somehow turns into a set of pink glowing needles. How does Latos Systems do it? Who knows!"
+	icon_state = "needlerpistol"
+	item_state = "needlerpistol"
+	icon = 'icons/fallout/objects/guns/ballistic.dmi'
+	lefthand_file = 'icons/fallout/onmob/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/fallout/onmob/weapons/guns_righthand.dmi'
+	init_mag_type = /obj/item/ammo_box/magazine/internal/needlerammo
+	mag_type = /obj/item/ammo_box/magazine/internal/needlerammo
+	weapon_class = WEAPON_CLASS_SMALL
+	weapon_weight = GUN_ONE_HAND_ONLY
+	damage_multiplier = GUN_EXTRA_DAMAGE_0
+	init_recoil = HANDGUN_RECOIL(1, 1)
+	init_firemodes = list(
+		/datum/firemode/automatic/rpm150
+	)
+	can_scope = FALSE
+	can_suppress = FALSE
+	force_unwielded = 30
+	force = 30
+	force_wielded = 35
+	fire_sound = 'sound/f13weapons/needler.ogg'
 
 /* * * * * * * * * * *
  * Little Devil Semi-Auto
@@ -921,6 +987,7 @@
 	init_firemodes = list(
 		/datum/firemode/semi_auto/slow
 	)
+
 /////////////////////////////////
 // TEMPORARY REMOVE AFTER BETA //
 /////////////////////////////////obsolete

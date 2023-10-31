@@ -687,8 +687,8 @@
 	mag_type = /obj/item/ammo_box/magazine/uzim9mm
 	init_mag_type = /obj/item/ammo_box/magazine/uzim9mm
 	disallowed_mags = list (/obj/item/ammo_box/magazine/m9mm/doublestack,/obj/item/ammo_box/magazine/m9mm/doublestack/empty , /obj/item/ammo_box/magazine/uzim9mm/rockwell )
-	weapon_class = WEAPON_CLASS_NORMAL
-	weapon_weight = GUN_ONE_HAND_ONLY
+	weapon_class = WEAPON_CLASS_SMALL
+	weapon_weight = GUN_TWO_HAND_ONLY
 	damage_multiplier = GUN_LESS_DAMAGE_T1
 	gun_accuracy_zone_type = ZONE_WEIGHT_AUTOMATIC
 	init_recoil = AUTORIFLE_RECOIL(1.2 , 1.2)
@@ -1544,7 +1544,7 @@
 /* * * * * * * * * * * * * * * *
 * Famas G80{generation}
 * -weakened 5.56
-* + three round burst fire
+* + two round burst fire
 *- weak 5.56mm assault rifle to be found
 * - Takes 20 mags only
 * - Muh bullpup
@@ -1562,12 +1562,12 @@
 	disallowed_mags = list (/obj/item/ammo_box/magazine/m556/rifle/extended, /obj/item/ammo_box/magazine/m556/rifle/extended/empty, /obj/item/ammo_box/magazine/m556/rifle/small,/obj/item/ammo_box/magazine/m556/rifle/assault , /obj/item/ammo_box/magazine/m556/rifle/small,/obj/item/ammo_box/magazine/m556/rifle/assault/empty )
 	weapon_class = WEAPON_CLASS_RIFLE
 	weapon_weight = GUN_TWO_HAND_ONLY
-	damage_multiplier = GUN_LESS_DAMAGE_T1
+	damage_multiplier = GUN_LESS_DAMAGE_T2
 	cock_delay = GUN_COCK_RIFLE_BASE
-	init_recoil = RIFLE_RECOIL(1.5, 1.5)
+	init_recoil = RIFLE_RECOIL(1.8, 1.8)
 	init_firemodes = list(
-		/datum/firemode/semi_auto/slow,
-		/datum/firemode/burst/three/slow
+		/datum/firemode/semi_auto/slower,
+		/datum/firemode/burst/three/slower
 	)
 	can_bayonet = FALSE
 	can_scope = FALSE
@@ -2404,6 +2404,31 @@
 	can_flashlight = FALSE
 	reskinnable_component = null
 
+/obj/item/gun/ballistic/automatic/assault_carbine/m5a1custom
+	name = "M5A1 'The Silence' rifle"
+	desc = "A customized M5A1 assault rifle. Manufactured by Leo Armaments, this rifle seems to be customized. It is chambered in 5.56x45 NATO, comes with a built in ammo counter, and comes in a bullpup configuration. The assault rifle comes with a HUD-Link or aptly named HUDL that allows the user to procure a scope like reticule from any HUDL capable helmet. It seems to be engraved with baroque motiffs and on the cheek rest is the scene of a smiling moth. A name is engraved onto the top section of the rifle which is aptly enscribed as 'Tox Mckit'."
+	icon = 'icons/fallout/objects/guns/ballistic.dmi'
+	lefthand_file = 'icons/fallout/onmob/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/fallout/onmob/weapons/guns_righthand.dmi'
+	icon_state = "m5a1"
+	item_state = "m5a1"
+	mag_type = /obj/item/ammo_box/magazine/m556/rifle/assault
+	init_mag_type = /obj/item/ammo_box/magazine/m556/rifle/assault
+	disallowed_mags = list( /obj/item/ammo_box/magazine/m556/rifle/small, /obj/item/ammo_box/magazine/m556/rifle/, /obj/item/ammo_box/magazine/m556 )
+	weapon_class = WEAPON_CLASS_CARBINE
+	weapon_weight = GUN_TWO_HAND_ONLY
+	damage_multiplier = GUN_LESS_DAMAGE_T1
+	init_recoil = AUTORIFLE_RECOIL(2, 2)
+	init_firemodes = list(
+		/datum/firemode/automatic/rpm75,
+		/datum/firemode/semi_auto
+	)
+	can_scope = FALSE
+	can_suppress = TRUE
+	can_bayonet = FALSE
+	can_flashlight = FALSE
+	reskinnable_component = null
+
 
 /* * * * * * * * * * *
 * AK74
@@ -2557,13 +2582,14 @@
 	righthand_file = 'icons/fallout/onmob/weapons/guns_righthand.dmi'
 	mag_type = /obj/item/ammo_box/magazine/m308
 	init_mag_type = /obj/item/ammo_box/magazine/m308
+	disallowed_mags = list(/obj/item/ammo_box/magazine/m308/ext , /obj/item/ammo_box/magazine/m308/ext/empty)
 	weapon_class = WEAPON_CLASS_RIFLE
 	weapon_weight = GUN_TWO_HAND_ONLY
-	damage_multiplier = GUN_LESS_DAMAGE_T1
+	damage_multiplier = GUN_LESS_DAMAGE_T2
 	cock_delay = GUN_COCK_RIFLE_BASE
 	init_recoil = AUTORIFLE_RECOIL(2.5, 2.5)
 	init_firemodes = list (
-		/datum/firemode/semi_auto/slow
+		/datum/firemode/semi_auto/slower
 	)
 	can_scope = FALSE
 	can_suppress = FALSE
@@ -2583,7 +2609,7 @@
 	init_mag_type = /obj/item/ammo_box/magazine/m308
 	weapon_class = WEAPON_CLASS_RIFLE
 	weapon_weight = GUN_TWO_HAND_ONLY
-	damage_multiplier = GUN_LESS_DAMAGE_T1
+	damage_multiplier = GUN_LESS_DAMAGE_T3
 	cock_delay = GUN_COCK_RIFLE_BASE
 	init_recoil = AUTORIFLE_RECOIL(3, 3)
 	init_firemodes = list (
@@ -2747,6 +2773,8 @@
 		/datum/firemode/semi_auto/slow
 	)
 
+
+// Custom sniper rifle, loadout only, plans to change. ETA is TBA
 /obj/item/gun/ballistic/automatic/w2000
 	name = "Custom Wa-2000 sniper rifle"
 	desc = "A custom version of a Wa-2000 rifle. This unique looking rifle has changed its wooden furniture for more pristine and cleaner looking wood. The metals are engraved with baroque motifs and on butt of the rifle is a small scene of a moth taking flight. It is chambered in 7.62 NATO but can be chambered in .300 magnum or 7.5mm. Etched on the grip portion of the butt is the name 'Tox Mckit'."
@@ -2827,7 +2855,7 @@
 	gun_accuracy_zone_type = ZONE_WEIGHT_PRECISION
 	can_scope = TRUE
 
-
+// Custom rifle, loadout only.
 /obj/item/gun/ballistic/automatic/g36custom
 	name = "Custom G36C Assault rifle"
 	desc = "A custom version of a G36C assault rifle. Chambered in 5.56 NATO, this customized G36C assault rifle is made from a more resistant and durable type of material. Sporting a black and white finish. Adorning the metal bits of the gun, including the exterior of the barrel, are engraved baroque motifs. The gun comes with a built in red dot sight manufactured into the carry handle. A reliable assault rifle that saw extensive use by West Germany. The charging handle can flip between left or right side. This one seems to be fitted to the right side for a more right-side handed charging handle."
@@ -3074,6 +3102,7 @@
 * - Rare LMG
 * - High recoil with slowdown
 * * * * * * * * * * * * * * */
+
 /obj/item/gun/ballistic/automatic/rpd
 	name = "Russian RPK LMG"
 	desc = "A soviet made Russian LMG. Known as the RPK, ths LMG was champered in 7.62 Soviet. Now rechambered to .308 with a 40 drum mag, it has quite the kick for recoil and a bit heavy."
@@ -3098,9 +3127,18 @@
 	can_bayonet = FALSE
 	can_flashlight = FALSE
 
+/* * * * * * * * * * *
+* Oststrauß
+* 5.56 German LMG
+* - 60rnd Box only
+* - Fast and Faster RoF
+* - Harder Hitting
+* - Unique
+* - High recoil with slowdown
+* * * * * * * * * * * * * * */
 
 /obj/item/gun/ballistic/automatic/fastlmg
-	name = "OstStrauss LMG"
+	name = "Oststrauß"
 	desc = "A OstStrauss LMG, this LMG is chambered in 5.56x45 NATO. The gun itself was created as the great great grandson of the distant past MG3, which was derived from the MG-42 which was derived from the MG-34. With a fast fire rate and a toggle between 'slow' and 'fast', it is a LMG perfect for squad cover. Albiet it eats ammo like no tomorrow."
 	item_state = "mg3"
 	icon_state = "mg3"
@@ -3245,6 +3283,34 @@
 	can_suppress = FALSE
 	can_bayonet = FALSE
 	can_flashlight = FALSE
+
+
+/obj/item/gun/ballistic/automatic/needlerrifle
+	name = "NR-43 Turán"
+	desc = "A NR-43 prototype needle rifle also known as the 'Turan' in its country of origin. Manufactured by Latos Systems in a facility in Miskolc,Hungary. While this carbine is quick and lightweight, what it likes in firepower, it makes up for a rather peculiar design, built in scope, and expansive ammo capsules. A wise soldier once said.. 'Tell 'em to make it count.'."
+	icon_state = "needles"
+	item_state = "needles"
+	icon = 'icons/fallout/objects/guns/ballistic.dmi'
+	lefthand_file = 'icons/fallout/onmob/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/fallout/onmob/weapons/guns_righthand.dmi'
+	mag_type = /obj/item/ammo_box/magazine/internal/needlerammo
+	init_mag_type = /obj/item/ammo_box/magazine/internal/needlerammo
+	weapon_class = WEAPON_CLASS_CARBINE
+	weapon_weight = GUN_TWO_HAND_ONLY
+	slowdown = GUN_SLOWDOWN_PISTOL_LIGHT
+	damage_multiplier = GUN_EXTRA_DAMAGE_T3
+	cock_delay = GUN_COCK_RIFLE_BASE
+	draw_time = GUN_DRAW_NORMAL
+	init_recoil = CARBINE_RECOIL (1 , 1)
+	init_firemodes = list(
+		/datum/firemode/semi_auto/fast
+	)
+	zoom_factor = 1.2
+	can_suppress = FALSE
+	can_bayonet = FALSE
+	can_flashlight = FALSE
+	can_scope = TRUE
+	fire_sound = 'sound/f13weapons/needler.ogg'
 
 
 /* * * * * * * * * *

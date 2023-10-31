@@ -278,6 +278,12 @@
 	subcategory = LOADOUT_SUBCATEGORY_HEAD_HELMETS
 	cost = 1
 
+/datum/gear/head/chinastealthhelm
+	name = "Chinese stealth helmet"
+	path = /obj/item/clothing/head/helmet/chinastealthhelm
+	subcategory = LOADOUT_SUBCATEGORY_HEAD_HELMETS
+	cost = 1
+
 /datum/gear/head/pot
 	name = "pot helmet"
 	path = /obj/item/clothing/head/f13/pot
@@ -868,6 +874,55 @@ datum/gear/head/steelpot_bandolier
 	name = "Armored French cap "
 	path = /obj/item/clothing/head/kevlarhelmet/ww1capseries/french
 	subcategory = LOADOUT_SUBCATEGORY_HEAD_GENERAL
+	cost = 2
+
+/datum/gear/head/spartanhelmets
+	name = "M-87 'EVA' assault helmet"
+	path = /obj/item/clothing/head/evaspartan
+	subcategory = LOADOUT_SUBCATEGORY_HEAD_HELMETS
+	cost = 2
+
+/datum/gear/head/spartanhelmetstwo
+	name = "M-87 'EVA' assault helmet 'Icebreaker'"
+	path = /obj/item/clothing/head/evaspartan2
+	subcategory = LOADOUT_SUBCATEGORY_HEAD_HELMETS
+	cost = 2
+
+/datum/gear/head/spartanhelmetsthree
+	name = "M-87 'EVA' assault helmet 'Patriot'"
+	path = /obj/item/clothing/head/evaspartan3
+	subcategory = LOADOUT_SUBCATEGORY_HEAD_HELMETS
+	cost = 2
+
+/datum/gear/head/spartanhelmetfour
+	name = "M-87 'Odin' assault helmet 'Icebreaker'"
+	path = /obj/item/clothing/head/gungnirspartan2
+	subcategory = LOADOUT_SUBCATEGORY_HEAD_HELMETS
+	cost = 2
+
+/datum/gear/head/spartanhelmetfive
+	name = "M-87 'Odin' assault helmet"
+	path = /obj/item/clothing/head/gungnirspartan
+	subcategory = LOADOUT_SUBCATEGORY_HEAD_HELMETS
+	cost = 2
+
+/datum/gear/head/odsthelmet
+	name = "M-87 UNMC DropTrooper assault helmet"
+	path = /obj/item/clothing/head/droptrooper
+	subcategory = LOADOUT_SUBCATEGORY_HEAD_HELMETS
+	cost = 2
+
+
+/datum/gear/head/odsthelmet2
+	name = "M-87 Luchtmobiele Brigade assault helmet"
+	path = /obj/item/clothing/head/droptrooper/ice
+	subcategory = LOADOUT_SUBCATEGORY_HEAD_HELMETS
+	cost = 2
+
+/datum/gear/head/odsthelmet3
+	name = "M-87 HellTrooper assault helmet"
+	path = /obj/item/clothing/head/droptrooper/special
+	subcategory = LOADOUT_SUBCATEGORY_HEAD_HELMETS
 	cost = 2
 
 /datum/gear/head/russianadrianhelmet
