@@ -76,16 +76,19 @@
 #define LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE 128 //For lighting alpha, small amounts lead to big changes. even at 128 its hard to figure out what is dark and what is light, at 64 you almost can't even tell.
 #define LIGHTING_PLANE_ALPHA_INVISIBLE 0
 
-#define LIGHTING_PLANE_ALPHA_NVD_BAD		227
-#define LIGHTING_PLANE_ALPHA_NVD_OKAY		213
-#define LIGHTING_PLANE_ALPHA_NVD_GREAT		199
-#define LIGHTING_PLANE_ALPHA_NVD_EXCELLENT	185
+#define LIGHTING_PLANE_ALPHA_NVD_BAD		200
+#define LIGHTING_PLANE_ALPHA_NVD_OKAY		190
+#define LIGHTING_PLANE_ALPHA_NVD_GREAT		180
+#define LIGHTING_PLANE_ALPHA_NVD_EXCELLENT	170
 
-#define NVD_RANGE_AWFUL			3 //puke
-#define NVD_RANGE_BAD			4
-#define NVD_RANGE_OKAY			5
-#define NVD_RANGE_GREAT			6
-#define NVD_RANGE_EXCELLENT		7
+// The gasket around your vision actually reduces this range by about 1 and your vision is restricted to a circle/oval
+// You also give up your color vision and the ability to see clearly in bright areas
+#define NVD_RANGE_BAD			5
+#define NVD_RANGE_OKAY			6
+#define NVD_RANGE_GREAT			7
+#define NVD_RANGE_EXCELLENT		8
+
+#define NVD_BLOOM_FILTER filter(type="bloom", threshold=64, offset=8, size=8)
 
 #define NIGHT_VISION_DARKSIGHT_RANGE 4
 #define NIGHT_VISION_DARKSIGHT_RANGE_GREATER 6

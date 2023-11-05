@@ -121,6 +121,8 @@
 			if(G.vision_flags || G.darkness_view || G.invis_override || G.invis_view || !isnull(G.lighting_alpha))
 				update_sight()
 			update_inv_glasses()
+			if(G.nvd_intensity || G.nvd_graininess)
+				update_nvd(G, TRUE)
 		if(SLOT_GLOVES)
 			gloves = I
 			update_inv_gloves()
@@ -207,6 +209,8 @@
 			update_glasses_color(G, 0)
 		if(G.tint)
 			update_tint()
+		if(G.nvd_intensity || G.nvd_graininess)
+			update_nvd(G, FALSE)
 		if(G.vision_correction)
 			if(HAS_TRAIT(src, TRAIT_NEARSIGHT) && !HAS_TRAIT(src,TRAIT_NEARSIGHT_MEGA)) //Makes mega-nearsighted ALWAYS take precedent
 				overlay_fullscreen("nearsighted", /atom/movable/screen/fullscreen/impaired, 1)

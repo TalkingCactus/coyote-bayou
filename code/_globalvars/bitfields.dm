@@ -20,7 +20,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"SEE_PIXELS" = SEE_PIXELS,
 		"SEE_THRU" = SEE_THRU,
 		"SEE_BLACKNESS" = SEE_BLACKNESS,
-		"BLIND" = BLIND
+		"BLIND" = BLIND,
 		),
 	"obj_flags" = list(
 		"EMAGGED" = EMAGGED,

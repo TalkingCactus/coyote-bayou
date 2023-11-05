@@ -21,7 +21,6 @@
 	if (client && screen.should_show_to(src))
 		screen.update_for_view(client.view)
 		client.screen += screen
-
 	return screen
 
 /mob/proc/clear_fullscreen(category, animated = 10)
@@ -216,3 +215,7 @@
 	layer = ABOVE_LIGHTING_LAYER
 	blend_mode = BLEND_ADD
 	show_when_dead = FALSE
+
+/atom/movable/screen/fullscreen/nvd_int/Initialize()
+	. = ..()
+	add_filter("nvd_bloom",1,list(type="bloom", threshold=128, offset=8, size=8))

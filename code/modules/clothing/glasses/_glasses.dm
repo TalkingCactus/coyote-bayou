@@ -15,6 +15,10 @@
 	var/list/icon/current = list() //the current hud icons
 	var/vision_correction = 0 //does wearing these glasses correct some of our vision defects?
 	var/throw_hit_chance = 35
+	/// (1-3) The amount of visual noise while wearing
+	var/nvd_graininess
+	/// the enigma variable which controls how bright things appear. if someone can get a contrast filter working to replace this that'd be sick
+	var/nvd_intensity
 
 /obj/item/clothing/glasses/examine(mob/user)
 	. = ..()
@@ -589,10 +593,32 @@
 				H.update_glasses_color(src, 1)
 
 /mob/living/carbon/human/proc/update_glasses_color(obj/item/clothing/glasses/G, glasses_equipped)
-	if(client && client.prefs.uses_glasses_colour && glasses_equipped)
-		add_client_colour(G.glass_colour_type)
+	if(istype(G,/obj/item/clothing/glasses/nvd))
+		var/obj/item/clothing/glasses/nvd/N = G
+		if(client && glasses_equipped)
+			for(var/obj/item/gun/heldgun in held_items)//Unzoom from any guns you're holding
+				if(heldgun.zoomed)
+					heldgun.zoom(src,FALSE)
+			clear_fullscreen("see_through_darkness", animated = 1 SECONDS)
+			overlay_fullscreen("nvd_neg", /atom/movable/screen/fullscreen/nvd_neg)//Subtract red and blue colors
+			overlay_fullscreen("nvd_grain", /atom/movable/screen/fullscreen/nvd_grain, N.graininess)//Apply a film grain effect
+			overlay_fullscreen("nvd_int_pass1", /atom/movable/screen/fullscreen/nvd_int, myalpha =  N.intensity)//Light intensifier phase 1
+//			overlay_fullscreen("nvd_int_pass2", /atom/movable/screen/fullscreen/nvd_int, myalpha =  N.intensity)//Light intensifier phase 2
+//			overlay_fullscreen("nvd_int_pass3", /atom/movable/screen/fullscreen/nvd_int, myalpha =  N.lighting_alpha)//Light intensifier phase 3
+			overlay_fullscreen("nvd_gasket", /atom/movable/screen/fullscreen/nvd_gasket, N.darkness_view)//Reduce view range
+		else
+			overlay_fullscreen("see_through_darkness", /atom/movable/screen/fullscreen/see_through_darkness)
+			clear_fullscreen("nvd_grain", animated = FALSE)
+			clear_fullscreen("nvd_neg", animated = FALSE)
+			clear_fullscreen("nvd_int_pass1", animated = 1 SECONDS)
+//			clear_fullscreen("nvd_int_pass2", animated = 1 SECONDS)
+//			clear_fullscreen("nvd_int_pass3", animated = 1 SECONDS)
+			clear_fullscreen("nvd_gasket", animated = 1 SECONDS)
 	else
-		remove_client_colour(G.glass_colour_type)
+		if(client && client.prefs.uses_glasses_colour && glasses_equipped)
+			add_client_colour(G.glass_colour_type)
+		else
+			remove_client_colour(G.glass_colour_type)
 
 /obj/item/clothing/glasses/sunglasses/reagent
 	name = "beer goggles"
@@ -873,9 +899,9 @@ Several variants with differing levels of range, graininess, gain, and battery d
 	icon_state = "pvs5"
 	item_state = "pvs5"
 	lighting_alpha = LIGHTING_PLANE_ALPHA_NVD_BAD
-	intensity = LIGHTING_PLANE_ALPHA_NVD_BAD/2
-	darkness_view = NVD_RANGE_BAD
-	graininess = 3
+	nvd_intensity = LIGHTING_PLANE_ALPHA_NVD_BAD-10
+	darkness_view = NVD_RANGE_OKAY
+	nvd_graininess = 3
 
 /obj/item/clothing/glasses/nvd/pvs7
 	name = "\improper PVS-7 night vision device"
@@ -885,7 +911,7 @@ Several variants with differing levels of range, graininess, gain, and battery d
 	lighting_alpha = LIGHTING_PLANE_ALPHA_NVD_BAD
 	intensity = LIGHTING_PLANE_ALPHA_NVD_BAD/2
 	darkness_view = NVD_RANGE_OKAY
-	graininess = 2
+	nvd_graininess = 2
 
 /obj/item/clothing/glasses/nvd/pvs14
 	name = "\improper PVS-14 night vision device"
@@ -902,7 +928,8 @@ Several variants with differing levels of range, graininess, gain, and battery d
 	desc = "A very modern set of night vision goggles."
 	icon_state = "pvs17"
 	item_state = "pvs17"
-	lighting_alpha = LIGHTING_PLANE_ALPHA_NVD_EXCELLENT
+	lighting_alpha = LIGHTING_PLANE_ALPHA_NVD_OKAY
+	nvd_intensity = LIGHTING_PLANE_ALPHA_NVD_OKAY-10
 	intensity = LIGHTING_PLANE_ALPHA_NVD_EXCELLENT/2
-	darkness_view = NVD_RANGE_EXCELLENT
-	graininess = 1
+	darkness_view = NVD_RANGE_OKAY
+	nvd_graininess = 2
