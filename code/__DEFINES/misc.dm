@@ -478,6 +478,7 @@ GLOBAL_LIST_INIT(pda_reskins, list(PDA_SKIN_CLASSIC = 'icons/obj/pda.dmi'))
 //Filters
 #define AMBIENT_OCCLUSION(_size, _color) list("type"="drop_shadow","x"=0,"y"=-2,"size"=_size,"color"=_color)
 #define EYE_BLUR(size) list("type"="blur", "size"=size)
+#define BLOOM_FILTER(_threshold, _size, _offset, _alpha) list("type"="bloom","threshold"=_threshold, "size"=_size,"offset"=_offset,"alpha"=_alpha)
 #define GRAVITY_MOTION_BLUR list("type"="motion_blur","x"=0,"y"=0)
 
 #define STANDARD_GRAVITY 1 //Anything above this is high gravity, anything below no grav
