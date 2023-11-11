@@ -11,6 +11,7 @@
 /obj/effect/spawner/lootdrop/f13
 	name = "f13 spawners - DO NOT USE THIS"
 	lootdoubles = FALSE	//making sure it will /not/ double
+	fan_out_items = TRUE //Randomize pixel x and y
 
 /*	------------------------------------------------
 	----------------ARMOR SPAWNERS------------------
@@ -843,7 +844,6 @@ there should be very few of these spawns on the whole map. finding one should be
 		/obj/item/melee/transforming/plasmacutter/regular = 5,
 		/obj/item/gun/ballistic/bow/longbow = 20,
 		/obj/item/gun/ballistic/bow/crossbow = 10,
-		/obj/item/gun/ballistic/bow/compositebow = 10,
 )
 
 /obj/effect/spawner/lootdrop/f13/weapon/boss
