@@ -2176,6 +2176,7 @@
 #include "code\modules\events\prison_break.dm"
 #include "code\modules\events\processor_overload.dm"
 #include "code\modules\events\radiation_storm.dm"
+#include "code\modules\events\random_drop.dm"
 #include "code\modules\events\sentience.dm"
 #include "code\modules\events\spacevine.dm"
 #include "code\modules\events\spider_infestation.dm"
