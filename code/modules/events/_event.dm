@@ -1,9 +1,11 @@
 #define RANDOM_EVENT_ADMIN_INTERVENTION_TIME 10
 
-//this datum is used by the events controller to dictate how it selects events
+/// this datum is used by the events controller to dictate how it selects events
 /datum/round_event_control
-	var/name						//The human-readable name of the event
-	var/typepath					//The typepath of the event datum /datum/round_event
+	/// The human-readable name of the event
+	var/name
+	///The typepath of the event datum /datum/round_event
+	var/typepath
 
 	/// always tries to spawn this event
 	var/common_occurrence
