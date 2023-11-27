@@ -369,6 +369,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	/// How fast the mob wobbles side to side.
 	var/side_waddle_time = 2
 
+	/// IF YOU ADD NEW CHARACTER-SPECIFIC VARS, ADD THEM TO wipe_character()
+	/// in preferences_setup.dm
+
+
 /datum/preferences/New(client/C)
 	parent = C
 
@@ -3890,8 +3894,22 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					load_preferences()
 					load_character()
 
+				if("reset_all") //Wipes your current character while retaining your preferences.
+					var/confirmation = input(user, "Please type out your character's full name (case sensitive) to wipe this slot clean!", "Wipe Character Slot?") as text|null
+					if(isnull(confirmation))
+						to_chat(user, span_notice("Wipe aborted."))
+					if(confirmation == real_name)
+						to_chat(user, span_warning("Slot wiped! Goodbye [real_name]!"))
+						wipe_character()
+						random_character()
+						real_name = random_unique_name(gender)
+						save_character()
+					if(confirmation != real_name)
+						to_chat(user, span_notice("Name does not match what you entered! Wipe aborted."))
+
 				if("changeslot")
 					if(!load_character(text2num(href_list["num"])))
+						wipe_character()
 						random_character()
 						real_name = random_unique_name(gender)
 						save_character()
