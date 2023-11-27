@@ -21,6 +21,87 @@
 	right_eye_color = random_dark_shade()
 	age = (rand(20, 25))
 
+/// Like random character, except it's not random. Doesn't actually save or load any slots, just cleans the current one.
+/datum/preferences/proc/wipe_character()
+	undie_color = initial(undie_color)
+	underwear = initial(underwear)
+
+	shirt_color = initial(shirt_color)
+	undershirt = initial(undershirt)
+
+	socks_color = initial(socks_color)
+	socks = initial(socks)
+
+	backbag = initial(backbag)
+	jumpsuit_style = initial(jumpsuit_style)
+
+	hair_style = initial(hair_style)
+	hair_color = initial(hair_color)
+	facial_hair_style = initial(facial_hair_style)
+	facial_hair_color = initial(facial_hair_color)
+
+	skin_tone = initial(skin_tone)
+	use_custom_skin_tone = initial(use_custom_skin_tone)
+
+	left_eye_color = initial(left_eye_color)
+	right_eye_color = initial(right_eye_color)
+	eye_type = initial(eye_type)
+	split_eye_colors = initial(split_eye_colors)
+
+	tbs = initial(tbs)
+	kisser = initial(kisser)
+	pref_species = initial(pref_species)
+
+	//Main character features list
+	features = initial(features)
+
+	custom_speech_verb = initial(custom_speech_verb)
+	custom_tongue = initial(custom_tongue)
+	modified_limbs = initial(modified_limbs)
+	chosen_limb_id = initial(chosen_limb_id)
+
+	security_records = initial(security_records)
+	medical_records = initial(medical_records)
+
+	creature_species = initial(creature_species)
+	creature_name = initial(creature_name)
+	creature_flavor_text = initial(creature_flavor_text)
+	creature_ooc = initial(creature_ooc)
+	creature_image = initial(creature_image)
+	creature_profilepic = initial(creature_profilepic)
+	creature_pfphost = initial(creature_pfphost)
+	creature_body_size = initial(creature_body_size)
+	creature_fuzzy = initial(creature_fuzzy)
+
+	char_quirks = initial(char_quirks)
+	all_quirks = initial(all_quirks)
+
+	job_preferences = initial(job_preferences)
+	joblessrole = initial(joblessrole)
+	
+	exp = initial(exp)
+	chosen_gear = initial(chosen_gear)
+	loadout_data = initial(loadout_data)
+
+	special_s = initial(special_s)
+	special_p = initial(special_p)
+	special_e = initial(special_e)
+	special_c = initial(special_c)
+	special_i = initial(special_i)
+	special_a = initial(special_a)
+	special_l = initial(special_l)
+
+	custom_pixel_x = initial(custom_pixel_x)
+	custom_pixel_y = initial(custom_pixel_y)
+
+	permanent_tattoos = initial(permanent_tattoos)
+	matchmaking_prefs = initial(matchmaking_prefs)
+
+	fuzzy = initial(fuzzy)
+
+	waddle_amount = initial(waddle_amount)
+	up_waddle_time = initial(up_waddle_time)
+	side_waddle_time = initial(side_waddle_time)
 
 /datum/preferences/proc/update_preview_icon(current_tab)
 	var/equip_job = TRUE
