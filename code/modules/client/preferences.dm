@@ -714,8 +714,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "<h3>Misc</h3>"
 			dat += "<b>Custom Taste:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=taste;task=input'>[features["taste"] ? features["taste"] : "something"]</a><br>"
-			dat += "<b>Runechat Color:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=chat_color;task=input;background-color: #[features["chat_color"]]'>#[features["chat_color"]]</span></a><br>"
-			dat += "<b>Background:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=cycle_bg;task=input'>[bgstate]</a><br>"
+			//dat += "<b>Runechat Color:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=chat_color;task=input;background-color: [features["chat_color"]]'>[features["chat_color"]]</span></a><br>"
+			dat += "<b>Runechat Color:</b><br><span style='border: 1px solid #161616; background-color: #[features["chat_color"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=chat_color;task=input'>Change</a><br>"
+
+			dat += "<b>Background:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=cycle_bg;task=input'>[bgstate]</a>"
 			dat += "<b>Pixel Offsets</b><br>"
 			var/px = custom_pixel_x > 0 ? "+[custom_pixel_x]" : "[custom_pixel_x]"
 			var/py = custom_pixel_y > 0 ? "+[custom_pixel_y]" : "[custom_pixel_y]"
@@ -2768,9 +2770,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						features["taste"] = "something"
 
 				if("chat_color")
-					var/new_runecolor = input(user, "Choose your character's runechat color:", "Character Preference","#"+features["chat_color"]) as color|null
+					var/new_runecolor = input(user, "Choose your character's runechat color:", "Character Preference", features["chat_color"]) as color|null
 					if(new_runecolor)
-						features["chat_color"] = sanitize_hexcolor(new_runecolor, 6)
+						features["chat_color"] = sanitize_hexcolor(sanitize_ooccolor(new_runecolor), 6)
 
 				if("mutant_color")
 					var/new_mutantcolor = input(user, "Choose your character's alien/mutant color:", "Character Preference","#"+features["mcolor"]) as color|null
