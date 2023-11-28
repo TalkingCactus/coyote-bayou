@@ -1327,7 +1327,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["special_a"]		,special_a)
 	WRITE_FILE(S["special_l"]		,special_l)
 	WRITE_FILE(S["feature_color_scheme"], features["color_scheme"])
-	WRITE_FILE(S["feature_chat_color"], features["chat_color"])
+	WRITE_FILE(S["feature_chat_color"], sanitize_hexcolor(sanitize_ooccolor(features["chat_color"]), 6, 0, rgb(128, 128, 128)))
 	
 	WRITE_FILE(S["custom_pixel_x"], custom_pixel_x)
 	WRITE_FILE(S["custom_pixel_y"], custom_pixel_y)
