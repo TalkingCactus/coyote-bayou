@@ -13,6 +13,11 @@
 	path = /obj/item/clothing/suit/hooded/robes/grey
 	cost = 2
 
+/datum/gear/suit/whitemagerobes
+	name = "White Mage Robes"
+	path = /obj/item/clothing/suit/hooded/robes/whitemage
+	cost = 2
+
 /datum/gear/suit/brownrobes
 	name = "Brown robes"
 	path = /obj/item/clothing/suit/hooded/robes
@@ -35,17 +40,17 @@
 
 /datum/gear/suit/suit_gear_harness/light
 	name = "light harness"
-	path = /obj/item/clothing/suit/armor/outfit/vest/utility/gear_harness/light
+	path = /obj/item/clothing/suit/chameleon/harness
 	cost = 1
 
 /datum/gear/suit/suit_gear_harness/medium
 	name = "medium harness"
-	path = /obj/item/clothing/suit/armor/outfit/vest/utility/gear_harness/medium
+	path = /obj/item/clothing/suit/chameleon/harness/medium
 	cost = 1
 
 /datum/gear/suit/suit_gear_harness/heavy
 	name = "heavy harness"
-	path = /obj/item/clothing/suit/armor/outfit/vest/utility/gear_harness/heavy
+	path = /obj/item/clothing/suit/chameleon/harness/heavy
 	cost = 1
 
 /datum/gear/suit/labcoat
@@ -197,7 +202,7 @@
 	path = /obj/item/clothing/suit/armor/light/leather/leather_jacket
 	subcategory = LOADOUT_SUBCATEGORY_SUIT_ARMOR
 	cost = 2
-a
+
 /datum/gear/suit/ninja
 	name = "Ninja Suit"
 	path = /obj/item/clothing/suit/armor/light/leather/ninja
@@ -256,6 +261,24 @@ a
 /datum/gear/suit/armorkit
 	name = "Armor Kit"
 	path = /obj/item/clothing/suit/armor/light/kit
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_ARMOR
+	cost = 2
+
+/datum/gear/suit/scraparmor
+	name = "slim scrap armor"
+	path = /obj/item/clothing/suit/armor/light/leather/scrap
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_ARMOR
+	cost = 2
+
+/datum/gear/suit/scrapalt
+	name = "scrap armor"
+	path = /obj/item/clothing/suit/armor/light/leather/scrapalt
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_ARMOR
+	cost = 2
+
+/datum/gear/suit/scrapmedium
+	name = "heavy scrap armor"
+	path = /obj/item/clothing/suit/armor/light/leather/scrapheavy
 	subcategory = LOADOUT_SUBCATEGORY_SUIT_ARMOR
 	cost = 2
 
@@ -749,7 +772,7 @@ a
 	cost = 1
 
 /datum/gear/suit/armor/flagcapesclothing/tsar
-	name = "Armored Tsaraist flag cape"
+	name = "Armored Tsarist flag cape"
 	path = /obj/item/clothing/suit/armor/outfit/flagcapes/tsaristrussia
 	subcategory = LOADOUT_SUBCATEGORY_SUIT_GENERAL
 	cost = 1
@@ -873,20 +896,20 @@ a
 	name = "Leo Armaments MARK XI armor"
 	path = /obj/item/clothing/suit/armor/medium/spartanmarkviarmor
 	subcategory = LOADOUT_SUBCATEGORY_SUIT_ARMOR
-	cost = 2
+	cost = 3
 
 /datum/gear/suit/armor/spartanarmorstwo
 	name = "Leo Armaments MARK XI armor 'Icebreaker'"
 	path = /obj/item/clothing/suit/armor/medium/spartanmarkviarmor2
 	subcategory = LOADOUT_SUBCATEGORY_SUIT_ARMOR
-	cost = 2
+	cost = 3
 
 
 /datum/gear/suit/armor/spartanarmorsthree
 	name = "Leo Armaments MARK XI armor 'Patriot'"
 	path = /obj/item/clothing/suit/armor/medium/spartanmarkviarmor3
 	subcategory = LOADOUT_SUBCATEGORY_SUIT_ARMOR
-	cost = 2
+	cost = 3
 
 /datum/gear/suit/armor/warhammerk/bloodrose
 	name = "Armored Soviet priestess armor"
@@ -1142,6 +1165,12 @@ a
 /datum/gear/suit/coat/marlow/masonsuit
 	name = "Vagabond's vest"
 	path = /obj/item/clothing/suit/armor/light/duster/marlowsuit/masonsuit
+
+/datum/gear/suit/coat/peacecoat
+	name = "Tattered peace coat"
+	path = /obj/item/clothing/suit/armor/light/duster/peacecoat
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_ARMOR
+	cost = 2
 
 /datum/gear/suit/coat/marlow/blackformaljacket
 	name = "Black Formal Jacket"
@@ -1918,6 +1947,32 @@ a
 	path = /obj/item/clothing/suit/armor/outfit/overalls/farmer
 	subcategory = LOADOUT_SUBCATEGORY_SUIT_ARMOR
 	cost = 1
+
+//-->Taur saddles
+/datum/gear/suit/taursaddle
+	name = "Taur Saddle"
+	path = /obj/item/clothing/suit/armor/taursaddle
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_TAUR
+	cost = 0
+
+/datum/gear/suit/taursaddle_light
+	name = "Light Armored Taur Saddle"
+	path = /obj/item/clothing/suit/armor/taursaddle/light
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_TAUR
+	cost = 2
+
+/datum/gear/suit/taursaddle_medium
+	name = "Medium Armored Taur Saddle"
+	path = /obj/item/clothing/suit/armor/taursaddle/medium
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_TAUR
+	cost = 2
+
+/datum/gear/suit/taursaddle_heavy
+	name = "Heavy Armored Taur Saddle"
+	path = /obj/item/clothing/suit/armor/taursaddle/heavy
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_TAUR
+	cost = 2
+//<--End of taur saddles
 
 // BEGIN_INTERNALS
 // END_INTERNALS

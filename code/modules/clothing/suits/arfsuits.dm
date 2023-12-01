@@ -206,57 +206,26 @@
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small/four
 	body_parts_hidden = 0 // has a bit of upper window stuff
 
+/obj/item/clothing/suit/armor/outfit/custompa
+	name = "Custom Midwestern B.O.S Power Armor"
+	desc = "A set of reftted custom Power Armor made to function akin to medium armor. Stylish and fitted well!"
+	icon_state = "midwestpa"
+	item_state = "midwestpa"
+	armor_tier_desc = ARMOR_CLOTHING_MEDIUM
+	slowdown = ARMOR_SLOWDOWN_MEDIUM * ARMOR_SLOWDOWN_LESS_T1 * ARMOR_SLOWDOWN_GLOBAL_MULT
+	armor = ARMOR_VALUE_MEDIUM
+	pocket_storage_component_path = /datum/component/storage/concrete/pockets/jacket
+	armor_tokens = list(ARMOR_MODIFIER_UP_DT_T1 , ARMOR_MODIFIER_UP_ENV_T2 )
+	mob_overlay_icon = 'icons/fallout/onmob/clothes/armor_power.dmi'
+	icon = 'icons/fallout/clothing/armored_power.dmi'
+	var/requires_training = TRUE
+
 /obj/item/clothing/suit/armor/outfit/vest/utility/gear_harness
 	name = "secondary gear harness"
 	desc = "A collection of practically invisible straps useful for holding items. And that's about it."
 	icon_state = "gear_harness"
 	item_state = "gear_harness"
 	w_class = WEIGHT_CLASS_TINY
-
-/obj/item/clothing/suit/armor/outfit/vest/utility/gear_harness/light
-	name = "light harness"
-	desc = "A set of straps that, somehow, function as light armor but do nothing else."
-	cold_protection = CHEST|GROIN
-	heat_protection = CHEST|GROIN
-	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
-	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
-	strip_delay = 10
-	equip_delay_other = 10
-	max_integrity = 100
-	pocket_storage_component_path = null
-	slowdown = ARMOR_SLOWDOWN_LIGHT * ARMOR_SLOWDOWN_GLOBAL_MULT
-	armor = ARMOR_VALUE_LIGHT
-	armor_tier_desc = ARMOR_CLOTHING_LIGHT
-	stiffness = LIGHT_STIFFNESS
-
-
-/obj/item/clothing/suit/armor/outfit/vest/utility/gear_harness/medium
-	name = "medium harness"
-	desc = "A set of straps that, somehow, function as medium armor but do nothing else."
-	cold_protection = CHEST|GROIN
-	heat_protection = CHEST|GROIN
-	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
-	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
-	strip_delay = 30
-	equip_delay_other = 50
-	max_integrity = 200
-	pocket_storage_component_path = null
-	slowdown = ARMOR_SLOWDOWN_MEDIUM * ARMOR_SLOWDOWN_GLOBAL_MULT
-	armor = ARMOR_VALUE_MEDIUM
-	armor_tier_desc = ARMOR_CLOTHING_MEDIUM
-	stiffness = MEDIUM_STIFFNESS
-
-/obj/item/clothing/suit/armor/outfit/vest/utility/gear_harness/heavy
-	name = "heavy harness"
-	desc = "A set of straps that, somehow, function as heavy armor but do nothing else."
-	strip_delay = 50
-	equip_delay_other = 50
-	max_integrity = 300
-	pocket_storage_component_path = null
-	slowdown = ARMOR_SLOWDOWN_HEAVY * ARMOR_SLOWDOWN_GLOBAL_MULT
-	armor = ARMOR_VALUE_HEAVY
-	armor_tier_desc = ARMOR_CLOTHING_HEAVY
-	stiffness = HEAVY_STIFFNESS
 
 /obj/item/clothing/suit/armor/outfit/vest/utility/logisticsofficer //same as his beret
 	name = "logistics officer utility vest"
@@ -1704,6 +1673,14 @@
 	flags_inv = HIDEJUMPSUIT
 	permeability_coefficient = 0.5
 
+/obj/item/clothing/suit/armor/light/duster/peacecoat
+	name = "tattered peace coat"
+	desc = "An old overcoat with a crude peace symbol painted on the back in white with white spraypaint. Whatever symbols the coat originally came with have long since been worn away by time."
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	icon_state = "ghostechoe"
+	item_state = "ghostechoe"
+	body_parts_hidden = ARMS
+
 /obj/item/clothing/suit/armor/light/duster/vaquero
 	name = "vaquero suit"
 	desc = "An ornate suit popularized by traders from the south, using tiny metal studs and plenty of silver thread wich serves as decoration and also reflects energy very well, useful when facing the desert sun or a rogue Eyebot."
@@ -2025,12 +2002,118 @@
 
 /obj/item/clothing/suit/armor/light/leather/rig
 	name = "chest gear harness"
-	desc = "a handmade tactical rig. The actual rig is made of a black, fiberous cloth, being attached to a dusty desert-colored belt with enough room for four small items."
+	desc = "A handmade tactical rig. The actual rig is made of a black, fiberous cloth, being attached to a dusty desert-colored belt with enough room for four small items."
 	icon_state = "r_gear_rig"
 	item_state = "r_gear_rig"
 	body_parts_hidden = 0
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/jacket
 	armor_tokens = list(ARMOR_MODIFIER_DOWN_BULLET_T1, ARMOR_MODIFIER_DOWN_LASER_T1, ARMOR_MODIFIER_DOWN_MELEE_T1, ARMOR_MODIFIER_DOWN_DT_T1)
+
+/obj/item/clothing/suit/armor/light/leather/scrap
+	name = "slim scrap armor"
+	desc = "A series of leather straps criss-crossing the body paired with stragetically placed leather and scrap plates. It looks like it'd provide okay protection against lighter strikes."
+	armor_tokens = list(ARMOR_MODIFIER_UP_MELEE_T1, ARMOR_MODIFIER_DOWN_FIRE_T1, ARMOR_MODIFIER_DOWN_LASER_T1, ARMOR_MODIFIER_UP_DT_T1)
+	icon_state = "slimscrap"
+	item_state = "slimscrap"
+
+/obj/item/clothing/suit/armor/light/leather/scrapalt
+	name = "scrap armor"
+	desc = "A series of leather straps criss-crossing the body paired with liberally placed leather and scrap plates. It looks like it'd stop small bullets and bludgeons, at least."
+	armor_tokens = list(ARMOR_MODIFIER_UP_MELEE_T1, ARMOR_MODIFIER_UP_BULLET_T1, ARMOR_MODIFIER_DOWN_FIRE_T1, ARMOR_MODIFIER_DOWN_LASER_T1)
+	icon_state = "scrap"
+	item_state = "scrap"
+
+/obj/item/clothing/suit/armor/light/leather/scrapheavy // not actually heavy armor
+	name = "heavy scrap armor"
+	desc = "A liberal amount of scrap and leather tied together to cover the body. Not actually all that heavy; lasers will burn right through it, but it otherwise offers decent all-around protection."
+	slowdown = ARMOR_SLOWDOWN_MEDIUM * ARMOR_SLOWDOWN_GLOBAL_MULT
+	armor = ARMOR_VALUE_MEDIUM
+	armor_tier_desc = ARMOR_CLOTHING_MEDIUM
+	stiffness = MEDIUM_STIFFNESS
+	armor_tokens = list(ARMOR_MODIFIER_UP_MELEE_T1, ARMOR_MODIFIER_UP_BULLET_T1, ARMOR_MODIFIER_DOWN_FIRE_T1, ARMOR_MODIFIER_DOWN_LASER_T1)
+	icon_state = "scrapheavy"
+	item_state = "scrapheavy"
+
+//-->Taur armored saddles
+//the main gimmick about taur saddles is that obviously only taurs can equip it
+//wearing a taur saddle allows for the rider to have both of his hands free
+//-->can the carbon equip this? Afterall they are equippable only if they have a lower half.
+/obj/item/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE, clothing_check = FALSE, list/return_warning)
+	. = ..()
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		if((istype(src, /obj/item/clothing/suit/armor/taursaddle/)) && (C.dna.features["taur"] == "None"))
+			to_chat(usr, span_danger("You're missing an extra pair of legs or a lower half to wear this! (not a taur)"))
+			return FALSE
+//<--
+
+//The actual saddles
+/obj/item/clothing/suit/armor/taursaddle
+	name = "taur saddle"
+	desc = "A simple leather saddle made out of leather to allow a much more comfortable ride and probably some better dexterity for the knight!"
+	icon = 'icons/fallout/clothing/taursaddles_inhand.dmi'
+	icon_state = "taursaddle"
+	item_state = "taursaddle"
+	mutantrace_variation = STYLE_ALL_TAURIC
+	pocket_storage_component_path = /datum/component/storage/concrete/pockets/armor
+////////////////////////////////////////////////////////////////
+
+/obj/item/clothing/suit/armor/taursaddle/light
+	name = "light armored taur saddle"
+	desc = "A simple leather saddle made out of leather to allow a much more comfortable ride and probably some better dexterity for the knight!"
+	icon = 'icons/fallout/clothing/taursaddles_inhand.dmi'
+	icon_state = "taursaddle_light"
+	item_state = "taursaddle_light"
+	cold_protection = CHEST|GROIN
+	heat_protection = CHEST|GROIN
+	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
+	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
+	strip_delay = 10
+	equip_delay_other = 10
+	max_integrity = 100
+	pocket_storage_component_path = null
+	slowdown = ARMOR_SLOWDOWN_LIGHT * ARMOR_SLOWDOWN_GLOBAL_MULT
+	armor = ARMOR_VALUE_LIGHT
+	armor_tier_desc = ARMOR_CLOTHING_LIGHT
+	stiffness = LIGHT_STIFFNESS
+////////////////////////////////////////////////////////////////
+
+/obj/item/clothing/suit/armor/taursaddle/medium
+	name = "medium armored taur saddle"
+	desc = "A simple leather saddle made out of leather to allow a much more comfortable ride and probably some better dexterity for the knight!"
+	icon = 'icons/fallout/clothing/taursaddles_inhand.dmi'
+	icon_state = "taursaddle_medium"
+	item_state = "taursaddle_medium"
+	cold_protection = CHEST|GROIN
+	heat_protection = CHEST|GROIN
+	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
+	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
+	strip_delay = 30
+	equip_delay_other = 50
+	max_integrity = 200
+	pocket_storage_component_path = null
+	slowdown = ARMOR_SLOWDOWN_MEDIUM * ARMOR_SLOWDOWN_GLOBAL_MULT
+	armor = ARMOR_VALUE_MEDIUM
+	armor_tier_desc = ARMOR_CLOTHING_MEDIUM
+	stiffness = MEDIUM_STIFFNESS
+////////////////////////////////////////////////////////////////
+
+/obj/item/clothing/suit/armor/taursaddle/heavy
+	name = "heavy armored taur saddle"
+	desc = "A simple leather saddle made out of leather to allow a much more comfortable ride and probably some better dexterity for the knight!"
+	icon = 'icons/fallout/clothing/taursaddles_inhand.dmi'
+	icon_state = "taursaddle_heavy"
+	item_state = "taursaddle_heavy"
+	strip_delay = 50
+	equip_delay_other = 50
+	max_integrity = 300
+	pocket_storage_component_path = null
+	slowdown = ARMOR_SLOWDOWN_HEAVY * ARMOR_SLOWDOWN_GLOBAL_MULT
+	armor = ARMOR_VALUE_HEAVY
+	armor_tier_desc = ARMOR_CLOTHING_HEAVY
+	stiffness = HEAVY_STIFFNESS
+
+//<--End of Taur Saddles
 
 ////////////////
 // ARMOR KITS //
@@ -2653,7 +2736,7 @@
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/duster
 	slowdown = ARMOR_SLOWDOWN_MEDIUM * ARMOR_SLOWDOWN_LESS_T1 * ARMOR_SLOWDOWN_GLOBAL_MULT
 	armor = ARMOR_VALUE_MEDIUM
-	armor_tokens = list(ARMOR_MODIFIER_DOWN_MELEE_T1 , ARMOR_MODIFIER_DOWN_ENERGY_T1 , ARMOR_MODIFIER_UP_BULLET_T2 , ARMOR_MODIFIER_UP_DT_T1)
+	armor_tokens = list(ARMOR_MODIFIER_DOWN_MELEE_T1 , ARMOR_MODIFIER_UP_BULLET_T2 , ARMOR_MODIFIER_UP_DT_T1)
 	vis_flags = GROIN
 
 /obj/item/clothing/suit/armor/medium/ballisticvest/rusvest1
@@ -2816,42 +2899,70 @@
 
 /obj/item/clothing/suit/armor/medium/spartanmarkviarmor
 	name = "Leo Armaments MARK XI armor"
-	desc = "A unpowered and redone set of Mark XI assault armor which was created by Leo Armaments. The armor itself is outfitted with a comfortable and nifty ballistic weave nanocomposite bodysuit. While form fitting, this armor itself can be quite protective of the user's body. Albeit it leaves crucial spots such the stomach region exposed, only protected by the bodysuit."
+	desc = "A unpowered and redone set of Mark XI assault armor which was created by Leo Armaments. The armor itself is outfitted with a comfortable and nifty ballistic weave nanocomposite bodysuit. While form fitting, this armor itself can be quite protective of the user's body. Albeit it leaves crucial spots such as the stomach region exposed, which is only protected by the bodysuit."
 	icon_state = "markvi"
 	item_state = "markvi"
 	equip_delay_self = 5
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/magpouch
 	armor = ARMOR_VALUE_MEDIUM
 	slowdown = ARMOR_SLOWDOWN_MEDIUM * ARMOR_SLOWDOWN_LESS_T1 * ARMOR_SLOWDOWN_GLOBAL_MULT
-	armor_tokens = list(ARMOR_MODIFIER_DOWN_MELEE_T2,ARMOR_MODIFIER_UP_BULLET_T1, ARMOR_MODIFIER_UP_LASER_T1, ARMOR_MODIFIER_UP_ENV_T1, ARMOR_MODIFIER_UP_DT_T1)
+	armor_tokens = list(ARMOR_MODIFIER_DOWN_MELEE_T2,ARMOR_MODIFIER_UP_BULLET_T3, ARMOR_MODIFIER_UP_ENV_T1, ARMOR_MODIFIER_UP_DT_T1)
+	mob_overlay_icon = 'icons/fallout/onmob/clothes/armor_light.dmi'
+	icon = 'icons/fallout/clothing/armored_light.dmi'
+	flags_inv = HIDE_PENIS | HIDE_PENIS | HIDE_BUTT | HIDE_VAG
+
+
+/obj/item/clothing/suit/armor/medium/spartanmarkviarmor/arggroup
+	name = "ARG AEGIS Armor"
+	desc = "This set of armor is a heavily modified Leo Armaments MARK XI suit, designated the Anomalous Environment General Infantry Suit. The modified set includes sample collection pouches, a mounting point for a trauma kit, an internal compass, emergency power cell, life support monitor and armor plating. This suit is a good starting point for the soldier-scientist, produced by the Augur Research Group."
+	icon_state = "argmkvi"
+	item_state = "argmkvi"
+	equip_delay_self = 5
+	pocket_storage_component_path = /datum/component/storage/concrete/pockets/magpouch
+	armor = ARMOR_VALUE_MEDIUM
+	slowdown = ARMOR_SLOWDOWN_MEDIUM * ARMOR_SLOWDOWN_LESS_T1 * ARMOR_SLOWDOWN_GLOBAL_MULT
+	armor_tokens = list(ARMOR_MODIFIER_DOWN_MELEE_T2,ARMOR_MODIFIER_UP_BULLET_T3, ARMOR_MODIFIER_UP_ENV_T1, ARMOR_MODIFIER_UP_DT_T1)
 	mob_overlay_icon = 'icons/fallout/onmob/clothes/armor_light.dmi'
 	icon = 'icons/fallout/clothing/armored_light.dmi'
 	flags_inv = HIDE_PENIS | HIDE_PENIS | HIDE_BUTT | HIDE_VAG
 
 /obj/item/clothing/suit/armor/medium/spartanmarkviarmor2
 	name = "Leo Armaments MARK XI armor 'Icebreaker'"
-	desc = "A unpowered and redone set of Mark XI assault armor which was created by Leo Armaments. The armor itself is outfitted with a comfortable and nifty ballistic weave nanocomposite bodysuit. While form fitting, this armor itself can be quite protective of the user's body. Albeit it leaves crucial spots such the stomach region exposed, only protected by the bodysuit. This one has the armor coated in a winter finish."
+	desc = "A unpowered and redone set of Mark XI assault armor which was created by Leo Armaments. The armor itself is outfitted with a comfortable and nifty ballistic weave nanocomposite bodysuit. While form fitting, this armor itself can be quite protective of the user's body. Albeit it leaves crucial spots such as the stomach region exposed, which is only protected by the bodysuit. This one has the armor coated in a winter finish."
 	icon_state = "markvi2"
 	item_state = "markvi2"
 	equip_delay_self = 5
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/magpouch
 	armor = ARMOR_VALUE_MEDIUM
 	slowdown = ARMOR_SLOWDOWN_MEDIUM * ARMOR_SLOWDOWN_LESS_T1 * ARMOR_SLOWDOWN_GLOBAL_MULT
-	armor_tokens = list(ARMOR_MODIFIER_DOWN_MELEE_T2,ARMOR_MODIFIER_UP_BULLET_T1, ARMOR_MODIFIER_UP_LASER_T1, ARMOR_MODIFIER_UP_ENV_T1, ARMOR_MODIFIER_UP_DT_T1)
+	armor_tokens = list(ARMOR_MODIFIER_DOWN_MELEE_T2,ARMOR_MODIFIER_UP_BULLET_T3, ARMOR_MODIFIER_UP_ENV_T1, ARMOR_MODIFIER_UP_DT_T1)
 	mob_overlay_icon = 'icons/fallout/onmob/clothes/armor_light.dmi'
 	icon = 'icons/fallout/clothing/armored_light.dmi'
 	flags_inv = HIDE_PENIS | HIDE_PENIS | HIDE_BUTT | HIDE_VAG
 
 /obj/item/clothing/suit/armor/medium/spartanmarkviarmor3
 	name = "Leo Armaments MARK XI armor 'Patriot'"
-	desc = "A unpowered and redone set of Mark XI assault armor which was created by Leo Armaments. The armor itself is outfitted with a comfortable and nifty ballistic weave nanocomposite bodysuit. While form fitting, this armor itself can be quite protective of the user's body. Albeit it leaves crucial spots such the stomach region exposed, only protected by the bodysuit. This one has the armor coated in a Leo Armaments colored finish."
+	desc = "A unpowered and redone set of Mark XI assault armor which was created by Leo Armaments. The armor itself is outfitted with a comfortable and nifty ballistic weave nanocomposite bodysuit. While form fitting, this armor itself can be quite protective of the user's body. Albeit it leaves crucial spots such as the stomach region exposed, which is only protected by the bodysuit. This one has the armor coated in a Leo Armaments colored finish."
 	icon_state = "markvi3"
 	item_state = "markvi3"
 	equip_delay_self = 5
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/magpouch
 	armor = ARMOR_VALUE_MEDIUM
 	slowdown = ARMOR_SLOWDOWN_MEDIUM * ARMOR_SLOWDOWN_LESS_T1 * ARMOR_SLOWDOWN_GLOBAL_MULT
-	armor_tokens = list(ARMOR_MODIFIER_DOWN_MELEE_T2,ARMOR_MODIFIER_UP_BULLET_T1, ARMOR_MODIFIER_UP_LASER_T1, ARMOR_MODIFIER_UP_ENV_T1, ARMOR_MODIFIER_UP_DT_T1)
+	armor_tokens = list(ARMOR_MODIFIER_DOWN_MELEE_T2,ARMOR_MODIFIER_UP_BULLET_T3, ARMOR_MODIFIER_UP_ENV_T1, ARMOR_MODIFIER_UP_DT_T1)
+	mob_overlay_icon = 'icons/fallout/onmob/clothes/armor_light.dmi'
+	icon = 'icons/fallout/clothing/armored_light.dmi'
+	flags_inv = HIDE_PENIS | HIDE_PENIS | HIDE_BUTT | HIDE_VAG
+
+/obj/item/clothing/suit/armor/medium/toxspartanarmors
+	name = "Leo Armaments MARK XI armor 'Patriot'"
+	desc = "A set of royal themed Mark XI assault armor.This armo was made to fit more curvy and hourglass shaped feminine bodies. The armor is the same as any other, however it seems to have the name 'Tox' scratched onto the right plate of the armor. The interior of the armor is made for comfort, foregoing protection for comfort fitting and enjoyment. The bodysuit is more skimpier and skin-tighter than usual, hugging the body as the user moves about."
+	icon_state = "markvi2"
+	item_state = "markvi2"
+	pocket_storage_component_path = /datum/component/storage/concrete/pockets/magpouch
+	armor = ARMOR_VALUE_LIGHT
+	slowdown = ARMOR_SLOWDOWN_LIGHT * ARMOR_SLOWDOWN_LESS_T1 * ARMOR_SLOWDOWN_GLOBAL_MULT
+	armor_tokens = list(ARMOR_MODIFIER_DOWN_MELEE_T2,ARMOR_MODIFIER_UP_BULLET_T1, ARMOR_MODIFIER_UP_ENV_T1, ARMOR_MODIFIER_UP_DT_T1)
 	mob_overlay_icon = 'icons/fallout/onmob/clothes/armor_light.dmi'
 	icon = 'icons/fallout/clothing/armored_light.dmi'
 	flags_inv = HIDE_PENIS | HIDE_PENIS | HIDE_BUTT | HIDE_VAG
@@ -3525,6 +3636,21 @@
 /obj/item/clothing/suit/armor/medium/combat/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
+
+
+//custom loadout armor for someone
+
+/obj/item/clothing/suit/armor/medium/combat/mk2/funniloadout
+	name = "weathered deathclaw power armor"
+	desc = "A suit of heavily customized Enclave 'Equalizer' Advanced power armor, modified extensively to be wearable by a deathclaw, not too unlike the suits worn by Frank Horrigan, and Captain Arlem, arm-blade and all. While it is indeed a genuine Mk. 1 set of Advanced power armor, it looks like it hasn't seen any maintenance in the better part of two decades. Much of its protection has eroded, but it remains functional with a myriad of ad-hoc bandaid repairs that would make a brotherhood scribe cry in anguish."
+	icon_state = "arroyoapa"
+	item_state = "arroyoapa"
+	mob_overlay_icon = 'icons/fallout/onmob/clothes/armor_power.dmi'
+	icon = 'icons/fallout/clothing/armored_power.dmi'
+	slowdown = ARMOR_SLOWDOWN_MEDIUM * ARMOR_SLOWDOWN_LESS_T1 * ARMOR_SLOWDOWN_GLOBAL_MULT
+	armor_tokens = list(ARMOR_MODIFIER_UP_BULLET_T2, ARMOR_MODIFIER_UP_MELEE_T2, ARMOR_MODIFIER_UP_LASER_T2, ARMOR_MODIFIER_DOWN_ENV_T1, ARMOR_MODIFIER_UP_DT_T3)
+	pocket_storage_component_path = /datum/component/storage/concrete/pockets/magpouch
+	mutantrace_variation = STYLE_DIGITIGRADE |STYLE_NO_ANTHRO_ICON
 
 /obj/item/clothing/suit/armor/medium/combat/mk2
 	name = "reinforced combat armor"
@@ -4855,7 +4981,7 @@
 	icon_state = "infiltrator"
 	item_state = "infiltrator"
 	armor_tokens = list(ARMOR_MODIFIER_UP_BULLET_T2, ARMOR_MODIFIER_DOWN_LASER_T2, ARMOR_MODIFIER_UP_ENV_T1)
-	
+
 /obj/item/clothing/suit/armor/texasmed/infiltrator/contractor
 	name = "contractor combat suit"
 	desc = "An suspicious looking combat suit designed for covert operations using kevlar nanofibers to absorb the supreme majority of kinetic blows. Although it doesn't look like it'll do too much for energy impacts."
