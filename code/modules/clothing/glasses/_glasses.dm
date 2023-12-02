@@ -770,7 +770,7 @@ Several variants with differing levels of range, graininess, gain, and battery d
 	flash_protect = -2
 	darkness_view = NVD_RANGE_OKAY
 	lighting_alpha = LIGHTING_PLANE_ALPHA_NVD_OKAY
-	glass_colour_type = /datum/client_colour/nvd_green
+//	glass_colour_type = /datum/client_colour/nvd_green
 	/// (1-3) The amount of visual noise inside the nvd
 	var/graininess = 2
 	/// Hard to explain, but this is basically how much you want bright areas to be blown out and dark ones to be brightened up. The higher this is, the more contrast there is.
@@ -818,7 +818,7 @@ Several variants with differing levels of range, graininess, gain, and battery d
 
 /obj/item/clothing/glasses/nvd/equipped(mob/user, slot)
 	. = ..()
-	if(user?.get_item_by_slot(SLOT_GLASSES) != src)
+	if(user?.get_item_by_slot(SLOT_GLASSES) != src && on)
 		Deactivate(user)
 
 /obj/item/clothing/glasses/nvd/attackby(obj/item/I, mob/living/carbon/human/user, params)
@@ -827,10 +827,28 @@ Several variants with differing levels of range, graininess, gain, and battery d
 		return
 	. = ..()
 
+/obj/item/clothing/glasses/nvd/proc/insert_cell(mob/living/user, obj/item/stock_parts/cell/new_cell)
+	if(cell)
+		eject_cell(user)
+	if(user.transferItemToLoc(new_cell, src))
+		cell = new_cell
+		to_chat(user, span_notice("You successfully install \the [cell] into [src]."))
+	
+/obj/item/clothing/glasses/nvd/proc/eject_cell(mob/living/user)
+	if(!cell)
+		to_chat(user, span_warning("[src] has no cell installed."))
+		return
+	if(on && user.get_item_by_slot(SLOT_BELT) == src)
+		Deactivate(user)
+	cell.add_fingerprint(user)
+	user.put_in_hands(cell)
+	user.show_message(span_notice("You remove [cell]."))
+	cell = null
+
 /obj/item/clothing/glasses/nvd/process()
 	var/mob/living/carbon/human/user = loc
 	if(!ishuman(user) || user.get_item_by_slot(SLOT_GLASSES) != src)
-		Deactivate()
+		Deactivate(user)
 		return
 	if((!istype(cell) || !cell?.use(use_per_tick)))
 		Deactivate(user)
@@ -848,13 +866,16 @@ Several variants with differing levels of range, graininess, gain, and battery d
 		user.show_message(span_alert("There's not enough power in [src]\'s [cell.name]!"))
 		Deactivate(FALSE)
 		return
+	for(var/obj/item/gun/heldgun in user.held_items)//Unzoom from any guns you're holding
+		if(heldgun.zoomed)
+			heldgun.zoom(src,FALSE)
 	to_chat(user, span_notice("You activate \The [src]."))
-	clear_fullscreen("see_through_darkness", animated = 1 SECONDS)
-	overlay_fullscreen("nvd_neg", /atom/movable/screen/fullscreen/nvd_neg)//Subtract red and blue colors
-	overlay_fullscreen("nvd_grain", /atom/movable/screen/fullscreen/nvd_grain, N.graininess)//Apply a film grain effect
-	overlay_fullscreen("nvd_int_pass1", /atom/movable/screen/fullscreen/nvd_int, myalpha =  N.intensity)//Light intensifier phase 1
-	overlay_fullscreen("nvd_bloom", /atom/movable/screen/fullscreen/nvd_int, myalpha =  N.intensity)//Bloom
-	overlay_fullscreen("nvd_gasket", /atom/movable/screen/fullscreen/nvd_gasket, N.darkness_view)//Reduce view range
+	user.clear_fullscreen("see_through_darkness", animated = 1 SECONDS)
+	user.overlay_fullscreen("nvd_neg", /atom/movable/screen/fullscreen/nvd_neg)//Subtract red and blue colors
+	user.overlay_fullscreen("nvd_grain", /atom/movable/screen/fullscreen/nvd_grain, nvd_graininess)//Apply a film grain effect
+	user.overlay_fullscreen("nvd_int_pass1", /atom/movable/screen/fullscreen/nvd_int, myalpha =  nvd_intensity)//Light intensifier phase 1
+//	user.overlay_fullscreen("nvd_bloom", /atom/movable/screen/fullscreen/nvd_int, myalpha =  nvd_intensity)//Bloom
+	user.overlay_fullscreen("nvd_gasket", /atom/movable/screen/fullscreen/nvd_gasket, darkness_view)//Reduce view range
 	START_PROCESSING(SSobj, src)
 	on = TRUE
 
@@ -863,25 +884,14 @@ Several variants with differing levels of range, graininess, gain, and battery d
 		user = loc
 		if(!ishuman(user))
 			return
-	overlay_fullscreen("see_through_darkness", /atom/movable/screen/fullscreen/see_through_darkness)
-	clear_fullscreen("nvd_grain", animated = FALSE)
-	clear_fullscreen("nvd_neg", animated = FALSE)
-	clear_fullscreen("nvd_int_pass1", animated = 1 SECONDS)
-	clear_fullscreen("nvd_gasket", animated = 1 SECONDS)
+	user.overlay_fullscreen("see_through_darkness", /atom/movable/screen/fullscreen/see_through_darkness)
+	user.clear_fullscreen("nvd_grain", animated = FALSE)
+	user.clear_fullscreen("nvd_neg", animated = FALSE)
+	user.clear_fullscreen("nvd_int_pass1", animated = 1 SECONDS)
+	user.clear_fullscreen("nvd_gasket", animated = 1 SECONDS)
 	to_chat(user, span_notice("You deactivate \The [src]."))
 	STOP_PROCESSING(SSobj, src)
 	on = FALSE
-
-
-	if(istype(G,/obj/item/clothing/glasses/nvd))
-		var/obj/item/clothing/glasses/nvd/N = G
-		if(client && glasses_equipped)
-			for(var/obj/item/gun/heldgun in held_items)//Unzoom from any guns you're holding
-				if(heldgun.zoomed)
-					heldgun.zoom(src,FALSE)
-		else
-
-	else
 
 /// Returns a reference to some Night Vision Device if this carbon mob is wearing them. Returns null if they aren't wearing any.
 /proc/GetWornNVD(mob/living/carbon/user)
@@ -900,7 +910,7 @@ Several variants with differing levels of range, graininess, gain, and battery d
 	item_state = "pvs5"
 	lighting_alpha = LIGHTING_PLANE_ALPHA_NVD_BAD
 	nvd_intensity = LIGHTING_PLANE_ALPHA_NVD_BAD-10
-	darkness_view = NVD_RANGE_OKAY
+	darkness_view = NVD_RANGE_BAD
 	nvd_graininess = 3
 
 /obj/item/clothing/glasses/nvd/pvs7
@@ -931,5 +941,5 @@ Several variants with differing levels of range, graininess, gain, and battery d
 	lighting_alpha = LIGHTING_PLANE_ALPHA_NVD_OKAY
 	nvd_intensity = LIGHTING_PLANE_ALPHA_NVD_OKAY-10
 	intensity = LIGHTING_PLANE_ALPHA_NVD_EXCELLENT/2
-	darkness_view = NVD_RANGE_OKAY
-	nvd_graininess = 2
+	darkness_view = NVD_RANGE_EXCELLENT
+	nvd_graininess = 1

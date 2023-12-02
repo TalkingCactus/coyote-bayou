@@ -30,11 +30,11 @@
 /obj/item/m2flamethrowertank/on_attack_hand(mob/living/user)
 	if(src.loc == user)
 		if(!armed)
-			if(U.get_item_by_slot(SLOT_BACK) == src)
+			if(user.get_item_by_slot(SLOT_BACK) == src)
 				armed = 1
-				if(!U.put_in_hands(gun))
+				if(!user.put_in_hands(gun))
 					armed = 0
-					to_chat(U, span_warning("You need a free hand to hold the gun!"))
+					to_chat(user, span_warning("You need a free hand to hold the gun!"))
 					return
 				update_icon()
 				if(iscarbon(user))
@@ -42,7 +42,7 @@
 			else
 				..()
 		else
-			to_chat(U, span_warning("You are already holding the gun!"))
+			to_chat(user, span_warning("You are already holding the gun!"))
 	else
 		..()
 
