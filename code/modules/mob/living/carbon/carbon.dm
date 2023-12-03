@@ -905,6 +905,11 @@
 			see_invisible = min(G.invis_view, see_invisible)
 		if(!isnull(G.lighting_alpha))
 			lighting_alpha = min(lighting_alpha, G.lighting_alpha)
+		if(istype(G, /obj/item/clothing/glasses/nvd))
+			var/obj/item/clothing/glasses/nvd/N = G
+			if(N.on)
+				see_in_dark = max(N.darkness_view_on, see_in_dark)
+				lighting_alpha = min(lighting_alpha, N.lighting_alpha_on)
 	if(head)
 		var/obj/item/clothing/head/H = head
 		if(istype(H))

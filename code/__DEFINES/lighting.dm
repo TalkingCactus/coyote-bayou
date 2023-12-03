@@ -76,10 +76,15 @@
 #define LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE 128 //For lighting alpha, small amounts lead to big changes. even at 128 its hard to figure out what is dark and what is light, at 64 you almost can't even tell.
 #define LIGHTING_PLANE_ALPHA_INVISIBLE 0
 
-#define LIGHTING_PLANE_ALPHA_NVD_BAD		200
-#define LIGHTING_PLANE_ALPHA_NVD_OKAY		190
-#define LIGHTING_PLANE_ALPHA_NVD_GREAT		180
-#define LIGHTING_PLANE_ALPHA_NVD_EXCELLENT	170
+#define LIGHTING_PLANE_ALPHA_NVD_BAD		128
+#define LIGHTING_PLANE_ALPHA_NVD_OKAY		120
+#define LIGHTING_PLANE_ALPHA_NVD_GREAT		110
+#define LIGHTING_PLANE_ALPHA_NVD_EXCELLENT	100
+
+#define NVD_INTENSITY_BAD			175
+#define NVD_INTENSITY_OKAY			165
+#define NVD_INTENSITY_GREAT			155
+#define NVD_INTENSITY_EXCELLENT		145
 
 // The gasket around your vision actually reduces this range by about 1 and your vision is restricted to a circle/oval
 // You also give up your color vision and the ability to see clearly in bright areas

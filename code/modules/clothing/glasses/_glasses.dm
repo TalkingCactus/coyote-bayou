@@ -768,17 +768,17 @@ Several variants with differing levels of range, graininess, gain, and battery d
 	custom_materials = list(/datum/material/iron = 500, /datum/material/glass = 300, /datum/material/gold = 100)
 	tint = 0
 	flash_protect = -2
-	darkness_view = NVD_RANGE_OKAY
-	lighting_alpha = LIGHTING_PLANE_ALPHA_NVD_OKAY
 //	glass_colour_type = /datum/client_colour/nvd_green
 	/// (1-3) The amount of visual noise inside the nvd
 	var/graininess = 2
 	/// Hard to explain, but this is basically how much you want bright areas to be blown out and dark ones to be brightened up. The higher this is, the more contrast there is.
-	var/intensity = LIGHTING_PLANE_ALPHA_NVD_OKAY/2
 	var/obj/item/stock_parts/cell/cell = /obj/item/stock_parts/cell/high
 	/// high cap cell has 10000 charge
-	var/use_per_tick = 100
+	var/use_per_tick = 10
 	var/on = FALSE
+	var/darkness_view_on = NVD_RANGE_OKAY
+	var/lighting_alpha_on = LIGHTING_PLANE_ALPHA_NVD_OKAY
+
 	actions_types = list(/datum/action/item_action/toggle_nvd)
 
 /datum/client_colour/nvd_green
@@ -789,6 +789,11 @@ Several variants with differing levels of range, graininess, gain, and battery d
 	. = ..()
 	if(ispath(cell))
 		cell = new cell(src)
+
+/obj/item/clothing/glasses/nvd/AltClick(mob/living/user)
+	if(!user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
+		return ..()
+	eject_cell(user)
 
 /obj/item/clothing/glasses/nvd/examine(mob/user)
 	. = ..()
@@ -875,15 +880,17 @@ Several variants with differing levels of range, graininess, gain, and battery d
 	user.overlay_fullscreen("nvd_grain", /atom/movable/screen/fullscreen/nvd_grain, nvd_graininess)//Apply a film grain effect
 	user.overlay_fullscreen("nvd_int_pass1", /atom/movable/screen/fullscreen/nvd_int, myalpha =  nvd_intensity)//Light intensifier phase 1
 //	user.overlay_fullscreen("nvd_bloom", /atom/movable/screen/fullscreen/nvd_int, myalpha =  nvd_intensity)//Bloom
-	user.overlay_fullscreen("nvd_gasket", /atom/movable/screen/fullscreen/nvd_gasket, darkness_view)//Reduce view range
+	user.overlay_fullscreen("nvd_gasket", /atom/movable/screen/fullscreen/nvd_gasket, darkness_view_on)//Reduce view range
 	START_PROCESSING(SSobj, src)
 	on = TRUE
+	user.update_sight()
 
 /obj/item/clothing/glasses/nvd/proc/Deactivate(mob/living/carbon/human/user)
 	if(!ishuman(user))
 		user = loc
 		if(!ishuman(user))
 			return
+	on = FALSE
 	user.overlay_fullscreen("see_through_darkness", /atom/movable/screen/fullscreen/see_through_darkness)
 	user.clear_fullscreen("nvd_grain", animated = FALSE)
 	user.clear_fullscreen("nvd_neg", animated = FALSE)
@@ -891,7 +898,7 @@ Several variants with differing levels of range, graininess, gain, and battery d
 	user.clear_fullscreen("nvd_gasket", animated = 1 SECONDS)
 	to_chat(user, span_notice("You deactivate \The [src]."))
 	STOP_PROCESSING(SSobj, src)
-	on = FALSE
+	user.update_sight()
 
 /// Returns a reference to some Night Vision Device if this carbon mob is wearing them. Returns null if they aren't wearing any.
 /proc/GetWornNVD(mob/living/carbon/user)
@@ -908,9 +915,9 @@ Several variants with differing levels of range, graininess, gain, and battery d
 	desc = "A GEN II binocular night vision device used as early as the Vietnam war. Whenever that was."
 	icon_state = "pvs5"
 	item_state = "pvs5"
-	lighting_alpha = LIGHTING_PLANE_ALPHA_NVD_BAD
-	nvd_intensity = LIGHTING_PLANE_ALPHA_NVD_BAD-10
-	darkness_view = NVD_RANGE_BAD
+	lighting_alpha_on = LIGHTING_PLANE_ALPHA_NVD_BAD
+	nvd_intensity = NVD_INTENSITY_BAD
+	darkness_view_on = NVD_RANGE_BAD
 	nvd_graininess = 3
 
 /obj/item/clothing/glasses/nvd/pvs7
@@ -918,9 +925,9 @@ Several variants with differing levels of range, graininess, gain, and battery d
 	desc = "An okay night vision monocular device."
 	icon_state = "pvs7"
 	item_state = "pvs7"
-	lighting_alpha = LIGHTING_PLANE_ALPHA_NVD_BAD
-	intensity = LIGHTING_PLANE_ALPHA_NVD_BAD/2
-	darkness_view = NVD_RANGE_OKAY
+	lighting_alpha_on = LIGHTING_PLANE_ALPHA_NVD_OKAY
+	intensity = NVD_INTENSITY_OKAY
+	darkness_view_on = NVD_RANGE_OKAY
 	nvd_graininess = 2
 
 /obj/item/clothing/glasses/nvd/pvs14
@@ -928,9 +935,9 @@ Several variants with differing levels of range, graininess, gain, and battery d
 	desc = "A pretty decent night vision binocular device."
 	icon_state = "pvs14"
 	item_state = "pvs14"
-	lighting_alpha = LIGHTING_PLANE_ALPHA_NVD_BAD
-	intensity = LIGHTING_PLANE_ALPHA_NVD_BAD/2
-	darkness_view = NVD_RANGE_GREAT
+	lighting_alpha_on = LIGHTING_PLANE_ALPHA_NVD_GREAT
+	intensity = NVD_INTENSITY_GREAT
+	darkness_view_on = NVD_RANGE_GREAT
 	graininess = 2
 
 /obj/item/clothing/glasses/nvd/pvs17
@@ -938,8 +945,7 @@ Several variants with differing levels of range, graininess, gain, and battery d
 	desc = "A very modern set of night vision goggles."
 	icon_state = "pvs17"
 	item_state = "pvs17"
-	lighting_alpha = LIGHTING_PLANE_ALPHA_NVD_OKAY
-	nvd_intensity = LIGHTING_PLANE_ALPHA_NVD_OKAY-10
-	intensity = LIGHTING_PLANE_ALPHA_NVD_EXCELLENT/2
-	darkness_view = NVD_RANGE_EXCELLENT
+	lighting_alpha_on = LIGHTING_PLANE_ALPHA_NVD_OKAY
+	nvd_intensity = LIGHTING_PLANE_ALPHA_NVD_OKAY
+	darkness_view_on = NVD_RANGE_EXCELLENT
 	nvd_graininess = 1
