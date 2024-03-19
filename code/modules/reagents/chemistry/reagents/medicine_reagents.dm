@@ -1025,8 +1025,8 @@
 			M.visible_message(span_warning("[M]'s body starts convulsing!"))
 			M.notify_ghost_cloning(source = M)
 			M.do_jitter_animation(10)
-			addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 40) //jitter immediately, then again after 4 and 8 seconds
-			addtimer(CALLBACK(M, /mob/living/carbon.proc/do_jitter_animation, 10), 80)
+			addtimer(CALLBACK(M, TYPE_PROC_REF(/mob/living/carbon,do_jitter_animation), 10), 40) //jitter immediately, then again after 4 and 8 seconds
+			addtimer(CALLBACK(M, TYPE_PROC_REF(/mob/living/carbon,do_jitter_animation), 10), 80)
 
 			spawn(100) //so the ghost has time to re-enter
 				if(iscarbon(M))
@@ -1949,7 +1949,7 @@
 		thresholdify()
 	M.adjustBruteLoss(-bruteheal, TRUE, include_roboparts = TRUE)
 	M.adjustFireLoss(-burnheal, TRUE, include_roboparts = TRUE)
-	M.adjustToxLoss(-toxheal)
+	M.adjustToxLoss(-toxheal, TRUE, FALSE, TRUE)
 	M.adjustOxyLoss(-oxyheal)
 	M.radiation = max(M.radiation - radheal, 0)
 	M.blood_volume = min(M.blood_volume + blood_regen, BLOOD_VOLUME_NORMAL)
@@ -2110,7 +2110,7 @@
 	if(LAZYLEN(hurt_parts))
 		hurts += "wound"
 	if(!LAZYLEN(hurts))
-		tap_toes(M, songpower, FALSE)
+		//tap_toes(M, songpower, FALSE)
 		return
 	var/winner = pick(hurts)
 	switch(winner)

@@ -46,14 +46,6 @@
 	ckeywhitelist = list("mr.sanderp")
 	cost = 0
 
-/datum/gear/donator/risingstarslash
-	name = "Slime Cookie Recipe Book"
-	slot = SLOT_IN_BACKPACK
-	path = /obj/item/book/granter/crafting_recipe/slimecookie
-	category = LOADOUT_CATEGORY_BACKPACK
-	ckeywhitelist = list("risingstarslash")
-	cost = 0
-
 /obj/item/clothing/mask/surgical/sloaff
 	name = "rusty muzzle"
 	desc = "A rusted steel muzzle. It’s covered in scratches."
@@ -69,14 +61,14 @@
 /obj/item/card/id/dogtag/darknova
 	name = "holo dogtag"
 	icon_state = "holodogtag"
-	desc = "An advanced holographic dogtag that shows the duty of a BoS member. This one in particular is assigned to a Nikolatz, J. S  with a rank of Knight. The sex is listed as male, the blood type is listed as O positive, A serial number is written of 242-355-179-22. The last line then reads: WCBOS-C CB-04 along with an insignia depicting wings, cogwheels and a sword."
+	desc = "An advanced holographic dogtag that seems to have a coded pattern imprinted on its side, as if implying it can be interfaced with certain devices. This one in particular denotes the owner being Nikolatz, J. S with an identifier of Ship Captain, Eyes of Dorian. The sex is listed as male, the blood type is listed as O positive, and a serial number is written of 242-355-179-22. The text ends at the end of the serial number, a duplicate tag is joined with the same information using a small chain."
 	assignment = "ID tags"
 	uses_overlays = FALSE
 
-/obj/item/card/id/dogtag/risingstarslash
+/obj/item/card/id/dogtag/prismaticnova
 	name = "holo dogtag"
 	icon_state = "holodogtag"
-	desc = "An advanced holographic dogtag that shows the duty of a BoS member. This one in particular is assigned to a Amethyst with a rank of Head Paladin. The sex is listed as female, the blood type is listed as A positive, A serial number is written of 234-331-173-22. The last line then reads: WCBOS-C CB-04 along with an insignia depicting wings, cogwheels and a sword."
+	desc = "An advanced holographic dogtag that seems to have a coded pattern imprinted on its side, as if implying it can be interfaced with certain devices. This one in particular denotes the owner being Amethyst with an identifier of Ship Pilot, Eyes of Dorian. The sex is listed as female, the blood type is listed as A positive, and a serial number is written of 243-331-173-49. The text ends at the end of the serial number, a duplicate tag is joined with the same information using a small chain."
 	assignment = "ID tags"
 	uses_overlays = FALSE
 
@@ -256,6 +248,33 @@
 	new /obj/item/flashlight/lantern(src)
 	new /obj/item/toy/plush/mammal/fox/squishfox(src)
 
+/datum/gear/donator/kits/bound2theground/strike
+	name = "A Box for the Shadow"
+	path = /obj/item/storage/box/large/custom_kit/strike
+	ckeywhitelist = list("Bound2theground")
+
+/obj/item/storage/box/large/custom_kit/strike/PopulateContents()
+	new /obj/item/book/granter/crafting_recipe/blueprint/infiltrator(src)
+	new /obj/item/melee/onehanded/knife/switchblade(src)
+	new /obj/item/gun/ballistic/automatic/assault_rifle(src)
+	new /obj/item/gun_upgrade/muzzle/silencer(src)
+
+/datum/gear/donator/kits/matter7
+	name = "A Box for the Smelly Circuit Sergal"
+	path = /obj/item/storage/box/large/custom_kit/matter7
+	ckeywhitelist = list("Matter7")
+
+/obj/item/storage/box/large/custom_kit/matter7/PopulateContents()
+	new /obj/item/gun/ballistic/revolver/colt357/mateba(src)
+
+/datum/gear/donator/kits/applewhiskey
+	name = "Huntress Customs Minigun"
+	path = /obj/item/storage/box/large/custom_kit/applewhiskey
+	ckeywhitelist = list("Apple Whisky")
+
+/obj/item/storage/box/large/custom_kit/applewhiskey/PopulateContents()
+	new /obj/item/gun/ballistic/babygun(src)
+
 /datum/gear/donator/kits/brimcon
 	name = "Gift from Claws"
 	path = /obj/item/storage/box/large/custom_kit/brimcon
@@ -391,7 +410,7 @@
 /datum/gear/donator/kits/dameonowen
 	name = "Dragon Stash"
 	path = /obj/item/storage/box/large/custom_kit/dameonowen
-	ckeywhitelist = list("dameonowen")
+	ckeywhitelist = list("dameonowen", "andyman105")
 
 /obj/item/storage/box/large/custom_kit/dameonowen/PopulateContents()
 	new /obj/item/gun/ballistic/automatic/pistol/sig/trusty(src)
@@ -408,31 +427,33 @@
 	ckeywhitelist = list("DeadWolf411")
 
 /obj/item/storage/box/large/custom_kit/DeadWolf411/PopulateContents()
-	new /obj/item/gun/ballistic/automatic/pistol/m1911/custom/m6socom(src)
-	new /obj/item/gun/ballistic/automatic/pistol/m1911/custom/m6socom(src)
-
+	new /obj/item/gun/ballistic/automatic/pistol/fivemilimeterpistol/custom2(src)
+	new /obj/item/gun/ballistic/automatic/pistol/fivemilimeterpistol/custom1(src)
+	new /obj/item/ammo_box/m5mmbox(src)
+	new /obj/item/ammo_box/m5mmbox(src)
+	new /obj/item/clothing/suit/armor/medium/wolf(src)
 /datum/gear/donator/kits/dameonowencoat
 	name = "Dragon Coat"
 	path = /obj/item/clothing/suit/armor/light/duster/town/leather
-	ckeywhitelist = list("dameonowen")
+	ckeywhitelist = list("dameonowen", "andyman105")
 	cost = 1
 
 /datum/gear/donator/kits/dameonowencart
 	name = "Experimental Nanite Factory Cartridge"
 	path = /obj/item/cartridge/resize
-	ckeywhitelist = list("dameonowen")
+	ckeywhitelist = list("dameonowen", "andyman105")
 
 /datum/gear/donator/kits/darknova92
-	name = "Nikolatz BoS"
+	name = "Nikolatz Military Set"
 	path = /obj/item/storage/box/large/custom_kit/darknova92
 	ckeywhitelist = list("darknova92")
 
 /obj/item/storage/box/large/custom_kit/darknova92/PopulateContents()
 	new /obj/item/card/id/dogtag/darknova(src)
-	new /obj/item/gun/ballistic/automatic/pistol/n99/crusader(src)
-	new /obj/item/ammo_box/magazine/m10mm/adv/simple(src)
-	new /obj/item/ammo_box/magazine/m10mm/adv/simple(src)
-	new /obj/item/ammo_box/magazine/m10mm/adv/simple(src)
+	new /obj/item/reagent_containers/food/drinks/flask/tech(src)
+	new /obj/item/gun/energy/laser/aer9(src)
+	new /obj/item/stock_parts/cell/ammo/mfc(src)
+	new /obj/item/stock_parts/cell/ammo/mfc(src)
 
 /datum/gear/donator/kits/dezuel
 	name = "Lunas Stash"
@@ -624,6 +645,35 @@
 
 // I
 
+/datum/gear/donator/kits/icefistthunderdick
+	name = "Sindy Kit"
+	path = /obj/item/storage/box/large/custom_kit/icefistthunderdick
+	ckeywhitelist = list("icefistthunderdick")
+
+/obj/item/storage/box/large/custom_kit/icefistthunderdick/PopulateContents()
+	name = "Sindy Kit"
+	var/obj/item/lighter/zippo = new /obj/item/lighter(src)
+	zippo.overlay_state = "snake"
+	zippo.update_icon()
+
+	var/obj/item/melee/transforming/plasmacutter/sword/esword = new /obj/item/melee/transforming/plasmacutter/sword(src)
+	esword.sword_color = "red"
+
+	var/obj/item/clothing/suit/space/hardsuit/syndi/suit = new /obj/item/clothing/suit/space/hardsuit/syndi(src)
+	qdel(suit.jetpack)
+	suit.armor = suit.armor.modifyRating(rad = -5)
+
+	var/obj/item/card = new /obj/item(src)
+	card.icon = 'icons/obj/card.dmi'
+	card.icon_state = "emag"
+	card.name = "cryptographic sequencer"
+	card.desc = "The cryptographic sequencer, electromagnetic card, or emag, is a small card that unlocks hidden functions \
+			in electronic devices, subverts intended functions, and easily breaks security mechanisms. \
+			However, this one seems non-functional."
+	card.AddComponent(/datum/component/squeak)
+	card.w_class = WEIGHT_CLASS_SMALL
+
+
 /datum/gear/donator/kits/imbubbl101
 	name = "Magnum Kit"
 	path = /obj/item/storage/box/large/custom_kit/imbubbl101
@@ -713,11 +763,27 @@
 
 /datum/gear/donator/kits/jaeger
 	name = "Huntress Customs"
-	path = /obj/item/storage/box/large/custom_kit/jaeger
+	path = /obj/item/storage/box/large/custom_kit/jaeger // bookmark from JSC
 	ckeywhitelist = list("kilment")
 
 /obj/item/storage/box/large/custom_kit/jaeger/PopulateContents()
-	new /obj/item/gun/ballistic/rifle/hebe(src)
+	new /obj/item/gun/ballistic/rifle/mag/bifrost(src)
+
+/datum/gear/donator/kits/palpapus
+	name = "Darth Plapappus Customs"
+	path = /obj/item/storage/box/large/custom_kit/palpapus
+	ckeywhitelist = list("lordpapalus", "Lord_Papalus")
+
+/obj/item/storage/box/large/custom_kit/palpapus/PopulateContents()
+	new /obj/item/clothing/head/helmet/f13/brahmincowboyhat(src)
+	new /obj/item/clothing/suit/armor/medium/raider/combatduster(src)
+	new /obj/item/clothing/under/f13/eighties(src)
+	new /obj/item/clothing/shoes/f13/rag/pawb(src)
+	new /obj/item/gun/ballistic/rifle/repeater/cowboy/tribal(src)
+	new /obj/item/kit_spawner/tools(src)
+	new /obj/item/clothing/gloves/f13/military(src)
+	new /obj/item/clothing/neck/tie/aurora/strelitz_cape(src)
+	new /obj/item/storage/backpack/trekker(src)
 
 /datum/gear/donator/kits/jaggachi
 	name = "Scug Industries Kit"
@@ -843,6 +909,16 @@
 	new /obj/item/clothing/head/helmet/knight/f13/metal(src)
 	new /obj/item/gun/energy/mmlbuster(src)
 
+/datum/gear/donator/kits/luxyleatherhat
+	name = "NV"
+	path = /obj/item/storage/box/large/custom_kit/luxyleatherhat
+	ckeywhitelist = list("luxyleatherhat")
+
+/obj/item/storage/box/large/custom_kit/luxyleatherhat/PopulateContents()
+	new /obj/item/gun/energy/laser/aer9(src)
+	new /obj/item/stock_parts/cell/ammo/mfc(src)
+	new /obj/item/stock_parts/cell/ammo/mfc(src)
+
 /datum/gear/donator/kits/lowpowermia
 	name = "Gunslinger Kit"
 	path = /obj/item/storage/box/large/custom_kit/lowpowermia
@@ -941,6 +1017,54 @@
 	new /obj/item/book/granter/crafting_recipe/happysharky(src)
 
 // N
+
+/datum/gear/donator/kits/neskah
+	name = "IV items for Errant-XIV"
+	path = /obj/item/storage/box/large/custom_kit/neskah
+	ckeywhitelist = list("neskah")
+
+/obj/item/storage/box/large/custom_kit/neskah/PopulateContents()
+	name = "IV items for Errant-XIV"
+
+	new /obj/item/clothing/head/helmet/f13/power_armor/fluff/errant(src)
+	new /obj/item/clothing/suit/armor/power_armor/fluff/errant(src)
+
+	var/obj/item/gun/energy/laser/wattz2ks/wattz = new /obj/item/gun/energy/laser/wattz2ks(src)
+	wattz.name = "Staccato"
+	wattz.desc = "A heavy self-charging pulse weapon kept in perfect operating condition, fitted with an OVRseer sensor-plug optical scope dialed for midrange encounters. 'XIV' is stamped onto the left side of its upper receiver."
+
+	var/obj/item/gun/energy/laser/tg/recharger/pistol = new /obj/item/gun/energy/laser/tg/recharger(src)
+	pistol.name = "Prelude"
+	pistol.desc = "A bulky laser pistol, just small enough to be concealable. Coils and exposed wiring adorn what appear to be an extremely old experimental laser pistol design. Its cell seems to siphon electrical energy from the wearer, perfect for cybernetic individuals. XIV is etched into the left side of its grip."
+
+/obj/item/clothing/head/helmet/f13/power_armor/fluff/errant
+	name = "heavy robotic visor"
+	desc = "A remarkably heavy helmet fitted for a square OVRmind cranium, with cables that link the wearer to an advanced observational visor."
+	mob_overlay_icon = 'icons/fallout/onmob/clothes/helmet.dmi'
+	icon = 'icons/fallout/clothing/helmets.dmi'
+	icon_state = "eva3"
+	item_state = "eva3"
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDEMASK|HIDEJUMPSUIT|HIDESNOUT
+
+/obj/item/clothing/head/helmet/f13/power_armor/fluff/errant/obj_break(damage_flag)
+	return
+
+/obj/item/clothing/head/helmet/f13/power_armor/fluff/errant/obj_destruction(damage_flag)
+	return
+
+/obj/item/clothing/suit/armor/power_armor/fluff/errant
+	name = "servo-lined exoplating"
+	desc = "A remarkably heavy set of plates designed to be bolted to an OVRmind-compatible cybernetic frame."
+	icon_state = "markvi3"
+	item_state = "markvi3"
+	mob_overlay_icon = 'icons/fallout/onmob/clothes/armor_light.dmi'
+	icon = 'icons/fallout/clothing/armored_light.dmi'
+
+/obj/item/clothing/suit/armor/power_armor/fluff/errant/obj_break(damage_flag)
+	return
+
+/obj/item/clothing/suit/armor/power_armor/fluff/errant/obj_destruction(damage_flag)
+	return
 
 /datum/gear/donator/kits/nightmare6669
 	name = "Chadsune"
@@ -1097,6 +1221,39 @@
 	new /obj/item/clothing/under/f13/recon/outcast(src)
 	new /obj/item/book/granter/crafting_recipe/blueprint/plasmarifle(src)
 
+/datum/gear/donator/kits/prismaticnova
+	name = "Blue's Kit"
+	path = /obj/item/storage/box/large/custom_kit/prismaticnova
+	ckeywhitelist = list("prismaticnova")
+
+/obj/item/storage/box/large/custom_kit/prismaticnova/PopulateContents()
+	new /obj/item/reagent_containers/food/snacks/grown/poppy/geranium/forgetmenot(src)
+	new /obj/item/lighter/fusion(src)
+	new /obj/item/melee/onehanded/knife/trench(src)
+	new /obj/item/slimecross/consuming/grey(src)
+
+/datum/gear/donator/kits/prismaticnova2
+	name = "Pharmaceutical Scientist Essentials"
+	path = /obj/item/storage/box/large/custom_kit/prismaticnova2
+	ckeywhitelist = list("prismaticnova")
+
+/obj/item/storage/box/large/custom_kit/prismaticnova2/PopulateContents()
+	new /obj/item/lighter/royalgold(src)
+	new /obj/item/reagent_containers/pill/redambrosia(src)
+	new /obj/item/stack/medical/mesh/aloe(src)
+	new /obj/item/reagent_containers/pill/antirad_plus(src)
+
+/datum/gear/donator/kits/prismaticnova3
+	name = "Military Pilot Kit"
+	path = /obj/item/storage/box/large/custom_kit/prismaticnova3
+	ckeywhitelist = list("prismaticnova")
+
+/obj/item/storage/box/large/custom_kit/prismaticnova3/PopulateContents()
+	new /obj/item/lighter/gold(src)
+	new /obj/item/card/id/dogtag/prismaticnova(src)
+	new /obj/item/gun/ballistic/automatic/needlerrifle/custom(src)
+	new /obj/item/ammo_box/needlercapsule(src)
+
 // Q
 
 // R
@@ -1131,54 +1288,6 @@
 	new /obj/item/ammo_box/magazine/m9mm/doublestack(src)
 	new /obj/item/ammo_box/c9mm(src)
 	new /obj/item/melee/powered/ripper/dull(src)
-
-/datum/gear/donator/kits/risingstarslash
-	name = "Blue's Kit"
-	path = /obj/item/storage/box/large/custom_kit/risingstarslash
-	ckeywhitelist = list("risingstarslash")
-
-/obj/item/storage/box/large/custom_kit/risingstarslash/PopulateContents()
-	new /obj/item/reagent_containers/food/snacks/grown/poppy/geranium/forgetmenot(src)
-	new /obj/item/lighter/fusion(src)
-	new /obj/item/melee/onehanded/knife/trench(src)
-	new /obj/item/clothing/glasses/prism_glasses(src)
-	new /obj/item/stealthboy(src)
-	new /obj/item/stock_parts/cell/high/slime/blue(src)
-
-/datum/gear/donator/kits/risingstarslash2
-	name = "Slime Cookie Kit"
-	path = /obj/item/storage/box/large/custom_kit/risingstarslash2
-	ckeywhitelist = list("risingstarslash")
-
-/obj/item/storage/box/large/custom_kit/risingstarslash2/PopulateContents()
-	new /obj/item/book/granter/crafting_recipe/slimecookie(src)
-	new /obj/item/lighter/slime(src)
-	new /obj/item/reagent_containers/food/drinks/drinkingglass/filled/nukagrape(src)
-	new /obj/item/reagent_containers/food/drinks/drinkingglass/filled/nukaorange(src)
-	new /obj/item/reagent_containers/food/drinks/drinkingglass/filled/nukacherry(src)
-	new /obj/item/clothing/glasses/prism_glasses(src)
-
-/datum/gear/donator/kits/risingstarslash3
-	name = "Head Paladin Kit"
-	path = /obj/item/storage/box/large/custom_kit/risingstarslash3
-	ckeywhitelist = list("risingstarslash")
-
-/obj/item/storage/box/large/custom_kit/risingstarslash3/PopulateContents()
-	new /obj/item/lighter/gold(src)
-	new /obj/item/gun/ballistic/automatic/pistol/n99/crusader(src)
-	new /obj/item/card/id/dogtag/risingstarslash(src)
-
-/datum/gear/donator/kits/risingstarslash4
-	name = "Trueshot's Kit"
-	path = /obj/item/storage/box/large/custom_kit/risingstarslash4
-	ckeywhitelist = list("risingstarslash")
-
-/obj/item/storage/box/large/custom_kit/risingstarslash4/PopulateContents()
-//	new /obj/item/gun/ballistic/bow/gold(src)
-	new /obj/item/storage/bag/tribe_quiver/light/full(src)
-	new /obj/item/smelling_salts/wayfarer(src)
-	new /obj/item/reagent_containers/pill/fiery_purgative(src)
-	new /obj/item/reagent_containers/pill/antivenom(src)
 
 /datum/gear/donator/kits/roachwitharoach
 	name = "Desert Kit"
@@ -1233,18 +1342,18 @@
 	new /obj/item/melee/onehanded/machete/spatha(src)
 
 /datum/gear/donator/kits/seermankhajiit00
-	name = "The Latos MK XI"
+	name = "The FallhlífVeiðimaður"
 	path = /obj/item/storage/box/large/custom_kit/seermankhajiit00
 	ckeywhitelist = list("seermankhajiit00")
 
 /obj/item/storage/box/large/custom_kit/seermankhajiit00/PopulateContents()
-	new /obj/item/clothing/suit/armor/medium/toxspartanarmors(src)
 	new /obj/item/clothing/shoes/customtoxboots(src)
-	new /obj/item/pet_carrier/fluffy(src)
-	new /obj/item/ammo_box/m14mm(src)
 	new /obj/item/gun/ballistic/automatic/fg42tox(src)
-	new /obj/item/ammo_box/a308box(src)
-	new /obj/item/gun/ballistic/automatic/pistol/hellocutiepistol(src)
+	new /obj/item/ammo_box/magazine/fallschirm(src)
+	new /obj/item/ammo_box/magazine/fallschirm(src)
+	new /obj/item/ammo_box/c9mm(src)
+	new /obj/item/gun/ballistic/automatic/pistol/type17/tox(src)
+	new /obj/item/ammo_box/a3006box(src)
 /datum/gear/donator/kits/seermankhajiit002
 	name = "Sovietcat Kit"
 	path = /obj/item/storage/box/large/custom_kit/seermankhajiit002
@@ -1252,8 +1361,8 @@
 
 /obj/item/storage/box/large/custom_kit/seermankhajiit002/PopulateContents()
 	new /obj/item/storage/box/hobo_tox(src)
+	new /obj/item/clothing/under/f13/ww1custom(src)
 	new /obj/item/gun/ballistic/automatic/fnfal/ak47/custom(src)
-	new /obj/item/pet_carrier/paws(src)
 	new /obj/item/gun/ballistic/automatic/pistol/type17/tox(src)
 
 /datum/gear/donator/kits/SilencedMP5A5
@@ -1309,9 +1418,39 @@
 	new /obj/item/ammo_box/m5mmbox(src)
 	new /obj/item/ammo_box/c9mm(src)
 	new /obj/item/gun/ballistic/automatic/pistol/type17/tox(src)
+	new /obj/item/gun/ballistic/rifle/antique/tankgun/custom(src)
+	new /obj/item/ammo_box/a50MGbox(src)
 	new /obj/item/clothing/shoes/customtoxboots(src)
 	new /obj/item/clothing/head/kevlarhelmet/toxtestinghelmet(src)
 	new /obj/item/gun/ballistic/automatic/pistol/no3pistoltox(src)
+
+/datum/gear/donator/kits/seermankhajiit006
+	name = "The Icelandic G11"
+	path = /obj/item/storage/box/large/custom_kit/seermankhajiit006
+	ckeywhitelist = list("seermankhajiit00")
+
+/obj/item/storage/box/large/custom_kit/seermankhajiit006/PopulateContents()
+	new /obj/item/ammo_box/m473(src)
+	new /obj/item/ammo_box/m14mm(src)
+	new /obj/item/gun/ballistic/automatic/pistol/hellocutiepistol(src)
+	new /obj/item/gun/ballistic/automatic/g11/tox(src)
+	new /obj/item/clothing/shoes/customtoxboots(src)
+	new /obj/item/pet_carrier/paws(src)
+	new /obj/item/pet_carrier/fluffy(src)
+
+
+/datum/gear/donator/kits/seermankhajiit00last
+	name = "The Finale"
+	path = /obj/item/storage/box/large/custom_kit/seermankhajiit00last
+	ckeywhitelist = list("seermankhajiit00")
+
+/obj/item/storage/box/large/custom_kit/seermankhajiit00last/PopulateContents()
+	new /obj/item/ammo_box/a3006box(src)
+	new /obj/item/ammo_box/magazine/stg(src)
+	new /obj/item/gun/ballistic/automatic/pistol/type17/tox(src)
+	new /obj/item/ammo_box/c9mm(src)
+	new /obj/item/gun/ballistic/automatic/stg44custom(src)
+	new /obj/item/clothing/shoes/customtoxboots(src)
 
 /datum/gear/donator/kits/seermankhajiit00new
 	name = "The Shadowtribe"
@@ -1343,6 +1482,16 @@
 	. = ..()
 	var/mob/living/simple_animal/pet/mothroach/tox/pet_fluffy = new(src)
 	add_occupant(pet_fluffy)
+
+
+/datum/gear/donator/kits/sampletex
+	name = "The Aug Loadout"
+	path = /obj/item/storage/box/large/custom_kit/sampletex
+	ckeywhitelist = list("SampleTex")
+
+/obj/item/storage/box/large/custom_kit/sampletex/PopulateContents()
+	new /obj/item/ammo_box/m5mmbox(src)
+	new /obj/item/gun/ballistic/automatic/assault_carbine/aug5mm/custom(src)
 
 /datum/gear/donator/kits/sloaff
 	name = "Leo's Kit"
@@ -1457,6 +1606,14 @@
 	new /obj/item/clothing/under/tribaliris(src)
 	new /obj/item/gun/ballistic/shotgun/s163/thingblessed(src)
 
+/datum/gear/donator/kits/thingpony/petal
+	name = "Petal's pack"
+	path = /obj/item/storage/box/large/custom_kit/thingpony/petal
+	ckeywhitelist = list("thingpony")
+
+/obj/item/storage/box/large/custom_kit/thingpony/petal/PopulateContents()
+	new /obj/item/clothing/under/poofygreen(src)
+
 /datum/gear/donator/kits/tk420634
 	name = "Casey's 'Business' Bundle"
 	path = /obj/item/storage/box/large/custom_kit/tk420634
@@ -1465,6 +1622,9 @@
 /obj/item/storage/box/large/custom_kit/tk420634/PopulateContents()
 	new /obj/item/melee/onehanded/knife/trench(src)
 	new /obj/item/card/lowbounty(src)
+	new /obj/item/ammo_box/magazine/m308/ext(src)
+	new /obj/item/ammo_box/magazine/m308/ext(src)
+	new /obj/item/gun/ballistic/automatic/slr/stinki(src)
 	new /obj/item/gun_upgrade/scope/killer(src)
 
 /datum/gear/donator/kits/tk420634_2
@@ -1510,6 +1670,19 @@
 /obj/item/storage/box/large/custom_kit/tk420634_4/PopulateContents()
 	new /obj/item/gun/magic/staff/healing/triheal(src)
 
+
+/datum/gear/donator/kits/twitchysw
+	name = "The Avian"
+	path = /obj/item/storage/box/large/custom_kit/twitchysw
+	ckeywhitelist = list("TwitchySw")
+
+
+/obj/item/storage/box/large/custom_kit/twitchysw/PopulateContents()
+	new /obj/item/gun/ballistic/automatic/assault_carbine/aug5mm/asvalcustom(src)
+	new /obj/item/ammo_box/m5mmbox(src)
+	new /obj/item/gun/ballistic/revolver/hunting/custom(src)
+	new /obj/item/ammo_box/c4570box(src)
+
 /datum/gear/donator/kits/thelasthosea2
 	name = "Bren loadout"
 	path = /obj/item/storage/box/large/custom_kit/thelasthosea2
@@ -1520,7 +1693,15 @@
 	new /obj/item/ammo_box/magazine/bren(src)
 	new /obj/item/ammo_box/a308box(src)
 
+/datum/gear/donator/kits/triplewammy
+	name = "Service rifle doggo loadout"
+	path = /obj/item/storage/box/large/custom_kit/triplewammy
+	ckeywhitelist = list("Triple_Wammy")
 
+/obj/item/storage/box/large/custom_kit/triplewammy/PopulateContents()
+	new /obj/item/gun/ballistic/automatic/service(src)
+	new /obj/item/ammo_box/magazine/m556/rifle(src)
+	new /obj/item/ammo_box/a556(src)
 
 /datum/gear/donator/kits/tonyburritos
 	name = "NCR Scout"
@@ -1635,11 +1816,29 @@
 	new /obj/item/storage/bag/plants(src)
 
 /datum/gear/donator/kits/weredoggo
-	name = "BBQ Fun"
+	name = "Weredoggo Customs"
 	path = /obj/item/storage/box/large/custom_kit/weredoggo
 	ckeywhitelist = list("weredoggo")
 
 /obj/item/storage/box/large/custom_kit/weredoggo/PopulateContents()
+	new /obj/item/reagent_containers/food/snacks/grown/peach(src)
+	new /obj/item/gun/energy/laser/auto/oasis(src)
+
+/datum/gear/donator/kits/weredoggo2
+	name = "Cloth Supply Cache"
+	path = /obj/item/storage/box/large/custom_kit/weredoggo2
+	ckeywhitelist = list("weredoggo")
+
+/obj/item/storage/box/large/custom_kit/weredoggo2/PopulateContents()
+	new /obj/item/stack/sheet/cloth/ten(src)
+	new /obj/item/toy/crayon/spraycan(src)
+
+/datum/gear/donator/kits/weredoggo3
+	name = "BBQ Fun"
+	path = /obj/item/storage/box/large/custom_kit/weredoggo3
+	ckeywhitelist = list("weredoggo")
+
+/obj/item/storage/box/large/custom_kit/weredoggo3/PopulateContents()
 	new /obj/item/reagent_containers/food/condiment/bbqsauce(src)
 	new /obj/item/storage/box/hug(src)
 	new /obj/item/pen/edagger(src)
@@ -1855,3 +2054,11 @@
 	new  /obj/item/clothing/suit/armor/medium/duster/town/embroidered/smelly(src)
 	new  /obj/item/gun/ballistic/automatic/pistol/ninemil/makarov/smelly(src)
 	new  /obj/item/gun/ballistic/automatic/ww1selfloader/smelly(src)
+
+/datum/gear/donator/kits/trickingtrapster
+	name = "Tarot Box"
+	path = /obj/item/storage/box/large/custom_kit/trickingtrapster
+	ckeywhitelist = list("trickingtrapster")
+
+/obj/item/storage/box/large/custom_kit/trickingtrapster/PopulateContents()
+	new /obj/item/tarotdeck(src)

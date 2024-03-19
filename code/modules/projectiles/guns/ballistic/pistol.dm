@@ -207,6 +207,52 @@
 	suppressor_y_offset = 19
 	fire_sound = 'sound/f13weapons/ninemil.ogg'
 
+
+//loadout 5mms, mirrored but with different names.
+/obj/item/gun/ballistic/automatic/pistol/fivemilimeterpistol/custom1 //5mm caliber pistol. flat 5mm viarable damage, but slower ROF
+	name = "Ensamvarg "
+	desc = "A 5mm Taurus pistol. This one seems custom!"
+	icon_state = "5mm"
+	item_state = "handgonne"
+	init_mag_type = /obj/item/ammo_box/magazine/m5mmcustom
+	mag_type = /obj/item/ammo_box/magazine/m5mmcustom
+	weapon_class = WEAPON_CLASS_SMALL
+	weapon_weight = GUN_ONE_HAND_AKIMBO
+	damage_multiplier = GUN_EXTRA_DAMAGE_0
+	init_recoil = HANDGUN_RECOIL(1.4, 1.4)
+	init_firemodes = list(
+		/datum/firemode/semi_auto/slow
+	)
+	icon = 'icons/fallout/objects/guns/ballistic.dmi'
+	lefthand_file = 'icons/fallout/onmob/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/fallout/onmob/weapons/guns_righthand.dmi'
+	suppressor_state = "pistol_suppressor"
+	suppressor_x_offset = 30
+	suppressor_y_offset = 19
+	fire_sound = 'sound/f13weapons/ninemil.ogg'
+
+/obj/item/gun/ballistic/automatic/pistol/fivemilimeterpistol/custom2 //5mm caliber pistol. flat 5mm viarable damage, but slower ROF
+	name = "Fuil"
+	desc = "A 5mm custom Taurus pistol!"
+	icon_state = "5mm"
+	item_state = "handgonne"
+	init_mag_type = /obj/item/ammo_box/magazine/m5mmcustom
+	mag_type = /obj/item/ammo_box/magazine/m5mmcustom
+	weapon_class = WEAPON_CLASS_SMALL
+	weapon_weight = GUN_ONE_HAND_AKIMBO
+	damage_multiplier = GUN_EXTRA_DAMAGE_0
+	init_recoil = HANDGUN_RECOIL(1.4, 1.4)
+	init_firemodes = list(
+		/datum/firemode/semi_auto/slow
+	)
+	icon = 'icons/fallout/objects/guns/ballistic.dmi'
+	lefthand_file = 'icons/fallout/onmob/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/fallout/onmob/weapons/guns_righthand.dmi'
+	suppressor_state = "pistol_suppressor"
+	suppressor_x_offset = 30
+	suppressor_y_offset = 19
+	fire_sound = 'sound/f13weapons/ninemil.ogg'
+
 /obj/item/gun/ballistic/automatic/pistol/ninemil/ruby/rubee
 	name = "RuBee"
 	desc = "A petite pocket pistol that has been modified to accept some rather unique ammunition."
@@ -527,10 +573,12 @@
 	init_firemodes = list(
 		/datum/firemode/semi_auto/fast
 	)
+	can_scope = TRUE
+	can_suppress = TRUE
 
 
 
-// Tox's C96. slightly less damage for a 9mm pistol, but bigger magazine and better recoil
+// Tox's C96. slightly less damage for a 9mm pistol, but bigger magazine and better recoil ----> Updated note: Uses 10 magazine only now, can be buffed slightly.
 /obj/item/gun/ballistic/automatic/pistol/type17/tox //custom
 	name = "Tox's C96"
 	desc = "A unique C96 Mauser found and maintained by a sand-cat named Tox Mckit. The C96 depicted is engraved with silver Baroque Motifs. The handle is made of ivory and on the bolt is an engraving that says 'Ange'."
@@ -539,12 +587,16 @@
 	righthand_file = 'icons/fallout/onmob/weapons/guns_righthand.dmi'
 	icon_state = "toxpistol"
 	item_state = "toxpistol"
+	init_recoil = HANDGUN_RECOIL(0.4, 0.4)
 	init_firemodes = list(
-		/datum/firemode/semi_auto/fast
+		/datum/firemode/semi_auto/fast ,
+		/datum/firemode/automatic/rpm75
 	)
 	init_mag_type = /obj/item/ammo_box/magazine/internal/mauserinternal
 	mag_type = /obj/item/ammo_box/magazine/internal/mauserinternal
-	damage_multiplier = GUN_EXTRA_DAMAGE_T1
+	damage_multiplier = GUN_EXTRA_DAMAGE_T2
+	can_scope = TRUE
+	can_suppress = TRUE
 
 /obj/item/gun/ballistic/automatic/pistol/no3pistoltox //custom
 	name = "Tox's No.3 Pistol "
@@ -995,6 +1047,26 @@
 	can_suppress = FALSE
 	fire_sound = 'sound/f13weapons/cyberbang.ogg'
 
+//4.7mm caseless pistol. Alternative ammo type to the 5mm with slight differences. Spawn tier with shy less damage than a baseline 5mm firearm.
+/obj/item/gun/ballistic/automatic/pistol/pistol47mm
+	name = "4.7mm A39 Pistol"
+	desc = "A rather strange caliber having pistol. Chambered in 4.7mm caseless ammo, this pistol seems to be a bit heavier to hold but is generally still the same as any pistol of its size and caliber range."
+	icon_state = "jericho"
+	item_state = "pistolchrome"
+	icon = 'icons/fallout/objects/guns/ballistic.dmi'
+	lefthand_file = 'icons/fallout/onmob/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/fallout/onmob/weapons/guns_righthand.dmi'
+	init_mag_type = /obj/item/ammo_box/magazine/m47pistol
+	mag_type = /obj/item/ammo_box/magazine/m47pistol
+	weapon_class = WEAPON_CLASS_SMALL
+	weapon_weight = GUN_ONE_HAND_AKIMBO
+	init_recoil = HANDGUN_RECOIL(1.4, 1.7)
+	damage_multiplier = GUN_LESS_DAMAGE_T1
+	init_firemodes = list(
+		/datum/firemode/semi_auto
+	)
+	can_scope = FALSE
+	can_suppress = TRUE
 
 
 /obj/item/gun/ballistic/automatic/pistol/needlerpistol
