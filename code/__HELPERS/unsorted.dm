@@ -271,11 +271,18 @@ Negative values for offset are accepted, think of it in relation to North, -x is
 		if(!admeme && M.client && M.client.holder && M.client.holder.fakekey) //stealthmins
 			continue
 		var/name = avoid_assoc_duplicate_keys(M.name, namecounts)
-		if(!admeme && (isdead(M) && (lowertext(M.real_name) == M.ckey || lowertext(M.name) == M.ckey)))
-			name = pick(GLOB.cow_names + GLOB.carp_names + GLOB.megacarp_last_names)
+		var/shark = FALSE
+		if(!admeme)
+			if(ckey(M.real_name) == ckey(M.ckey) || ckey(M.name) == ckey(M.ckey))
+				if(!(strings("data/super_special_ultra_instinct.json", "[ckey(M.name)]", TRUE, TRUE) || strings("data/super_special_ultra_instinct.json", "[ckey(M.real_name)]", TRUE, TRUE)))
+					shark = TRUE
+					name = safepick(GLOB.cow_names + GLOB.carp_names + GLOB.megacarp_last_names)
 
 		if(M.real_name && M.real_name != M.name)
-			name += " \[[M.real_name]\]"
+			if(shark)
+				name += " \[[safepick(GLOB.cow_names + GLOB.carp_names + GLOB.megacarp_last_names)]\]"
+			else
+				name += " \[[M.real_name]\]"
 		if(M.stat == DEAD)
 			if(isobserver(M))
 				name += " \[ghost\]"
@@ -1786,6 +1793,14 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 /proc/GaussianRangePicker(min, max, mean, stddev)
 	var/index = GaussianReacharound(mean, stddev, min, max)
 	return index
+
+/// takes in fuckin anything and outputs if its a player
+/proc/isplayer(imput)
+	if(istext(imput))
+		return !!LAZYACCESS(GLOB.directory, imput)
+	if(ismob(imput))
+		var/mob/M = imput
+		return !!(M.client || LAZYACCESS(GLOB.directory, M.ckey))
 
 /// makes sure input is text, either 3 or 6 characters, and only contains digits and the letters a-f (case insensitive)
 /proc/is_color(str)

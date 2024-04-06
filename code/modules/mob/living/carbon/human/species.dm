@@ -1751,9 +1751,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 					user.adjustBruteLoss(-5)
 					user.adjustFireLoss(-5)
 					user.adjustStaminaLoss(-20)
-
-					target.adjustCloneLoss(10)
-					target.adjustBruteLoss(10)
+					target.adjustBruteLoss(20)
 
 		else if(!(target.mobility_flags & MOBILITY_STAND))
 			target.forcesay(GLOB.hit_appends)
@@ -2497,6 +2495,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			H.adjust_bodytemperature(11)
 		else
 			H.adjust_bodytemperature(BODYTEMP_HEATING_MAX + (H.fire_stacks * 12))
+			H.adjustFireLoss(H.fire_stacks)
 			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "on_fire", /datum/mood_event/on_fire)
 
 /datum/species/proc/CanIgniteMob(mob/living/carbon/human/H)

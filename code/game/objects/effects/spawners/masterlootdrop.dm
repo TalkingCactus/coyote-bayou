@@ -234,6 +234,7 @@
 		/obj/item/gun/ballistic/automatic/varmint/ratslayer = 6,            //151 10
 		/obj/item/gun/ballistic/automatic/smg/american180 = 6,              //150 180
 		/obj/item/gun/ballistic/automatic/smg/american180/b180 = 1,         //150 180
+		/obj/item/gun/ballistic/automatic/smg/american180/dp27 = 1,			//150 180
 		/obj/item/gun/ballistic/automatic/saiga12k = 8,                     //146 8
 		/obj/item/gun/ballistic/shotgun/needles = 8,                        //???
 		/obj/item/gun/ballistic/automatic/needlersmg = 9,                    //???
@@ -241,6 +242,8 @@
 		/obj/item/gun/ballistic/automatic/rangemaster = 10,                 //138 7
 		/obj/item/gun/ballistic/automatic/combat = 10,                      //138 20
 		/obj/item/gun/ballistic/automatic/smg/mini_uzi/smg22 = 10,          //135 32        *
+		/obj/item/gun/ballistic/automatic/smg/mini_uzi/smg22/mp22 = 4, 		//135 32
+		/obj/item/gun/ballistic/automatic/smg/mini_uzi/smg22/ppsh = 2,			//135 32
 		/obj/item/gun/ballistic/automatic/hobo/destroyer = 10,              //132 30
 		/obj/item/gun/ballistic/automatic/smg/sidewinder = 10,              //126 15
 		/obj/item/gun/ballistic/automatic/smg/mini_uzi/smg22/tec22 = 10,    //121 16
@@ -318,6 +321,7 @@
 		/obj/item/gun/ballistic/automatic/pistol/sig = 3,                   //180 8
 		/obj/item/gun/ballistic/automatic/pistol/ninemil/skorpion = 3,      //168 15
 		/obj/item/gun/ballistic/automatic/pistol/pistol22 = 3,              //150 16
+		/obj/item/gun/ballistic/automatic/pistol/pistol22/val = 1,			//150 16
 		/obj/item/gun/ballistic/automatic/pistol/pistol14/lildevil = 1,     //143 7
 		/obj/item/gun/ballistic/automatic/pistol/m1911/custom = 3,          //138 8
 		/obj/item/gun/ballistic/automatic/pistol/pistol14 = 1,              //130 7
@@ -455,6 +459,7 @@
 		/obj/item/gun/ballistic/revolver/thatgun = 10,                            //207 5
 		/obj/item/gun/ballistic/automatic/lewis/lanoe = 10,                       //186 97
 		/obj/item/gun/ballistic/automatic/lewis = 10,                             //186 47
+		/obj/item/gun/ballistic/automatic/lewis/dp27 = 10,							//186 47
 	)
 
 ////////////////////////////
@@ -510,7 +515,7 @@
 		/obj/item/gun/energy/laser/tg/recharger/nuclear/rifle = 8, //100 24 self recharge, EMP weakness, rad damage
 		/obj/item/gun/energy/laser/tg/recharger/nuclear = 10,      //100 16 self recharge, EMP weakness, rad damage
 		/obj/item/gun/energy/laser/tg/recharger = 7,               //100 16 self recharge
-		/obj/item/gun/energy/laser/LaserAK/worn = 8,               //133 30 self recharge
+	//	/obj/item/gun/energy/laser/LaserAK/worn = 8,               //133 30 self recharge
 		/obj/item/gun/energy/laser/solar = 8,                      //90  16 self recharge
 		/obj/item/gun/energy/laser/plasma/bouncy = 1,              //93  20 plasma, bouncy shots
 
@@ -541,7 +546,7 @@
 
 		// Better in some way (self charge, plasma, more efficient)
 		/obj/item/gun/energy/kinetic_accelerator/crossbow = 5,     //100 1 self charge, EMP immune
-		/obj/item/gun/energy/laser/LaserAK = 5,                    //200 30 self charge
+	//	/obj/item/gun/energy/laser/LaserAK = 5,                    //200 30 self charge
 
 		//magic
 		/obj/item/gun/magic/staff/kelpmagic/fireball = 2,
@@ -1197,7 +1202,6 @@
 		/obj/item/stack/sheet/mineral/silver/twentyfive = 1,
 		/obj/item/stack/sheet/bronze/thirty = 1,
 		/obj/item/stack/rods/scaffold/ten = 1,
-		/obj/item/stack/sheet/lead/ten = 1,
 	)
 
 /obj/effect/spawner/lootdrop/f13/rare_mats
