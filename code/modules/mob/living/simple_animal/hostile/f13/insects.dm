@@ -174,7 +174,7 @@
 	var/max_mobs = 2
 	var/mob_types = list(/mob/living/simple_animal/hostile/giantant)
 	var/spawn_time = 30 SECONDS
-	var/spawn_text = "hatches from"
+	//var/spawn_text = "hatches from"
 	blood_volume = 0
 	loot = list(/obj/effect/spawner/lootdrop/f13/rare, /obj/effect/gibspawner/larva)
 	loot_drop_amount = 5
@@ -183,7 +183,7 @@
 
 /mob/living/simple_animal/hostile/giantantqueen/Initialize()
 	. = ..()
-	AddComponent(/datum/component/spawner, mob_types, spawn_time, faction, spawn_text, max_mobs, _range = 7)
+	AddComponent(/datum/component/spawner, mob_types, spawn_time, faction, /*spawn_text,*/ max_mobs, _range = 7)
 
 /mob/living/simple_animal/hostile/giantantqueen/death()
 	RemoveComponentByType(/datum/component/spawner)
@@ -313,7 +313,7 @@
 	speed = 1.35
 	maxHealth = 110
 	health = 110
-	move_to_delay = 4
+	move_to_delay = 2
 	footstep_type = FOOTSTEP_MOB_CLAW
 
 /////////////
