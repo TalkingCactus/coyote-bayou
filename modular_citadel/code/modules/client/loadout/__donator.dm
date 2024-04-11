@@ -755,12 +755,15 @@
 	new /obj/item/clothing/mask/chameleon(src)
 
 /datum/gear/donator/kits/jaeger
-	name = "Huntress Customs"
+	name = "LLX22 Etherleech"
 	path = /obj/item/storage/box/large/custom_kit/jaeger // bookmark from JSC
 	ckeywhitelist = list("kilment")
 
 /obj/item/storage/box/large/custom_kit/jaeger/PopulateContents()
-	new /obj/item/gun/ballistic/automatic/sportcarbine(src) // whatever
+	new /obj/item/holoparasite_injector/jaeger(src) // whatever
+
+/datum/gear/donator/kits/jaeger/colfer
+	ckeywhitelist = list("colfer")
 
 /datum/gear/donator/kits/chewyexe
 	name = "stash from the past"
@@ -1903,31 +1906,13 @@
 // Z
 
 /datum/gear/donator/kits/zeronetalpha
-	name = "DocBot115"
+	name = "Glowstick Kit"
 	path = /obj/item/storage/box/large/custom_kit/zeronetalpha
-	ckeywhitelist = list("zeronetalpha")
+	ckeywhitelist = list("zeronetalpha", "zeronettwo")
 
 /obj/item/storage/box/large/custom_kit/zeronetalpha/PopulateContents()
+	new /obj/item/cartridge/resize
 	new /obj/item/gun/energy/laser/pistol(src)
-	new /obj/item/storage/belt/shoulderholster(src)
-	new /obj/item/clothing/head/beret/med(src)
-	new /obj/item/clothing/suit/toggle/labcoat/emt/highvis(src)
-	new /obj/item/clothing/under/pants/black(src)
-	new /obj/item/clothing/shoes/jackboots(src)
-	new /obj/item/stealthboy(src)
-	new /obj/item/gun/ballistic/automatic/x9/toy(src)
-
-/datum/gear/donator/kits/zeronetalpha2
-	name = "EIEIO"
-	path = /obj/item/storage/box/large/custom_kit/zeronetalpha2
-	ckeywhitelist = list("zeronetalpha")
-
-/obj/item/storage/box/large/custom_kit/zeronetalpha2/PopulateContents()
-	new /obj/item/clothing/gloves/evening/black(src)
-	new /obj/item/clothing/shoes/wraps(src)
-	new /obj/item/clothing/suit/jacket/leather/overcoat(src)
-	new /obj/item/clothing/under/dress/blacktango(src)
-	new /obj/item/clothing/head/beret(src)
 	new /obj/item/gun/energy/laser/pistol(src)
 	new /obj/item/stock_parts/cell/ammo/ec(src)
 	new /obj/item/stock_parts/cell/ammo/ec(src)
@@ -2111,4 +2096,3 @@
 	new /obj/item/gun/ballistic/revolver/police(src)
 	new /obj/item/ammo_box/a357(src)
 	new /obj/item/toy/plush/otter(src)
-
