@@ -156,6 +156,8 @@
 	new /obj/item/clothing/glasses/welding(src)
 	new /obj/item/gun/energy/laser/plasma/castereve(src)
 	new /obj/item/bedsheet/zebra(src)
+	new /obj/item/clothing/head/helmet/f13/ncr/rangercombat/foxcustom(src)
+	new /obj/item/reagent_containers/food/snacks/f13/canned/dog(src) // evil and fucked up
 
 /datum/gear/donator/kits/rinpin
 	name = "Lee's stash"
@@ -755,15 +757,12 @@
 	new /obj/item/clothing/mask/chameleon(src)
 
 /datum/gear/donator/kits/jaeger
-	name = "LLX22 Etherleech"
-	path = /obj/item/storage/box/large/custom_kit/jaeger // bookmark from JSC
-	ckeywhitelist = list("kilment")
+	name = "Huntress Customs"
+	path = /obj/item/storage/box/large/custom_kit/jaeger
+	ckeywhitelist = list("Kilment")
 
 /obj/item/storage/box/large/custom_kit/jaeger/PopulateContents()
-	new /obj/item/holoparasite_injector/jaeger(src) // whatever
-
-/datum/gear/donator/kits/jaeger/colfer
-	ckeywhitelist = list("colfer")
+	new /obj/item/jaegerholopara(src)
 
 /datum/gear/donator/kits/chewyexe
 	name = "stash from the past"

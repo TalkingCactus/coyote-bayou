@@ -33100,16 +33100,6 @@
 /obj/effect/spawner/lootdrop/f13/rare,
 /turf/open/floor/mineral/plastitanium,
 /area/f13/enclave)
-"omw" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/ladder/unbreakable{
-	id = "hn2";
-	height = 2
-	},
-/turf/open/floor/wood_common{
-	color = "#779999"
-	},
-/area/f13/underground/cave)
 "omF" = (
 /obj/effect/decal/cleanable/dirt{
 	color = "#363636"
@@ -55515,6 +55505,18 @@
 	icon_state = "bar"
 	},
 /area/f13/bunker)
+"xRg" = (
+/obj/effect/decal/cleanable/dirt{
+	color = "000000"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/ladder/unbreakable{
+	color = "#FF33FF";
+	height = 1;
+	id = "heavens_night"
+	},
+/turf/open/floor/plasteel/f13/vault_floor/misc/vaultrust,
+/area/f13/underground/cave)
 "xRz" = (
 /obj/effect/turf_decal/big{
 	dir = 6
@@ -103206,7 +103208,7 @@ iWs
 xZG
 xZG
 xZG
-xZG
+apk
 pAR
 whv
 whv
@@ -103462,8 +103464,8 @@ xJa
 kNU
 kNU
 kNU
+xRg
 kNU
-omw
 apk
 whv
 whv
@@ -103720,7 +103722,7 @@ kNU
 pAR
 xZG
 xZG
-xZG
+apk
 apk
 whv
 whv
