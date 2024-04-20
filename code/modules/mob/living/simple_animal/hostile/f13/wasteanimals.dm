@@ -125,7 +125,7 @@
 /mob/living/simple_animal/hostile/gecko/Aggro()
 	..()
 	summon_backup(15)
-	say("𐎧𐎤𐎫𐎯!!") // https://lingojam.com/Eng-Cuneiform  In this case they're just calling for help.
+	
 
 /mob/living/simple_animal/hostile/gecko/summon //untameable
 	faction = list("gecko")
@@ -928,6 +928,7 @@
 	minimum_distance = 7
 	aggro_vision_range = 7
 	vision_range = 9
+	ranged = TRUE
 	variation_list = list(
 		MOB_COLOR_VARIATION(245, 215, 0, 255, 220, 5), //Rmin, Gmin, Bmin, Rmax, Gmax, Bmax
 		MOB_SPEED_LIST(2.9, 3.3, 3.5),
