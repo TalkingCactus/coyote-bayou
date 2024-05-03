@@ -16,7 +16,7 @@
 		/obj/effect/spawner/lootdrop/f13/trash_armor = 10,
 		/obj/effect/spawner/lootdrop/f13/trash_toys = 5,
 		/obj/effect/spawner/lootdrop/f13/trash_mats = 10,
-		/obj/effect/spawner/lootdrop/f13/trash_mods = 10,
+//		/obj/effect/spawner/lootdrop/f13/trash_mods = 10,
 		/obj/effect/spawner/lootdrop/f13/trash_parts = 10,
 		/obj/effect/spawner/lootdrop/f13/trash_tools = 10,
 		/obj/effect/spawner/lootdrop/f13/trash_money = 10,
@@ -43,7 +43,7 @@
 		/obj/effect/spawner/lootdrop/f13/common_armor = 10,
 		/obj/effect/spawner/lootdrop/f13/common_toys = 4,
 		/obj/effect/spawner/lootdrop/f13/common_mats = 10,
-		/obj/effect/spawner/lootdrop/f13/common_mods = 10,
+//		/obj/effect/spawner/lootdrop/f13/common_mods = 10,
 		/obj/effect/spawner/lootdrop/f13/common_parts = 10,
 		/obj/effect/spawner/lootdrop/f13/common_tools = 10,
 		/obj/effect/spawner/lootdrop/f13/common_money = 10,
@@ -67,7 +67,7 @@
 		/obj/effect/spawner/lootdrop/f13/uncommon_armor = 10,
 		/obj/effect/spawner/lootdrop/f13/uncommon_toys = 3,
 		/obj/effect/spawner/lootdrop/f13/uncommon_mats = 10,
-		/obj/effect/spawner/lootdrop/f13/uncommon_mods = 10,
+//		/obj/effect/spawner/lootdrop/f13/uncommon_mods = 10,
 		/obj/effect/spawner/lootdrop/f13/uncommon_parts = 10,
 		/obj/effect/spawner/lootdrop/f13/uncommon_tools = 10,
 		/obj/effect/spawner/lootdrop/f13/uncommon_money = 10,
@@ -125,7 +125,7 @@
 	icon_state = "x7"
 	loot = list(
 		/obj/effect/spawner/lootdrop/f13/rare_medicine = 20,
-		/obj/effect/spawner/lootdrop/f13/rare_mods = 20,
+//		/obj/effect/spawner/lootdrop/f13/rare_mods = 20,
 		/obj/effect/spawner/lootdrop/f13/rare_drugs = 10,
 		/obj/effect/spawner/lootdrop/f13/rare_mats = 10,
 		/obj/effect/spawner/lootdrop/f13/rare_parts = 10,
@@ -184,6 +184,14 @@
 		/obj/effect/spawner/lootdrop/f13/rare_melee = 30,
 		/obj/effect/spawner/lootdrop/f13/rare_energy = 30,
 		/obj/effect/spawner/lootdrop/f13/rare_cowboy = 10,
+		/obj/effect/spawner/lootdrop/f13/uncommon_weps = 20
+	)
+
+/obj/effect/spawner/lootdrop/f13/very_rare
+	name = "very rare weapons"
+	loot = list(
+		/obj/effect/spawner/lootdrop/f13/very_rare_guns = 50, //can adjust these values as needed
+		/obj/effect/spawner/lootdrop/f13/very_rare_energy = 50,
 	)
 
 ///////////////////////////////
@@ -202,7 +210,7 @@
 		/obj/item/gun/ballistic/revolver/hobo/pepperbox = 10,                   //78          4
 		/obj/item/gun/ballistic/automatic/pistol/fivemilimeterpistol = 10,      // 78         20          *
 		/obj/item/gun/ballistic/rifle/salvaged_eastern_rifle = 8,               // 66         25
-		
+
 		//Single shot or meme weapons
 		/obj/item/gun/ballistic/revolver/hobo/piperifle = 2,                    //136         1
 //		/obj/item/gun/flintlock/musket/jezail = 3,                              //131         1
@@ -221,17 +229,21 @@
 /obj/effect/spawner/lootdrop/f13/common_guns
 	name = "common guns"
 	loot = list(                                                            // dps	mag cap     *staple
-		/obj/item/gun/ballistic/automatic/type93/worn = 4,                  //156 20	
+		/obj/item/gun/ballistic/automatic/type93/worn = 4,                  //156 20
 		/obj/item/gun/ballistic/automatic/smg/mini_uzi = 5,                 //151 32
 		/obj/item/gun/ballistic/automatic/varmint/ratslayer = 6,            //151 10
 		/obj/item/gun/ballistic/automatic/smg/american180 = 6,              //150 180
 		/obj/item/gun/ballistic/automatic/smg/american180/b180 = 1,         //150 180
+		/obj/item/gun/ballistic/automatic/smg/american180/dp27 = 1,			//150 180
 		/obj/item/gun/ballistic/automatic/saiga12k = 8,                     //146 8
-		/obj/item/gun/ballistic/automatic/pistol/needlerpistol = 9,         //85(140) 24
+		/obj/item/gun/ballistic/shotgun/needles = 8,                        //???
+		/obj/item/gun/ballistic/automatic/needlersmg = 9,                    //???
 		/obj/item/gun/ballistic/automatic/pistol/beretta/carbine = 10,      //139 15
 		/obj/item/gun/ballistic/automatic/rangemaster = 10,                 //138 7
 		/obj/item/gun/ballistic/automatic/combat = 10,                      //138 20
 		/obj/item/gun/ballistic/automatic/smg/mini_uzi/smg22 = 10,          //135 32        *
+		/obj/item/gun/ballistic/automatic/smg/mini_uzi/smg22/mp22 = 4, 		//135 32
+		/obj/item/gun/ballistic/automatic/smg/mini_uzi/smg22/ppsh = 2,			//135 32
 		/obj/item/gun/ballistic/automatic/hobo/destroyer = 10,              //132 30
 		/obj/item/gun/ballistic/automatic/smg/sidewinder = 10,              //126 15
 		/obj/item/gun/ballistic/automatic/smg/mini_uzi/smg22/tec22 = 10,    //121 16
@@ -251,9 +263,10 @@
 		/obj/item/gun/ballistic/automatic/varmint/bushmaster_arm_gun = 8,   //102 20
 		/obj/item/gun/ballistic/automatic/assault_carbine/psg5mm = 6,       //90 30
 		//sidearms
-		/obj/item/gun/ballistic/automatic/pistol/deagle/elcapitan = 4,     //149 7 
+		/obj/item/gun/ballistic/automatic/pistol/deagle/elcapitan = 4,     //149 7
 		/obj/item/gun/ballistic/automatic/pistol/beretta = 4,               //126 15
 		/obj/item/gun/ballistic/automatic/pistol/ninemil/auto = 4,          //125 10
+		/obj/item/gun/ballistic/automatic/pistol/ninemil/rare99 = 4,        //119.6 12
 		/obj/item/gun/ballistic/automatic/pistol/vg77 = 4,                  //113 15
 		/obj/item/gun/ballistic/automatic/pistol/automag = 4,               //106 7
 		/obj/item/gun/ballistic/automatic/pistol/n99/executive = 1,         //104 12
@@ -265,12 +278,12 @@
 	name = "uncommon guns"
 	loot = list(
 		//primary weapon candidates                                         //dps mag cap
-		/obj/item/gun/ballistic/automatic/smg/smg10mm/worn = 10, 			//265 24
-		/obj/item/gun/ballistic/automatic/xl70e3 = 10,                      //265 20
-		/obj/item/gun/ballistic/automatic/fnfal/g3battlerifle = 10,         //249 20
-		/obj/item/gun/ballistic/automatic/autopipe = 10,                    //244 18
-		/obj/item/gun/ballistic/automatic/r84 = 10,                         //241 60
+		/obj/item/gun/ballistic/automatic/fnfal/g3battlerifle = 7,          //249 20
+		/obj/item/gun/ballistic/automatic/autopipe = 8,                     //244 18
+		/obj/item/gun/ballistic/automatic/r84 = 9,                          //241 60
+		/obj/item/gun/ballistic/automatic/rifle47mm/china = 10,            //240.73 35
 		/obj/item/gun/ballistic/automatic/smg/cg45/worn = 10,               //234 36
+		/obj/item/gun/ballistic/automatic/smg/smg10mm/worn = 10, 			//234 24
 		/obj/item/gun/ballistic/automatic/smg/mini_uzi/mac10 = 10, 			//227 32
 		/obj/item/gun/ballistic/automatic/r93 = 10,                         //217 20
 		/obj/item/gun/ballistic/shotgun/automatic/combat/auto5 = 10,        //213 4
@@ -284,6 +297,7 @@
 		/obj/item/gun/ballistic/automatic/service/alr = 10,                 //199 20
 		/obj/item/gun/ballistic/automatic/marksman = 10,                    //199 20
 		/obj/item/gun/ballistic/automatic/aksmol = 10,                      //199 20
+		/obj/item/gun/ballistic/automatic/rifle47mm = 10,                    //196.25 35
 		/obj/item/gun/ballistic/automatic/sportcarbine = 10,                //186 32
 		/obj/item/gun/ballistic/automatic/service/carbine = 5,              //181 20
 		/obj/item/gun/ballistic/automatic/service = 5,                      //181 20
@@ -293,20 +307,22 @@
 		/obj/item/gun/ballistic/automatic/marksman/policerifle = 10,        //180 20
 		/obj/item/gun/ballistic/automatic/needlerrifle = 10,                //106(175) 24
 		/obj/item/gun/ballistic/automatic/assault_carbine/m5a1 = 10,        //172 30
-		/obj/item/gun/ballistic/automatic/assault_carbine/policerifle = 9,  //157 30
-		/obj/item/gun/ballistic/automatic/famas/pristine = 8,               //154 20
-		/obj/item/gun/ballistic/automatic/rpd = 7,                          //152 40
-		/obj/item/gun/ballistic/automatic/shotgun/riot = 5,                 //beanbags 8
+		/obj/item/gun/ballistic/rifle/antique/tankgun = 5,                  //168
+		/obj/item/gun/ballistic/automatic/assault_carbine/policerifle = 10, //157 30
+		/obj/item/gun/ballistic/automatic/famas/pristine = 10,              //154 20
+		/obj/item/gun/ballistic/automatic/rpd = 9,                          //152 40
+		/obj/item/gun/ballistic/automatic/democracy = 5,                     //151 20
+		/obj/item/gun/ballistic/automatic/shotgun/riot = 8,                 //beanbags 8
 		/obj/item/gun/ballistic/automatic/smg/sidewinder/magnum = 7,        //97 8 multicaliber, deceiving stats
 
 		//sidearms
-		/obj/item/gun/ballistic/revolver/shotpistol/flair_gun = 2,          //254 1
 		/obj/item/gun/ballistic/automatic/pistol/beretta/automatic = 3, 	//252 15
 		/obj/item/gun/ballistic/automatic/pistol/schmeisser = 1,            //208 12
 		/obj/item/gun/ballistic/automatic/pistol/mk23 = 3,                  //198 12
 		/obj/item/gun/ballistic/automatic/pistol/sig = 3,                   //180 8
 		/obj/item/gun/ballistic/automatic/pistol/ninemil/skorpion = 3,      //168 15
 		/obj/item/gun/ballistic/automatic/pistol/pistol22 = 3,              //150 16
+		/obj/item/gun/ballistic/automatic/pistol/pistol22/val = 1,			//150 16
 		/obj/item/gun/ballistic/automatic/pistol/pistol14/lildevil = 1,     //143 7
 		/obj/item/gun/ballistic/automatic/pistol/m1911/custom = 3,          //138 8
 		/obj/item/gun/ballistic/automatic/pistol/pistol14 = 1,              //130 7
@@ -315,16 +331,19 @@
 
 /obj/effect/spawner/lootdrop/f13/rare_guns
 	name = "rare guns"
-	loot = list(                                                          //dps mag cap
+	loot = list(                                                          //dps(bane) mag cap
 		/obj/item/gun/ballistic/automatic/smg/smg10mm = 7,                //281 24
 		/obj/item/gun/ballistic/automatic/concussive = 8,                 //281 8
 		/obj/item/gun/ballistic/automatic/unmcamr = 9,                    //279 4
 		/obj/item/gun/ballistic/automatic/assault_rifle = 10,             //277 20
 		/obj/item/gun/ballistic/automatic/smg/mp5sd = 10,                 //277 32
 		/obj/item/gun/ballistic/automatic/m1919 = 10,                     //276 80
+		/obj/item/gun/ballistic/automatic/xl70e3 = 10,                    //265 20
 		/obj/item/gun/ballistic/automatic/smg/smg14 = 10,                 //260 21
 		/obj/item/gun/ballistic/automatic/fnfal/g3battlerifle = 10,       //249 20
+		/obj/item/gun/ballistic/automatic/needlerhmg = 1,                 //243(448) 72
 		/obj/item/gun/ballistic/automatic/lsw = 10,                       //241 50
+		/obj/item/gun/ballistic/revolver/needlerrifle = 3,                 //220(520) 3
 		/obj/item/gun/ballistic/automatic/smg/p90 = 9,                    //260 50
 		/obj/item/gun/ballistic/automatic/marksman/sniper/gold = 1,       //110 7
 		/obj/item/gun/ballistic/automatic/marksman/sniper = 8,            //99 7
@@ -332,14 +351,15 @@
 		//wildcards and sidearms
 		/obj/item/gun/ballistic/rifle/mag/antimaterial = 3,               //152 8
 		/obj/item/gun/ballistic/automatic/pistol/ninemil/maria = 3,       //277 15
+		/obj/item/gun/ballistic/revolver/shotpistol/flair_gun = 1,        //254 1
 		/obj/item/gun/ballistic/shotgun/automatic/combat/citykiller = 3,  //113 12
-
 	)
 
 /// DPS should be 300+ or have some other excellent quality like magazine capacity
 /obj/effect/spawner/lootdrop/f13/very_rare_guns
 	name = "very rare guns"
 	loot = list(                                                        //dps(bane) mag cap
+		/obj/item/gun/ballistic/rifle/leespeedster = 5,                 //911 5
 		/obj/item/gun/ballistic/automatic/autopipe/special = 10,        //456 18
 		/obj/item/gun/ballistic/automatic/smg/m22 = 10,                 //428 32
 		/obj/item/gun/ballistic/automatic/pistol/goldendeag = 5,        //426 7
@@ -440,26 +460,35 @@
 		/obj/item/gun/ballistic/revolver/thatgun = 10,                            //207 5
 		/obj/item/gun/ballistic/automatic/lewis/lanoe = 10,                       //186 97
 		/obj/item/gun/ballistic/automatic/lewis = 10,                             //186 47
+		/obj/item/gun/ballistic/automatic/lewis/dp27 = 10,							//186 47
 	)
 
 ////////////////////////////
 ///energy weapon spawners///
 ////////////////////////////
 
+
+/// Note: Energy guns are weird. Please try and consider unique features (self recharging, shots per battery, Plasma/EMP, etc) along with DPS.
 /// DPS should be 100 or less ish
 /// If it's on the higher or lower side, it should have another stat lowered or raised such as magazine capacity.
 /obj/effect/spawner/lootdrop/f13/common_energy
 	name = "common energy"
 	loot = list(
 
-		/obj/item/gun/energy/laser/tg/carbine = 10,         //100 25
-		/obj/item/gun/energy/laser/tg/carbine/pistol = 10,  //90 20
-		/obj/item/gun/energy/laser/aer12 = 10,              //90 20
-		/obj/item/gun/energy/laser/plasma/pistol = 10,      //88 10
-		/obj/item/gun/energy/laser/wattzs = 10,             //83 30
-		/obj/item/gun/energy/laser/pistol = 10,             //80 25
-		/obj/item/gun/energy/laser/aer9 = 10,               //80 20
-		/obj/item/gun/energy/laser/plasma = 10,             //80 12
+		/obj/item/gun/energy/laser/cranklasergun/tg/carbine = 10,         //100 25 internal cell
+		/obj/item/gun/energy/laser/cranklasergun/tg/pistol = 10,  //90  20 internal cell
+		/obj/item/gun/energy/laser/pistol = 10,             //80  25
+		/obj/item/gun/energy/laser/aer9 = 10,               //80  20
+		/obj/item/gun/energy/laser/cranklasergun/tg/spamlaser = 10,		//67  125 internal cell
+		/obj/item/gun/energy/laser/cranklasergun/tg/spamlaser/shock = 10, //100 60 internal slow, slower crank
+
+
+		// Better in some way (self charge, plasma, more efficient)
+		/obj/item/gun/energy/laser/plasma/pistol = 8,      //88 10 plasma
+		/obj/item/gun/energy/laser/plasma = 8,             //80 12 plasma
+		/obj/item/gun/energy/laser/aer12 = 8,              //90 20 efficient
+		/obj/item/gun/energy/laser/wattzs = 8,             //83 30 efficient
+		/obj/item/gun/energy/gammagun = 8,                 //62 25 rad damage
 	)
 
 /// DPS should be <= 150 ish
@@ -467,33 +496,33 @@
 	name = "uncommon energy"
 	loot = list(
 		/obj/item/gun/energy/laser/plasma/scatter = 10,             //140 10
-		/obj/item/gun/energy/laser/tg/particlecannon = 10,          //133 5
-		/obj/item/gun/energy/laser/LaserAK/worn = 10,               //133 30
+		/obj/item/gun/energy/laser/cranklasergun/tg/particalcannon = 10,          //133 5
 		/obj/item/gun/energy/laser/wattz = 10,                      //130 12
-		/obj/item/gun/energy/laser/wattz2k = 10,                    //130 12
-		/obj/item/gun/energy/ionrifle = 10,                         //107 15
-		/obj/item/gun/energy/laser/wattz2ks = 10,                   //113 25
-		/obj/item/gun/energy/laser/laer = 10,                       //113 16
-		/obj/item/gun/energy/ionrifle/carbine = 10,                 //107 12
-		/obj/item/gun/energy/ionrifle/compact = 10,                 //107 10
+		/obj/item/gun/energy/laser/laer = 10,                       //113 16 high RNG
+		/obj/item/gun/energy/ionrifle = 10,                         //107 15 EMP
+		/obj/item/gun/energy/ionrifle/carbine = 10,                 //107 12 EMP
+		/obj/item/gun/energy/ionrifle/compact = 10,                 //107 10 EMP
 		/obj/item/gun/energy/laser/aer14 = 10,                      //105 25
-		/obj/item/gun/energy/laser/tg/recharger/nuclear/rifle = 10, //100 24 self recharge
-		/obj/item/gun/energy/laser/tg/recharger/nuclear = 10,       //100 16 self recharge
-		/obj/item/gun/energy/laser/tg/recharger = 10,               //100 16 self recharge
-		/obj/item/gun/energy/laser/plasma/carbine = 10,             //100 20
-		/obj/item/gun/energy/laser/plasma/glock = 10,               //100 16
 		/obj/item/gun/energy/laser/wattz2k/extended = 10,           //100 16
 		/obj/item/gun/energy/laser/scatter = 10,                    //100 10
-		/obj/item/gun/energy/laser/retro = 5,                       //100 8 //Spawns with the worst power cell, but isn't bad
-		/obj/item/gun/energy/laser/plasma/bouncy = 1,               //93 20
-		/obj/item/gun/energy/laser/solar = 10,                      //90 16
-		/obj/item/gun/energy/laser/wattz/recharger = 1,             //83 20
-		/obj/item/gun/energy/laser/ultra_rifle = 10,                //80 40
-		/obj/item/gun/energy/laser/tg/rifle/heavy = 10,             //80 24
+		/obj/item/gun/energy/laser/retro = 10,                      //100 8  high damage
+		/obj/item/gun/energy/laser/ultra_rifle = 10,                //80  40 very rare ammo
+		/obj/item/gun/energy/laser/cranklasergun/tg/rifle = 10,                   //150 40 internal cell
+
+		// Better in some way (self charge, plasma, more efficient)
+		/obj/item/gun/energy/laser/wattz2k = 8,                    //130 12 efficient
+		/obj/item/gun/energy/laser/wattz/magneto = 8,              //87  16 efficient
+		/obj/item/gun/energy/laser/wattz2ks = 1,                   //113 25 AP, self recharge
+		/obj/item/gun/energy/laser/wattz/recharger = 5,            //83  20 recharger pistol, has fast recharge
+		/obj/item/gun/energy/laser/tg/recharger/nuclear/rifle = 8, //100 24 self recharge, EMP weakness, rad damage
+		/obj/item/gun/energy/laser/tg/recharger/nuclear = 10,      //100 16 self recharge, EMP weakness, rad damage
+		/obj/item/gun/energy/laser/tg/recharger = 7,               //100 16 self recharge
+	//	/obj/item/gun/energy/laser/LaserAK/worn = 8,               //133 30 self recharge
+		/obj/item/gun/energy/laser/solar = 8,                      //90  16 self recharge
+		/obj/item/gun/energy/laser/plasma/bouncy = 1,              //93  20 plasma, bouncy shots
 
 		//others
 		/obj/item/gun/energy/laser/complianceregulator = 5,         //330(690) 16 nonlethal
-		/obj/item/gun/energy/laser/scatter/nonlethal = 5,           //132 20 Nonlethal
 
 		//magic
 		/obj/item/gun/magic/wand/kelpmagic/firebolt = 2,
@@ -508,16 +537,19 @@
 	loot = list(                                                    //dps magcap
 		/obj/item/gun/energy/laser/scatter/laserbuss = 5,           //213 2
 		/obj/item/gun/energy/laser/auto = 10,                       //200 60
-		/obj/item/gun/energy/laser/tg/rifle/auto = 10,              //200 60
-		/obj/item/gun/energy/laser/LaserAK = 10,                    //200 30
+		/obj/item/gun/energy/laser/cranklasergun/tg/rifle/heavy = 10,             //80  24 internal cell
+		/obj/item/gun/energy/laser/cranklasergun/tg/rifle/auto = 10,              //200 60 internal cell
 		/obj/item/gun/energy/laser/rcw = 10,                        //190 50
 		/obj/item/gun/energy/laser/badlands = 10,                   //167 16
-		/obj/item/gun/energy/laser/tg/rifle = 10,                   //150 40
-		/obj/item/gun/energy/kinetic_accelerator/crossbow = 10,     //100 1
+		/obj/item/gun/energy/laser/auto/twin = 10,                  //37.5 30 DPS tool says it's low but I think it struggles with burst fire. Similar in power to tesla autoshock
 
 		//sidearms
-		/obj/item/gun/energy/laser/plasma/pistol/eve = 5,           //150 10
-		/obj/item/gun/energy/laser/plasma/pistol/adam = 5,          //138 8
+		/obj/item/gun/energy/laser/plasma/pistol/eve = 8,           //150 10 plasma
+		/obj/item/gun/energy/laser/plasma/pistol/adam = 8,          //138 8  plasma
+
+		// Better in some way (self charge, plasma, more efficient)
+		/obj/item/gun/energy/kinetic_accelerator/crossbow = 5,     //100 1 self charge, EMP immune
+	//	/obj/item/gun/energy/laser/LaserAK = 5,                    //200 30 self charge
 
 		//magic
 		/obj/item/gun/magic/staff/kelpmagic/fireball = 2,
@@ -529,9 +561,12 @@
 /obj/effect/spawner/lootdrop/f13/very_rare_energy
 	name = "very rare energy"
 	loot = list(
-		/obj/item/gun/energy/laser/scatter/nonlethal = 10,            //132(276) 20 insane for pve wtf
-		/obj/item/gun/energy/kinetic_accelerator/crossbow/large = 10, //200 1
-		/obj/item/gun/energy/laser/plasma/pistol/alien = 1,           //225 4
+		/obj/item/gun/energy/laser/scatter/nonlethal = 100,            //132(276) 20 insane for pve wtf
+		/obj/item/gun/energy/laser/auto/oasis = 400,                   //266 50 low damage per shot, deals plasma damage
+		/obj/item/gun/energy/kinetic_accelerator/crossbow/large = 500, //200 1 self charge, EMP immune
+		/obj/item/gun/energy/laser/plasma/pistol/alien = 99,           //225 4
+		/obj/item/gun/medbeam/magic = 400,                             //000 inf medbeam
+		/obj/item/minigunpack = 1,                                     //??? 200 Note: the laser gatling actually isn't working with the DPS tool, but it's 15 damage at 600 RPM. Once in a blue moon this will make someone's day.
 	)
 
 ///////////////////////////
@@ -607,7 +642,7 @@
 		/obj/item/twohanded/sledgehammer/rockethammer = 10,
 		/obj/item/twohanded/thermic_lance = 10,
 		// /obj/item/melee/transforming/plasmacutter/sword = 5, // Commenting it out until its sprite is fixed.
-		
+
 		//uniques
 		/obj/item/melee/powerfist/f13/satfist = 5,
 		/obj/item/melee/unarmed/powerfist/goliath = 5,
@@ -621,32 +656,6 @@
 		/obj/item/dualsaber/hypereutactic = 5,
 	)
 
-//////////////////////////
-///unique weapon spawns///
-//////////////////////////
-
-/obj/effect/spawner/lootdrop/f13/common_unique
-	name = "common unique"
-	loot = list(
-	)
-
-/obj/effect/spawner/lootdrop/f13/uncommon_unique
-	name = "uncommon unique"
-	loot = list(
-		// /obj/item/gun/ballistic/automatic/recoilessrifle = 1, //Will ask community on ideas of a revamped recoiless rifle. Needs a complete overhaul of its niche abilities.
-		// /obj/item/gun/ballistic/automatic/m1garand/republicspride = 10, // Commenting out until its sprite is fixed.
-	)
-
-/obj/effect/spawner/lootdrop/f13/rare_unique //most uniques gonna end up here: the epitome of high tier loot
-	name = "rare unique"
-	loot = list(
-//		/obj/item/gun/ballistic/automatic/m72 = 4, //31 10 beyond trash tier
-	)
-
-/obj/effect/spawner/lootdrop/f13/very_rare_unique
-	name = "very rare unique"
-	loot = list(
-	)
 
 ////////////////////////////
 ///magazine ammo spawners///		each tier reflects the type of guns available in this tier
@@ -819,7 +828,6 @@
 /obj/effect/spawner/lootdrop/f13/common_medicine
 	name = "common medicines"
 	loot = list(
-		/obj/item/reagent_containers/hypospray/medipen/stimpak = 10,
 		/obj/item/reagent_containers/hypospray/medipen/stimpak/epipak = 10,
 		/obj/item/stack/medical/gauze = 10,
 		/obj/item/stack/medical/suture/five = 4,
@@ -834,7 +842,7 @@
 /obj/effect/spawner/lootdrop/f13/uncommon_medicine
 	name = "uncommon medicines"
 	loot = list(
-		/obj/item/reagent_containers/hypospray/medipen/stimpak = 10,
+		/obj/item/reagent_containers/pill/bitterdrink = 10,
 		/obj/item/stack/medical/gauze = 10,
 		/obj/item/stack/medical/suture/five = 10,
 		/obj/item/reagent_containers/blood/radaway = 10,
@@ -852,8 +860,8 @@
 /obj/effect/spawner/lootdrop/f13/rare_medicine
 	name = "rare medicines"
 	loot = list(
-		/obj/item/reagent_containers/hypospray/medipen/stimpak = 10,
-		/obj/item/reagent_containers/hypospray/medipen/stimpak/super = 10,
+		/obj/item/reagent_containers/hypospray/medipen/stimpak = 4,
+		/obj/item/reagent_containers/hypospray/medipen/stimpak/super = 1,
 		/obj/item/stack/medical/gauze/adv = 10,
 		/obj/item/stack/medical/suture/medicated/five = 4,
 		/obj/item/stack/medical/mesh/advanced/five = 4,
@@ -886,9 +894,9 @@
 	loot = list(
 		/obj/item/storage/pill_bottle/chem_tin/radx = 1,
 		/obj/item/reagent_containers/pill/patch/jet = 1,
-		/obj/item/reagent_containers/hypospray/medipen/medx = 1,
-		/obj/item/reagent_containers/hypospray/medipen/steady = 1,
-		/obj/item/reagent_containers/hypospray/medipen/psycho = 1,
+		/obj/item/reagent_containers/pill/patch/medx = 1,
+		/obj/item/reagent_containers/pill/patch/steady = 1,
+		/obj/item/reagent_containers/pill/patch/psycho = 1,
 		/obj/item/storage/pill_bottle/chem_tin/mentats = 1,
 	)
 
@@ -897,9 +905,9 @@
 	loot = list(
 		/obj/item/storage/pill_bottle/chem_tin/radx = 10,
 		/obj/item/reagent_containers/pill/patch/jet = 10,
-		/obj/item/reagent_containers/hypospray/medipen/medx = 4,
-		/obj/item/reagent_containers/hypospray/medipen/steady = 4,
-		/obj/item/reagent_containers/hypospray/medipen/psycho = 4,
+		/obj/item/reagent_containers/pill/patch/medx = 4,
+		/obj/item/reagent_containers/pill/patch/steady = 4,
+		/obj/item/reagent_containers/pill/patch/psycho = 4,
 		/obj/item/storage/pill_bottle/chem_tin/mentats = 4,
 		/obj/item/reagent_containers/pill/patch/turbo = 4,
 		/obj/item/storage/pill_bottle/chem_tin/buffout = 4,
@@ -915,9 +923,9 @@
 	loot = list(
 		/obj/item/storage/pill_bottle/chem_tin/radx = 10,
 		/obj/item/reagent_containers/pill/patch/jet = 10,
-		/obj/item/reagent_containers/hypospray/medipen/medx = 4,
-		/obj/item/reagent_containers/hypospray/medipen/steady = 4,
-		/obj/item/reagent_containers/hypospray/medipen/psycho = 4,
+		/obj/item/reagent_containers/pill/patch/medx = 4,
+		/obj/item/reagent_containers/pill/patch/steady = 4,
+		/obj/item/reagent_containers/pill/patch/psycho = 4,
 		/obj/item/storage/pill_bottle/chem_tin/mentats = 4,
 		/obj/item/reagent_containers/pill/patch/turbo = 4,
 		/obj/item/storage/pill_bottle/chem_tin/buffout = 4,
@@ -1017,7 +1025,6 @@
 		/obj/effect/spawner/bundle/f13/armor/riot = 40,
 		/obj/effect/spawner/bundle/f13/armor/combat/mk2 = 40,
 		/obj/effect/spawner/bundle/f13/armor/combat/mk2/dark = 40,
-		/obj/item/clothing/suit/armor/heavy/riot/retrofitted = 20,
 		/obj/effect/spawner/bundle/f13/armor/t45b_salvaged = 20,
 		/obj/item/clothing/suit/armor/heavy/riot/vault = 20,
 		/obj/item/clothing/suit/armor/heavy/riot/marine = 20,
@@ -1027,6 +1034,7 @@
 		/obj/item/clothing/suit/armor/medium/odstlead = 1,
 		/obj/effect/spawner/bundle/f13/armor/t51b = 1,
 		/obj/item/clothing/suit/armor/power_armor/t51b/pony = 1,
+		/obj/effect/spawner/lootdrop/f13/uncommon_armor = 20
 	)
 
 //////////////////
@@ -1198,7 +1206,6 @@
 		/obj/item/stack/sheet/mineral/silver/twentyfive = 1,
 		/obj/item/stack/sheet/bronze/thirty = 1,
 		/obj/item/stack/rods/scaffold/ten = 1,
-		/obj/item/stack/sheet/lead/ten = 1,
 	)
 
 /obj/effect/spawner/lootdrop/f13/rare_mats
@@ -1218,17 +1225,20 @@
 		/obj/item/stack/sheet/mineral/diamond/twentyfive = 1,
 	)
 
-////////////////////////////////
-///weapon attachment spawners///
-////////////////////////////////
-
+/////////////////////////////////////////
+///(legacy) weapon attachment spawners///
+/////////////////////////////////////////
+/*
 /obj/effect/spawner/lootdrop/f13/trash_mods
 	name = "trash attachments"
 	loot = list(
-		/obj/item/tool_upgrade/productivity/red_paint = 1,
+		/obj/item/tool_upgrade/paint/red = 1,
+		/obj/item/tool_upgrade/paint/blue = 1,
+		/obj/item/tool_upgrade/paint/yellow = 1,
 		/obj/item/tool_upgrade/refinement/laserguide = 1,
 		/obj/item/tool_upgrade/reinforcement/heatsink = 1,
 		/obj/item/gun_upgrade/trigger/raidertrigger = 1,
+//		/obj/item/gun_upgrade/cosmetic/gold = 1,
 		/obj/item/gun_upgrade/trigger/boom = 1,
 
 	)
@@ -1253,6 +1263,7 @@
 		/obj/item/gun_upgrade/scope/killer = 1,
 		/obj/item/gun_upgrade/mechanism/better = 1,
 		/obj/item/gun_upgrade/barrel/excruciator = 1,
+		/obj/item/gun_upgrade/barrel/better = 1,
 		/obj/item/tool_upgrade/reinforcement/guard = 1,
 		/obj/item/tool_upgrade/refinement/ported_barrel = 1,
 	)
@@ -1263,13 +1274,12 @@
 	loot = list(
 		/obj/item/gun_upgrade/barrel/blender = 1,
 		/obj/item/gun_upgrade/trigger/better = 1,
-		/obj/item/gun_upgrade/barrel/better = 1,
 		/obj/item/gun_upgrade/muzzle/better = 1,
 		/obj/item/gun_upgrade/scope/better = 1,
 		/obj/item/gun_upgrade/mechanism/battery_shunt = 1,
 		/obj/item/tool_upgrade/augment/ai_tool = 1,
 	)
-
+*/
 ///////////////////////////
 ///machine part spawners///
 ///////////////////////////
@@ -1335,11 +1345,11 @@
 		/obj/item/hemostat/tribal = 1,
 		/obj/item/handsaw = 1,
 		/obj/item/clothing/gloves/f13/crudemedical = 1,
-		/obj/item/crowbar/basic = 1,
-		/obj/item/wrench/basic = 1,
-		/obj/item/screwdriver/basic = 1,
-		/obj/item/weldingtool/basic = 1,
-		/obj/item/wirecutters/basic = 1,
+		/obj/item/crowbar/crude = 1,
+		/obj/item/wrench/crude = 1,
+		/obj/item/screwdriver/crude = 1,
+		/obj/item/weldingtool/crude = 1,
+		/obj/item/wirecutters/crude = 1,
 		/obj/item/restraints/handcuffs/cable = 1,
 		/obj/item/restraints/handcuffs/sinew = 1,
 		/obj/item/lockpick_set = 1,
@@ -1430,6 +1440,15 @@
 		/obj/item/reagent_containers/glass/beaker/noreact = 1,
 		/obj/item/flashlight/seclite = 1,
 		/obj/item/flashlight/lamp = 1,
+		/obj/item/weldingtool/hightech = 1,
+		/obj/item/crowbar/hightech = 1,
+		/obj/item/crowbar/hightech = 1,
+		/obj/item/screwdriver/hightech = 1,
+		/obj/item/screwdriver/hightech = 1,
+		/obj/item/wrench/hightech = 1,
+		/obj/item/wrench/hightech = 1,
+		/obj/item/wirecutters/hightech = 1,
+		/obj/item/wirecutters/hightech = 1,
 	)
 
 ////////////////////
@@ -1832,4 +1851,300 @@
 		/obj/item/clothing/shoes/kindleKicks = 1,
 		/obj/item/clothing/gloves/tackler/offbrand = 1,
 		/obj/item/stack/sticky_tape = 1,
+	)
+
+/////////////////////
+///clothes spawner/// Totally not vending machine item lists smashed together
+/////////////////////
+
+/obj/effect/spawner/lootdrop/f13/clothes
+	name = "clothes"
+	loot = list(
+		/obj/effect/spawner/lootdrop/gloves = 8,
+		/obj/item/clothing/head/that = 4,
+		/obj/item/clothing/head/fedora = 3,
+		/obj/item/clothing/head/beret = 3,
+		/obj/item/clothing/head/beret/black = 3,
+		/obj/item/clothing/head/beret/purple = 3,
+		/obj/item/clothing/head/beret/blue = 3,
+		/obj/item/clothing/glasses/monocle = 3,
+		/obj/item/clothing/suit/jacket = 4,
+		/obj/item/clothing/suit/jacket/flannel = 4,
+		/obj/item/clothing/suit/jacket/flannel/red = 4,
+		/obj/item/clothing/suit/jacket/flannel/aqua = 4,
+		/obj/item/clothing/suit/jacket/flannel/brown = 4,
+		/obj/item/clothing/suit/jacket/puffer/vest = 4,
+		/obj/item/clothing/suit/jacket/puffer = 4,
+		/obj/item/clothing/suit/armor/outfit/overalls/sexymaid = 5,
+		/obj/item/clothing/suit/hooded/cloak/david = 4,
+		/obj/item/clothing/suit/bomber = 5,
+		/obj/item/clothing/under/suit/turtle/teal = 3,
+		/obj/item/clothing/under/suit/turtle/grey = 3,
+		/obj/item/clothing/under/rank/civilian/util = 5,
+		/obj/item/clothing/under/rank/civilian/util/greyshirt = 5,
+		/obj/item/clothing/under/suit/navy = 3,
+		/obj/item/clothing/under/suit/black_really = 3,
+		/obj/item/clothing/under/suit/burgundy = 3,
+		/obj/item/clothing/under/suit/charcoal = 3,
+		/obj/item/clothing/under/suit/white = 3,
+		/obj/item/clothing/under/costume/kilt = 3,
+		/obj/item/clothing/under/misc/overalls = 3,
+		/obj/item/clothing/under/suit/sl = 3,
+		/obj/item/clothing/under/sweater = 3,
+		/obj/item/clothing/under/sweater/black = 3,
+		/obj/item/clothing/under/sweater/purple = 3,
+		/obj/item/clothing/under/sweater/green = 3,
+		/obj/item/clothing/under/sweater/red = 3,
+		/obj/item/clothing/under/sweater/blue = 3,
+		/obj/item/clothing/under/pants/jeans = 5,
+		/obj/item/clothing/under/pants/classicjeans = 5,
+		/obj/item/clothing/under/pants/camo = 3,
+		/obj/item/clothing/under/pants/blackjeans = 5,
+		/obj/item/clothing/under/pants/khaki = 5,
+		/obj/item/clothing/under/pants/white = 5,
+		/obj/item/clothing/under/pants/red = 3,
+		/obj/item/clothing/under/pants/black = 4,
+		/obj/item/clothing/under/pants/tan = 4,
+		/obj/item/clothing/under/pants/track = 3,
+		/obj/item/clothing/under/shorts/jeanbshorts = 3,
+		/obj/item/clothing/under/shorts/darkbshorts = 3,
+		/obj/item/clothing/under/shorts/blackbshorts = 3,
+		/obj/item/clothing/under/shorts/brownbshorts = 3,
+		/obj/item/clothing/suit/jacket/miljacket = 5,
+		/obj/item/clothing/under/suit/white_on_white/skirt = 2,
+		/obj/item/clothing/under/rank/captain/suit/skirt = 2,
+		/obj/item/clothing/under/rank/civilian/head_of_personnel/suit/skirt = 2,
+		/obj/item/clothing/neck/tie/blue = 3,
+		/obj/item/clothing/neck/tie/red = 3,
+		/obj/item/clothing/neck/tie/black = 3,
+		/obj/item/clothing/neck/tie/horrible = 5,
+		/obj/item/clothing/neck/scarf/pink = 3,
+		/obj/item/clothing/neck/scarf/red = 3,
+		/obj/item/clothing/neck/scarf/green = 3,
+		/obj/item/clothing/neck/scarf/darkblue = 3,
+		/obj/item/clothing/neck/scarf/purple = 3,
+		/obj/item/clothing/neck/scarf/yellow = 3,
+		/obj/item/clothing/neck/scarf/orange = 3,
+		/obj/item/clothing/neck/scarf/cyan = 3,
+		/obj/item/clothing/neck/scarf = 3,
+		/obj/item/clothing/neck/scarf/black = 3,
+		/obj/item/clothing/neck/scarf/zebra = 3,
+		/obj/item/clothing/neck/scarf/christmas = 3,
+		/obj/item/clothing/neck/stripedredscarf = 3,
+		/obj/item/clothing/neck/stripedbluescarf = 3,
+		/obj/item/clothing/neck/stripedgreenscarf = 3,
+		/obj/item/clothing/accessory/waistcoat = 2,
+		/obj/item/clothing/under/dress/skirt = 3,
+		/obj/item/clothing/under/dress/skirt/blue = 3,
+		/obj/item/clothing/under/dress/skirt/red = 3,
+		/obj/item/clothing/under/dress/skirt/purple = 3,
+		/obj/item/clothing/under/dress/sundress = 4,
+		/obj/item/clothing/under/dress/sundress/white = 4,
+		/obj/item/clothing/under/dress/striped = 3,
+		/obj/item/clothing/under/dress/sailor = 3,
+		/obj/item/clothing/under/dress/skirt/swept = 3,
+		/obj/item/clothing/under/dress/green = 3,
+		/obj/item/clothing/under/dress/pink = 3,
+		/obj/item/clothing/under/dress/redeveninggown = 3,
+		/obj/item/clothing/under/dress/blacktango = 3,
+		/obj/item/clothing/under/dress/westernbustle = 3,
+		/obj/item/clothing/under/dress/flamenco = 3,
+		/obj/item/clothing/under/dress/flower = 3,
+		/obj/item/clothing/under/dress/skirt/plaid = 3,
+		/obj/item/clothing/under/dress/skirt/plaid/blue = 3,
+		/obj/item/clothing/under/dress/skirt/plaid/purple = 3,
+		/obj/item/clothing/under/dress/skirt/plaid/green = 3,
+		/obj/item/clothing/under/croptop = 3,
+		/obj/item/clothing/glasses/regular = 2,
+		/obj/item/clothing/glasses/regular/jamjar = 2,
+		/obj/item/clothing/head/sombrero = 3,
+		/obj/item/clothing/neck/mantle/poncho = 3,
+		/obj/item/clothing/suit/ianshirt = 3,
+		/obj/item/clothing/shoes/laceup = 5,
+		/obj/item/clothing/shoes/sneakers/black = 6,
+		/obj/item/clothing/shoes/wraps = 3,
+		/obj/item/clothing/shoes/wraps/silver = 3,
+		/obj/item/clothing/shoes/wraps/red = 3,
+		/obj/item/clothing/shoes/wraps/blue = 3,
+		/obj/item/clothing/shoes/sandal = 3,
+		/obj/item/clothing/gloves/fingerless = 3,
+		/obj/item/clothing/glasses/orange = 5,
+		/obj/item/clothing/glasses/red = 5,
+		/obj/item/storage/belt/fannypack = 3,
+		/obj/item/clothing/suit/jacket/letterman = 5,
+		/obj/item/clothing/head/beanie = 3,
+		/obj/item/clothing/head/beanie/black = 3,
+		/obj/item/clothing/head/beanie/red = 3,
+		/obj/item/clothing/head/beanie/green = 3,
+		/obj/item/clothing/head/beanie/darkblue = 3,
+		/obj/item/clothing/head/beanie/purple = 3,
+		/obj/item/clothing/head/beanie/yellow = 3,
+		/obj/item/clothing/head/beanie/orange = 3,
+		/obj/item/clothing/head/beanie/cyan = 3,
+		/obj/item/clothing/head/beanie/christmas = 3,
+		/obj/item/clothing/head/beanie/striped = 3,
+		/obj/item/clothing/head/beanie/stripedred = 3,
+		/obj/item/clothing/head/beanie/stripedblue = 3,
+		/obj/item/clothing/head/beanie/stripedgreen = 3,
+		/obj/item/clothing/suit/jacket/letterman_red = 3,
+		/obj/item/clothing/ears/headphones = 10,
+		/obj/item/clothing/neck/apron/bartender = 4,
+		/obj/item/clothing/under/rank/civilian/bartender/purple = 4,
+		/obj/item/clothing/under/costume/christmas = 3,
+		/obj/item/clothing/under/costume/christmas/green = 3,
+		/obj/item/clothing/under/costume/christmas/croptop = 3,
+		/obj/item/clothing/under/costume/christmas/croptop/green = 3,
+		/obj/item/clothing/suit/hooded/wintercoat/christmascoatr = 3,
+		/obj/item/clothing/suit/hooded/wintercoat/christmascoatg = 3,
+		/obj/item/clothing/suit/hooded/wintercoat/christmascoatrg = 3,
+		/obj/item/clothing/head/christmashat = 3,
+		/obj/item/clothing/head/christmashatg = 3,
+		/obj/item/clothing/shoes/winterboots/christmasbootsr = 3,
+		/obj/item/clothing/shoes/winterboots/christmasbootsg = 3,
+		/obj/item/clothing/shoes/winterboots/santaboots = 3,
+		/obj/item/clothing/head/cowboyhat = 3,
+		/obj/item/clothing/head/cowboyhat/black = 3,
+		/obj/item/clothing/head/cowboyhat/white = 3,
+		/obj/item/clothing/head/cowboyhat/pink = 3,
+		/obj/item/clothing/shoes/cowboyboots = 3,
+		/obj/item/clothing/shoes/cowboyboots/black = 3,
+		/obj/item/clothing/under/costume/qipao = 3,
+		/obj/item/clothing/under/costume/qipao/white = 3,
+		/obj/item/clothing/under/costume/qipao/red = 3,
+		/obj/item/clothing/under/costume/cheongsam = 3,
+		/obj/item/clothing/under/costume/cheongsam/white = 3,
+		/obj/item/clothing/under/costume/cheongsam/red = 3,
+		/obj/item/clothing/suit/chickensuit = 1,
+		/obj/item/clothing/head/chicken = 1,
+		/obj/item/clothing/under/costume/gladiator = 1,
+		/obj/item/clothing/head/helmet/gladiator = 1,
+		/obj/item/clothing/under/rank/captain/suit = 1,
+		/obj/item/clothing/head/flatcap = 1,
+		/obj/item/clothing/suit/toggle/labcoat/mad = 1,
+		/obj/item/clothing/shoes/jackboots = 1,
+		/obj/item/clothing/under/costume/schoolgirl = 1,
+		/obj/item/clothing/under/costume/schoolgirl/red = 1,
+		/obj/item/clothing/under/costume/schoolgirl/green = 1,
+		/obj/item/clothing/under/costume/schoolgirl/orange = 1,
+		/obj/item/clothing/head/simplekitty = 1,
+		/obj/item/clothing/under/dress/skirt = 1,
+		/obj/item/clothing/head/beret = 1,
+		/obj/item/clothing/accessory/waistcoat = 1,
+		/obj/item/clothing/under/suit/black = 1,
+		/obj/item/clothing/head/that = 1,
+		/obj/item/clothing/under/costume/kilt = 1,
+		/obj/item/clothing/head/beret = 1,
+		/obj/item/clothing/accessory/waistcoat = 1,
+		/obj/item/clothing/glasses/monocle =1,
+		/obj/item/clothing/head/bowler = 1,
+		/obj/item/cane = 1,
+		/obj/item/clothing/under/rank/civilian/victorian_redsleeves = 1,
+		/obj/item/clothing/under/rank/civilian/victorian_redvest = 1,
+		/obj/item/clothing/under/rank/civilian/victorian_vest = 1,
+		/obj/item/clothing/under/rank/civilian/victorian_purple = 1,
+		/obj/item/clothing/suit/tailcoat = 1,
+		/obj/item/clothing/under/rank/civilian/victorianreddress = 1,
+		/obj/item/clothing/suit/vickyred = 1,
+		/obj/item/clothing/under/rank/civilian/victorianblackdress = 1,
+		/obj/item/clothing/suit/vickyblack =1,
+		/obj/item/clothing/under/rank/civilian/dutch = 2,
+		/obj/item/clothing/under/suit/sl = 1,
+		/obj/item/clothing/mask/fakemoustache = 1,
+		/obj/item/clothing/suit/bio_suit/plaguedoctorsuit = 1,
+		/obj/item/clothing/head/plaguedoctorhat = 1,
+		/obj/item/clothing/mask/gas/plaguedoctor = 1,
+		/obj/item/clothing/suit/toggle/owlwings = 1,
+		/obj/item/clothing/under/costume/owl = 1,
+		/obj/item/clothing/mask/gas/owl_mask = 1,
+		/obj/item/clothing/suit/toggle/owlwings/griffinwings = 1,
+		/obj/item/clothing/under/costume/griffin = 1,
+		/obj/item/clothing/shoes/griffin = 1,
+		/obj/item/clothing/head/griffin = 1,
+		/obj/item/clothing/neck/apron/labor = 1,
+		/obj/item/clothing/under/suit/waiter = 1,
+		/obj/item/clothing/suit/jacket/miljacket = 1,
+		/obj/item/clothing/under/costume/pirate = 1,
+		/obj/item/clothing/suit/pirate = 1,
+		/obj/item/clothing/head/pirate = 1,
+		/obj/item/clothing/head/bandana = 1,
+		/obj/item/clothing/head/bandana = 1,
+		/obj/item/clothing/under/costume/soviet = 1,
+		/obj/item/clothing/head/ushanka = 1,
+		/obj/item/clothing/suit/imperium_monk = 1,
+		/obj/item/clothing/mask/gas/cyborg = 1,
+		/obj/item/clothing/suit/chaplain/holidaypriest = 1,
+		/obj/item/clothing/head/wizard/marisa/fake = 1,
+		/obj/item/clothing/suit/wizrobe/marisa/fake = 1,
+		/obj/item/clothing/under/dress/sundress = 1,
+		/obj/item/clothing/head/witchwig = 1,
+		/obj/item/staff/broom = 1,
+		/obj/item/clothing/suit/wizrobe/fake = 1,
+		/obj/item/clothing/head/wizard/fake = 1,
+		/obj/item/staff = 3,
+		/obj/item/clothing/under/rank/captain/suit/skirt = 1,
+		/obj/item/clothing/mask/rat/bat = 1,
+		/obj/item/clothing/mask/rat/bee = 1,
+		/obj/item/clothing/mask/rat/bear = 1,
+		/obj/item/clothing/mask/rat/raven = 1,
+		/obj/item/clothing/mask/rat/jackal = 1,
+		/obj/item/clothing/mask/rat/fox = 1,
+		/obj/item/clothing/mask/frog = 1,
+		/obj/item/clothing/mask/rat/tribal = 1,
+		/obj/item/clothing/mask/rat = 1,
+		/obj/item/clothing/suit/armor/outfit/overalls/farmer = 1,
+		/obj/item/clothing/head/rabbitears =1,
+		/obj/item/clothing/head/sombrero = 1,
+		/obj/item/clothing/head/sombrero/green = 1,
+		/obj/item/clothing/neck/mantle/poncho = 1,
+		/obj/item/clothing/suit/armor/outfit/overalls/sexymaid = 5,
+		/obj/item/clothing/head/maid = 3,
+		/obj/item/clothing/under/costume/maid = 3,
+		/obj/item/clothing/under/janimaid = 3,
+		/obj/item/clothing/under/rank/civilian/janitor/maid = 3,
+		/obj/item/clothing/gloves/evening = 1,
+		/obj/item/clothing/glasses/cold=1,
+		/obj/item/clothing/glasses/heat=1,
+		/obj/item/clothing/suit/whitedress = 1,
+		/obj/item/clothing/under/costume/villain = 1,
+		/obj/item/clothing/shoes/singery = 1,
+		/obj/item/clothing/under/costume/singer/yellow = 1,
+		/obj/item/clothing/shoes/singerb = 1,
+		/obj/item/clothing/under/costume/singer/blue = 1,
+		/obj/item/clothing/suit/hooded/carp_costume = 1,
+		/obj/item/clothing/suit/snowman = 1,
+		/obj/item/clothing/head/snowman = 1,
+		/obj/item/clothing/mask/joy = 1,
+		/obj/item/clothing/head/cueball = 1,
+		/obj/item/clothing/under/suit/white_on_white = 1,
+		/obj/item/clothing/under/costume/sailor = 1,
+		/obj/item/clothing/ears/headphones = 2,
+		/obj/item/clothing/head/wig/random = 3,
+		/obj/item/clothing/suit/ran = 2,
+		/obj/item/clothing/head/ran = 2,
+		/obj/item/clothing/suit/pirate/captain = 2,
+		/obj/item/clothing/head/pirate/captain = 2,
+		/obj/item/clothing/under/costume/lobster = 1,
+		/obj/item/clothing/head/lobsterhat = 1,
+		/obj/item/clothing/head/drfreezehat = 1,
+		/obj/item/clothing/suit/dracula = 1,
+		/obj/item/clothing/suit/drfreeze_coat = 1,
+		/obj/item/clothing/suit/gothcoat = 2,
+		/obj/item/clothing/under/costume/draculass = 1,
+		/obj/item/clothing/under/costume/drfreeze = 1,
+		)
+
+/obj/effect/spawner/lootdrop/f13/electrical
+	name = "electrical appliance loot"
+	loot = list(
+	/obj/item/stack/cable_coil/random/five = 5,
+	/obj/item/radio/off = 5,
+	/obj/item/assembly/infra = 3,
+	/obj/item/assembly/igniter = 3,
+	/obj/item/assembly/signaler = 3,
+	/obj/item/stack/sheet/metal/five = 5,
+	/obj/item/stack/sheet/glass/five = 5,
+	/obj/item/stack/rods/ten = 5,
+	/obj/item/stack/crafting/metalparts = 2,
+	/obj/item/stack/crafting/goodparts = 2,
+	/obj/item/stack/crafting/electronicparts/five = 10,
 	)
