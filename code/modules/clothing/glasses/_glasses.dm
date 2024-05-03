@@ -926,7 +926,7 @@ Several variants with differing levels of range, graininess, gain, and battery d
 	icon_state = "pvs7"
 	item_state = "pvs7"
 	lighting_alpha_on = LIGHTING_PLANE_ALPHA_NVD_OKAY
-	intensity = NVD_INTENSITY_OKAY
+	nvd_intensity = NVD_INTENSITY_OKAY
 	darkness_view_on = NVD_RANGE_OKAY
 	nvd_graininess = 2
 
@@ -936,7 +936,7 @@ Several variants with differing levels of range, graininess, gain, and battery d
 	icon_state = "pvs14"
 	item_state = "pvs14"
 	lighting_alpha_on = LIGHTING_PLANE_ALPHA_NVD_GREAT
-	intensity = NVD_INTENSITY_GREAT
+	nvd_intensity = NVD_INTENSITY_GREAT
 	darkness_view_on = NVD_RANGE_GREAT
 	graininess = 2
 
