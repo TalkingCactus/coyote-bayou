@@ -602,8 +602,8 @@
 			clear_fullscreen("see_through_darkness", animated = 1 SECONDS)
 			overlay_fullscreen("nvd_neg", /atom/movable/screen/fullscreen/nvd_neg)//Subtract red and blue colors
 			overlay_fullscreen("nvd_grain", /atom/movable/screen/fullscreen/nvd_grain, N.graininess)//Apply a film grain effect
-			overlay_fullscreen("nvd_int_pass1", /atom/movable/screen/fullscreen/nvd_int, myalpha =  N.intensity)//Light intensifier phase 1
-//			overlay_fullscreen("nvd_int_pass2", /atom/movable/screen/fullscreen/nvd_int, myalpha =  N.intensity)//Light intensifier phase 2
+			overlay_fullscreen("nvd_int_pass1", /atom/movable/screen/fullscreen/nvd_int, myalpha =  N.nvd_intensity)//Light intensifier phase 1
+//			overlay_fullscreen("nvd_int_pass2", /atom/movable/screen/fullscreen/nvd_int, myalpha =  N.nvd_intensity)//Light intensifier phase 2
 //			overlay_fullscreen("nvd_int_pass3", /atom/movable/screen/fullscreen/nvd_int, myalpha =  N.lighting_alpha)//Light intensifier phase 3
 			overlay_fullscreen("nvd_gasket", /atom/movable/screen/fullscreen/nvd_gasket, N.darkness_view)//Reduce view range
 		else
