@@ -13,11 +13,11 @@
 	if(!isnull(flags))
 		.["flags"] = flags
 
-atom/proc/ClearFilters()
+/atom/movable/proc/ClearFilters()
 	QDEL_LIST(filters)
-	filters = list()
+	filters = list() //why does it do both? I don't remember why :)
 
-atom/proc/InitialFilters()
+/atom/movable/proc/InitialFilters()
 	filters = initial(filters)
 
 /**
@@ -26,10 +26,10 @@ atom/proc/InitialFilters()
  * myoffset - Growth/outline radius of bloom effect before blur,
  * myalpha - Opacity of effect (default is 255, max opacity)
 */
-atom/proc/FilterBloom(mythreshold, mysize, myoffset, myalpha)
+/atom/movable/proc/FilterBloom(mythreshold, mysize, myoffset, myalpha)
 	filters += filter(type = "bloom", threshold = mythreshold, size = mysize, offset = myoffset, alpha = myalpha)
 
 /// Do not go over 6 (you can't I won't let you)
-atom/proc/FilterGaussianBlur(mysize)
+/atom/movable/proc/FilterGaussianBlur(mysize)
 	mysize = clamp(mysize, 0, 6)
 	filters += filter(type = "radial_blur", size = mysize)
