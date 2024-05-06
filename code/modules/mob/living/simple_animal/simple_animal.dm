@@ -330,9 +330,9 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 	if(jobban_isbanned(user, ROLE_SYNDICATE))
 		to_chat(user, span_warning("You are jobanned from playing as mobs!"))
 		return FALSE
-	if(!(z in COMMON_Z_LEVELS))
+	/*if(!(z in COMMON_Z_LEVELS))
 		to_chat(user, span_warning("[name] is somewhere that blocks them from being ghosted into! Try somewhere aboveground (or not in a dungeon!)"))
-		return FALSE
+		return FALSE*/ // Kekeke, zlevel restrictions are antifun anyway!!!!!!!!!!!!!!!!
 	if(!lazarused_by && living_player_count() < pop_required_to_jump_into)
 		to_chat(user, span_warning("There needs to be at least [pop_required_to_jump_into] living players to hop in this! This check is bypassed if the mob has had a lazarus injector used on it though. Which it hasn't (yet)."))
 		return FALSE
@@ -344,15 +344,15 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 		return FALSE
 	if(!user.key)
 		return FALSE
-	if(!islist(GLOB.playmob_cooldowns[user.key]))
+	/*if(!islist(GLOB.playmob_cooldowns[user.key]))
 		GLOB.playmob_cooldowns[user.key] = list()
 	if(GLOB.playmob_cooldowns[user.key][ghost_mob_id] > world.time)
-		var/time_left = GLOB.playmob_cooldowns[user.key][ghost_mob_id] - world.time
+		var/time_left = GLOB.playmob_cooldowns[user.key][ghost_mob_id] - world.time*/ // No, respawn times are instant
 		//if(check_rights_for(user.client, R_ADMIN))
 		//	to_chat(user, span_green("You shoud be unable to hop into mobs for another [DisplayTimeText(time_left)], but you're special cus you're an admin and you can ghost into mobs whenever you want, also everyone loves you and thinks you're cool."))
 		//else // yeah no turns out its not a great idea
-		to_chat(user, span_warning("You're unable to hop into mobs for another [DisplayTimeText(time_left)]."))
-		return FALSE
+		/*to_chat(user, span_warning("You're unable to hop into mobs for another [DisplayTimeText(time_left)]."))
+		return FALSE*/
 	return TRUE
 
 /mob/living/simple_animal/ComponentInitialize()
@@ -1185,10 +1185,10 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 /mob/living/simple_animal/proc/setup_variations()
 	if(!LAZYLEN(variation_list))
 		return FALSE // we're good here
-	if(LAZYLEN(variation_list[MOB_VARIED_NAME_GLOBAL_LIST]))
-		vary_mob_name_from_global_lists()
-	else if(LAZYLEN(variation_list[MOB_VARIED_NAME_LIST]))
-		vary_mob_name_from_local_list()
+	// if(LAZYLEN(variation_list[MOB_VARIED_NAME_GLOBAL_LIST]))
+	// 	vary_mob_name_from_global_lists()
+	// else if(LAZYLEN(variation_list[MOB_VARIED_NAME_LIST]))
+	// 	vary_mob_name_from_local_list()
 	if(LAZYLEN(variation_list[MOB_VARIED_COLOR]))
 		vary_mob_color()
 	if(LAZYLEN(variation_list[MOB_VARIED_HEALTH]))
@@ -1414,19 +1414,19 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 		if(80 to INFINITY)
 			descriptors += span_warning(" this is some kind of super creature drinks plasma for breakfast.")
 	descriptors += "\n"
-	///dt
-	var/damage_threshold = mob_armor.getRating("damage_threshold")
-	switch(damage_threshold)
-		if(-INFINITY to 1)
-			descriptors += span_greenteamradio("[p_they(TRUE)] look[p_s()] like a reasonably safe opponent.")
-		if(2 to 4)
-			descriptors += span_info("[p_they(TRUE)] look[p_s()] like an even fight.")
-		if(5 to 6)
-			descriptors += span_yellowteamradio("[p_they(TRUE)] look[p_s()] like quite a gamble!")
-		if(7 to 9)
-			descriptors += span_yellowteamradio("[p_they(TRUE)] look[p_s()] like it would wipe the floor with you!")
-		if(9 to INFINITY)
-			descriptors += span_warning("What would you like your tombstone to say?")
+	// ///dt
+	// var/damage_threshold = mob_armor.getRating("damage_threshold")
+	// switch(damage_threshold)
+	// 	if(-INFINITY to 1)
+	// 		descriptors += span_greenteamradio("[p_they(TRUE)] look[p_s()] like a reasonably safe opponent.")
+	// 	if(2 to 4)
+	// 		descriptors += span_info("[p_they(TRUE)] look[p_s()] like an even fight.")
+	// 	if(5 to 6)
+	// 		descriptors += span_yellowteamradio("[p_they(TRUE)] look[p_s()] like quite a gamble!")
+	// 	if(7 to 9)
+	// 		descriptors += span_yellowteamradio("[p_they(TRUE)] look[p_s()] like it would wipe the floor with you!")
+	// 	if(9 to INFINITY)
+	// 		descriptors += span_warning("What would you like your tombstone to say?")
 	descriptors += "\n"
 	if(LAZYLEN(descriptors))
 		mob_armor_description = jointext(descriptors, "")

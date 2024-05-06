@@ -186,6 +186,11 @@ ATTACHMENTS
 	/// Cooldown between times the gun will tell you it shot, 0.5 seconds cus its not super duper important
 	COOLDOWN_DECLARE(shoot_message_antispam)
 
+	/// Is the player currently reloading this gun?
+	var/reloading = FALSE
+	/// This is the base reload speed, which is modified by things like the size of the magazine in use.
+	var/reloading_time = 1 SECONDS
+
 /obj/item/gun/Initialize()
 	recoil_tag = SSrecoil.give_recoil_tag(init_recoil)
 	if(!recoil_tag)
@@ -520,9 +525,9 @@ ATTACHMENTS
 
 /obj/item/gun/proc/on_cooldown(mob/user)
 	if (automatic == 0)
-		return busy_action || firing || ((last_fire + get_fire_delay(user)) > world.time)
+		return reloading || busy_action || firing || ((last_fire + get_fire_delay(user)) > world.time)
 	if (automatic == 1)
-		return busy_action || firing
+		return reloading || busy_action || firing
 
 /*
  * So here is the list of proc calls that happen when you fire a gun:
@@ -1303,10 +1308,10 @@ ATTACHMENTS
 	if(!my_mode)
 		return fire_delay // shrug
 	. = my_mode.get_fire_delay()
-	if(CHECK_BITFIELD(gun_skill_check, AFFECTED_BY_FAST_PUMP))
+	if(CHECK_BITFIELD(gun_skill_check, AFFECTED_BY_FAST_PUMP) && user)
 		if(HAS_TRAIT(user, TRAIT_FAST_PUMP))
 			. *= GUN_RIFLEMAN_REFIRE_DELAY_MULT
-	if(CHECK_BITFIELD(cooldown_delay_mods, GUN_AUTO_PUMPED))
+	if(CHECK_BITFIELD(cooldown_delay_mods, GUN_AUTO_PUMPED) && user)
 		if(!HAS_TRAIT(user, TRAIT_FAST_PUMP))
 			. *= GUN_AUTOPUMP_REFIRE_DELAY_MULT
 
@@ -1634,6 +1639,33 @@ GLOBAL_LIST_INIT(gun_yeet_words, list(
 	new /obj/item/gun/ballistic/automatic/shotgun/pancor(src)
 	new /obj/item/ammo_box/magazine/d12g/buck(src)
 	new /obj/item/ammo_box/magazine/d12g/buck(src)
+
+//Reload hotkey stuff
+/obj/item/gun/proc/Reload(mob/user)
+	return FALSE
+
+/mob/proc/ReloadGun()
+	return FALSE
+
+/mob/living/carbon/human/ReloadGun(throw_if_no_gun_in_active_hand)
+	var/I = get_active_held_item()
+	var/obj/item/gun/G
+	if(istype(I, /obj/item/gun))
+		G = I
+	if(throw_if_no_gun_in_active_hand && isnull(G))
+		src.toggle_throw_mode()
+		return TRUE
+	var/I2 = get_inactive_held_item()
+	var/obj/item/gun/G2
+	if(istype(I2, /obj/item/gun))
+		G2 = I2
+	if(!G && !G2)
+		to_chat(src, span_warning("You aren't holding a gun you can reload!"))
+		return FALSE
+	G?.Reload(src)
+	if(get_inactive_held_item() == G2)//recheck this again because it might have changed since we reloaded the active hand gun.
+		G2?.Reload(src)
+	return TRUE
 
 ///////////////////
 //GUNCODE ARCHIVE//
