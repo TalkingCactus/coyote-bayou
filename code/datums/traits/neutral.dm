@@ -328,6 +328,15 @@
 	lose_text = span_notice("Your headpats addiction wanes.")
 	medical_record_text = "Patient seems overly affectionate."
 
+/datum/quirk/oral_fixation
+	name = "Oral Fixation"
+	desc = "You have an urge to put things in your mouth."
+	mob_trait = TRAIT_ORAL_FIXATION
+	value = 0
+	category = "Bawdy Quirks"
+	mechanics = "You can fit any small sized item in your mouth. Small items will muffle your voice. Tiny items wont."
+	conflicts = list()
+
 /datum/quirk/overweight
 	name = "Overweight"
 	desc = "You're particularly fond of food, and join the round being overweight."
@@ -640,7 +649,7 @@
 	mob_trait = TRAIT_COMBATSWITCH
 	human_only = FALSE
 
-/datum/quirk/smol
+/*/datum/quirk/smol
 	name = "Scoopable!"
 	desc = "Maybe you're really smol, maybe you're just really light, maybe you're *really* into yoga. However it is, carrying you around is just pretty dang easy."
 	value = 0
@@ -659,6 +668,7 @@
 /datum/quirk/smol/remove()
 	if(istype(quirk_holder))
 		quirk_holder.RemoveElement(/datum/element/mob_holder) // undog
+*/ //Inate trait with all humans now
 
 /datum/quirk/cat
 	name = "A cat!"
