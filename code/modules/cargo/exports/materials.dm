@@ -84,15 +84,15 @@
 /datum/export/material/adamantine
 	cost = 250
 	material_id = /datum/material/adamantine
-	message = "cm3 of pre-war ingots"
+	message = "cm3 of Pre-Fall ingots"
 	export_types = list(/obj/item/ingot/adamantine, /obj/item/stack/sheet/mineral/adamantine)
 
 /*
-/datum/export/material/prewar
+/datum/export/material/prefall
 	cost = 15
-	material_id = /datum/material/prewar
-	message = "cm3 of prewar alloy"
-	export_types = (/obj/item/stack/sheet/prewar)
+	material_id = /datum/material/prefall
+	message = "cm3 of prefall alloy"
+	export_types = (/obj/item/stack/sheet/prefall)
 */
 
 /datum/export/material/mythril
@@ -172,12 +172,12 @@
 	k_elasticity = 0/1000
 
 
-/datum/export/material/deathclawhide
+/datum/export/material/aethergiesthide
 	cost = 1000
 	message = " "
-	unit_name = "deathclaw hide"
-	material_id = /datum/material/deathclawhide
-	export_types = list(/obj/item/stack/sheet/animalhide/deathclaw)
+	unit_name = "aethergiest hide"
+	material_id = /datum/material/aethergiesthide
+	export_types = list(/obj/item/stack/sheet/animalhide/aethergiest)
 	k_elasticity = 0/1000
 
 

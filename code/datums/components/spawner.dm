@@ -14,7 +14,9 @@
 	/// sound to play when the thing spawns a thing
 	var/spawn_sound
 	/// The minimum distance to a client before we can start spawning mobs.
-	var/range = 10
+	var/range = 16
+	/// min radius that the nest will not spawn if a player is within
+	var/min_range = 10
 	/// Override the mob's faction with this!
 	var/list/faction = list("mining")
 	/// If not infinite, we delete our parent when we hit max_mobs.
@@ -53,6 +55,9 @@
 	var/datum/nest_box/my_ticket
 	var/generation = 1
 
+	var/rts_next_spawn_time
+	var/rts_spawn_cd = 5 SECONDS
+
 /datum/component/spawner/Initialize(
 		_mob_types,
 		_spawn_time,
@@ -60,6 +65,7 @@
 		// _spawn_text,
 		_max_mobs,
 		_range,
+		_min_range,
 		_overpopulation_range,
 		_spawn_sound,
 		_infinite,
@@ -94,6 +100,8 @@
 		max_mobs = _max_mobs
 	if(_range)
 		range = _range
+	if(_min_range)
+		min_range = _min_range
 	if(_overpopulation_range)
 		overpopulation_range = _overpopulation_range
 	if(_swarm_size)
@@ -125,6 +133,9 @@
 	RegisterSignal(parent, COMSIG_SPAWNER_UNCOVERED,  PROC_REF(uncoverme))
 	RegisterSignal(parent, COMSIG_SPAWNER_ABSORB_MOB, PROC_REF(unbirth_mob))
 	RegisterSignal(parent, COMSIG_ATOM_QUEST_SCANNED, PROC_REF(dump_questables))
+	RegisterSignal(parent, COMSIG_ATOM_RTS_RIGHTCLICKED, PROC_REF(rts_spawn_mobs))
+	RegisterSignal(parent, COMSIG_IS_IT_A_NEST, PROC_REF(yes_it_is))
+	// RegisterSignal(parent, COMSIG_ATOM_RTS_KIND,      PROC_REF(can_rts))
 	// RegisterSignal(parent, COMSIG_SPAWNER_EXISTS,PROC_REF(has_spawner))
 	if(istype(parent, /obj/structure/nest))
 		var/obj/structure/nest/nest = parent
@@ -141,6 +152,12 @@
 	old_spawner_check = TRUE
 	if(!delay_start && !am_special)
 		start_spawning()
+
+/datum/component/spawner/proc/yes_it_is()
+	return TRUE // is this story based? yes it is
+
+// /datum/component/spawner/proc/can_rts()
+// 	return RTS_KIND_SPAWNER
 
 // /datum/component/spawner/proc/register_turfs()
 // 	var/atom/dad = parent
@@ -311,8 +328,12 @@
 		return TRUE
 	var/atom/P = parent
 	for(var/mob/living/butt in LAZYACCESS(SSmobs.clients_by_zlevel, P?.z)) // client-containing mobs, NOT clients
-		if(get_dist(P, butt) <= range)
-			return TRUE
+		var/mrange = (get_dist(P, butt))
+		if(mrange <= range)
+			if(am_special)
+				return TRUE
+			else if(mrange > min_range)
+				return TRUE
 
 /// first checks if anyone is in range, then if so, turns itself on for another 20ish seconds
 /datum/component/spawner/proc/old_spawn()
@@ -328,7 +349,23 @@
 	// 		return
 	// 	activate()
 	if(something_in_range())
+		if(!am_special && blocked())
+			return
 		try_to_spawn()
+
+/// checks if we're blocked by something
+/datum/component/spawner/proc/blocked()
+	var/atom/A = parent
+	var/turf/here = get_turf(A)
+	for(var/obj/structure/respawner_blocker/RB in SSmonster_wave.spawn_blockers)
+		if(here.z != RB.z)
+			continue
+		var/maxdist = RB.protection_radius
+		if(maxdist <= 0)
+			continue
+		if(get_dist(RB, here) <= maxdist)
+			RB.blocked_something()
+			return TRUE
 
 /// turns itself on for another 20ish seconds
 /datum/component/spawner/proc/activate()
@@ -375,7 +412,7 @@
 		qdel(parent)
 
 /// spawn the mob(s)
-/datum/component/spawner/proc/spawn_mob(list/overrides)
+/datum/component/spawner/proc/spawn_mob(list/overrides, no_sleep)
 	var/atom/P = parent
 	if(!islist(spawned_mobs))
 		spawned_mobs = list()
@@ -407,6 +444,8 @@
 			return
 		L = new chosen_mob(get_turf(P), "TOPHEAVY-KOBOLD")
 		L.flags_1 |= (P.flags_1 & ADMIN_SPAWNED_1) //If we were admin spawned, lets have our children count as that as well.
+		if(no_sleep)
+			L.flags_2 |= MOB_NO_SLEEP
 		spawned_mobs |= WEAKREF(L)
 		L.link_to_nest(P)
 		if(length(faction))
@@ -422,6 +461,20 @@
 	for(var/datum/weakref/maybe_them in spawned_mobs)
 		if(GET_WEAKREF(maybe_them) == removed_animal)
 			spawned_mobs -= maybe_them
+
+/datum/component/spawner/proc/rts_spawn_mobs(datum/source, mob/user)
+	if(!user)
+		return
+	if(rts_next_spawn_time > world.time)
+		to_chat(user, span_alert("The nest still has [(rts_next_spawn_time - world.time) / 10] seconds left before it can spawn again!"))
+		return RTS_COMMAND_FAILED_COOLDOWN
+	rts_next_spawn_time = world.time + rts_spawn_cd
+	for(var/i in 1 to rand(1, 3))
+		spawn_mob(no_sleep = TRUE)
+	COOLDOWN_START(src, spawner_cooldown, spawn_time)
+	if(should_destroy_spawner())
+		qdel(parent)
+	return RTS_COMMAND_SUCCESS
 
 /datum/component/spawner/proc/dump_questables(datum/source, mob/user)
 	if(!user)
@@ -739,7 +792,7 @@
 			if(prob(10))
 				potentials |= typesof(/mob/living/simple_animal/hostile/skeleton) // SP00KY SCARY SKELETONS
 			if(prob(25))
-				potentials |= typesof(/mob/living/simple_animal/hostile/deathclaw)
+				potentials |= typesof(/mob/living/simple_animal/hostile/aethergiest)
 			potentials -= mobpath
 		/// shuffle the ghouls
 		else if(ispath(mobpath, /mob/living/simple_animal/hostile/ghoul))
@@ -772,7 +825,7 @@
 			|| ispath(mobpath, /mob/living/simple_animal/hostile/wolf)\
 			|| ispath(mobpath, /mob/living/simple_animal/hostile/alligator)\
 			|| ispath(mobpath, /mob/living/simple_animal/hostile/mirelurk)\
-			|| ispath(mobpath, /mob/living/simple_animal/hostile/deathclaw)\
+			|| ispath(mobpath, /mob/living/simple_animal/hostile/aethergiest)\
 			|| ispath(mobpath, /mob/living/simple_animal/hostile/hellpig)\
 			|| ispath(mobpath, /mob/living/simple_animal/hostile/texas_rattler)\
 			|| ispath(mobpath, /mob/living/simple_animal/hostile/stalker)\
@@ -786,11 +839,11 @@
 			potentials |= typesof(/mob/living/simple_animal/hostile/wolf)
 			potentials |= typesof(/mob/living/simple_animal/hostile/alligator)
 			potentials |= typesof(/mob/living/simple_animal/hostile/mirelurk)
-			if((ispath(mobpath, /mob/living/simple_animal/hostile/deathclaw) && prob(50)) || prob(50))
-				potentials |= typesof(/mob/living/simple_animal/hostile/deathclaw)
+			if((ispath(mobpath, /mob/living/simple_animal/hostile/aethergiest) && prob(50)) || prob(50))
+				potentials |= typesof(/mob/living/simple_animal/hostile/aethergiest)
 				if(prob(80))
-					potentials -= typesof(/mob/living/simple_animal/hostile/deathclaw/power_armor)
-					potentials -= typesof(/mob/living/simple_animal/hostile/deathclaw/legendary)
+					potentials -= typesof(/mob/living/simple_animal/hostile/aethergiest/power_armor)
+					potentials -= typesof(/mob/living/simple_animal/hostile/aethergiest/legendary)
 			if((ispath(mobpath, /mob/living/simple_animal/hostile/hellpig) && prob(50)) || prob(50))
 				potentials |= typesof(/mob/living/simple_animal/hostile/hellpig)
 			if(ispath(mobpath, /mob/living/simple_animal/hostile/texas_rattler) || prob(50))
@@ -864,7 +917,6 @@
 			|| istype(mobpath, /mob/living/simple_animal/hostile/jungle/mook)\
 			|| istype(mobpath, /mob/living/simple_animal/hostile/mimic)\
 			|| istype(mobpath, /mob/living/simple_animal/hostile/shark)\
-			|| istype(mobpath, /mob/living/simple_animal/hostile/venus_human_trap)\
 			|| istype(mobpath, /mob/living/simple_animal/hostile/killertomato)\
 			|| prob(15))
 			potentials |= typesof(/mob/living/simple_animal/hostile/trog)
@@ -885,7 +937,6 @@
 			potentials |= typesof(/mob/living/simple_animal/hostile/jungle/mook)
 			potentials |= typesof(/mob/living/simple_animal/hostile/mimic)
 			potentials |= typesof(/mob/living/simple_animal/hostile/shark)
-			potentials |= typesof(/mob/living/simple_animal/hostile/venus_human_trap)
 			potentials |= typesof(/mob/living/simple_animal/hostile/killertomato)
 			potentials -= mobpath
 		if(LAZYLEN(potentials))

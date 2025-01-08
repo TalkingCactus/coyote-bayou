@@ -347,7 +347,7 @@
 	conflicts = list(
 		/datum/quirk/freerunning,
 		/datum/quirk/light_step,
-		/datum/quirk/quick_step,
+		// /datum/quirk/quick_step,
 	)
 	gain_text = span_notice("You feel blubbery!")
 	//no lose_text cause why would there be?
@@ -434,34 +434,13 @@
 	hydra.visible_message(span_notice("[hydra.name] alters their portrayed identity, appearing as [selhead] instead."), \
 							span_notice("You are now talking as [selhead]!"), ignored_mobs=owner)
 
-/datum/quirk/sheltered
-	name = "Sheltered"
-	desc = "For one reason or another, you either can't or haven't learned English."
-	value = 0
-	category = "Language Quirks"
-	mechanics = "You flat out don't know english, the most common langauge of the swampland.  Be wary, this will limit your roleplay potential to some degree if not used properly."
-	conflicts = list()
-	mob_trait = TRAIT_SHELTERED
-	gain_text = span_danger("The words of others begin to blur together...")
-	lose_text = span_notice("You start putting together what people are saying!")
-	medical_record_text = "Patient has shown an inability to use common speaking languages."
-	human_only = FALSE
-
-/datum/quirk/sheltered/on_spawn()
-	var/mob/living/H = quirk_holder
-	H.remove_language(/datum/language/common)
-// You can pick languages for your character, if you don't pick anything, enjoy the rest of the round understanding nothing.
-
-/datum/quirk/sheltered/remove() //i mean, the lose text explains it, so i'm making it actually work
-	var/mob/living/H = quirk_holder
-	H.grant_language(/datum/language/common)
 
 /datum/quirk/tribespeak
 	name = "Language - Tribal Language Comprehension"
 	desc = "You're somehow capable of understanding and speaking the common tribal languages in the area."
 	value = 0
 	category = "Language Quirks"
-	mechanics = "You can speak the language of the swamps, shared with the Sulphur Bottom Tribe."
+	mechanics = "You can speak the language of the taiga, shared with the Mountain River Tribe."
 	conflicts = list()
 	gain_text = span_notice("You remember the old ways of your tribe..")
 	lose_text = span_notice("You've forgotten the ways of your ancestors..")
@@ -477,50 +456,8 @@
 	if(!QDELETED(H))
 		H.remove_language(/datum/language/tribal)
 
-/datum/quirk/draconicspeak
-	name = "Language - Draconic Language Comprehension"
-	desc = "You're somehow capable of understanding and speaking Draconic, the dragonkin's tongue."
-	value = 0
-	category = "Language Quirks"
-	mechanics = "You can speak the langauge of dragons, shared with kobolds and maybe cave newts. Hard to tell."
-	conflicts = list()
-	gain_text = span_notice("A deep draconic roar rises within you..")
-	lose_text = span_notice("The roar within you fades away..")
-	human_only = FALSE
-
-
-/datum/quirk/draconicspeak/add()
-	var/mob/living/H = quirk_holder
-	H.grant_language(/datum/language/draconic)
-
-/datum/quirk/draconicspeak/remove()
-	var/mob/living/H = quirk_holder
-	if(!QDELETED(H))
-		H.remove_language(/datum/language/draconic)
-
-/datum/quirk/eldritchspeak
-	name = "Language - Eldritch Language Comprehension"
-	desc = "You're somehow capable of understanding and speaking R'lyehian, language of the Great Old Ones."
-	value = 0
-	category = "Language Quirks"
-	mechanics = "You can speak the language of the Great Old Ones, shared with Shoggoths and many Eldritch Beasts."
-	conflicts = list()
-	gain_text = span_notice("A deep Eldritch fear rises within you..")
-	lose_text = span_notice("The fear within you fades away..")
-	human_only = FALSE
-
-
-/datum/quirk/eldritchspeak/add()
-	var/mob/living/H = quirk_holder
-	H.grant_language(/datum/language/narsie)
-
-/datum/quirk/eldritchspeak/remove()
-	var/mob/living/H = quirk_holder
-	if(!QDELETED(H))
-		H.remove_language(/datum/language/narsie)
-
 /datum/quirk/pokespeak
-	name = "Pokemon Language Comprehension"
+	name = "Language - Pokemon Language Comprehension"
 	desc = "You're somehow capable of understanding and speaking the common pokemon language."
 	value = 0
 	category = "Language Quirks"
@@ -538,46 +475,6 @@
 	var/mob/living/H = quirk_holder
 	if(!QDELETED(H))
 		H.remove_language(/datum/language/pokemon)
-
-/datum/quirk/oldnorsecommon
-	name = "Combined Common Nordic-Germanic Language Comprehension"
-	desc = "You're somehow capable of understanding and speaking the Combined Common Nordic Germanic language!"
-	value = 0
-	category = "Language Quirks"
-	mechanics = "You can speak the Combined Common Nordic-Germanic language, or at least understand it. Maybe you really are the very best."
-	conflicts = list()
-	gain_text = span_notice("You remember how to speak to Combined Nordic-Germanic.")
-	lose_text = span_notice("You've forgotten how to speak Combined Nordic-Germanic.")
-	human_only = FALSE
-
-/datum/quirk/oldnorsecommon/add()
-	var/mob/living/H = quirk_holder
-	H.grant_language(/datum/language/fictionalnorse)
-
-/datum/quirk/oldnorsecommon/remove()
-	var/mob/living/H = quirk_holder
-	if(!QDELETED(H))
-		H.remove_language(/datum/language/fictionalnorse)
-
-/datum/quirk/ancienttechnorussian
-	name = "Eastern Slavic Spacer Comprehension"
-	desc = "You're somehow capable of understanding and speaking the Eastern Slavic Spacer language!"
-	value = 0
-	category = "Language Quirks"
-	mechanics = "You can speak the Eastern Slavic Spacer language or at least understand it. Maybe you really are the very best."
-	conflicts = list()
-	gain_text = span_notice("You remember how to speak Eastern Slavic Spacer!")
-	lose_text = span_notice("You've forgotten how to speak Eastern Slavic Spacer!")
-	human_only = FALSE
-
-/datum/quirk/ancienttechnorussian/add()
-	var/mob/living/H = quirk_holder
-	H.grant_language(/datum/language/technorussian)
-
-/datum/quirk/ancienttechnorussian/remove()
-	var/mob/living/H = quirk_holder
-	if(!QDELETED(H))
-		H.remove_language(/datum/language/technorussian)
 
 /datum/quirk/in_heat
 	name = "ERP Receptive"
@@ -604,30 +501,44 @@
 	desc = "You, and likely your character, are a bit shy. This is a fine thing to be, but letting people know this way will let them know you do want to be included in social situations when its feasible. Basically just top bait though, lets be real."
 	value = 0
 	category = "OOC Quirks"
-	mechanics = "The description should be fairly clear, but to reiterate this quirk exists as an OOC flag to let everyone know that you have some sort of social issue that makes it hard for you to approach others. If anyone dares to give you shit about taking this please alert staff immediatly, we will eat their legs off."
+	mechanics = "The description should be fairly clear, but to reiterate this quirk exists as an OOC flag to let everyone know that you have some sort of social issue that makes it hard for you to approach others. If anyone dares to give you problems about taking this please alert staff immediatly, we will eat their legs off."
 	conflicts = list()
 	mob_trait = TRAIT_SHY
 	human_only = FALSE
 
 /datum/quirk/pvefocus
-	name = "PVE Focused"
-	desc = "Your gameplay focus is on PVE.  While you may occasionally partake of PVP, and understand that sometimes it pops up quite quickly and that YOUR ACTIONS ARE YOUR OWN IF YOU CHOOSE TO ENGAGE. This quirk lets others know that you generally would prefer not to be involved in player versus player scenarios."
+	name = "PVP Refusing"
+	desc = "You opt out of PVP, and refuse to take part in it. Players may not engage you in PVP, or try to bait you into it. Likewise, you \
+		may not engage or bait others into trying to PVP with you. While you don't need this quirk to opt out of PVP, it does help set this \
+		preference for you by default. You can toggle this on or off at any time by using *nopvp."
 	value = 0
 	category = "OOC Quirks"
-	mechanics = "Ya' like fighting geckos, do ya'?"
-	conflicts = list()
+	mechanics = "Your examine text will let others know that you're not interested in PVP engagements."
+	conflicts = list(
+		/datum/quirk/pvpfocus,
+	)
 	mob_trait = TRAIT_PVEFOC
 	human_only = FALSE
 
+/datum/quirk/pvefocus/on_spawn()
+	var/mob/living/M = quirk_holder
+	M.SetPVPflag(PVP_NO)
+
 /datum/quirk/pvpfocus
 	name = "PVP Focused"
-	desc = "Your gameplay focus is on PVP.  While PVE is basically inescapible in the wastes to even get from point A to point B this lets you opt in to letting others know that when shit starts to hit the fan ICly that violence is on the table for your character."
+	desc = "You're looking for PVP action! While you don't need this quirk to partake in PVP, it is helpful for others to know that you're happy to do so. \
+		Keep in mind that players can opt out of PVP, either through saying so through LOOC, having the PVP Opt Out quirk, or by using *nopvp. \
+		If a player has opted out of PVP, you should respect their wishes and not engage in PVP with them."
 	value = 0
 	category = "OOC Quirks"
-	mechanics = "Ya' like fighting people, do ya'?"
+	mechanics = "Your examine text will let others know that you're open for PVP engagements."
 	conflicts = list()
 	mob_trait = TRAIT_PVPFOC
 	human_only = FALSE
+
+/datum/quirk/pvpfocus/on_spawn()
+	var/mob/living/M = quirk_holder
+	M.SetPVPflag(PVP_YES)
 
 /datum/quirk/loocapproach
 	name = "L/OOC Approach"
@@ -639,15 +550,15 @@
 	mob_trait = TRAIT_OOCAPP
 	human_only = FALSE
 
-/datum/quirk/pvpande
-	name = "PVP/PVE Accepting"
-	desc = "You are down for PVP & PVE Scenarios.  The wastes are violent, and you are down bad for Miss Violencia. Be it PVP or PVE this quirk lets others know you're ready to R U M B L E."
-	value = 0
-	category = "OOC Quirks"
-	mechanics = "Yeah, you're just violent and quirky. We get it."
-	conflicts = list()
-	mob_trait = TRAIT_COMBATSWITCH
-	human_only = FALSE
+// /datum/quirk/pvpande
+// 	name = "PVP/PVE Accepting"
+// 	desc = "You are down for PVP & PVE Scenarios.  The wastes are violent, and you are down bad for Miss Violencia. Be it PVP or PVE this quirk lets others know you're ready to R U M B L E."
+// 	value = 0
+// 	category = "OOC Quirks"
+// 	mechanics = "Yeah, you're just violent and quirky. We get it."
+// 	conflicts = list()
+// 	mob_trait = TRAIT_COMBATSWITCH
+// 	human_only = FALSE
 
 /*/datum/quirk/smol
 	name = "Scoopable!"
@@ -758,7 +669,7 @@
 	category = "Lifepath Quirks"
 	mechanics = "Like it says, camera and photo album. The album saves between rounds for you to remember all those good times with. Or cry in six months when you come back and see it again."
 	conflicts = list(
-		/datum/quirk/luddite, // fucker'll steal your soul
+		/datum/quirk/luddite, // fucer'll steal your soul
 	)
 	mob_trait = TRAIT_PHOTOGRAPHER
 	gain_text = span_notice("You know everything about photography.")
@@ -804,44 +715,44 @@
 		if(!human_holder.put_in_hands(folder))
 			folder.forceMove(get_turf(human_holder))
 
-/datum/quirk/lick_heal
-	name = "Innate healing - Saliva"
-	desc = "You got that dog in you, your licks straight up heal the wounded. Somehow. Don't think about it too hard."
-	value = 0
-	category = "Healer Quirks"
-	mechanics = "You can pull out your tongue with *lick and use it to heal wounds on folks. Drink water to regain uses faster. Just remember that some people do not like being licked to be healed."
-	conflicts = list()
-	mob_trait = TRAIT_HEAL_TONGUE
-	gain_text = span_notice("You feel a slight tingle in your mouth.")
-	lose_text = span_danger("The tingle in your mouth fades.")
-	locked = FALSE
-	human_only = FALSE
+// /datum/quirk/lick_heal
+// 	name = "Innate healing - Saliva"
+// 	desc = "You got that dog in you, your licks straight up heal the wounded. Somehow. Don't think about it too hard."
+// 	value = 0
+// 	category = "Healer Quirks"
+// 	mechanics = "You can pull out your tongue with *lick and use it to heal wounds on folks. Drink water to regain uses faster. Just remember that some people do not like being licked to be healed."
+// 	conflicts = list()
+// 	mob_trait = TRAIT_HEAL_TONGUE
+// 	gain_text = span_notice("You feel a slight tingle in your mouth.")
+// 	lose_text = span_danger("The tingle in your mouth fades.")
+// 	locked = FALSE
+// 	human_only = FALSE
 
-/datum/quirk/touch_heal
-	name = "Innate healing - Magic"
-	desc = "By the Nine- Wait, wrong game. One way or another you can lay on hands."
-	value = 0
-	category = "Healer Quirks"
-	mechanics = "Your touch has a mild healing effect on burns and bruises. Use *touch to soothe the injuries of yourself or others. Drinking water helps recover from the fatigue of using the spell faster."
-	conflicts = list()
-	mob_trait = TRAIT_HEAL_TOUCH
-	gain_text = span_notice("You feel a slight tingle in your hands.")
-	lose_text = span_danger("The tingle in your palm fades.")
-	locked = FALSE
-	human_only = FALSE
+// /datum/quirk/touch_heal
+// 	name = "Innate healing - Magic"
+// 	desc = "By the Nine- Wait, wrong game. One way or another you can lay on hands."
+// 	value = 0
+// 	category = "Healer Quirks"
+// 	mechanics = "Your touch has a mild healing effect on burns and bruises. Use *touch to soothe the injuries of yourself or others. Drinking water helps recover from the fatigue of using the spell faster."
+// 	conflicts = list()
+// 	mob_trait = TRAIT_HEAL_TOUCH
+// 	gain_text = span_notice("You feel a slight tingle in your hands.")
+// 	lose_text = span_danger("The tingle in your palm fades.")
+// 	locked = FALSE
+// 	human_only = FALSE
 
-/datum/quirk/tend_heal
-	name = "Innate healing - Triage"
-	desc = "You keep a tiny kit of medical supplies stashed away for emergencies."
-	value = 0
-	category = "Healer Quirks"
-	mechanics = "Use *tend to treat the injuries of yourself or others. Drinking water helps recover your focus."
-	conflicts = list()
-	mob_trait = TRAIT_HEAL_TEND
-	gain_text = span_notice("You feel your triage kit tucked safely in a pocket.")
-	lose_text = span_danger("You lost your triage kit...")
-	locked = FALSE
-	human_only = FALSE
+// /datum/quirk/tend_heal
+// 	name = "Innate healing - Triage"
+// 	desc = "You keep a tiny kit of medical supplies stashed away for emergencies."
+// 	value = 0
+// 	category = "Healer Quirks"
+// 	mechanics = "Use *tend to treat the injuries of yourself or others. Drinking water helps recover your focus."
+// 	conflicts = list()
+// 	mob_trait = TRAIT_HEAL_TEND
+// 	gain_text = span_notice("You feel your triage kit tucked safely in a pocket.")
+// 	lose_text = span_danger("You lost your triage kit...")
+// 	locked = FALSE
+// 	human_only = FALSE
 
 //Fennys insane RP quirks
 
@@ -1110,251 +1021,6 @@
 	mob_trait = TRAIT_ADV_HEALER
 	human_only = FALSE
 
-/datum/quirk/canine
-	name = "Canine Language Comprehension"
-	desc = "You're somehow capable of understanding and speaking the canine language."
-	value = 0
-	category = "Language Quirks"
-	mechanics = "Bark bark, dude."
-	conflicts = list()
-	gain_text = span_notice("You remember how to speak the way of the canine")
-	lose_text = span_notice("You've forgotten how to speak canine..")
-	human_only = FALSE
-
-/datum/quirk/canine/add()
-	var/mob/living/H = quirk_holder
-	H.grant_language(/datum/language/canine)
-
-/datum/quirk/canine/remove()
-	var/mob/living/H = quirk_holder
-	if(!QDELETED(H))
-		H.remove_language(/datum/language/canine)
-
-/datum/quirk/squirrel
-	name = "Squirrel Language Comprehension"
-	desc = "You're somehow capable of understanding and speaking the squirrel language."
-	value = 0
-	category = "Language Quirks"
-	mechanics = "Chitter chitter, nuts, my man."
-	conflicts = list()
-	gain_text = span_notice("You remember how to speak the way of the squirrel")
-	lose_text = span_notice("You've forgotten how to speak squirrel..")
-	human_only = FALSE
-
-
-/datum/quirk/squirrel/add()
-	var/mob/living/H = quirk_holder
-	H.grant_language(/datum/language/squirrel)
-
-/datum/quirk/squirrel/remove()
-	var/mob/living/H = quirk_holder
-	if(!QDELETED(H))
-		H.remove_language(/datum/language/squirrel)
-
-/datum/quirk/sergal
-	name = "Sergal Language Comprehension"
-	desc = "You're somehow capable of understanding and speaking the sergal language."
-	value = 0
-	category = "Language Quirks"
-	mechanics = "Merp.  Merpmerpmerpmerp. Merp merp merp. Merp merp?"
-	conflicts = list()
-	gain_text = span_notice("You remember how to speak the way of the sergal")
-	lose_text = span_notice("You've forgotten how to speak sergal..")
-	human_only = FALSE
-
-
-/datum/quirk/sergal/add()
-	var/mob/living/H = quirk_holder
-	H.grant_language(/datum/language/sergal)
-
-/datum/quirk/sergal/remove()
-	var/mob/living/H = quirk_holder
-	if(!QDELETED(H))
-		H.remove_language(/datum/language/sergal)
-
-/datum/quirk/mouse
-	name = "Mouse Language Comprehension"
-	desc = "You're somehow capable of understanding and speaking the mouse language."
-	value = 0
-	category = "Language Quirks"
-	mechanics = "Cheesed to meet you."
-	conflicts = list()
-	gain_text = span_notice("You remember how to speak the way of the mouse")
-	lose_text = span_notice("You've forgotten how to speak mouse..")
-	human_only = FALSE
-
-
-/datum/quirk/mouse/add()
-	var/mob/living/H = quirk_holder
-	H.grant_language(/datum/language/mouse)
-
-/datum/quirk/mouse/remove()
-	var/mob/living/H = quirk_holder
-	if(!QDELETED(H))
-		H.remove_language(/datum/language/mouse)
-
-/datum/quirk/birdsong
-	name = "Birdsong Language Comprehension"
-	desc = "You're somehow capable of understanding and speaking the bird language."
-	value = 0
-	category = "Language Quirks"
-	mechanics = ""
-	conflicts = list()
-	gain_text = span_notice("You remember how to speak the way of the bird")
-	lose_text = span_notice("You've forgotten how to speak bird..")
-	human_only = FALSE
-
-/datum/quirk/birdsong/add()
-	var/mob/living/H = quirk_holder
-	H.grant_language(/datum/language/birdsong)
-
-/datum/quirk/birdsong/remove()
-	var/mob/living/H = quirk_holder
-	if(!QDELETED(H))
-		H.remove_language(/datum/language/birdsong)
-
-/datum/quirk/rabbit
-	name = "Rabbit Language Comprehension"
-	desc = "You're somehow capable of understanding and speaking the rabbit language."
-	value = 0
-	category = "Language Quirks"
-	mechanics = "Watership down, repeat, Watership down!"
-	conflicts = list()
-	gain_text = span_notice("You remember how to speak the way of the rabbit")
-	lose_text = span_notice("You've forgotten how to speak rabbit..")
-	human_only = FALSE
-
-
-/datum/quirk/rabbit/add()
-	var/mob/living/H = quirk_holder
-	H.grant_language(/datum/language/rabbit)
-
-/datum/quirk/rabbit/remove()
-	var/mob/living/H = quirk_holder
-	if(!QDELETED(H))
-		H.remove_language(/datum/language/rabbit)
-
-/datum/quirk/bug
-	name = "Insect Language Comprehension"
-	desc = "You're somehow capable of understanding and speaking the insect language."
-	value = 0
-	category = "Language Quirks"
-	mechanics = "It really is A Bugs Life, eh?"
-	conflicts = list()
-	gain_text = span_notice("You remember how to speak the way of the insect")
-	lose_text = span_notice("You've forgotten how to speak insect..")
-	human_only = FALSE
-
-
-/datum/quirk/bug/add()
-	var/mob/living/H = quirk_holder
-	H.grant_language(/datum/language/bug)
-
-/datum/quirk/bug/remove()
-	var/mob/living/H = quirk_holder
-	if(!QDELETED(H))
-		H.remove_language(/datum/language/bug)
-
-/datum/quirk/xeno_lang
-	name = "Xenomorph Language Comprehension"
-	desc = "You're somehow capable of understanding and speaking the Xenomorph language."
-	value = 0
-	category = "Language Quirks"
-	mechanics = "Xenomorph pun here."
-	conflicts = list()
-	gain_text = span_notice("You remember how to speak with Xenomorphs.")
-	lose_text = span_notice("You've forgotten how to speak with Xenomorphs.")
-	human_only = FALSE
-
-/datum/quirk/xeno_lang/add()
-	var/mob/living/H = quirk_holder
-	H.grant_language(/datum/language/xenocommon)
-
-/datum/quirk/xeno_lang/remove()
-	var/mob/living/H = quirk_holder
-	if(!QDELETED(H))
-		H.remove_language(/datum/language/xenocommon)
-
-/datum/quirk/serbian
-	name = "Serbian Language Comprehension"
-	desc = "You're capable of understanding and speaking Serbian."
-	value = 0
-	category = "Language Quirks"
-	mechanics = "Insert slav meme here"
-	conflicts = list()
-	gain_text = span_notice("You remember how to speak Serbian.")
-	lose_text = span_notice("You've forgotten how to speak Serbian.")
-	human_only = FALSE
-
-/datum/quirk/serbian/add()
-	var/mob/living/H = quirk_holder
-	H.grant_language(/datum/language/serbian)
-
-/datum/quirk/serbian/remove()
-	var/mob/living/H = quirk_holder
-	if(!QDELETED(H))
-		H.remove_language(/datum/language/serbian)
-
-/datum/quirk/machine_lang
-	name = "Machine Language Comprehension"
-	desc = "You're somehow capable of understanding and speaking machine language."
-	value = 0
-	category = "Language Quirks"
-	mechanics = "Are you on or are you off?"
-	conflicts = list()
-	gain_text = span_notice("You remember how to speak with televisions.")
-	lose_text = span_notice("You've forgotten how to speak with televisions.")
-	human_only = FALSE
-
-/datum/quirk/machine_lang/add()
-	var/mob/living/H = quirk_holder
-	H.grant_language(/datum/language/machine)
-
-/datum/quirk/machine_lang/remove()
-	var/mob/living/H = quirk_holder
-	if(!QDELETED(H))
-		H.remove_language(/datum/language/machine)
-
-/datum/quirk/spanish
-	name = "Spanish Language Comprehension"
-	desc = "You're somehow capable of understanding and speaking spanish language."
-	value = 0
-	category = "Language Quirks"
-	mechanics = ""
-	conflicts = list()
-	gain_text = span_notice("You speak spanish.")
-	lose_text = span_notice("You've forgotten how to speak spanish.")
-	human_only = FALSE
-
-/datum/quirk/spanish/add()
-	var/mob/living/H = quirk_holder
-	H.grant_language(/datum/language/spanish)
-
-/datum/quirk/spanish/remove()
-	var/mob/living/H = quirk_holder
-	if(!QDELETED(H))
-		H.remove_language(/datum/language/spanish)
-
-/datum/quirk/freljordian
-	name = "Freljordian Language Comprehension"
-	desc = "You're capable of understanding and speaking Freljordian."
-	value = 0
-	category = "Language Quirks"
-	mechanics = "For the Freljord!"
-	conflicts = list()
-	gain_text = span_notice("You remember how to speak Freljordian.")
-	lose_text = span_notice("You've forgotten how to speak Freljordian.")
-	human_only = FALSE
-
-/datum/quirk/freljordian/add()
-	var/mob/living/H = quirk_holder
-	H.grant_language(/datum/language/freljordian)
-
-/datum/quirk/freljordian/remove()
-	var/mob/living/H = quirk_holder
-	if(!QDELETED(H))
-		H.remove_language(/datum/language/freljordian)
-
 /datum/quirk/distinct
 	name = "Distinct"
 	desc = "Whether you've got horns, wings, a big ass tail, or maybe just your general vibe, something about you cannot be concealed"
@@ -1366,19 +1032,21 @@
 	gain_text = span_notice("You feel seen!")
 	lose_text = span_notice("You feel hidden")
 
-/obj/item/clothing/proc/Adjust()
-	SEND_SIGNAL(src, COMSIG_CLOTHING_ADJUST, usr)
-	verbs -= /obj/item/clothing/proc/Adjust
+/obj/item/clothing/proc/FixClothesFit()
+	set name = "Fix Fit"
+	SEND_SIGNAL(src, COMSIG_CLOTHING_FIX, usr)
+	verbs -= /obj/item/clothing/proc/FixClothesFit
 
-#define	CLOTHING_ADJUST_TIME_MIN 10 MINUTES
-#define CLOTHING_ADJUST_TIME_MAX 15 MINUTES 
+#define	CLOTHING_FIX_TIME_MIN 10 MINUTES
+#define CLOTHING_FIX_TIME_MAX 15 MINUTES 
 
 /datum/quirk/dan_nicki
 	name = "Big Boobs"
 	desc = "If the internet was a thing, people would be looking you up on google."
 	value = 0
 	category = "Bawdy Quirks"
-	mechanics = "You need to adjust your clothes every once in a while, or your breathing will be restricted and you'll take a tiny bit of suffocation damage."
+	mob_trait = TRAIT_BIGBOOBS
+	mechanics = "You need to fix the fit of your clothes every once in a while, or your breathing will be restricted and you'll take a tiny bit of suffocation damage."
 	conflicts = list()
 	gain_text = span_notice("It's hard to find clothes that fit around your chest.")
 	lose_text = span_notice("The urge to find a tailor disappears.")
@@ -1387,8 +1055,8 @@
 	var/active = FALSE
 	var/datum/status_effect/debuff = /datum/status_effect/dan_nicki
 	var/warning_text = "Your clothes are getting a little tight..."
-	var/unadjust_text = "Your clothes feel way too tight to breathe! You'll need to adjust them using their context menu."
-	var/adjust_text = "You feel like you can breathe again. That's much better."
+	var/unfix_text = "Your clothes feel way too tight to breathe! You'll need to fix their fit using their context menu."
+	var/fix_text = "You feel like you can breathe again. That's much better."
 	var/drop_text = "Whew... free at last!"
 
 /datum/status_effect/dan_nicki
@@ -1404,9 +1072,9 @@
 /datum/quirk/dan_nicki/proc/make_timers()
 	deltimer(debufftimer)
 	deltimer(warningtimer)
-	var/time_til_debuff = rand(CLOTHING_ADJUST_TIME_MIN, CLOTHING_ADJUST_TIME_MAX)
+	var/time_til_debuff = rand(CLOTHING_FIX_TIME_MIN, CLOTHING_FIX_TIME_MAX)
 	var/time_til_warning = time_til_debuff - (1 MINUTES)
-	debufftimer = addtimer(CALLBACK(src, PROC_REF(unadjust)), time_til_debuff, TIMER_DELETE_ME | TIMER_STOPPABLE)
+	debufftimer = addtimer(CALLBACK(src, PROC_REF(unfixclothes)), time_til_debuff, TIMER_DELETE_ME | TIMER_STOPPABLE)
 	warningtimer = addtimer(CALLBACK(src, PROC_REF(warn)), time_til_warning, TIMER_DELETE_ME | TIMER_STOPPABLE)
 
 /datum/quirk/dan_nicki/add()
@@ -1418,15 +1086,15 @@
 	deltimer(debufftimer)
 	deltimer(warningtimer)
 
-/datum/quirk/dan_nicki/proc/unadjust()
+/datum/quirk/dan_nicki/proc/unfixclothes()
 	var/mob/living/H = quirk_holder
 	var/obj/item/clothing/under/prison = H.get_item_by_slot(SLOT_W_UNIFORM)
 	if(prison)
 		H.apply_status_effect(debuff)
-		prison.verbs += /obj/item/clothing/proc/Adjust
-		RegisterSignal(prison, COMSIG_CLOTHING_ADJUST, PROC_REF(on_adjust))
+		prison.verbs += /obj/item/clothing/proc/FixClothesFit
+		RegisterSignal(prison, COMSIG_CLOTHING_FIX, PROC_REF(on_fix))
 		RegisterSignal(prison, COMSIG_ITEM_DROPPED, PROC_REF(on_drop))
-		to_chat(H, span_warning(unadjust_text))
+		to_chat(H, span_warning(unfix_text))
 		active = TRUE
 	else
 		make_timers()
@@ -1435,16 +1103,18 @@
 	if(quirk_holder.get_item_by_slot(SLOT_W_UNIFORM))
 		to_chat(quirk_holder, span_warning(warning_text))
 
-/datum/quirk/dan_nicki/proc/on_adjust(obj/item/source, mob/user)
+/datum/quirk/dan_nicki/proc/on_fix(obj/item/source, mob/user)
 	var/mob/living/H = user
 	if(!istype(H))
 		return
 	if(!active || H.get_item_by_slot(SLOT_W_UNIFORM) != source)
 		return
 	H.remove_status_effect(debuff)
-	to_chat(H, span_warning(adjust_text))
+	to_chat(H, span_green(fix_text))
+	display_fix_text(user, source)
 	active = FALSE
 	make_timers()
+	playsound(H, "rustle", 50, TRUE)
 
 /datum/quirk/dan_nicki/proc/on_drop(obj/item/source, mob/user)
 	var/mob/living/H = user
@@ -1453,30 +1123,44 @@
 	if(!active || H.get_item_by_slot(SLOT_W_UNIFORM))
 		return
 	H.remove_status_effect(debuff)
-	to_chat(H, span_warning(drop_text))
+	to_chat(H, span_green(drop_text))
+	display_drop_text(user, source)
 	var/obj/item/clothing/S = source
-	S.verbs -= /obj/item/clothing/proc/Adjust
+	S.verbs -= /obj/item/clothing/proc/FixClothesFit
 	active = FALSE
 	make_timers()
+	playsound(H, "rustle", 50, TRUE)
 
+/datum/quirk/dan_nicki/proc/display_fix_text(obj/item/source, mob/user)
+	user.visible_message(span_info("[user] tugs at [user.p_their()] top, rearranging [user.p_their()] breasts trapped in the [source.name]!"))
 
-#undef CLOTHING_ADJUST_TIME_MIN
-#undef CLOTHING_ADJUST_TIME_MAX
+/datum/quirk/dan_nicki/proc/display_drop_text(obj/item/source, mob/user)
+	user.visible_message(span_info("[user] undoes [user.p_their()] [source], giving [user.p_their()] assets some relief as they spill out!"))
+
+#undef CLOTHING_FIX_TIME_MIN
+#undef CLOTHING_FIX_TIME_MAX
 
 /datum/quirk/dan_nicki/wreckingballs
 	name = "Big Balls"
 	desc = "You have a hard time finding clothes that fit."
 	value = 0
+	mob_trait = TRAIT_BIGBALLS
 	category = "Bawdy Quirks"
-	mechanics = "You need to adjust your clothes every once in a while, or you'll suffer a speed penalty."
+	mechanics = "You need to fix the fit of your clothes every once in a while, or you'll suffer a speed penalty."
 	conflicts = list()
 	gain_text = span_notice("The heavy swingers between your legs strain your clothes.")
 	lose_text = span_notice("Your clothes feel looser.")
 	debuff = /datum/status_effect/wreckingballs
 	warning_text = "Your clothes are getting a little tight..."
-	unadjust_text = "Your clothes feel way too tight to move! You'll need to adjust them using their context menu."
-	adjust_text = "You feel like you can move your legs again. That's much better."
+	unfix_text = "Your clothes feel way too tight to move! You'll need to fix their fit using their context menu."
+	fix_text = "You feel like you can move your legs again. That's much better."
 	drop_text = "Whew... free at last!"
+
+/datum/quirk/dan_nicki/wreckingballs/display_fix_text(obj/item/source, mob/user)
+	user.visible_message(span_info("[user] adjusts [user.p_their()] [source.name] a bit to give some room down south!"))
+
+/datum/quirk/dan_nicki/wreckingballs/display_drop_text(obj/item/source, mob/user)
+	user.visible_message(span_info("[user] undoes [user.p_their()] [source], giving [user.p_their()] groin some relief!"))
 
 /datum/status_effect/wreckingballs
 	id = "Constriction"
@@ -1501,15 +1185,16 @@
 	name = "Big Dick"
 	desc = "You have a HARD time finding clothes that fit."
 	value = 0
+	mob_trait = TRAIT_BIGWEENIE
 	category = "Bawdy Quirks"
-	mechanics = "You need to adjust your clothes every once in a while, or your clothes will be too tight to reach into your pockets."
+	mechanics = "You need to fix the fit of your clothes every once in a while, or your clothes will be too tight to reach into your pockets."
 	conflicts = list()
 	gain_text = span_notice("You feel your clothes stretch around your extra leg.")
 	lose_text = span_notice("Your clothes feel looser.")
 	debuff = /datum/status_effect/hotrod
 	warning_text = "Your clothes are getting a little tight..."
-	unadjust_text = "Your clothes feel way too tight to reach into your pockets! You'll need to adjust them using their context menu."
-	adjust_text = "You feel like you can reach into your pockets again. That's much better."
+	unfix_text = "Your clothes feel way too tight to reach into your pockets! You'll need to fix their fit using their context menu."
+	fix_text = "You feel like you can reach into your pockets again. That's much better."
 	drop_text = "Whew... free at last!"
 
 /datum/status_effect/hotrod
@@ -1533,19 +1218,26 @@
 	if(params == left || params == right)
 		return COMSIG_MOB_CANCEL_CLICKON
 
+/datum/quirk/dan_nicki/hugecock/display_fix_text(obj/item/source, mob/user)
+	user.visible_message(span_info("[user] adjusts [user.p_their()] [source.name] a bit to give some room down south!"))
+
+/datum/quirk/dan_nicki/hugecock/display_drop_text(obj/item/source, mob/user)
+	user.visible_message(span_info("[user] undoes [user.p_their()] [source], giving [user.p_their()] shaft some relief!"))
+
 /datum/quirk/dan_nicki/cake
 	name = "Big Ass"
 	desc = "You have a hard time getting your clothes on."
 	value = 0
+	mob_trait = TRAIT_BIGBUTT
 	category = "Bawdy Quirks"
-	mechanics = "You need to adjust your clothes every once in a while, or they'll become uncomfortable."
+	mechanics = "You need to fix the fit of your clothes every once in a while, or they'll become uncomfortable."
 	conflicts = list()
 	gain_text = span_notice("You feel your lower body being compressed by your clothes.")
 	lose_text = span_notice("Your clothes feel looser.")
 	debuff = /datum/status_effect/toomuchcake
 	warning_text = "Your clothes are getting a little tight..."
-	unadjust_text = "Your clothes feel way too tight! You'll need to adjust them using their context menu."
-	adjust_text = "You feel more comfortable in your clothes again. That's much better."
+	unfix_text = "Your clothes feel way too tight! You'll need to fix their fit using their context menu."
+	fix_text = "You feel more comfortable in your clothes again. That's much better."
 	drop_text = "Whew... free at last!"
 
 /datum/status_effect/toomuchcake
@@ -1565,3 +1257,143 @@
 /datum/mood_event/toomuchcake
 	mood_change = -4
 	description = span_warning("These clothes are way too tight!")
+
+/datum/quirk/dan_nicki/cake/display_fix_text(obj/item/source, mob/user)
+	user.visible_message(span_info("[user] adjusts the back of [user.p_their()] [source.name], squirming a bit to get comfort!"))
+
+/datum/quirk/dan_nicki/cake/display_drop_text(obj/item/source, mob/user)
+	user.visible_message(span_info("[user] undoes [user.p_their()] [source], giving [user.p_their()] backside all the space it needs!"))
+
+
+/datum/quirk/no_erp
+	name = "No ERP"
+	desc = "You do not want to be a part of erotic roleplay, and that's fine!"
+	value = 0
+	category = "Bawdy Quirks"
+	mechanics = "Shows your prefs in examine."
+	conflicts = list(
+	)
+	mob_trait = TRAIT_NOERP
+	gain_text = span_notice("You're just not horny, you have found peace.")
+	lose_text = span_notice("You can't remember the last time you touched grass.")
+
+/datum/quirk/vanilla_erp
+	name = "Vanilla ERP"
+	desc = "Your ERP preferences are pretty vanilla. Nothing too crazy most of the time."
+	value = 0
+	category = "Bawdy Quirks"
+	mechanics = "Shows your prefs in examine."
+	conflicts = list(
+	)
+	mob_trait = TRAIT_VANILLAERP
+	gain_text = span_notice("You remember that sex makes babies.")
+	lose_text = span_notice("The american anti-pregnancy scheme worked on you after all.")
+
+/datum/quirk/rough_erp
+	name = "Rough ERP"
+	desc = "Your ERP preferences lean towards a bit of roughness, be that choking or something else."
+	value = 0
+	category = "Bawdy Quirks"
+	mechanics = "Shows your prefs in examine."
+	conflicts = list(
+	)
+	mob_trait = TRAIT_ROUGHERP
+	gain_text = span_notice("HARDER. BETTER. FASTER. STRONGER.")
+	lose_text = span_notice("You just really want to hold someones hand.")
+
+/datum/quirk/extreme_erp
+	name = "Extreme ERP"
+	desc = "Your ERP preferences lean a bit past the rough, yo' ass straight up kinky."
+	value = 0
+	category = "Bawdy Quirks"
+	mechanics = "Shows your prefs in examine."
+	conflicts = list(
+	)
+	mob_trait = TRAIT_EXTREMEERP
+	gain_text = span_notice("Why yes, I have spent too much time online. How did you know?")
+	lose_text = span_notice("Should have paid your internet bill.")
+
+
+/datum/quirk/snuggle_erp
+	name = "Snuggly ERP/RP"
+	desc = "You just really love a snuggly comfy scene, it doesn't even have to be lewd."
+	value = 0
+	category = "Bawdy Quirks"
+	mechanics = "Shows your prefs in examine."
+	conflicts = list(
+	)
+	mob_trait = TRAIT_SNUGGLER
+	gain_text = span_notice("You have a sudden need to be close to another.")
+	lose_text = span_notice("Cooties are real, your mom said so.")
+
+/datum/quirk/breeding_erp
+	name = "Breeding ERP/RP"
+	desc = "Be you the pied or the piper you have a preference for lewdness that ends with at least the risk of making babies."
+	value = 0
+	category = "Bawdy Quirks"
+	mechanics = "Shows your prefs in examine."
+	conflicts = list(
+	)
+	mob_trait = TRAIT_RISKY_BUSINESS
+	gain_text = span_notice("Your biological clock starts screaming that it's Sex O'clock.")
+	lose_text = span_notice("You decide cats are great pets.")
+
+/datum/quirk/feral_erp
+	name = "Feral ERP"
+	desc = "Your ERP partner preferences include things that need to pass a harkness test."
+	value = 0
+	category = "Bawdy Quirks"
+	mechanics = "Shows your prefs in examine."
+	conflicts = list(
+	)
+	mob_trait = TRAIT_FERALERP
+	gain_text = span_notice("There's a little white woman inside you.")
+	lose_text = span_notice("We ran out of dog treats yesterday.")
+
+/datum/quirk/robot_erp
+	name = "Robot ERP"
+	desc = "Your ERP partner preferences include your own personal computer and other varied electronic things."
+	value = 0
+	category = "Bawdy Quirks"
+	mechanics = "Shows your prefs in examine."
+	conflicts = list(
+	)
+	mob_trait = TRAIT_ROBOTERP
+	gain_text = span_notice("Give me your USB-C, baby.")
+	lose_text = span_notice("You feel amish.")
+
+/datum/quirk/vore_erp
+	name = "Vore ERP"
+	desc = "Your ERP partner preferences include pals that eat entire people, or those that want to be eaten."
+	value = 0
+	category = "Bawdy Quirks"
+	mechanics = "Shows your prefs in examine."
+	conflicts = list(
+	)
+	mob_trait = TRAIT_VOREERP
+	gain_text = span_notice("Boy, I could eat a whole ass horse.")
+	lose_text = span_notice("I finally feel full again.")
+
+/datum/quirk/fat_erp
+	name = "Fat ERP"
+	desc = "Your ERP partner preferences include the thick and the jiggly, be you one of them or hoping to find one."
+	value = 0
+	category = "Bawdy Quirks"
+	mechanics = "Shows your prefs in examine."
+	conflicts = list(
+	)
+	mob_trait = TRAIT_VOREERP
+	gain_text = span_notice("DAMN BOY WE THICK.")
+	lose_text = span_notice("Weightloss time.")
+
+/datum/quirk/literally_just_dan
+	name = "Feeder ERP"
+	desc = "Your ERP partner preferences include being stuffed full of food, or doing the stuffing."
+	value = 0
+	category = "Bawdy Quirks"
+	mechanics = "Shows your prefs in examine."
+	conflicts = list(
+	)
+	mob_trait = TRAIT_DANIMAL
+	gain_text = span_notice("You could use a little butter.")
+	lose_text = span_notice("Dinners over.")

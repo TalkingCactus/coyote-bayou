@@ -1132,6 +1132,20 @@
 	icon_state = "pink_tree"
 	anchored = TRUE
 
+/obj/structure/flora/tree/cypress_tree
+	name = "cypress tree"
+	icon = 'modular_coyote/icons/objects/cypress.dmi'
+	icon_state = "cypress_tree"
+	anchored = TRUE
+	pixel_x = -48
+
+/obj/structure/flora/tree/rainforest_tree
+	name = "rainforest tree"
+	icon = 'modular_coyote/icons/objects/cypress.dmi'
+	icon_state = "rainforest_tree"
+	anchored = TRUE
+
+
 
 //flowers
 

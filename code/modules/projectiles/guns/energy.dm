@@ -401,7 +401,7 @@
 #undef IS_VALID_INDEX
 
 /obj/item/gun/energy/update_icon_state()
-	if(initial(item_state))
+	if(initial(inhand_icon_state))
 		return
 	..()
 	var/ratio = get_charge_ratio()
@@ -411,7 +411,7 @@
 		var/obj/item/ammo_casing/energy/shot = ammo_type[current_firemode_index]
 		new_item_state += "[shot.select_name]"
 	new_item_state += "[ratio]"
-	item_state = new_item_state
+	inhand_icon_state = new_item_state
 
 /obj/item/gun/energy/update_overlays()
 	. = ..()
@@ -545,6 +545,35 @@
 	. = ..()
 	if(can_remove == 1)
 		. += span_notice("Alt-click to eject the battery.")
+
+/obj/item/gun/energy/UpdateAmmoCountOverlay()
+	if(isturf(loc))//Only show th ammo count if the magazine is, like, in an inventory or something. Mags on the ground don't need a big number on them, that's ugly.
+		maptext = ""
+	else
+		var/txte = ""
+		var/culur = "#FF0000"
+		if(!cell)
+			culur = "#FF0000"
+			txte = "-/-"
+		if(cell)
+			var/obj/item/ammo_casing/energy/shot = ammo_type[current_firemode_index]
+			var/c_mult = get_charge_cost_mult()
+			var/shots_max = round(cell.maxcharge / max(shot?.e_cost * c_mult, 0.01))
+			var/shots_remaining = round(cell.charge / max(shot?.e_cost * c_mult, 0.01))
+			if(shots_remaining >= shots_max)
+				culur = "#00FFFF"
+			else if(shots_remaining >= shots_max * 0.75)
+				culur = "#00FF00"
+			else if(shots_remaining >= shots_max * 0.5)
+				culur = "#FFFF00"
+			else if(shots_remaining >= shots_max * 0.25)
+				culur = "#FFA500"
+			else if(shots_remaining > 0)
+				culur = "#FF0000"
+			else
+				culur = "#FF00FF"
+			txte = "[shots_remaining]/[shots_max]"
+		maptext = "<font color='[culur]'><b>[txte]</b></font>"
 
 /obj/item/gun/energy/ui_data(mob/user)
 	var/list/data = ..()

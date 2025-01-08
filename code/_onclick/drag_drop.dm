@@ -21,6 +21,10 @@ GLOBAL_VAR_INIT(use_experimental_clickdrag_thing, TRUE)
 			var/mob/clicker = usr
 			if(clicker.a_intent == INTENT_HARM)
 				is_mob_in_harm_intent = TRUE
+			else
+				var/obj/item/h = clicker.get_active_held_item()
+				if(h && h.force_harmclick)
+					is_mob_in_harm_intent = TRUE
 		if(is_mob_in_harm_intent) // in harm intent, disable clickdragging and try to click on whatever your mouse is over when you let up a click
 			if(over == usr && src != usr) // If you clickdrag something out of range to yourself, click what you originaly clicked
 				return usr.client.Click(src, over_location, src_control, params)
@@ -40,6 +44,8 @@ GLOBAL_VAR_INIT(use_experimental_clickdrag_thing, TRUE)
 /client/MouseDown(object, location, control, params)
 	if (mouse_down_icon)
 		mouse_pointer_icon = mouse_down_icon
+	if(mob?.check_mousedown_intercept(params,object,location,control))
+		return
 	var/delay = mob.CanMobAutoclick(object, location, params)
 	if(delay)
 		selected_target[1] = object
@@ -54,6 +60,8 @@ GLOBAL_VAR_INIT(use_experimental_clickdrag_thing, TRUE)
 /client/MouseUp(object, location, control, params)
 	if (mouse_up_icon)
 		mouse_pointer_icon = mouse_up_icon
+	if(mob?.check_mouseup_intercept(params,object,location,control))
+		return
 	selected_target[1] = null
 	if(active_mousedown_item)
 		active_mousedown_item.onMouseUp(object, location, params, mob)
@@ -105,6 +113,8 @@ GLOBAL_VAR_INIT(use_experimental_clickdrag_thing, TRUE)
 	..()
 
 /client/MouseDrag(src_object,atom/over_object,src_location,over_location,src_control,over_control,params)
+	if(mob?.check_mousedrag_intercept(params,src_object,over_object,src_location,over_location,src_control,over_control))
+		return
 	var/list/L = params2list(params)
 	if (L["middle"])
 		if (src_object && src_location != over_location)

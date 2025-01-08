@@ -8,7 +8,7 @@
 	desc = "Homemade pneumatic cannon made from a vacuum cleaner, firehose, and a leaf blower."
 	icon = 'icons/fallout/objects/guns/rockitlauncher.dmi'
 	icon_state = "rockitlauncher_back"
-	item_state = "rockitlauncher_back"
+	inhand_icon_state = "rockitlauncher_back"
 	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
 	slot_flags = INV_SLOTBIT_BACK
@@ -71,7 +71,7 @@
 		if(!over_object)
 			return
 
-		if(!M.incapacitated())
+		if(!M.incapacitated(allow_crit = TRUE))
 
 			if(istype(over_object, /atom/movable/screen/inventory/hand))
 				var/atom/movable/screen/inventory/hand/H = over_object

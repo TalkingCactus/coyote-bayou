@@ -253,7 +253,7 @@
 	icon_state = "hypereutactic"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
-	item_state = "hypereutactic"
+	inhand_icon_state = "hypereutactic"
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
 	name = "hypereutactic blade"
@@ -296,7 +296,7 @@
 	. = ..()
 	if(!user.canUseTopic(src, BE_CLOSE, FALSE) || hacked)
 		return
-	if(user.incapacitated() || !istype(user))
+	if(user.incapacitated(allow_crit = TRUE) || !istype(user))
 		to_chat(user, span_warning("You can't do that right now!"))
 		return
 	if(alert("Are you sure you want to recolor your blade?", "Confirm Repaint", "Yes", "No") == "Yes")

@@ -9,7 +9,7 @@ Slimecrossing Armor
 	name = "rebreather mask"
 	desc = "A transparent mask, resembling a conventional breath mask, but made of bluish slime. Seems to lack any air supply tube, though."
 	icon_state = "slime"
-	item_state = "slime"
+	inhand_icon_state = "slime"
 	body_parts_covered = NONE
 	w_class = WEIGHT_CLASS_SMALL
 	gas_transfer_coefficient = 0
@@ -101,7 +101,7 @@ Slimecrossing Armor
 	desc = "An extremely addictive flower, full of peace magic. This rare flower is not often seen due to its entrancing pacifying effects when worn. Its behavior can be altered with shift+ctrl click"
 	icon = 'icons/obj/slimecrossing.dmi'
 	icon_state = "peaceflower1"
-	item_state = "peaceflower1"
+	inhand_icon_state = "peaceflower1"
 	slot_flags = INV_SLOTBIT_HEAD
 	body_parts_covered = NONE
 	dynamic_hair_suffix = ""
@@ -159,7 +159,8 @@ Slimecrossing Armor
 	var/static/list/choices = list(
 			"Light On" = image(icon = 'icons/fallout/objects/items.dmi', icon_state = "match_lit"),
 			"Light Off" = image(icon = 'icons/fallout/objects/items.dmi', icon_state = "match_unlit"),
-			"Destroy Flower" = image(icon = 'icons/fallout/objects/bureaucracy.dmi', icon_state = "paperplane_onfire")
+			"Destroy Flower" = image(icon = 'icons/fallout/objects/bureaucracy.dmi', icon_state = "paperplane_onfire"),
+			"Create A Flower" = image(icon = 'icons/obj/slimecrossing.dmi', icon_state = "peaceflower1")
 		)
 	var/choice = show_radial_menu(user, src, choices, radius = 32, require_near = TRUE)
 	switch(choice)
@@ -172,8 +173,14 @@ Slimecrossing Armor
 		if("Destroy Flower")
 			to_chat(user, span_notice("The flower begins to wither atop your head."))
 			if(do_after(user, 15 SECONDS, stay_close = FALSE))
+				REMOVE_TRAIT(user, TRAIT_PACIFISM, "peaceflower_[REF(src)]")
 				user.RemoveElement(/datum/element/photosynthesis, -1, -1, -1, -1, 4, 0.5, 0.2, 0)
+				drop_location(src)
 				qdel(src)
+		if("Create A Flower")
+			to_chat(user, span_notice("The flower begins to bloom atop your head."))
+			if(do_after(user, 20 SECONDS, stay_close = FALSE))
+				new /obj/item/clothing/head/peaceflower(get_turf(src))
 		else
 			return
 
@@ -181,7 +188,7 @@ Slimecrossing Armor
 	name = "adamantine armor"
 	desc = "A full suit of adamantine plate armor. Impressively resistant to damage, but weighs about as much as you do."
 	icon_state = "adamsuit"
-	item_state = "adamsuit"
+	inhand_icon_state = "adamsuit"
 	flags_inv = NONE
 	obj_flags = IMMUTABLE_SLOW
 	slowdown = 4

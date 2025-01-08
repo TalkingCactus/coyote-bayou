@@ -18,6 +18,8 @@ GLOBAL_LIST_INIT(area_weather_list, list(WEATHER_ALL))
 	invisibility = INVISIBILITY_LIGHTING
 
 	var/safe_town
+	var/private = FALSE
+	var/region = "The Middle Of Nowhere"
 
 	/// Set in New(); preserves the name set by the map maker, even if renamed by the Blueprints.
 	var/map_name
@@ -127,6 +129,8 @@ GLOBAL_LIST_INIT(area_weather_list, list(WEATHER_ALL))
 	var/xenobiology_compatible = FALSE //Can the Xenobio management console transverse this area by default?
 	var/list/canSmoothWithAreas //typecache to limit the areas that atoms in this area can smooth with
 
+	///Typepath to limit the areas (subtypes included) that atoms in this area can smooth with. Used for shuttles.
+	var/area/area_limited_icon_smoothing
 
 	/// Color on minimaps, if it's null (which is default) it makes one at random.
 	var/minimap_color

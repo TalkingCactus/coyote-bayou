@@ -6,16 +6,16 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
-/datum/crafting_recipe/explosive/explosive_collar
-	name = "Explosive Collar"
-	result = /obj/item/electropack/shockcollar/explosive
-	reqs = list(/obj/item/stack/ore/blackpowder = 1,
-				/obj/item/electropack/shockcollar = 1,
-				/obj/item/stack/cable_coil = 1,
-				/obj/item/assembly/igniter = 1,)
-	time = 30
-	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+// /datum/crafting_recipe/explosive/explosive_collar
+// 	name = "Explosive Collar"
+// 	result = /obj/item/electropack/shockcollar/explosive
+// 	reqs = list(/obj/item/stack/ore/blackpowder = 1,
+// 				/obj/item/electropack/shockcollar = 1,
+// 				/obj/item/stack/cable_coil = 1,
+// 				/obj/item/assembly/igniter = 1,)
+// 	time = 30
+// 	category = CAT_WEAPONRY
+// 	subcategory = CAT_AMMO
 
 /datum/crafting_recipe/chemical_payload
 	name = "Chemical Payload (C4)"
@@ -387,7 +387,7 @@
 	reqs = list(
 		/obj/item/rocketshell = 1,
 		/obj/item/stack/crafting/electronicparts = 5,
-		/obj/item/stack/sheet/prewar = 5,
+		/obj/item/stack/sheet/prefall = 5,
 		/obj/item/stack/ore/blackpowder = 10,
 	)
 	tools = list(TOOL_AWORKBENCH)
@@ -402,7 +402,7 @@
 	reqs = list(
 		/obj/item/rocketshell = 1,
 		/obj/item/stack/crafting/electronicparts = 5,
-		/obj/item/stack/sheet/prewar = 10,
+		/obj/item/stack/sheet/prefall = 10,
 		/obj/item/stack/ore/blackpowder = 15,
 		/datum/reagent/phlogiston = 200
 	)

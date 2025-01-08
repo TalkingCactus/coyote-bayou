@@ -18,6 +18,7 @@
 	anchored = TRUE
 	layer = CLOSED_DOOR_LAYER
 	explosion_block = 0.5
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)	//	Okay, this is scuffed. If we're a wall that merges with windows, we'll merge with doors too!
 	var/can_have_lock = FALSE
 	var/obj/item/lock_construct/padlock
 	var/obj/item/lock_bolt/deadbolt
@@ -36,16 +37,20 @@
 	var/opening_time = 2
 	var/closing_time = 4
 	var/can_atmos_pass = -2
+	var/ultimate_unbreaker = FALSE
 
 	//Multi-tile doors
 	dir = EAST
 	///How wide this door is, measured in tiles.
 	var/width = 1
 
-/obj/structure/simple_door/Initialize()
+/obj/structure/simple_door/Initialize(mapload)
 	. = ..()
 	icon_state = door_type
 	SetBounds()
+	if(mapload)
+		if(prob(50))
+			INVOKE_ASYNC(src, PROC_REF(Open), TRUE)
 
 /obj/structure/simple_door/Destroy()
 	if(padlock)
@@ -59,6 +64,9 @@
 	//message_admins("Door '[ADMIN_JMP(src)]' destroyed at [AREACOORD(src)]. Last fingerprints(If any): [src.fingerprintslast]")
 	log_game("Door '[src]' destroyed at [AREACOORD(src)]. Last fingerprints: [src.fingerprintslast]")
 	return ..()
+
+/obj/structure/simple_door/ComponentInitialize()
+	RegisterSignal(src, COMSIG_ATOM_RTS_RIGHTCLICKED, PROC_REF(RTS_open_door))
 
 /obj/structure/simple_door/examine(mob/user)
 	. = ..()
@@ -76,6 +84,10 @@
 				to_chat(user, span_warning("[deadbolt] can only be reached from \the [dir2text(deadbolt.dir)]!"))
 			else
 				deadbolt.ToggleLock(user)
+				if(deadbolt.locked)
+					ultimate_unbreaker = TRUE
+				else
+					ultimate_unbreaker = FALSE
 				do_squish(0.9,0.9,0.25 SECONDS)
 				playsound(get_turf(src), "sound/f13items/flashlight_off.ogg", 50, FALSE, 0)
 
@@ -98,6 +110,11 @@
 					break
 			if(!foundit) //We can't find it :(
 				to_chat(L, span_warning("You can't find the right key for \the [src]. Maybe it's too deeply packed away or you lost it?"))
+
+/obj/structure/simple_door/proc/RTS_open_door(datum/this, mob/user)
+	if(moving)
+		return
+	SwitchState(TRUE)
 
 /obj/structure/simple_door/proc/SetBounds()
 	if(width>1)
@@ -133,6 +150,7 @@
 		user.visible_message(span_notice("[user] adds [P] to [src]."),span_notice("You add [P] to [src]."))
 		padlock = P
 		desc = "[src.desc] Has a lock."
+		ultimate_unbreaker = TRUE
 		if(density)
 			add_overlay("[initial(icon_state)]_padlock")
 		return TRUE
@@ -142,6 +160,7 @@
 		return FALSE
 	padlock.forceMove(get_turf(src))
 	padlock = null
+	ultimate_unbreaker = FALSE
 	cut_overlay("[initial(icon_state)]_padlock")
 
 //Deadbolts
@@ -227,6 +246,7 @@
 			padlock = null
 			src.desc = "[initial(desc)]"
 			cut_overlay("[initial(icon_state)]_padlock")
+			ultimate_unbreaker = FALSE
 	else if(deadbolt)
 		if(deadbolt.pry_off(user,src))
 			if(deadbolt.mapped)
@@ -234,6 +254,7 @@
 			remove_deadbolt()
 			deadbolt = null
 			cut_overlay(deadbolt_overlay)
+			ultimate_unbreaker = FALSE
 	return
 
 /obj/structure/simple_door/proc/SwitchState(animate)
@@ -284,12 +305,19 @@
 			to_chat(user, "[src] has no lock attached")
 			return
 		else
-			return padlock.check_key(I,user,src)
+			padlock.check_key(I,user,src)
+			if(padlock.locked)
+				ultimate_unbreaker = TRUE
+			else
+				ultimate_unbreaker = FALSE
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	attack_hand(user)
 
-
+/obj/structure/simple_door/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, armour_penetration = 0, atom/attacked_by)
+	if(ultimate_unbreaker) // unbreak me complitely
+		return
+	return ..()
 
 /obj/structure/simple_door/proc/TryToSwitchState(atom/user, animate)
 	if(moving)
@@ -618,7 +646,7 @@
 
 /obj/structure/simple_door/bunker
 	name = "airlock"
-	desc = "An olive green painted airlock.<br>The door mechanism itself is a complex mix of an electic engine and hydraulic motion.<br>This particular door looks like a pre-War military tech."
+	desc = "An olive green painted airlock.<br>The door mechanism itself is a complex mix of an electic engine and hydraulic motion.<br>This particular door looks like a Pre-Fall military tech."
 	icon_state = "bunker"
 	door_type = "bunker"
 	material_type = /obj/item/stack/sheet/metal
@@ -630,7 +658,7 @@
 	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
 
 /obj/structure/simple_door/bunker/glass
-	desc = "A olive green painted armored door with semi-transparent glass window.<br>The door mechanism itself is a complex mix of an elecrtic engine and hydraulic motion.<br>This particular door looks like a pre-War military tech."
+	desc = "A olive green painted armored door with semi-transparent glass window.<br>The door mechanism itself is a complex mix of an elecrtic engine and hydraulic motion.<br>This particular door looks like a Pre-Fall military tech."
 	icon_state = "bunkerglass"
 	door_type = "bunkerglass"
 	explosion_block = 4 //A glass window in it, reduces the resistance, am I right?

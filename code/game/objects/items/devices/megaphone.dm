@@ -3,7 +3,7 @@
 	desc = "A device used to project your voice. Loudly."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "megaphone"
-	item_state = "radio"
+	inhand_icon_state = "radio"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
@@ -23,14 +23,16 @@
 	. = ..()
 	UnregisterSignal(M, COMSIG_MOB_SAY)
 
-/obj/item/megaphone/proc/handle_speech(mob/living/carbon/user, list/speech_args)
+/obj/item/megaphone/proc/handle_speech(mob/living/carbon/user, datum/rental_mommy/chat/mom)
+	if(!mom)
+		return
 	if (user.get_active_held_item() == src)
 		if(spamcheck > world.time)
 			to_chat(user, span_warning("\The [src] needs to recharge!"))
 		else
 			playsound(loc, megaphone_sound, 100, 0, 1)
 			spamcheck = world.time + 50
-			speech_args[SPEECH_SPANS] |= voicespan
+			mom.spans |= voicespan
 
 
 /obj/item/megaphone/emag_act(mob/user)
@@ -66,7 +68,7 @@
 	desc = "A horn carried by roman flagbearers to inform the commander's orders to the troops. Loudly."
 	icon = 'icons/obj/musician.dmi'
 	icon_state = "cornu"
-	item_state = "cornu"
+	inhand_icon_state = "cornu"
 	lefthand_file = 'icons/mob/inhands/equipment/horns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/horns_righthand.dmi'
 	megaphone_sound = 'sound/items/cornu.ogg'

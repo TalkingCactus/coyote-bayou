@@ -6,8 +6,8 @@
 	righthand_file = 'icons/fallout/onmob/weapons/melee2h_righthand.dmi'
 	mob_overlay_icon = 'icons/fallout/onmob/backslot_weapon.dmi'
 	attack_speed = CLICK_CD_MELEE * 1.15 //9.2
-	w_class = WEIGHT_CLASS_BULKY
-	slot_flags = INV_SLOTBIT_BACK
+	w_class = WEIGHT_CLASS_NORMAL
+	slot_flags = INV_SLOTBIT_BELT | INV_SLOTBIT_BACK
 	max_integrity = 200
 	armor = ARMOR_VALUE_GENERIC_ITEM
 	var/icon_prefix = null
@@ -317,9 +317,9 @@
 	weapon_special_component = /datum/component/weapon_special/ranged_spear
 
 // Deathclaw Spear		Keywords: TRIBAL, Damage 22/48, Armor-piercing +0.3, Reach
-/obj/item/twohanded/spear/bonespear/deathclaw
-	name = "deathclaw spear"
-	desc = "A finely crafted spear with a shaft wrapped in deathclaw leather. It is tipped with a claw from a beast that must have been terrifying in size."
+/obj/item/twohanded/spear/bonespear/aethergiest
+	name = "aethergiest spear"
+	desc = "A finely crafted spear with a shaft wrapped in aethergiest leather. It is tipped with a claw from a beast that must have been terrifying in size."
 	icon_state = "spear-claw"
 	icon_prefix = "spear-claw"
 	force = 22
@@ -332,8 +332,8 @@
 
 // Deathclaw Spear-Axe		Keywords: TRIBAL, Damage 25/30, Armor-piercing +0.25, Reach, Wound Bonus
 /obj/item/twohanded/spearaxe
-	name = "deathclaw spear-axe"
-	desc = "An exceptionally crafted, agile spear-axe with a light shaft wrapped in deathclaw leather. It is tipped with a claw from a terrifying beast and well weighted for single-hand use. Attacks fast."
+	name = "aethergiest spear-axe"
+	desc = "An exceptionally crafted, agile spear-axe with a light shaft wrapped in aethergiest leather. It is tipped with a claw from a terrifying beast and well weighted for single-hand use. Attacks fast."
 	icon = 'icons/fallout/objects/melee/twohanded.dmi'
 	lefthand_file = 'icons/fallout/onmob/weapons/melee2h_lefthand.dmi'
 	righthand_file = 'icons/fallout/onmob/weapons/melee2h_righthand.dmi'
@@ -347,7 +347,7 @@
 	wound_bonus = 5
 	bare_wound_bonus = 10
 	w_class = WEIGHT_CLASS_NORMAL
-	slot_flags = INV_SLOTBIT_BELT + SLOT_BACK
+	slot_flags = INV_SLOTBIT_BELT | INV_SLOTBIT_BACK
 	force = 30
 	force_unwielded = 30
 	force_wielded = 75
@@ -537,7 +537,7 @@
 	icon_state_on = "protonaxe_on"
 	w_class = WEIGHT_CLASS_BULKY
 	w_class_on = WEIGHT_CLASS_HUGE
-	slot_flags = INV_SLOTBIT_BACK
+	slot_flags = INV_SLOTBIT_BELT | INV_SLOTBIT_BACK
 	slot_flags_on = null
 	force = 28
 	force_on = 65
@@ -546,13 +546,14 @@
 	throwforce = 15
 	throwforce_on = 30
 	attack_speed = CLICK_CD_MELEE
-	var/emp_radius = 1
+	var/emp_amount = 5
 
-///obj/item/melee/transforming/energy/axe/protonaxe/afterattack(atom/A, mob/living/user, proximity)   //As it turns out, everything about this cool gimmick is broken.
-//	. = ..()
-//	if(!active)
-//		return
-//	empulse_using_range(A, emp_radius, log=0) //fox go a (A)
+/obj/item/melee/transforming/energy/axe/protonaxe/afterattack(atom/A, mob/living/user, proximity)   //As it turns out, everything about this cool gimmick is broken.
+	. = ..()
+	if(!active || !ismovable(A))
+		return
+	A.emp_act(emp_amount)
+	// empulse_using_range(A, emp_radius, log=0) //fox go a (A)
 
 //dan kelly is a nerd NO YOU ARE!!!
 
@@ -586,7 +587,7 @@
 // Rocket-assisted Sledgehammer			Keywords: Damage 20/56, Mining  Issues left: mining only when dual wielded, sound to play always on hit
 /obj/item/twohanded/sledgehammer/rockethammer
 	name = "rocket-assisted sledgehammer"
-	desc = "This pre-War model was originally used by construction crews for demolition. Fitted with a rocket booster at the head, \
+	desc = "This Pre-Fall model was originally used by construction crews for demolition. Fitted with a rocket booster at the head, \
 	the sledgehammer would behave like a normal tool until it reached a certain acceleration point, when the booster would activate  \
 	and deliver a tremendously powerful impact, easily crushing concrete."
 	icon_state = "hammer-rocket"
@@ -784,7 +785,7 @@
 	lefthand_file = 'icons/fallout/onmob/weapons/melee2h_lefthand.dmi'
 	righthand_file = 'icons/fallout/onmob/weapons/melee2h_righthand.dmi'
 	icon_state = "steelsaw"
-	item_state = "steelsaw"
+	inhand_icon_state = "steelsaw"
 	icon_prefix = "steelsaw"
 	force = 4
 	backstab_multiplier = 1.5
@@ -797,7 +798,7 @@
 	sharpness = SHARP_EDGED
 	resistance_flags = FIRE_PROOF
 	w_class = WEIGHT_CLASS_BULKY
-	slot_flags = null
+	slot_flags = INV_SLOTBIT_BELT | INV_SLOTBIT_BACK
 	total_mass = TOTAL_MASS_NORMAL_ITEM //it swings faster
 	var/structure_bonus_damage = 20
 	var/on_icon_state = "steelsaw_on"
@@ -815,7 +816,7 @@
 	if(on)
 		user.visible_message("<span class ='warning'>[user] pulls the cord, starting up the [src] with a roar and letting the blades spin up.</span>")
 		icon_state = on_icon_state
-		item_state = on_item_state
+		inhand_icon_state = on_item_state
 		w_class = weight_class_on
 		force = force_on
 		attack_speed = CLICK_CD_MELEE * 0.5
@@ -824,7 +825,7 @@
 	else
 		user.visible_message("<span class ='notice'>[user] presses the off button, stopping the noise and the carnage.</span>")
 		icon_state = off_icon_state
-		item_state = off_item_state
+		inhand_icon_state = off_item_state
 		w_class = WEIGHT_CLASS_BULKY
 		force = force_off
 		attack_verb = list("poked", "scraped")
@@ -854,7 +855,7 @@
 	name = "auto axe"
 	desc = "A reinforced and heavier steel saw, upgraded using the parts of a car engine. A little heavy and ungainly to use as a tool, however."
 	icon_state = "autoaxe"
-	item_state = "autoaxe"
+	inhand_icon_state = "autoaxe"
 	icon_prefix = "autoaxe"
 	force_on = 55
 	armour_penetration = 0.3 //it's an expensive to craft weapon that requires crafting recipes and hunting around for some rather esoteric parts, it should be worth the trouble.
@@ -871,7 +872,7 @@
 	if(on)
 		user.visible_message("<span class ='warning'>[user] turns the starting crank on the [src], starting it up with a guttral roar.</span>")
 		icon_state = on_icon_state
-		item_state = on_item_state
+		inhand_icon_state = on_item_state
 		w_class = weight_class_on
 		force = force_on
 		attack_speed = CLICK_CD_MELEE * 0.5
@@ -880,7 +881,7 @@
 	else
 		user.visible_message("<span class ='notice'>[user] cuts the throttle on the [src], letting the blades slowly spin down.</span>")
 		icon_state = off_icon_state
-		item_state = off_item_state
+		inhand_icon_state = off_item_state
 		w_class = WEIGHT_CLASS_BULKY
 		force = force_off
 		attack_verb = list("poked", "scraped")

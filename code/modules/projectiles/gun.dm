@@ -29,7 +29,7 @@ ATTACHMENTS
 	desc = "It's a gun. It's pretty terrible, though."
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "detective"
-	item_state = "gun"
+	inhand_icon_state = "gun"
 	flags_1 =  CONDUCT_1
 	slot_flags = null
 	custom_materials = list(/datum/material/iron=2000)
@@ -125,7 +125,7 @@ ATTACHMENTS
 	var/suppressor_x_offset = 0
 	var/suppressor_y_offset = 0
 
-	var/equipsound = 'sound/f13weapons/equipsounds/pistolequip.ogg'
+	equipsound = 'sound/f13weapons/equipsounds/pistolequip.ogg'
 
 	//Zooming
 	var/zoomable = FALSE //whether the gun generates a Zoom action on creation
@@ -135,7 +135,7 @@ ATTACHMENTS
 
 	var/worn_out = FALSE	//If true adds overlay with suffix _worn, and a slight malus to stats
 	var/dryfire_sound = "gun_dry_fire"
-	var/dryfire_text = "*click*"
+	var/dryfire_text = ""
 
 	/// Time that much pass between cocking your gun, if it supports it
 	var/cock_delay = GUN_COCK_SHOTGUN_BASE //haha cock
@@ -190,6 +190,9 @@ ATTACHMENTS
 	var/reloading = FALSE
 	/// This is the base reload speed, which is modified by things like the size of the magazine in use.
 	var/reloading_time = 1 SECONDS
+	maptext_width = 48 //prevents ammo count from wrapping down into two lines
+	maptext_x = 4
+	maptext_y = 2
 
 /obj/item/gun/Initialize()
 	recoil_tag = SSrecoil.give_recoil_tag(init_recoil)
@@ -335,9 +338,10 @@ ATTACHMENTS
 	playsound(src, dryfire_sound, 30, 1)
 	update_firemode()
 	update_icon()
+	user.ReloadGun()
 
 /obj/item/gun/proc/shoot_live_shot(mob/living/user, pointblank = FALSE, mob/pbtarget, message = 1, stam_cost = 0, obj/item/projectile/P, casing_sound)
-	if(stam_cost) //CIT CHANGE - makes gun recoil cause staminaloss
+	if(stam_cost && istype(user)) //CIT CHANGE - makes gun recoil cause staminaloss
 		var/safe_cost = clamp(stam_cost, 0, STAMINA_NEAR_CRIT - user.getStaminaLoss())*(firing && burst_size >= 2 ? 1/burst_size : 1)
 		user.adjustStaminaLossBuffered(safe_cost) //CIT CHANGE - ditto
 
@@ -349,7 +353,7 @@ ATTACHMENTS
 		shootprops[CSP_INDEX_SOUND_OUT] = silenced ? fire_sound_silenced : fire_sound
 
 	playsound(
-		user,
+		src,
 		shootprops[CSP_INDEX_SOUND_OUT],
 		shootprops[CSP_INDEX_VOLUME],
 		shootprops[CSP_INDEX_VARY],
@@ -370,13 +374,13 @@ ATTACHMENTS
 /obj/item/gun/pickup(mob/living/user)
 	. = ..()
 	weapondraw(src, user)
-	play_equip_sound(src)
 
 /obj/item/gun/emp_act(severity)
 	. = ..()
 	if(!(. & EMP_PROTECT_CONTENTS))
 		for(var/obj/O in contents)
 			O.emp_act(severity)
+	update_icon()
 
 /obj/item/gun/attack(mob/living/M, mob/user)
 	if(bayonet && user.a_intent == INTENT_HARM)
@@ -385,6 +389,7 @@ ATTACHMENTS
 	. = ..()
 	if(!(. & DISCARD_LAST_ACTION))
 		user.DelayNextAction(attack_speed)
+	update_icon()
 
 /obj/item/gun/attack_obj(obj/O, mob/user)
 	if(bayonet && user.a_intent == INTENT_HARM) // Must run BEFORE parent call, so we don't smack them with the gun body too.
@@ -393,6 +398,7 @@ ATTACHMENTS
 	. = ..()
 	if(!(. & DISCARD_LAST_ACTION))
 		user.DelayNextAction(attack_speed)
+	update_icon()
 
 /obj/item/gun/afterattack(atom/target, mob/living/user, flag, params)
 	. = ..()
@@ -418,6 +424,9 @@ ATTACHMENTS
 				var/datum/wound/W = i
 				if(W.try_treating(src, user))
 					return // another coward cured!
+	if(user && user.incapacitated(allow_crit = TRUE))
+		to_chat(user, span_danger("You're too messed up to shoot [src]!"))
+		return
 
 	if(istype(user))//Check if the user can use the gun, if the user isn't alive(turrets) assume it can.
 		var/mob/living/L = user
@@ -615,10 +624,11 @@ ATTACHMENTS
 				update_icon()
 				return
 			else
-				if(get_dist(user, target) <= 1) //Making sure whether the target is in vicinity for the pointblank shot
+				if(get_dist((user || get_turf(src)), target) <= 1) //Making sure whether the target is in vicinity for the pointblank shot
 					shoot_live_shot(user, 1, target, message, stam_cost, BB, casing_sound)
 				else
 					shoot_live_shot(user, 0, target, message, stam_cost, BB, casing_sound)
+				user?.in_crit_HP_penalty = 25
 		else
 			shoot_with_empty_chamber(user)
 			update_icon()
@@ -750,6 +760,10 @@ ATTACHMENTS
 	if(user.get_active_held_item() != src) //we can only stay zoomed in if it's in our hands	//yeah and we only unzoom if we're actually zoomed using the gun!!
 		remove_hud_actions(user)
 		zoom(user, FALSE)
+	if(HAS_TRAIT(user, TRAIT_WEAK_OF_MUSCLES))  //we obviously need to check if the user HAS the trait.... DUH! (thank you a lot Blue and Dan)
+		if(weapon_class > WEAPON_CLASS_NORMAL)
+			user.dropItemToGround(src, TRUE)
+			to_chat(user, span_alert("The [src] is too heavy for you!"))
 
 /obj/item/gun/dropped(mob/user)
 	. = ..()
@@ -901,14 +915,6 @@ ATTACHMENTS
 			user.show_message(span_notice("\The [src] is ready to fire."))
 			playsound(get_turf(user), "sound/weapons/lockedandloaded.ogg", 100, 1)
 
-/obj/item/gun/proc/play_equip_sound(src, volume=50)
-	if(src && equipsound && volume)
-		var/played_sound = equipsound
-
-		if(islist(equipsound))
-			played_sound = pick(equipsound)
-
-		playsound(src, played_sound, volume, 1)
 
 /*
 /// Takes the current recoil, adds on some more recoil from the bullet and modded by the gun
@@ -1060,6 +1066,18 @@ ATTACHMENTS
 		if("Weapon Info")
 			ui_interact(user)
 
+/// Updates the ammo count number that renders on top of the icon
+/obj/item/gun/proc/UpdateAmmoCountOverlay()
+	return
+
+/obj/item/gun/doMove(atom/destination)
+	. = ..()
+	UpdateAmmoCountOverlay()
+
+/obj/item/gun/update_icon()
+	. = ..()
+	UpdateAmmoCountOverlay()
+
 /obj/item/gun/proc/toggle_scope(mob/living/user)
 	//looking through a scope limits your periphereal vision
 	//still, increase the view size by a tiny amount so that sniping isn't too restricted to NSEW
@@ -1168,18 +1186,18 @@ ATTACHMENTS
 			firemodes_info += list(firemode_info)
 		data["firemode_info"] = firemodes_info
 	else
-		stack_trace("No firemodes found for [src]!")
-		message_admins("No firemodes found for [src]!")
+		// stack_trace("No firemodes found for [src]!")
+		// message_admins("No firemodes found for [src]!")
 		data["firemode_count"] = 1
-		data["firemode_info"] = list(
+		data["firemode_info"] = list(list(
 			"index" = 1,
 			"current" = TRUE,
-			"name" = "Im a fire mode!",
-			"desc" = "but its broken",
+			"name" = "Single Shot",
+			"desc" = "Single shot firing mode. Fires one shot at a time.",
 			"burst" = 1,
 			"fire_delay" = 1,
 			"fire_rate" = 1,
-		)
+		))
 
 	data["attachments"] = list()
 	var/attindex = 1
@@ -1798,7 +1816,7 @@ HOOK GUN CODE. Bizarre but could be made into something useful.
 	name = "hook modified sawn-off shotgun"
 	desc = "Range isn't an issue when you can bring your user to you."
 	icon_state = "hookshotgun"
-	item_state = "shotgun"
+	inhand_icon_state = "shotgun"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/bounty
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = GUN_ONE_HAND_ONLY
@@ -1814,7 +1832,7 @@ CODE FOR ASSAULT RIFE WITH GRENADE LAUNCHER ATTACHED
 	name = "\improper M-90gl Carbine"
 	desc = "A three-round burst 5.56 toploading carbine, designated 'M-90gl'. Has an attached underbarrel grenade launcher which can be toggled on and off."
 	icon_state = "m90"
-	item_state = "m90"
+	inhand_icon_state = "m90"
 	mag_type = /obj/item/ammo_box/magazine/m556
 	fire_sound = 'sound/weapons/gunshot_smg.ogg'
 	can_suppress = FALSE

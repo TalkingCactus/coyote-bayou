@@ -10,8 +10,11 @@
 
 /obj/item/storage/survivalkit/PopulateContents()
 	new /obj/item/flashlight(src)
-	new /obj/item/storage/box/matches(src)
-	new /obj/item/melee/onehanded/knife/hunting(src)
+	if(prob(10))
+		new /obj/item/reagent_containers/glass/beaker/waterbottle/wataur(src)
+	else
+		new /obj/item/reagent_containers/glass/beaker/waterbottle/large(src)
+	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/hand_tele(src)
 
 /// Empty kit!
@@ -35,8 +38,11 @@
 
 /obj/item/storage/survivalkit/tribal/PopulateContents()
 	new /obj/item/flashlight/flare/torch(src)
-	new /obj/item/melee/onehanded/knife/bone(src)
-	new /obj/item/firebow(src)
+	new /obj/item/clothing/mask/gas(src)
+	if(prob(10))
+		new /obj/item/reagent_containers/glass/beaker/waterbottle/wataur(src)
+	else
+		new /obj/item/reagent_containers/glass/waterskin(src)
 	new /obj/item/hand_tele(src)
 
 /obj/item/storage/survivalkit/tribal/empty/PopulateContents()
@@ -57,7 +63,7 @@
 /obj/item/storage/survivalkit/outlaw/PopulateContents()
 	new /obj/item/flashlight(src)
 	new /obj/item/flashlight/glowstick(src)
-	new /obj/item/melee/onehanded/knife/bowie(src)
+	new /obj/item/clothing/mask/gas(src)
 
 /obj/item/storage/survivalkit/outlaw/empty/PopulateContents()
 	return
@@ -81,7 +87,6 @@
 
 /obj/item/storage/survivalkit/medical/PopulateContents()
 	new /obj/item/reagent_containers/hypospray/medipen/stimpak(src)
-	new /obj/item/reagent_containers/hypospray/loadout(src)
 	new /obj/item/stack/medical/gauze(src)
 	new /obj/item/stack/medical/ointment(src)
 	new /obj/item/reagent_containers/pill/charcoal(src)

@@ -3,7 +3,7 @@
 	desc = "A wrench with common uses. Can be found in your hand. This can repair dents in robots."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "basicwrench2"
-	item_state = "basicwrench"
+	inhand_icon_state = "basicwrench"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	flags_1 = CONDUCT_1
@@ -17,6 +17,7 @@
 	usesound = 'sound/items/ratchet.ogg'
 	custom_materials = list(/datum/material/iron=500)
 	reskinnable_component = null
+	block_parry_data = /datum/block_parry_data/bokken
 
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 	tool_behaviour = TOOL_WRENCH
@@ -24,6 +25,7 @@
 	armor = ARMOR_VALUE_GENERIC_ITEM
 	wound_bonus = -10
 	bare_wound_bonus = 5
+	weapon_special_component = /datum/component/weapon_special/single_turf
 
 /obj/item/wrench/attack(mob/living/M, mob/living/user)
 	if(user.a_intent == INTENT_HARM)
@@ -69,6 +71,14 @@
 		to_chat(user, span_notice("You were interrupted."))
 		praying = FALSE
 
+/obj/item/wrench/afterattack(atom/A, mob/living/user, proximity)
+	. = ..()
+	if(!proximity || !wielded || IS_STAMCRIT(user))
+		return
+	if(istype(A, /obj/structure) || istype(A, /obj/machinery))
+		var/obj/W = A
+		W.take_damage(force, BRUTE, "melee", 0, attacked_by = user)
+
 /obj/item/wrench/cyborg
 	name = "automatic wrench"
 	desc = "An advanced robotic wrench. Can be found in construction cyborgs."
@@ -101,7 +111,7 @@
 	name = "hand drill"
 	desc = "A simple powered hand drill. It's fitted with a bolt bit."
 	icon_state = "drill_bolt"
-	item_state = "drill"
+	inhand_icon_state = "drill"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	usesound = 'sound/items/drill_use.ogg'
@@ -144,7 +154,7 @@
 	name = "crude wrench"
 	desc = "A bent bar, finnicky to use and requires a lot of effort for consant adjustments, better than your bare hand though."
 	icon_state = "crudewrench"
-	item_state = "crudewrench"
+	inhand_icon_state = "crudewrench"
 	toolspeed = 4
 	reskinnable_component = null
 
@@ -153,15 +163,44 @@
 	name = "basic wrench"
 	desc = "A pipe with an old, wrench head on it."
 	icon_state = "basicwrench"
-	item_state = "basicwrench"
+	inhand_icon_state = "basicwrench"
 	toolspeed = 2
 	reskinnable_component = null
 */
 
 /obj/item/wrench/hightech
-	name = "prewar wrench"
+	name = "prefall wrench"
 	desc = "A drop forged wrench, very durable and well made."
 	icon_state = "wrench"
-	item_state = "wrench"
+	inhand_icon_state = "wrench"
 	toolspeed = 0.1
 	reskinnable_component = /datum/component/reskinnable/wrench
+
+// Sledgehammer			Keywords: Damage 25/45, Blacksmithing
+/obj/item/wrench/sledgehammer
+	name = "buster wrench"
+	desc = "An unusually large wrench that appears equally adept at bashing skulls and turning bolts. Why it has to be so damn big is anyone's guess, but you can't deny that it feels satisfying to swing."
+	inhand_icon_state = "altevian-wrench"
+	slot_flags = INV_SLOTBIT_BELT | INV_SLOTBIT_BACK
+
+	icon = 'icons/obj/revwrench.dmi'
+	icon_state = "altevian-wrench"
+	wielded_icon = "altevian-wrench"
+	mob_overlay_icon = 'icons/obj/revwrenchback.dmi'
+	lefthand_file = 'icons/obj/revwrenchleft.dmi'
+	righthand_file = 'icons/obj/revwrenchright.dmi'
+	toolspeed = 1
+	force = 30
+	throwforce = 20 // Huge hammers aren't that great for throwing
+	sharpness = SHARP_NONE
+	attack_verb = list("bashed", "pounded", "bludgeoned", "pummeled", "thrashed")
+	force_wielded = 70
+	force_unwielded = 30
+	attack_speed = CLICK_CD_MELEE * 1.8 //14.4
+
+/obj/item/wrench/sledgehammer/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/jousting/sledge)
+
+
+

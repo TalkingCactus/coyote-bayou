@@ -8,6 +8,9 @@
  *afterattack. The return value does not matter.
  */
 /obj/item/proc/melee_attack_chain(mob/user, atom/target, params, attackchain_flags, damage_multiplier = 1)
+	// if(user != target && !isitem(target) && user.incapacitated() && !extract_ckey(target)) // no attacking mobs, other players is okay
+	// 	to_chat(user, span_danger("You are to messed up to use [src] on anything but yourself!"))
+	// 	return
 	if(isliving(user))
 		var/mob/living/L = user
 		if(!CHECK_MOBILITY(L, MOBILITY_USE) && !(attackchain_flags & ATTACK_IS_PARRY_COUNTERATTACK))
@@ -104,9 +107,13 @@
 					return FALSE
 	//<--
 
-	if((force || damage_override) && damtype != STAMINA && HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_warning("You don't want to harm other living beings!"))
-		return
+	if((force || damage_override) && damtype != STAMINA)
+		if(HAS_TRAIT(user, TRAIT_PACIFISM))
+			to_chat(user, span_warning("You don't want to harm other living beings!"))
+			return
+		else if(!PVPcheck(user, M, src))
+			to_chat(user, span_alert("You both need to have Combat Intent enabled to hurt each other!"))
+			return
 
 	//var/bigleagues = 10 //flat additive
 	//var/littleleagues = 5
@@ -127,22 +134,26 @@
 			force_modifier = (-force * 0.2) // You do 80% damage because you're a walking corpse
 		if(HAS_TRAIT(user, TRAIT_PANICKED_ATTACKER))
 			force_modifier = (-force * 0.8) // You do 20% damage because of fear
+		if(user.health < user.crit_threshold)
+			force_modifier = (-force * 0.2) // You do 80% damage because you're in critical condition
 		else
 			if(HAS_TRAIT(user, TRAIT_BIG_LEAGUES))
-				force_modifier += 10
+				force_modifier += 25
 			if(HAS_TRAIT(user, TRAIT_LITTLE_LEAGUES))
-				force_modifier += 5
+				force_modifier += 13
 			if(HAS_TRAIT(user, TRAIT_GENTLE))
-				force_modifier += -5
+				force_modifier += -13
 			if(HAS_TRAIT(user, TRAIT_WIMPY))
-				force_modifier += -10
+				force_modifier += -25
 			if(HAS_TRAIT(user, TRAIT_BUFFOUT_BUFF))
-				force_modifier += 10
+				force_modifier += 50
 			if(HAS_TRAIT(user, TRAIT_FEV))
 				force_modifier += (force * 0.1)
 			if(HAS_TRAIT(user, TRAIT_SMUTANT))
 				force_modifier += (force * 0.1)
 	force_modifier = clamp(force_modifier, -force, force * 0.25)
+	if(ishostile(M))
+		user.in_crit_HP_penalty = HOSTILES_ATTACK_UNTIL_THIS_FAR_INTO_CRIT
 
 	var/force_out = force + force_modifier
 	if(force_out <= 0)
@@ -161,6 +172,18 @@
 
 	log_combat(user, M, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
 	add_fingerprint(user)
+
+/proc/PVPcheck(mob/living/attacker, mob/living/hurted)
+	if(!attacker || !hurted)
+		return TRUE // sure do whatever
+	if(isanimal(hurted))
+		return TRUE // mob
+	if(!attacker.client || !hurted.client)
+		return TRUE // one of them lacks a clint
+	// now the real PVP check
+	if(attacker.enabled_combat_indicator && hurted.enabled_combat_indicator)
+		return TRUE
+	return FALSE
 
 //the equivalent of the standard version of attack() but for object targets.
 /obj/item/proc/attack_obj(obj/O, mob/living/user, damage_override)

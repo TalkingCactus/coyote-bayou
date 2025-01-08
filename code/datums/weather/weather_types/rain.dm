@@ -14,8 +14,8 @@
 	end_overlay = "rain_gathering"
 	weather_message = span_notice("<i>You hear the crack of thunder as the rainstorm grows.</i>")
 	weather_overlay = "thunderstorm"
-	weather_duration_lower = 5 MINUTES
-	weather_duration_upper = 25 MINUTES
+	weather_duration_lower = 30 MINUTES
+	weather_duration_upper = 2 HOURS
 	tag_weather = WEATHER_RAIN
 	area_types = list(/area/f13/wasteland, /area/f13/desert, /area/f13/farm, /area/f13/forest)
 	protected_areas = list(/area/shuttle)
@@ -50,7 +50,6 @@
 	CHECK_TICK
 
 /datum/weather/rain/weather_act_turf(turf/open/T)
-/* // Stops weather from cleaning the ground (though it still cleans mobs c:)
 	var/cleaned
 	if(!cleaned)
 		for(var/obj/effect/decal/O in T) //Clean cleanable decals in affected areas
@@ -58,7 +57,7 @@
 				qdel(O)
 				cleaned = 1
 				CHECK_TICK
-*/
+
 	for(var/obj/effect/decal/cleanable/blood/B in T)
 		qdel(B)
 		CHECK_TICK
@@ -177,7 +176,7 @@
 		"<span class='green'><font size=2>...For adventurers to seek out and do battle with the rogue robots of the area.</font>",
 		"<span class='green'><font size=2>...For adventurers to seek out and do battle with the feral ghouls of the area.</font>",
 		"<span class='green'><font size=2>...For adventurers to seek out and do battle with the radscorpions of the area.</font>",
-		"<span class='green'><font size=2>...For adventurers to seek out and do battle with the deathclaws of the area.</font>",
+		"<span class='green'><font size=2>...For adventurers to seek out and do battle with the aethergiests of the area.</font>",
 		"<span class='green'><font size=2>...For adventurers to loot the city of Redlick, west of Ashdown, for supplies.</font>",
 		"<span class='green'><font size=2>...For adventurers to loot the city of Texarkana, east of Nash, for supplies.</font>",
 		"<span class='green'><font size=2>...For adventurers to loot the mines north of the Christus Saint Michaels hospital in Texarkana.</font>",

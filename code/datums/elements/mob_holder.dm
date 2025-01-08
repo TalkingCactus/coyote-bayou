@@ -32,11 +32,11 @@
 	UnregisterSignal(source, COMSIG_PARENT_EXAMINE)
 
 /datum/element/mob_holder/proc/on_examine(mob/living/source, mob/user, list/examine_list)
-	if(ishuman(user) && !istype(source.loc, /obj/item/clothing/head/mob_holder))
-		examine_list += span_notice("Looks like [source.p_they(TRUE)] can be picked up with <b>Alt+Click</b>! Maybe check in LOOC before just doing so though.")
+	// if(ishuman(user) && !istype(source.loc, /obj/item/clothing/head/mob_holder))
+	// 	examine_list += span_notice("Looks like [source.p_they(TRUE)] can be picked up with <b>Alt+Click</b>! Maybe check in LOOC before just doing so though.")
 
 /datum/element/mob_holder/proc/mob_try_pickup(mob/living/source, mob/user)
-	if(!user.Adjacent(source) || user.incapacitated())
+	if(!user.Adjacent(source) || user.incapacitated(allow_crit = TRUE))
 		return FALSE
 	if(isanimal(user))
 		var/mob/living/simple_animal/S = user
@@ -74,7 +74,7 @@
 
 /datum/element/mob_holder/proc/drone_worn_icon(mob/living/simple_animal/drone/D, obj/item/clothing/head/mob_holder/holder, mob/user)
 	var/new_state = "[D.visualAppearence]_hat"
-	holder.item_state = new_state
+	holder.inhand_icon_state = new_state
 	holder.icon_state = new_state
 
 
@@ -109,7 +109,7 @@
 	if(alt_worn)
 		mob_overlay_icon = alt_worn
 	if(worn_state)
-		item_state = worn_state
+		inhand_icon_state = worn_state
 		icon_state = worn_state
 	if(left_hand)
 		lefthand_file = left_hand

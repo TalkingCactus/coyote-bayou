@@ -120,8 +120,7 @@
 "adn" = (
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/f13/enclave)
 "adE" = (
@@ -257,7 +256,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/red,
 /area/f13/vault)
 "ajp" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/paper,
 /obj/item/pen,
 /turf/open/floor/f13{
@@ -279,7 +278,7 @@
 	desc = "A console that is capable of accessing the whole of the Brotherhood of Steel's archives. A very important aspect of their organization, this machine is not to be tampered with. Unless sabotage is your goal.";
 	name = "archive database"
 	},
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /turf/open/floor/carpet/black,
 /area/f13/brotherhood/archives)
 "akB" = (
@@ -348,7 +347,7 @@
 	},
 /area/f13/brotherhood/operations)
 "amm" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /turf/open/floor/f13{
 	icon_state = "bar"
 	},
@@ -367,7 +366,7 @@
 /turf/open/indestructible/ground/outside/water,
 /area/f13/wasteland)
 "ane" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/storage/box/dice{
 	pixel_x = 5;
 	pixel_y = 11
@@ -462,7 +461,7 @@
 /turf/open/floor/f13/wood,
 /area/f13/bunker)
 "arU" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/paper_bin,
 /obj/item/pen,
 /turf/open/floor/f13{
@@ -601,7 +600,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/floor,
 /area/f13/vault)
 "awT" = (
-/obj/structure/sign/poster/prewar/poster71,
+/obj/structure/sign/poster/prefall/poster71,
 /turf/closed/wall/r_wall,
 /area/f13/brotherhood/rnd)
 "awX" = (
@@ -657,7 +656,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/misc/vaultrust,
 /area/f13/caves)
 "ayY" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/machinery/chem_dispenser/drinks{
 	dir = 1;
 	pixel_y = -1
@@ -979,7 +978,7 @@
 /turf/open/floor/plating/tunnel,
 /area/f13/brotherhood/rnd)
 "aQj" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/reagent_containers/food/drinks/soda_cans,
 /turf/open/floor/f13/wood,
 /area/f13/vault)
@@ -1018,7 +1017,7 @@
 	},
 /area/f13/brotherhood/operations)
 "aRB" = (
-/obj/structure/sign/poster/prewar/poster68,
+/obj/structure/sign/poster/prefall/poster68,
 /turf/closed/indestructible/f13vaultrusted{
 	name = "rusty reinforced wall"
 	},
@@ -1049,7 +1048,7 @@
 	icon_state = "mattress2";
 	pixel_y = 5
 	},
-/obj/structure/sign/poster/prewar/poster73{
+/obj/structure/sign/poster/prefall/poster73{
 	pixel_y = 31
 	},
 /obj/effect/decal/cleanable/dirt{
@@ -1129,7 +1128,7 @@
 /turf/open/floor/plating/tunnel,
 /area/f13/brotherhood/rnd)
 "aUX" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/crafting/capacitor,
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/f13{
@@ -1210,7 +1209,7 @@
 	},
 /area/f13/enclave)
 "aXN" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/f13/wood,
 /area/f13/brotherhood/leisure)
@@ -1328,7 +1327,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/misc/vaultrust,
 /area/f13/brotherhood/offices1st)
 "beX" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey,
 /obj/item/reagent_containers/food/drinks/drinkingglass,
 /obj/item/reagent_containers/food/drinks/drinkingglass,
@@ -1704,7 +1703,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/red,
 /area/f13/vault)
 "bst" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/machinery/bookbinder{
 	icon_state = "bigscanner";
 	pixel_y = 7
@@ -1745,7 +1744,7 @@
 /turf/closed/wall/r_wall,
 /area/f13/brotherhood/offices2nd)
 "bvK" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /turf/open/floor/carpet,
 /area/f13/brotherhood/offices2nd)
 "bwj" = (
@@ -1888,7 +1887,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/plating,
 /area/f13/vault)
 "bBm" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/paper,
 /obj/item/pen,
 /turf/open/floor/f13{
@@ -2212,7 +2211,7 @@
 /turf/open/floor/wood_common,
 /area/f13/brotherhood/leisure)
 "bSP" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/clothing/under/lawyer/red,
 /obj/item/clothing/accessory/lawyers_badge,
 /turf/open/floor/f13{
@@ -2319,7 +2318,7 @@
 /obj/structure/chair/comfy/shuttle{
 	desc = "A comfortable, secure seat. It has a very futuristic vouge feel.";
 	dir = 8;
-	name = "prewar lounge chair"
+	name = "prefall lounge chair"
 	},
 /turf/open/floor/f13{
 	icon_state = "darkdirtysolid"
@@ -3135,7 +3134,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/f13/vault)
 "cHw" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/effect/spawner/lootdrop/f13/traitbooks,
 /obj/item/flashlight/lamp/green,
 /turf/open/floor/f13/wood,
@@ -3672,7 +3671,7 @@
 /turf/open/floor/plating/f13/inside,
 /area/f13/brotherhood/operations)
 "dbm" = (
-/obj/structure/sign/poster/prewar/poster65,
+/obj/structure/sign/poster/prefall/poster65,
 /turf/closed/wall/r_wall,
 /area/f13/brotherhood/dorms)
 "dbP" = (
@@ -3688,7 +3687,7 @@
 /area/f13/brotherhood/rnd)
 "dcP" = (
 /obj/item/storage/bag/books,
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /turf/open/floor/f13/wood,
 /area/f13/vault)
 "dcT" = (
@@ -3736,7 +3735,7 @@
 /area/f13/vault)
 "den" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /turf/open/floor/f13{
 	icon_state = "bluerustysolid"
 	},
@@ -4119,7 +4118,7 @@
 	},
 /area/f13/bunker)
 "dpZ" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/circuitboard/machine/autolathe/ammo/improvised,
 /turf/open/floor/f13{
 	icon_state = "darkdirty"
@@ -4567,7 +4566,7 @@
 /turf/open/floor/plating/tunnel,
 /area/f13/brotherhood/rnd)
 "dHw" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /turf/open/floor/plasteel/f13/vault_floor/floor,
 /area/f13/vault)
 "dHM" = (
@@ -4782,7 +4781,7 @@
 /turf/open/water,
 /area/f13/underground/cave)
 "dNi" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/paper_bin,
 /turf/open/floor/f13{
 	icon_state = "darkdirty"
@@ -4846,7 +4845,7 @@
 /turf/open/floor/wood_common,
 /area/f13/brotherhood/leisure)
 "dPO" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /turf/open/floor/f13{
 	icon_state = "darkdirty"
 	},
@@ -4914,7 +4913,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/dark/darksolid,
 /area/f13/enclave)
 "dRx" = (
-/obj/structure/sign/poster/prewar/protectron,
+/obj/structure/sign/poster/prefall/protectron,
 /turf/closed/wall/r_wall/f13vault{
 	icon_state = "2-i"
 	},
@@ -5357,7 +5356,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/floor,
 /area/f13/enclave)
 "egQ" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/paper_bin,
 /obj/item/pen,
 /turf/open/floor/plasteel/f13/vault_floor/floor,
@@ -5681,7 +5680,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/dark/darksolid,
 /area/f13/vault)
 "erV" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/storage/box/drinkingglasses,
 /turf/open/floor/plasteel/f13/vault_floor/misc/cafeteria,
@@ -5796,7 +5795,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/floor/floorsolid,
 /area/f13/tunnel)
 "eyV" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/kitchen/rollingpin,
 /obj/item/reagent_containers/food/condiment/yeast{
 	layer = 5
@@ -5998,7 +5997,7 @@
 /turf/open/floor/plating/f13/inside,
 /area/f13/brotherhood/mining)
 "eGe" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/flashlight/lantern/dim,
 /turf/open/floor/holofloor/carpet,
 /area/f13/bunker)
@@ -6021,7 +6020,7 @@
 	},
 /area/f13/brotherhood/archives)
 "eIm" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/machinery/computer/libraryconsole/bookmanagement,
 /turf/open/floor/plasteel/f13/vault_floor/floor,
 /area/f13/vault)
@@ -6095,7 +6094,7 @@
 /turf/open/floor/f13/wood,
 /area/f13/vault)
 "eNs" = (
-/mob/living/simple_animal/hostile/deathclaw,
+/mob/living/simple_animal/hostile/aethergiest,
 /turf/open/indestructible/ground/inside/mountain,
 /area/f13/bunker)
 "eNB" = (
@@ -6125,7 +6124,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/red/whiteredfull,
 /area/f13/brotherhood/reactor)
 "eOc" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/machinery/computer/terminal{
 	dir = 4
 	},
@@ -6651,7 +6650,7 @@
 	},
 /area/f13/underground/cave)
 "fls" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/clothing/suit/hooded/cloak/goliath,
 /turf/open/indestructible/ground/inside/mountain,
 /area/f13/bunker)
@@ -6707,7 +6706,7 @@
 	},
 /area/f13/underground/cave)
 "fnS" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /turf/open/floor/f13{
 	icon_state = "darkdirtysolid"
 	},
@@ -6798,7 +6797,7 @@
 "frH" = (
 /obj/structure/chair/comfy/shuttle{
 	desc = "A comfortable, secure seat. It has a futuristic vouge feel.";
-	name = "prewar lounge chair"
+	name = "prefall lounge chair"
 	},
 /obj/effect/landmark/start/f13/uslt,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -7455,7 +7454,7 @@
 /turf/open/floor/wood_common,
 /area/f13/brotherhood/operations)
 "fNY" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/machinery/recharger,
 /turf/open/floor/f13/wood,
 /area/f13/bunker)
@@ -7868,7 +7867,7 @@
 /obj/structure/chair/comfy/shuttle{
 	desc = "A comfortable, secure seat. It has a futuristic vouge feel.";
 	layer = 2.7;
-	name = "prewar lounge chair"
+	name = "prefall lounge chair"
 	},
 /obj/effect/landmark/start/f13/sentinel,
 /turf/open/floor/f13{
@@ -7900,7 +7899,7 @@
 /turf/open/floor/carpet/black,
 /area/f13/brotherhood/offices2nd)
 "gdc" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/crafting/board,
 /obj/item/crafting/turpentine,
 /turf/open/floor/f13{
@@ -8008,7 +8007,7 @@
 /area/f13/building)
 "ggL" = (
 /obj/item/wisp_lantern,
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /turf/open/floor/plasteel/cult,
 /area/f13/building)
 "ghb" = (
@@ -8125,7 +8124,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/dark/darksolid,
 /area/f13/vault)
 "glR" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/machinery/light/broken,
 /turf/open/floor/f13{
 	icon_state = "darkdirty"
@@ -8153,7 +8152,7 @@
 	},
 /area/f13/enclave)
 "gnc" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/radio,
 /obj/item/radio,
 /obj/item/radio,
@@ -8213,7 +8212,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/misc/vaultrust,
 /area/f13/brotherhood/medical)
 "grE" = (
-/obj/structure/sign/poster/prewar/poster94{
+/obj/structure/sign/poster/prefall/poster94{
 	icon_state = "poster82";
 	pixel_x = 32
 	},
@@ -8776,7 +8775,7 @@
 /area/f13/enclave)
 "gPJ" = (
 /obj/machinery/computer/terminal{
-	desc = "A pre-war high security terminal. There's virtually no way to hack into this thing; it holds the most secure information the Brotherhood has to offer.";
+	desc = "A Pre-Fall high security terminal. There's virtually no way to hack into this thing; it holds the most secure information the Brotherhood has to offer.";
 	doc_content_1 = "The preservation of technology is our primary goal, all others are secondary. <br> <br>  Shield yourself from those not bound to you by steel, for they are the blind. Aid them when you can, but lose not sight of yourself and your brothers. Those who cast us out are not our true brothers, and may be regarded with the dignity of lesser men.";
 	doc_content_2 = "Give way your suspicions to the wisdom of thine Elder. Where he shows trust, so shall you. <br> <br> So has the Elder rejected the rule of our foolish old family who outcasted us, so shall you.";
 	doc_content_3 = "Through discourse, we gain the strength of our Brothers' minds. Deceit and lies of all ilk serve only to harm that strength. <br> <br> Your caste and duties mean everything, you will follow your leader and your leader will lead you. <br> <br> You may only follow the orders of another if it benefits the brotherhood. ";
@@ -9197,7 +9196,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/plating,
 /area/f13/vault)
 "heh" = (
-/obj/structure/table/wood{
+/obj/structure/table/wood/settler{
 	pixel_x = 2
 	},
 /turf/open/floor/carpet/black,
@@ -9230,12 +9229,10 @@
 /area/f13/brotherhood/offices1st)
 "heQ" = (
 /obj/structure/rack,
-/obj/item/clothing/suit/armor/power_armor/excavator,
-/obj/item/clothing/head/helmet/f13/power_armor/excavator,
 /turf/open/floor/plasteel/dark,
 /area/f13/vault)
 "hfm" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/machinery/reagentgrinder,
 /turf/open/floor/f13{
 	icon_state = "bar"
@@ -9267,7 +9264,7 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/f13/enclave)
 "hhx" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /turf/open/floor/carpet/black,
 /area/f13/vault)
 "hhG" = (
@@ -9283,7 +9280,7 @@
 /turf/open/indestructible/ground/inside/mountain,
 /area/f13/tunnel)
 "hig" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/paper_bin,
 /obj/item/pen,
 /obj/item/taperecorder,
@@ -9379,7 +9376,7 @@
 	},
 /area/f13/brotherhood/dorms)
 "hlu" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/trash/plate,
 /obj/item/trash/f13/steak,
 /turf/open/floor/f13{
@@ -9933,7 +9930,7 @@
 /obj/structure/falsewall/reinforced{
 	layer = 3
 	},
-/obj/structure/sign/poster/prewar/poster94{
+/obj/structure/sign/poster/prefall/poster94{
 	icon_state = "poster74"
 	},
 /obj/effect/decal/cleanable/cobweb/cobweb2,
@@ -10105,7 +10102,7 @@
 /turf/open/water,
 /area/f13/enclave)
 "hRS" = (
-/obj/structure/sign/poster/prewar/poster71,
+/obj/structure/sign/poster/prefall/poster71,
 /turf/closed/wall/r_wall,
 /area/f13/brotherhood/dorms)
 "hSe" = (
@@ -10234,7 +10231,7 @@
 	},
 /area/f13/bunker)
 "hZl" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/grenade/flashbang,
 /obj/item/grenade/flashbang,
 /obj/item/grenade/flashbang,
@@ -10460,7 +10457,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/floor,
 /area/f13/vault)
 "ijy" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/clothing/accessory/lawyers_badge,
 /obj/item/clothing/under/lawyer/black,
 /turf/open/floor/f13{
@@ -10546,7 +10543,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/f13/vault)
 "inF" = (
-/obj/structure/sign/poster/prewar/poster73,
+/obj/structure/sign/poster/prefall/poster73,
 /turf/closed/wall/r_wall,
 /area/f13/brotherhood/medical)
 "inK" = (
@@ -10650,7 +10647,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/red,
 /area/f13/vault)
 "irG" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/machinery/chem_dispenser/drinks/beer{
 	dir = 8
 	},
@@ -10803,7 +10800,7 @@
 /turf/open/floor/plating/f13/inside,
 /area/f13/brotherhood/armory)
 "iyD" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/stock_parts/cell/high,
 /obj/item/stock_parts/cell/high,
 /turf/open/floor/f13{
@@ -10819,7 +10816,7 @@
 /turf/open/floor/plasteel/cult,
 /area/f13/underground/cave)
 "iyV" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/storage/bag/books,
 /turf/open/floor/f13{
 	icon_state = "darkdirty"
@@ -11419,7 +11416,7 @@
 	},
 /area/f13/brotherhood/leisure)
 "jcm" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/reagent_containers/food/snacks/f13/bubblegum,
 /turf/open/floor/f13{
 	icon_state = "bar"
@@ -11487,7 +11484,7 @@
 /obj/structure/lattice{
 	density = 1
 	},
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/structure/lattice{
 	density = 1
 	},
@@ -11508,7 +11505,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/red/whiteredfull,
 /area/f13/brotherhood/reactor)
 "jeC" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/paper_bin,
 /obj/item/reagent_containers/pill/patch/jet,
 /turf/open/floor/f13/wood,
@@ -11545,7 +11542,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/plating,
 /area/f13/vault)
 "jgo" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/radio/intercom{
 	dir = 4
 	},
@@ -11571,7 +11568,7 @@
 /turf/closed/wall/f13/tunnel,
 /area/f13/tunnel)
 "jhe" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/reagent_containers/food/drinks/shaker{
 	pixel_x = -1;
 	pixel_y = 3
@@ -11696,7 +11693,7 @@
 	name = "archive scanner";
 	pixel_y = 7
 	},
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /turf/open/floor/carpet/black,
 /area/f13/brotherhood/archives)
 "jlt" = (
@@ -11837,12 +11834,11 @@
 "jrL" = (
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/f13/caves)
 "jse" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/machinery/computer/terminal{
 	dir = 8;
 	termtag = "Enclave Outpost, Medical Bay"
@@ -12115,7 +12111,7 @@
 	},
 /area/f13/vault)
 "jEI" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/storage/fancy/candle_box,
 /turf/open/floor/carpet{
 	icon_state = "carpetsymbol"
@@ -12220,7 +12216,7 @@
 	},
 /area/f13/bunker)
 "jIV" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/lighter{
 	color = "#3e4821";
 	desc = "That's one fancy Zippo!";
@@ -12228,7 +12224,7 @@
 	icon_state = "lighter_overlay_plain";
 	light_power = 2;
 	light_range = 1;
-	name = "Pre-War Military Lighter";
+	name = "Pre-Fall Military Lighter";
 	pixel_x = 7;
 	pixel_y = -6
 	},
@@ -12353,7 +12349,7 @@
 /turf/open/floor/carpet,
 /area/f13/brotherhood/archives)
 "jNX" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /turf/open/floor/carpet/black,
 /area/f13/brotherhood/archives)
 "jNZ" = (
@@ -12391,7 +12387,7 @@
 /area/f13/vault)
 "jPx" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/reagent_containers/food/drinks/mug/coco{
 	pixel_x = 4;
 	pixel_y = 9
@@ -12458,7 +12454,7 @@
 /obj/structure/railing{
 	color = "#A47449"
 	},
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/structure/life_candle,
 /turf/open/floor/plasteel/cult,
 /area/f13/building)
@@ -12509,7 +12505,7 @@
 	},
 /area/f13/vault)
 "jYD" = (
-/obj/structure/sign/poster/prewar/poster94{
+/obj/structure/sign/poster/prefall/poster94{
 	icon_state = "poster70"
 	},
 /turf/closed/wall/r_wall,
@@ -12532,8 +12528,7 @@
 /obj/structure/decoration/smokeold,
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/f13/brotherhood/operating)
 "kal" = (
@@ -12627,7 +12622,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/floor,
 /area/f13/enclave)
 "kdC" = (
-/obj/structure/sign/poster/prewar/poster75,
+/obj/structure/sign/poster/prefall/poster75,
 /turf/closed/wall/r_wall,
 /area/f13/brotherhood/offices1st)
 "kdF" = (
@@ -13054,7 +13049,7 @@
 /turf/open/floor/carpet/black,
 /area/f13/brotherhood/offices2nd)
 "kuf" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/machinery/light/small,
 /turf/open/floor/f13/wood,
 /area/f13/vault)
@@ -13203,7 +13198,7 @@
 	},
 /obj/structure/chair/comfy/shuttle{
 	desc = "A comfortable, secure seat. It has a futuristic vouge feel.";
-	name = "prewar lounge chair"
+	name = "prefall lounge chair"
 	},
 /turf/open/floor/plasteel/f13/vault_floor/blue/white,
 /area/f13/vault)
@@ -13302,7 +13297,7 @@
 /obj/structure/chair/comfy/shuttle{
 	desc = "A comfortable, secure seat. It has a futuristic vouge feel.";
 	layer = 2.7;
-	name = "prewar lounge chair"
+	name = "prefall lounge chair"
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -13312,7 +13307,7 @@
 	},
 /area/f13/building)
 "kEv" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/grenade/empgrenade,
 /obj/item/grenade/empgrenade,
 /obj/item/grenade/empgrenade,
@@ -13462,7 +13457,7 @@
 /turf/open/floor/plating/tunnel,
 /area/f13/brotherhood/operations)
 "kJh" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/assembly/timer,
 /turf/open/floor/f13{
 	icon_state = "darkdirtysolid"
@@ -13518,11 +13513,11 @@
 /area/f13/brotherhood/rnd)
 "kKo" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /turf/open/floor/plasteel/f13/vault_floor/misc/cafeteria,
 /area/f13/enclave)
 "kKT" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/machinery/chem_dispenser/drinks/beer{
 	dir = 1;
 	pixel_y = -1
@@ -13575,7 +13570,7 @@
 	},
 /area/f13/brotherhood/mining)
 "kMA" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/storage/box/drinkingglasses{
 	pixel_y = 8
 	},
@@ -13882,7 +13877,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/misc/vaultrust,
 /area/f13/brotherhood/rnd)
 "kZO" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/f13{
 	icon_state = "darkdirtysolid"
@@ -14119,7 +14114,7 @@
 /turf/open/floor/plating/f13/inside,
 /area/f13/brotherhood/operating)
 "loL" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/reagent_containers/food/condiment/peppermill{
 	pixel_x = 3
 	},
@@ -14163,7 +14158,7 @@
 	},
 /area/f13/brotherhood/rnd)
 "lqs" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/trash/f13/blamco_large,
 /turf/open/floor/f13{
 	icon_state = "bar"
@@ -14193,8 +14188,7 @@
 "lrj" = (
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/f13/brotherhood/medical)
 "lrm" = (
@@ -14603,7 +14597,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/misc/vaultrust,
 /area/f13/brotherhood/operations)
 "lHa" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/paper_bin,
 /obj/item/pen,
 /turf/open/floor/f13{
@@ -14646,7 +14640,7 @@
 	},
 /area/f13/bunker)
 "lLl" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/effect/spawner/lootdrop/f13/alcoholspawner{
 	pixel_x = 3;
 	pixel_y = 6
@@ -14964,13 +14958,13 @@
 	},
 /area/f13/bunker)
 "lXz" = (
-/obj/structure/sign/poster/prewar/poster94{
+/obj/structure/sign/poster/prefall/poster94{
 	icon_state = "poster81"
 	},
 /turf/closed/wall/r_wall,
 /area/f13/brotherhood/rnd)
 "lYf" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/effect/spawner/lootdrop/f13/alcoholspawner{
 	pixel_y = 6
 	},
@@ -15075,7 +15069,7 @@
 /turf/open/floor/grass,
 /area/f13/building)
 "mcJ" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
 	pixel_x = -1;
 	pixel_y = 3
@@ -15091,7 +15085,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/misc/cafeteria,
 /area/f13/enclave)
 "mcQ" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/assembly/timer,
 /turf/open/floor/f13{
 	icon_state = "darkdirty"
@@ -15227,7 +15221,7 @@
 /turf/open/indestructible/ground/outside/desert,
 /area/f13/brotherhood/offices1st)
 "mjA" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/radio,
 /turf/open/floor/f13{
 	icon_state = "darkdirty"
@@ -15311,7 +15305,7 @@
 /area/f13/vault)
 "mmR" = (
 /obj/machinery/rnd/production/protolathe,
-/obj/structure/sign/poster/prewar/poster94{
+/obj/structure/sign/poster/prefall/poster94{
 	icon_state = "poster82";
 	pixel_y = -32
 	},
@@ -15486,7 +15480,7 @@
 	},
 /area/f13/bunker)
 "mum" = (
-/obj/structure/sign/poster/prewar/poster72,
+/obj/structure/sign/poster/prefall/poster72,
 /turf/closed/wall/r_wall,
 /area/f13/brotherhood/dorms)
 "muI" = (
@@ -15582,7 +15576,7 @@
 	},
 /area/f13/brotherhood/rnd)
 "myz" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/pda{
 	icon_state = "pda-hos";
 	name = "Head Paladin's PipBoy"
@@ -16155,7 +16149,7 @@
 /obj/structure/chair/comfy/shuttle{
 	desc = "A comfortable, secure seat. It has a futuristic vouge feel.";
 	layer = 2.7;
-	name = "prewar lounge chair"
+	name = "prefall lounge chair"
 	},
 /turf/open/floor/wood_common,
 /area/f13/brotherhood/operations)
@@ -16307,7 +16301,7 @@
 /turf/closed/wall/mineral/iron,
 /area/f13/underground/cave)
 "mXe" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/pen,
 /obj/item/reagent_containers/food/snacks/grown/apple,
 /turf/open/floor/f13{
@@ -16679,7 +16673,7 @@
 /turf/closed/wall/r_wall,
 /area/f13/brotherhood/offices2nd)
 "nmO" = (
-/obj/structure/sign/poster/prewar/poster68,
+/obj/structure/sign/poster/prefall/poster68,
 /turf/closed/wall/r_wall,
 /area/f13/brotherhood/archives)
 "nnl" = (
@@ -16855,7 +16849,7 @@
 /obj/structure/chair/comfy/shuttle{
 	desc = "A comfortable, secure seat. It has a futuristic vouge feel.";
 	layer = 2.7;
-	name = "prewar lounge chair"
+	name = "prefall lounge chair"
 	},
 /turf/open/floor/carpet/black,
 /area/f13/brotherhood/offices2nd)
@@ -16909,7 +16903,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/misc/vaultrust,
 /area/f13/brotherhood/operations)
 "nyO" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/crafting/buzzer,
 /obj/item/crafting/switch_crafting,
 /obj/item/storage/toolbox/mechanical,
@@ -17074,7 +17068,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/yellow/whiteyellowfull,
 /area/f13/vault)
 "nEW" = (
-/obj/structure/sign/poster/prewar/poster61,
+/obj/structure/sign/poster/prefall/poster61,
 /turf/closed/wall/r_wall,
 /area/f13/brotherhood/dorms)
 "nFc" = (
@@ -17343,7 +17337,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/misc/vaultrust,
 /area/f13/caves)
 "nRI" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/machinery/recharger,
 /turf/open/floor/f13{
 	icon_state = "darkdirty"
@@ -17608,7 +17602,7 @@
 /turf/open/water,
 /area/f13/brotherhood/rnd)
 "obW" = (
-/obj/structure/sign/poster/prewar/poster75,
+/obj/structure/sign/poster/prefall/poster75,
 /turf/closed/wall/r_wall,
 /area/f13/brotherhood/medical)
 "oca" = (
@@ -17637,7 +17631,7 @@
 	dir = 4;
 	light_color = "#c1caff"
 	},
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/machinery/chem_dispenser/drinks{
 	dir = 8
 	},
@@ -17794,7 +17788,7 @@
 /obj/structure/chair/comfy/shuttle{
 	desc = "A comfortable, secure seat. It has a very futuristic vouge feel.";
 	dir = 1;
-	name = "prewar lounge chair"
+	name = "prefall lounge chair"
 	},
 /turf/open/floor/f13{
 	icon_state = "darkdirtysolid"
@@ -18095,8 +18089,7 @@
 "owt" = (
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/f13/brotherhood/offices1st)
 "oxe" = (
@@ -18275,7 +18268,7 @@
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 8
 	},
-/obj/item/stack/sheet/prewar/five,
+/obj/item/stack/sheet/prefall/five,
 /obj/effect/spawner/lootdrop/f13/advcrafting,
 /obj/effect/spawner/lootdrop/f13/advcrafting,
 /obj/effect/spawner/lootdrop/f13/advcrafting,
@@ -18290,7 +18283,7 @@
 /obj/effect/spawner/lootdrop/f13/advcrafting,
 /obj/effect/spawner/lootdrop/f13/advcrafting,
 /obj/effect/spawner/lootdrop/f13/advcrafting,
-/obj/item/stack/sheet/prewar/five,
+/obj/item/stack/sheet/prefall/five,
 /turf/open/floor/plasteel/f13/vault_floor/red{
 	icon_state = "darkyellowfull"
 	},
@@ -18413,7 +18406,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/red/white,
 /area/f13/brotherhood/reactor)
 "oGX" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/clothing/head/collectable/tophat,
 /turf/open/floor/f13/wood,
 /area/f13/vault)
@@ -18462,7 +18455,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/misc/vaultrust,
 /area/f13/brotherhood/chemistry)
 "oIa" = (
-/obj/structure/sign/poster/prewar/poster73{
+/obj/structure/sign/poster/prefall/poster73{
 	pixel_y = 31
 	},
 /obj/effect/decal/cleanable/dirt{
@@ -18490,7 +18483,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/floor,
 /area/f13/vault)
 "oKY" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/trash/plate,
 /turf/open/floor/f13{
 	icon_state = "bar"
@@ -18849,7 +18842,7 @@
 /area/f13/brotherhood/leisure)
 "oWI" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/book/manual/wiki/grenades{
 	pixel_x = 5;
 	pixel_y = 9
@@ -18926,7 +18919,7 @@
 	},
 /area/f13/vault)
 "oZj" = (
-/obj/structure/sign/poster/prewar/poster62,
+/obj/structure/sign/poster/prefall/poster62,
 /turf/closed/wall/r_wall,
 /area/f13/enclave)
 "oZp" = (
@@ -19132,17 +19125,17 @@
 	layer = 3
 	},
 /obj/item/toy/gun/m41{
-	desc = "A pre-war toy rifle issued to children across the continent.";
+	desc = "A Pre-Fall toy rifle issued to children across the continent.";
 	name = "Toy Pulse Rifle"
 	},
 /turf/open/floor/plating/tunnel,
 /area/f13/brotherhood/operations)
 "pho" = (
-/obj/structure/sign/poster/prewar/poster60,
+/obj/structure/sign/poster/prefall/poster60,
 /turf/closed/wall/r_wall,
 /area/f13/brotherhood/dorms)
 "phz" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/clothing/head/soft/f13/baseball,
 /turf/open/floor/f13{
 	icon_state = "darkdirtysolid"
@@ -19410,7 +19403,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/misc/vault1,
 /area/f13/brotherhood/leisure)
 "poV" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/reagent_containers/food/drinks/shaker{
 	pixel_x = 1;
 	pixel_y = 3
@@ -19424,7 +19417,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/misc/vaultrust,
 /area/f13/brotherhood/operations)
 "pqm" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/flashlight/lamp,
 /turf/open/floor/f13{
 	icon_state = "darkdirtysolid"
@@ -19451,7 +19444,7 @@
 	},
 /area/f13/bunker)
 "pqC" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/crafting/bulb,
 /obj/item/crafting/frame,
 /obj/item/radio/intercom{
@@ -19648,7 +19641,7 @@
 	},
 /area/f13/brotherhood/operating)
 "pBa" = (
-/obj/structure/sign/poster/prewar/poster93,
+/obj/structure/sign/poster/prefall/poster93,
 /turf/closed/wall/r_wall,
 /area/f13/brotherhood/rnd)
 "pBz" = (
@@ -19917,7 +19910,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/floor,
 /area/f13/vault)
 "pMF" = (
-/obj/structure/sign/poster/prewar/poster73,
+/obj/structure/sign/poster/prefall/poster73,
 /turf/closed/wall/r_wall,
 /area/f13/brotherhood/operations)
 "pMY" = (
@@ -20245,12 +20238,11 @@
 "pYT" = (
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/f13/underground/cave)
 "pZl" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt{
 	color = "000000"
@@ -20354,7 +20346,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /turf/open/floor/f13{
 	icon_state = "bluerustysolid"
 	},
@@ -20424,7 +20416,7 @@
 /obj/structure/chair/comfy/shuttle{
 	desc = "A comfortable, secure seat. It has a futuristic vouge feel.";
 	layer = 2.7;
-	name = "prewar lounge chair"
+	name = "prefall lounge chair"
 	},
 /obj/effect/landmark/start/f13/headscribe,
 /obj/effect/decal/cleanable/dirt,
@@ -20748,7 +20740,7 @@
 /turf/open/floor/plasteel/cult,
 /area/f13/underground/cave)
 "qpU" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/toy/figure/hos{
 	desc = "A refurbished military action figure made to look like a member of the Brotherhood of Steel.";
 	name = "Head Paladin Action Figure";
@@ -20839,7 +20831,7 @@
 /turf/open/floor/plating/tunnel,
 /area/f13/brotherhood/operations)
 "qtK" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/reagent_containers/food/drinks/mug/tea{
 	pixel_x = -7;
 	pixel_y = 1
@@ -22688,7 +22680,7 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/f13/vault)
 "rPb" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -22834,7 +22826,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/dark,
 /area/f13/enclave)
 "rVL" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/kitchen/fork,
 /turf/open/floor/f13{
 	icon_state = "bar"
@@ -23112,7 +23104,7 @@
 	toysay = "Ad meliora."
 	},
 /obj/machinery/chem_dispenser,
-/obj/structure/sign/poster/prewar/poster74{
+/obj/structure/sign/poster/prefall/poster74{
 	pixel_x = 32
 	},
 /turf/open/floor/plasteel/f13/vault_floor/misc/vaultrust,
@@ -23143,7 +23135,7 @@
 /turf/open/floor/grass,
 /area/f13/building)
 "skm" = (
-/obj/structure/sign/poster/prewar/poster94{
+/obj/structure/sign/poster/prefall/poster94{
 	icon_state = "poster69"
 	},
 /turf/closed/wall/r_wall,
@@ -23203,7 +23195,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/misc/vaultrust,
 /area/f13/brotherhood/leisure)
 "slj" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/effect/decal/cleanable/glass,
 /obj/structure/bedsheetbin,
 /turf/open/floor/f13{
@@ -23257,7 +23249,7 @@
 /obj/structure/chair/comfy/shuttle{
 	desc = "A comfortable, secure seat. It has a futuristic vouge feel.";
 	layer = 2.7;
-	name = "prewar lounge chair"
+	name = "prefall lounge chair"
 	},
 /turf/open/floor/f13{
 	icon_state = "darkdirtysolid"
@@ -23461,7 +23453,7 @@
 /obj/structure/chair/comfy/shuttle{
 	desc = "A comfortable, secure seat. It has a very futuristic vouge feel.";
 	dir = 8;
-	name = "prewar lounge chair"
+	name = "prefall lounge chair"
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -23570,7 +23562,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/red/whiteredfull,
 /area/f13/brotherhood/reactor)
 "szf" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /turf/open/floor/f13/wood,
 /area/f13/bunker)
 "szk" = (
@@ -23822,7 +23814,7 @@
 /turf/open/floor/f13/wood,
 /area/f13/vault)
 "sIX" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/storage/book,
 /obj/machinery/light/small,
 /turf/open/floor/f13/wood,
@@ -24175,7 +24167,7 @@
 /turf/open/indestructible/ground/outside/water,
 /area/f13/bunker)
 "sXL" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/reagent_containers/hypospray/medipen/stimpak,
 /turf/open/floor/f13/wood,
 /area/f13/bunker)
@@ -24387,7 +24379,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/yellow,
 /area/f13/vault)
 "tfc" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/trash/f13/cram,
 /turf/open/floor/f13{
 	icon_state = "bar"
@@ -24650,7 +24642,7 @@
 	},
 /area/f13/brotherhood/armory)
 "tqF" = (
-/obj/structure/sign/poster/prewar/corporate_espionage,
+/obj/structure/sign/poster/prefall/corporate_espionage,
 /turf/closed/wall/r_wall/f13vault{
 	icon_state = "2-i"
 	},
@@ -25260,7 +25252,7 @@
 	},
 /area/f13/caves)
 "tRA" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/reagent_containers/food/snacks/f13/instamash,
 /turf/open/floor/f13{
 	icon_state = "bar"
@@ -25378,7 +25370,7 @@
 /turf/open/floor/plasteel/cult,
 /area/f13/underground/cave)
 "tVy" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/radio/intercom{
 	dir = 8
 	},
@@ -25573,7 +25565,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/purple,
 /area/f13/enclave)
 "ucl" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/paper,
 /obj/item/pen,
 /turf/open/floor/f13/wood,
@@ -26118,7 +26110,7 @@
 /turf/open/floor/plasteel/cult,
 /area/f13/building)
 "uwq" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/paper_bin,
 /turf/open/floor/f13{
 	icon_state = "darkdirtysolid"
@@ -26394,7 +26386,7 @@
 /area/f13/enclave)
 "uHR" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /turf/open/floor/f13/wood,
 /area/f13/brotherhood/leisure)
 "uIf" = (
@@ -26489,7 +26481,7 @@
 /turf/open/water,
 /area/f13/brotherhood/leisure)
 "uKO" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/crafting/diode,
 /obj/item/crafting/resistor,
 /obj/item/radio,
@@ -26829,7 +26821,7 @@
 	},
 /area/f13/bunker)
 "uXw" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/book/manual/chef_recipes,
 /turf/open/floor/f13/wood,
 /area/f13/vault)
@@ -26895,7 +26887,7 @@
 /obj/structure/chair/comfy/shuttle{
 	desc = "A comfortable, secure seat. It has a very futuristic vouge feel.";
 	dir = 1;
-	name = "prewar lounge chair"
+	name = "prefall lounge chair"
 	},
 /turf/open/floor/plasteel/f13/vault_floor/misc/vaultrust,
 /area/f13/brotherhood/rnd)
@@ -27199,7 +27191,7 @@
 "vlI" = (
 /obj/machinery/computer/terminal{
 	density = 0;
-	desc = "A pre-war high security terminal. There's virtually no way to hack into this thing; it holds the most secure information the Brotherhood has to offer.";
+	desc = "A Pre-Fall high security terminal. There's virtually no way to hack into this thing; it holds the most secure information the Brotherhood has to offer.";
 	doc_content_1 = "The preservation of technology is our primary goal, all others are secondary. <br> <br>  Shield yourself from those not bound to you by steel, for they are the blind. Aid them when you can, but lose not sight of yourself.";
 	doc_content_2 = "Give way your suspicions to the wisdom of thine Elder. Where he shows trust, so shall you. <br> <br> Fear those who do not pledge to the Brotherhood for though their eyes may be opened through service, they are now blind. ";
 	doc_content_3 = "Through discourse, we gain the strength of our Brothers' minds. Deceit and lies of all ilk serve only to harm that strength. <br> <br> Your caste and duties mean everything, you will follow your leader and your leader will lead you. <br> <br> You may only follow the orders of another if it will save the life of a brother. ";
@@ -27411,7 +27403,7 @@
 /turf/open/floor/plasteel/stairs,
 /area/f13/brotherhood/offices2nd)
 "vsK" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/radio,
 /turf/open/floor/f13{
 	icon_state = "darkdirtysolid"
@@ -27528,8 +27520,7 @@
 "vxF" = (
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/f13/brotherhood/operating)
 "vxU" = (
@@ -27662,7 +27653,7 @@
 /turf/closed/indestructible/f13/matrix,
 /area/f13/bunker)
 "vDO" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/paper_bin,
 /obj/item/pen{
 	pixel_y = -1
@@ -27710,7 +27701,7 @@
 	pixel_y = 30;
 	products = list(/obj/item/reagent_containers/syringe=3,/obj/item/reagent_containers/pill/patch/styptic=10,/obj/item/reagent_containers/pill/patch/silver_sulf=10,/obj/item/reagent_containers/medspray/styptic=4,/obj/item/reagent_containers/medspray/silver_sulf=4,/obj/item/reagent_containers/pill/charcoal=2,/obj/item/reagent_containers/medspray/sterilizine=2)
 	},
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/flashlight/lamp,
 /turf/open/floor/wood_common,
 /area/f13/brotherhood/offices1st)
@@ -27997,8 +27988,7 @@
 "vWK" = (
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/f13/brotherhood/offices2nd)
 "vWM" = (
@@ -28141,7 +28131,7 @@
 /turf/open/floor/plasteel/cult,
 /area/f13/underground/cave)
 "wbO" = (
-/obj/structure/sign/poster/prewar/poster94{
+/obj/structure/sign/poster/prefall/poster94{
 	icon_state = "poster70";
 	pixel_x = 31
 	},
@@ -28807,8 +28797,7 @@
 "wCd" = (
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/f13/brotherhood/armory)
 "wCm" = (
@@ -28953,7 +28942,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/blue/whitebluefull,
 /area/f13/vault)
 "wMM" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/machinery/button{
 	id = "Turrets";
 	name = "Turrets button"
@@ -29446,7 +29435,7 @@
 /obj/structure/chair/comfy/shuttle{
 	desc = "A comfortable, secure seat. It has a very futuristic vouge feel.";
 	dir = 8;
-	name = "prewar lounge chair"
+	name = "prefall lounge chair"
 	},
 /turf/open/floor/carpet/black,
 /area/f13/brotherhood/archives)
@@ -29593,7 +29582,7 @@
 /turf/open/floor/plating/tunnel,
 /area/f13/enclave)
 "xnJ" = (
-/obj/structure/sign/poster/prewar/poster75,
+/obj/structure/sign/poster/prefall/poster75,
 /turf/closed/wall/r_wall,
 /area/f13/brotherhood/dorms)
 "xnR" = (
@@ -29613,7 +29602,7 @@
 	},
 /area/f13/caves)
 "xoy" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/machinery/microwave{
 	pixel_x = -3;
 	pixel_y = 6
@@ -29634,7 +29623,7 @@
 /turf/open/floor/circuit/f13_blue,
 /area/f13/brotherhood/dorms)
 "xqh" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/flashlight/lamp/green,
 /obj/item/book/manual/ripley_build_and_repair,
 /turf/open/floor/f13/wood,
@@ -29723,7 +29712,7 @@
 /turf/open/floor/plasteel/cult,
 /area/f13/underground/cave)
 "xtH" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/trash/plate,
 /obj/item/kitchen/fork,
 /turf/open/floor/f13{
@@ -29777,8 +29766,8 @@
 /turf/open/floor/plasteel/f13/vault_floor/dark,
 /area/f13/enclave)
 "xvD" = (
-/obj/structure/table/wood,
-/obj/item/melee/unarmed/deathclawgauntlet,
+/obj/structure/table/wood/settler,
+/obj/item/melee/unarmed/aethergiestgauntlet,
 /turf/open/indestructible/ground/inside/mountain,
 /area/f13/bunker)
 "xwd" = (
@@ -29942,7 +29931,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/misc/cafeteria,
 /area/f13/enclave)
 "xAx" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/paper,
 /turf/open/floor/f13{
 	icon_state = "darkdirty"
@@ -30109,7 +30098,7 @@
 /turf/open/floor/plasteel/f13/vault_floor/floor,
 /area/f13/vault)
 "xKD" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/storage/book/bible,
 /obj/item/clothing/suit/armor/light/duster/robe_hubologist,
 /turf/open/floor/holofloor/carpet,
@@ -30156,7 +30145,7 @@
 /turf/closed/wall/mineral/iron,
 /area/f13/brotherhood/rnd)
 "xNc" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/reagent_containers/food/drinks/mug/coco{
 	pixel_y = 5
 	},
@@ -30296,7 +30285,7 @@
 /turf/open/water,
 /area/f13/underground/cave)
 "xRe" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/reagent_containers/glass/bowl,
 /turf/open/floor/f13{
 	icon_state = "bar"
@@ -30346,7 +30335,7 @@
 /obj/structure/chair/comfy/shuttle{
 	desc = "A comfortable, secure seat. It has a very futuristic vouge feel.";
 	dir = 1;
-	name = "prewar lounge chair"
+	name = "prefall lounge chair"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/f13/vault_floor/misc/vaultrust{
@@ -30662,7 +30651,7 @@
 /obj/structure/chair/comfy/shuttle{
 	desc = "A comfortable, secure seat. It has a very futuristic vouge feel.";
 	dir = 1;
-	name = "prewar lounge chair"
+	name = "prefall lounge chair"
 	},
 /turf/open/floor/wood_common,
 /area/f13/brotherhood/offices2nd)
@@ -30700,7 +30689,7 @@
 /turf/open/water,
 /area/f13/brotherhood/operations)
 "ykN" = (
-/obj/structure/table/wood,
+/obj/structure/table/wood/settler,
 /obj/item/paper_bin,
 /obj/item/pen,
 /obj/item/pen/blue,

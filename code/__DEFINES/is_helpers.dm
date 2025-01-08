@@ -274,7 +274,7 @@ GLOBAL_LIST_INIT(simplemobs_wildlife, typecacheof(list(
 	/mob/living/simple_animal/hostile/molerat,
 	/mob/living/simple_animal/hostile/centaur,
 	/mob/living/simple_animal/hostile/abomination,
-	/mob/living/simple_animal/hostile/deathclaw,
+	/mob/living/simple_animal/hostile/aethergiest,
 	/mob/living/simple_animal/hostile/ghoul,
 	/mob/living/simple_animal/hostile/giantant,
 	/mob/living/simple_animal/hostile/fireant,
@@ -299,7 +299,7 @@ GLOBAL_LIST_INIT(simplemobs_animals, typecacheof(list(
 	/mob/living/simple_animal/hostile/molerat,
 	/mob/living/simple_animal/hostile/centaur,
 	/mob/living/simple_animal/hostile/abomination,
-	/mob/living/simple_animal/hostile/deathclaw,
+	/mob/living/simple_animal/hostile/aethergiest,
 	/mob/living/simple_animal/hostile/rat,
 	/mob/living/simple_animal/hostile/regalrat,
 	/mob/living/simple_animal/hostile/carp,
@@ -353,3 +353,5 @@ GLOBAL_LIST_INIT(simplemobs_robots, typecacheof(list(
 #define issimplerobot(A) (A.type in GLOB.simplemobs_robots)
 
 #define isadvancedmob(A) istype(A, /mob/living/simple_animal/advanced)
+
+#define isnest(A) SEND_SIGNAL(A, COMSIG_IS_IT_A_NEST)

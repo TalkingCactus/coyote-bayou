@@ -468,7 +468,7 @@
 
 /mob/living/simple_animal/advanced/tenderclawmale
 	name = "male tenderclaw"
-	desc = "A..deathclaw? Or, well. It sort of looks like a deathclaw. Just, softer and friendler!"
+	desc = "A..aethergiest? Or, well. It sort of looks like a aethergiest. Just, softer and friendler!"
 	icon = 'modular_coyote/icons/mob/newclaws.dmi'
 	icon_state = "newclaw"
 	icon_living = "newclaw"
@@ -476,7 +476,7 @@
 
 /mob/living/simple_animal/advanced/tenderclawfemale
 	name = "female tenderclaw"
-	desc = "A..deathclaw? Or, well. It sort of looks like a deathclaw. Just, softer and friendler!"
+	desc = "A..aethergiest? Or, well. It sort of looks like a aethergiest. Just, softer and friendler!"
 	icon = 'modular_coyote/icons/mob/newclaws.dmi'
 	icon_state = "femclaw"
 	icon_living = "femclaw"
@@ -484,7 +484,7 @@
 
 /mob/living/simple_animal/advanced/tenderclawherm
 	name = "herm tenderclaw"
-	desc = "A..deathclaw? Or, well. It sort of looks like a deathclaw. Just, softer and friendler!"
+	desc = "A..aethergiest? Or, well. It sort of looks like a aethergiest. Just, softer and friendler!"
 	icon = 'modular_coyote/icons/mob/newclaws.dmi'
 	icon_state = "hermclaw"
 	icon_living = "hermclaw"
@@ -1127,7 +1127,7 @@
 	icon_dead = "parrot_dead"
 
 /mob/living/simple_animal/advanced/purpledc
-	name = "purple cloaked deathclaw"
+	name = "purple cloaked aethergiest"
 	desc = "Gonna rip and tear, in style."
 	icon = 'modular_coyote/icons/mob/deathclaw.dmi'
 	icon_state = "pur"
@@ -1135,7 +1135,7 @@
 	icon_dead = "pur_dead"
 
 /mob/living/simple_animal/advanced/whitedc
-	name = "white cloaked deathclaw"
+	name = "white cloaked aethergiest"
 	desc = "Gonna rip and tear, in style."
 	icon = 'modular_coyote/icons/mob/deathclaw.dmi'
 	icon_state = "whi"
@@ -1143,7 +1143,7 @@
 	icon_dead = "whi_dead"
 
 /mob/living/simple_animal/advanced/reddc
-	name = "red cloaked deathclaw"
+	name = "red cloaked aethergiest"
 	desc = "Gonna rip and tear, in style."
 	icon = 'modular_coyote/icons/mob/deathclaw.dmi'
 	icon_state = "red"
@@ -1151,7 +1151,7 @@
 	icon_dead = "red_dead"
 
 /mob/living/simple_animal/advanced/grydc
-	name = "grey cloaked deathclaw"
+	name = "grey cloaked aethergiest"
 	desc = "Gonna rip and tear, in style."
 	icon = 'modular_coyote/icons/mob/deathclaw.dmi'
 	icon_state = "gry"
@@ -1159,7 +1159,7 @@
 	icon_dead = "gry_dead"
 
 /mob/living/simple_animal/advanced/brodc
-	name = "brown cloaked deathclaw"
+	name = "brown cloaked aethergiest"
 	desc = "Gonna rip and tear, in style."
 	icon = 'modular_coyote/icons/mob/deathclaw.dmi'
 	icon_state = "bro"
@@ -1167,7 +1167,7 @@
 	icon_dead = "bro_dead"
 
 /mob/living/simple_animal/advanced/hubdc
-	name = "black cloaked deathclaw"
+	name = "black cloaked aethergiest"
 	desc = "Gonna rip and tear, in style."
 	icon = 'modular_coyote/icons/mob/deathclaw.dmi'
 	icon_state = "hub"
@@ -1175,7 +1175,7 @@
 	icon_dead = "hub_dead"
 
 /mob/living/simple_animal/advanced/maidclaw
-	name = "maid deathclaw"
+	name = "maid aethergiest"
 	desc = "Gonna rip and tear, in style."
 	icon = 'modular_coyote/icons/mob/deathclaw.dmi'
 	icon_state = "maidclaw"
@@ -1183,12 +1183,12 @@
 	icon_dead = "maidclaw_dead"
 
 /mob/living/simple_animal/advanced/queenclaw
-	name = "Queen deathclaw"
+	name = "Queen aethergiest"
 	desc = "Gonna rip and tear, in style."
 	icon = 'modular_coyote/icons/mob/deathclaw.dmi'
-	icon_state = "deathclaw_queen"
-	icon_living = "deathclaw_queen"
-	icon_dead = "deathclaw_queen_dead"
+	icon_state = "aethergiest_queen"
+	icon_living = "aethergiest_queen"
+	icon_dead = "aethergiest_queen_dead"
 
 //splurt mobs
 /mob/living/simple_animal/advanced/femdigo
@@ -1277,7 +1277,7 @@
 
 /mob/living/simple_animal/advanced/hivebot/factory/Initialize(trait_source = TRAIT_GENERIC)
 	. = ..()
-	ADD_TRAIT(src, TRAIT_TREASURE_HUNTER, "treasurehunter")
+	/*ADD_TRAIT(src, TRAIT_TREASURE_HUNTER, "treasurehunter")*/// Not until crafting menus are fixed
 	ADD_TRAIT(src, TRAIT_TECHNOPHREAK, "technophreak")
 	ADD_TRAIT(src, TRAIT_QUICK_BUILD, "quick-build")
 
@@ -1285,7 +1285,7 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_IGNOREDAMAGESLOWDOWN, "ignoredamageslowdown")
 	ADD_TRAIT(src, TRAIT_HEAL_TEND, "healing_triage")
-		
+
 /mob/living/simple_animal/advanced/hivebot/Initialize(mapload)
 	. = ..()
 	notify_ghosts("A new FRIENDLY hivebot has been created somewhere on the map, click it to take control!", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE, ignore_key = POLL_IGNORE_FUGITIVE)
@@ -1388,7 +1388,7 @@
 	icon_state = "mothroach"
 	icon_living = "mothroach"
 	icon_dead = "mothroach_dead"
-	speak = list("Squee","Squeak-squeak-squeak","squeak","Chitters","Momf")
+	//speak = list("Squee","Squeak-squeak-squeak","squeak","Chitters","Momf")
 	speak_emote = list("chitters", "squeaks")
 	emote_hear = list("chitters.", "squeaks")
 	emote_see = list("tilts its head", "flutters its wings" , "does a little dance")
@@ -1456,6 +1456,124 @@
 	icon_living = "purple_kirin"
 	icon_dead = "purple_kirin_dead"
 
+/mob/living/simple_animal/advanced/plantmouth
+	name = "Venus Human Trap"
+	desc = "A planty monster with a smile the size of your head"
+	icon = 'icons/effects/spacevines.dmi'
+	icon_state = "venus_human_trap"
+	icon_living = "venus_human_trap"
+	icon_dead = "venus_human_trap_rest"
 
+/mob/living/simple_animal/advanced/greycat
+	name = "fluffy cat"
+	desc = "a fluffy grey and white cat."
+	icon = 'modular_coyote/icons/mob/cat.dmi'
+	icon_state = "grey_white"
+	icon_living = "grey_white"
+	icon_dead = "grey_white_dead"
 
+/mob/living/simple_animal/advanced/greycat/Initialize()
+    .=..()
+    resize = 0.5
+    update_transform()
 
+/mob/living/simple_animal/advanced/darkbrowntanuki
+	name = "dark brown tanuki"
+	desc = "A twolegged raccoon dog with a leaf on it's head."
+	icon = 'modular_coyote/icons/mob/tanuki.dmi'
+	icon_state = "dark_brown"
+	icon_living = "dark_brown"
+	icon_dead = "dark_brown_dead"
+
+/mob/living/simple_animal/advanced/darkgreytanuki
+	name = "dark grey tanuki"
+	desc = "A twolegged raccoon dog with a leaf on it's head."
+	icon = 'modular_coyote/icons/mob/tanuki.dmi'
+	icon_state = "dark_grey"
+	icon_living = "dark_grey"
+	icon_dead = "dark_grey_dead"
+
+/mob/living/simple_animal/advanced/unicorn
+	name = "unicorn"
+	desc = "Stay away from the red bull."
+	icon = 'modular_coyote/icons/mob/kirin.dmi'
+	icon_state = "unicorn"
+	icon_living = "unicorn"
+	icon_dead = "unicorn_dead"
+
+//Ranger Creatures
+
+/mob/living/simple_animal/advanced/longjaw
+	name = "longjaw"
+	desc = "A spotted grey creature."
+	icon = 'modular_coyote/icons/mob/rangercritters.dmi'
+	icon_state = "longjaw"
+	icon_living = "longjaw"
+	icon_dead = "longjaw_dead"
+
+/mob/living/simple_animal/advanced/uttie
+	name = "utahraptor"
+	desc = "A dinosaur. Oh my."
+	icon = 'modular_coyote/icons/mob/rangercritters.dmi'
+	icon_state = "uttie"
+	icon_living = "uttie"
+	icon_dead = "uttie_dead"
+
+/mob/living/simple_animal/advanced/gorgon
+	name = "gorgon"
+	desc = "A dinosaur. Oh my."
+	icon = 'modular_coyote/icons/mob/rangercritters.dmi'
+	icon_state = "gorgon"
+	icon_living = "gorgon"
+	icon_dead = "gorgon_dead"
+
+/mob/living/simple_animal/advanced/rack_deer
+	name = "rack deer"
+	desc = "A strange type of deer."
+	icon = 'modular_coyote/icons/mob/rangercritters.dmi'
+	icon_state = "rack_deer"
+	icon_living = "rack_deer"
+	icon_dead = "rack_deer_dead"
+
+/mob/living/simple_animal/advanced/lightening
+	name = "lightening Raptor"
+	desc = "A very green raptor."
+	icon = 'modular_coyote/icons/mob/rangercritters.dmi'
+	icon_state = "lightening"
+	icon_living = "lightening"
+	icon_dead = "lightening_dead"
+
+/mob/living/simple_animal/advanced/hyena
+	name = "Hyena"
+	desc = "Cackle."
+	icon = 'modular_coyote/icons/mob/rangercritters.dmi'
+	icon_state = "hyena"
+	icon_living = "hyena"
+	icon_dead = "hyena_dead"
+
+/mob/living/simple_animal/advanced/saber_cat
+	name = "saber cat"
+	desc = "My kitty, what long teeth you have."
+	icon = 'modular_coyote/icons/mob/rangercritters.dmi'
+	icon_state = "saber_cat"
+	icon_living = "saber_cat"
+	icon_dead = "saber_cat_dead"
+
+/mob/living/simple_animal/advanced/malkia
+	name = "malkia"
+	desc = "A strange canine like being."
+	icon = 'modular_coyote/icons/mob/rangercritters.dmi'
+	icon_state = "malkia"
+	icon_living = "malkia"
+	icon_dead = "malkia_dead"
+
+/mob/living/simple_animal/whale
+	name = "Whale"
+	desc = "What the hell? That's a whale!"
+	icon = 'modular_coyote/icons/mob/space_whale.dmi'
+	icon_state = "alive"
+	icon_living = "alive"
+	icon_dead = "alive"
+	maxHealth = 200
+	health = 200
+	guaranteed_butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 10)

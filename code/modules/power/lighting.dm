@@ -281,12 +281,12 @@
 		switch(fitting)
 			if("tube")
 				brightness = 9
-				if(prob(2))
-					break_light_tube(1)
+				// if(prob(2))
+				// 	break_light_tube(1)
 			if("bulb")
 				brightness = 5
-				if(prob(5))
-					break_light_tube(1)
+				// if(prob(5))
+				// 	break_light_tube(1)
 		spawn(1)
 			update(0)
 	if(flicker_chance)
@@ -805,7 +805,7 @@
 	desc = "A replacement light tube."
 	icon_state = "ltube"
 	base_state = "ltube"
-	item_state = "c_tube"
+	inhand_icon_state = "c_tube"
 	brightness = 9
 
 /obj/item/light/tube/broken
@@ -816,7 +816,7 @@
 	desc = "A replacement light bulb."
 	icon_state = "lbulb"
 	base_state = "lbulb"
-	item_state = "contvapour"
+	inhand_icon_state = "contvapour"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	brightness = 5
@@ -985,3 +985,6 @@
 		update(FALSE)
 	flickering = FALSE
 
+#define LIGHT_NORTH_PIXEL_Y_OFFSET 
+#define LIGHT_EAST_PIXEL_X_OFFSET
+#define LIGHT_WEST_PIXEL_X_OFFSET

@@ -52,6 +52,7 @@
  * * probability - probability any character gets changed
  *
  * This proc is dangerously laggy, avoid it or die
+ * no its not lol
  */
 /proc/stars(phrase, probability = 25)
 	if(probability <= 0)
@@ -66,6 +67,41 @@
 			. += char
 		else
 			. += "*"
+	return sanitize(.)
+
+/**
+ * Convert random words of a passed in message to ellipses
+ *
+ * * phrase - the string to convert
+ * * probability - probability any character gets changed
+ *
+ * This proc is not laggy at all, and is better in every way =3
+ */
+/proc/dots(phrase, probability = 25, distance, maxdistance)
+	if(probability <= 0)
+		return phrase
+	if(distance && maxdistance)
+		/// throw out probability and calculate a new one based on how far away the message is
+		/// from the source of the message (distance) and the maximum distance the message can be
+		/// heard from (maxdistance)
+		probability = (distance / maxdistance) * 100
+		probability = clamp(probability, 0, 90)
+	phrase = html_decode(phrase)
+	var/list/words = splittext(phrase, " ")
+	. = ""
+	var/indes = 1
+	var/has_multiple_words = LAZYLEN(words) > 1
+	for(var/word in words)
+		if(prob(probability))
+			for(var/i in 1 to min(3, length(word)))
+				. += "."
+			// if(has_multiple_words && indes < LAZYLEN(words))
+			// 	. += " "
+		else
+			if(has_multiple_words && indes < LAZYLEN(words))
+				. += "[word] "
+			else
+				. += "[word]"
 	return sanitize(.)
 
 /**
@@ -616,3 +652,40 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 /mob/living/GetJob()
 	if (mind && mind.assigned_role)
 		return SSjob.GetJob(mind.assigned_role)
+
+/mob/proc/SetPVPflag(setto, saypls)
+	switch(setto)
+		if(PVP_NEUTRAL)
+			REMOVE_TRAIT(src, TRAIT_PVPFOC, ROUNDSTART_TRAIT)
+			REMOVE_TRAIT(src, TRAIT_PVEFOC, ROUNDSTART_TRAIT)
+			log_game("[key_name(src)] has removed their PVP flag.")
+			SSpornhud.catalogue_part(src, PHUD_PVP_FLAG, list())
+			if(saypls)
+				to_chat(src, span_notice("You are no longer flagged as looking for or avoiding PVP. Standard PVP rules apply."))
+		if(PVP_YES)
+			ADD_TRAIT(src, TRAIT_PVPFOC, ROUNDSTART_TRAIT)
+			REMOVE_TRAIT(src, TRAIT_PVEFOC, ROUNDSTART_TRAIT)
+			log_game("[key_name(src)] has flagged themselves as looking for PVP.")
+			var/image/iggy = image('icons/mob/hud.dmi', src, "pvp_yes")
+			SSpornhud.catalogue_part(src, PHUD_PVP_FLAG, list(iggy))
+			if(saypls)
+				to_chat(src, span_notice("You are now flagged as looking for PVP. Note that you still need to use CI to perform PVP, and \
+					you must respect the preferences of those who do not want to PVP."))
+		if(PVP_NO)
+			REMOVE_TRAIT(src, TRAIT_PVPFOC, ROUNDSTART_TRAIT)
+			ADD_TRAIT(src, TRAIT_PVEFOC, ROUNDSTART_TRAIT)
+			log_game("[key_name(src)] has opted out of PVP.")
+			var/image/iggy = image('icons/mob/hud.dmi', src, "pvp_no")
+			SSpornhud.catalogue_part(src, PHUD_PVP_FLAG, list(iggy))
+			if(saypls)
+				to_chat(src, span_notice("You are now flagged as having opted out of PVP. This means that others are not allowed to engage \
+					in PVP with you, nor try to bait you into PVP. This also means that <b>you</b> are not allowed to engage in PVP or do \
+					things that could be considered baiting others into PVP."))
+	if(hud_used && hud_used.pvp_focus_toggle)
+		hud_used.pvp_focus_toggle.update_intento(setto)
+
+
+
+
+
+

@@ -18,7 +18,7 @@
 	var/temp = null
 	flags_1 = CONDUCT_1
 	w_class = WEIGHT_CLASS_SMALL
-	item_state = "electronic"
+	inhand_icon_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	throw_speed = 3
@@ -99,7 +99,7 @@
 	desc = "A portable hand 'teleporter' that actually works by observing your quantum superposition in relevance to your portal storm state. IN NERD TERMS USE THIS TO TELEPORT PLACES."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "hand_tele"
-	item_state = "electronic"
+	inhand_icon_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	throwforce = 0
@@ -165,7 +165,7 @@
 	if(turfs.len)
 		L["None (Dangerous)"] = pick(turfs) */
 	var/t1 = input(user, "Please select a teleporter to lock in on.", "Hand Teleporter") as null|anything in L
-	if (!t1 || user.get_active_held_item() != src || user.incapacitated())
+	if (!t1 || user.get_active_held_item() != src || user.incapacitated(allow_crit = TRUE))
 		return
 	if(active_portal_pairs.len >= max_portal_pairs)
 		user.show_message(span_notice("\The [src] is recharging!"))

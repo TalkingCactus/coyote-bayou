@@ -20,18 +20,17 @@
 	robust_searching = TRUE
 	turns_per_move = 5
 	speak_emote = list("growls")
-	emote_see = list("screeches")
+	// emote_see = list("screeches")
 	a_intent = INTENT_HARM
 	attack_verb_simple = "lunges at"
 	attack_sound = 'sound/hallucinations/growl1.ogg'
 	unsuitable_atmos_damage = 20
-	stat_attack = CONSCIOUS
 	gold_core_spawnable = HOSTILE_SPAWN
 	faction = list("trog")
 	guaranteed_butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/human = 2,
 							/obj/item/stack/sheet/animalhide/human = 1,
 							/obj/item/stack/sheet/bone = 1)
-	loot = list(/obj/effect/spawner/lootdrop/f13/uncommon, /obj/effect/gibspawner/generic/animal)
+	loot = list(/obj/effect/gibspawner/generic/animal)
 	loot_drop_amount = 2
 	loot_amount_random = TRUE
 
@@ -58,7 +57,6 @@
 	icon_living = "tunneler"
 	icon_dead = "tunneler_dead"
 	robust_searching = TRUE
-	stat_attack = CONSCIOUS
 	health = 144
 	maxHealth = 144
 	speed = 1
@@ -141,7 +139,6 @@
 	attack_verb_simple = "lunges at"
 	attack_sound = 'sound/hallucinations/veryfar_noise.ogg'
 	unsuitable_atmos_damage = 20
-	stat_attack = CONSCIOUS
 	gold_core_spawnable = HOSTILE_SPAWN
 	faction = list("tunneler")
 	guaranteed_butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/human = 2,

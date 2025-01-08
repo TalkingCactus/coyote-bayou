@@ -136,56 +136,111 @@
 //Scavenging and Tinkering//
 ///////////////////////////
 
-/datum/crafting_recipe/cheaphivebot
-	name = "Cheap Hivebot"
-	result = /mob/living/simple_animal/advanced/hivebot/cheap
-	reqs = list(/obj/item/stack/crafting/electronicparts = 8,
-				/obj/item/stack/rods = 12,
-				/obj/item/stack/sheet/metal = 5)
+/datum/crafting_recipe/hivebotmelee
+	name = "Cheap Melee Hivebot"
+	result = /mob/living/simple_animal/hostile/eyebot/playable/hivebot/melee
+	reqs = list(/obj/item/stack/crafting/electronicparts = 6,
+				/obj/item/stack/rods = 8,
+				/obj/item/stack/sheet/metal = 6,
+				/obj/item/assembly/prox_sensor = 1,
+				/obj/item/stack/sheet/mineral/titanium = 2)
 	tools = list()
 	time = 30
 	subcategory = CAT_SCAVENGING
 	category = CAT_CRAFTING
 
-/datum/crafting_recipe/hivebot
-	name = "Regular Hivebot"
-	result = /mob/living/simple_animal/advanced/hivebot
-	reqs = list(/obj/item/stack/crafting/electronicparts = 10,
-				/obj/item/stack/crafting/metalparts = 8,
-				/obj/item/stack/crafting/goodparts = 6,
-				/obj/item/stack/sheet/metal = 15)
+/datum/crafting_recipe/hivebotmelee2
+	name = "Regular Melee Hivebot"
+	result = /mob/living/simple_animal/hostile/eyebot/playable/hivebot/melee/tier2
+	reqs = list(/obj/item/stack/crafting/electronicparts = 8,
+				/obj/item/stack/crafting/metalparts = 4,
+				/obj/item/stack/crafting/goodparts = 3,
+				/obj/item/stock_parts/scanning_module/adv = 1,
+				/obj/item/stack/sheet/metal = 15,
+				/obj/item/stack/sheet/mineral/titanium = 5)
+	tools = list(TOOL_WORKBENCH)
+	time = 60
+	subcategory = CAT_SCAVENGING
+	category = CAT_CRAFTING
+
+/datum/crafting_recipe/hivebotmelee3
+	name = "Advanced Melee Hivebot"
+	result = /mob/living/simple_animal/hostile/eyebot/playable/hivebot/melee/tier2
+	reqs = list(/obj/item/stack/crafting/electronicparts = 12,
+				/obj/item/stack/crafting/metalparts = 16,
+				/obj/item/stack/crafting/goodparts = 12,
+				/obj/item/stack/sheet/metal = 15,
+				/obj/item/stack/sheet/plasteel = 20,
+				/obj/item/advanced_crafting_components/alloys = 1,
+				/obj/item/stack/sheet/mineral/titanium = 5)
 	tools = list(TOOL_WORKBENCH)
 	time = 60
 	subcategory = CAT_SCAVENGING
 	category = CAT_CRAFTING
 
 /datum/crafting_recipe/rangedhivebot
-	name = "Ranged Hivebot"
-	result = /mob/living/simple_animal/advanced/hivebot/ranged
+	name = "Cheap Ranged Hivebot"
+	result = /mob/living/simple_animal/hostile/eyebot/playable/hivebot
+	reqs = list(/obj/item/stack/crafting/electronicparts = 8,
+				/obj/item/stack/crafting/metalparts = 3,
+				/obj/item/stack/crafting/goodparts = 1,
+				/obj/item/stack/sheet/metal = 10,
+				/obj/item/assembly/prox_sensor = 1,
+				/obj/item/stock_parts/cell = 1,
+				/obj/item/stack/sheet/mineral/titanium = 5)
+	tools = list(TOOL_WORKBENCH)
+	time = 60
+	subcategory = CAT_SCAVENGING
+	category = CAT_CRAFTING
+
+/datum/crafting_recipe/rangedhivebot2
+	name = "Regular Ranged Hivebot"
+	result = /mob/living/simple_animal/hostile/eyebot/playable/hivebot/tier2
 	reqs = list(/obj/item/stack/crafting/electronicparts = 12,
-				/obj/item/stack/crafting/metalparts = 8,
-				/obj/item/stack/crafting/goodparts = 6,
-				/obj/item/stack/sheet/metal = 12,
-				/obj/item/stack/sheet/plasteel = 8)
+				/obj/item/stack/crafting/metalparts = 6,
+				/obj/item/stack/crafting/goodparts = 4,
+				/obj/item/stack/sheet/metal = 15,
+				/obj/item/stock_parts/capacitor/adv = 1,
+				/obj/item/stock_parts/cell/high = 1,
+				/obj/item/advanced_crafting_components/lenses = 1,
+				/obj/item/stack/sheet/mineral/titanium = 8)
+	tools = list(TOOL_WORKBENCH)
+	time = 60
+	subcategory = CAT_SCAVENGING
+	category = CAT_CRAFTING
+
+/datum/crafting_recipe/rangedhivebot3
+	name = "Advanced Ranged Hivebot"
+	result = /mob/living/simple_animal/hostile/eyebot/playable/hivebot/tier3
+	reqs = list(/obj/item/stack/crafting/electronicparts = 15,
+				/obj/item/stack/crafting/metalparts = 15,
+				/obj/item/stack/crafting/goodparts = 10,
+				/obj/item/stack/sheet/metal = 25,
+				/obj/item/stack/sheet/plasteel = 10,
+				/obj/item/stock_parts/cell/super = 1,
+				/obj/item/stock_parts/capacitor/super = 1,
+				/obj/item/advanced_crafting_components/conductors = 1,
+				/obj/item/advanced_crafting_components/lenses = 1,
+				/obj/item/stack/sheet/mineral/titanium = 15)
 	tools = list(TOOL_WORKBENCH)
 	time = 60
 	subcategory = CAT_SCAVENGING
 	category = CAT_CRAFTING
 
 /datum/crafting_recipe/factoryhivebot
-	name = "Industrial Hivebot"
+	name = "Sentient Hivebot"
 	result = /mob/living/simple_animal/advanced/hivebot/factory
 	reqs = list(/obj/item/stack/crafting/electronicparts = 12,
 				/obj/item/stack/crafting/metalparts = 8,
 				/obj/item/stack/crafting/goodparts = 6,
 				/obj/item/stack/sheet/metal = 12,
-				/obj/item/stack/sheet/plasteel = 8)
+				/obj/item/stock_parts/cell/high = 1,)
 	tools = list(TOOL_WORKBENCH)
 	time = 60
 	subcategory = CAT_SCAVENGING
-	category = CAT_CRAFTING
+	category = CAT_CRAFTING 
 
-/datum/crafting_recipe/crystalhivebot
+/* /datum/crafting_recipe/crystalhivebot
 	name = "Magical Hivebot"
 	result = /mob/living/simple_animal/advanced/hivebot/crystal
 	reqs = list(/obj/item/stack/crafting/electronicparts = 12,
@@ -197,7 +252,7 @@
 	tools = list(TOOL_WORKBENCH)
 	time = 60
 	subcategory = CAT_SCAVENGING
-	category = CAT_CRAFTING
+	category = CAT_CRAFTING */
 
 /datum/crafting_recipe/pico_manip
 	name = "Delicate Mechanism"
@@ -386,7 +441,7 @@
 
 /datum/crafting_recipe/shutters/old
 	name = "Shutters"
-	reqs = list(/obj/item/stack/sheet/prewar = 10, //Changed to use more readily available Pre-War Alloys for CB. Maybe we'll see more use out of them this way.
+	reqs = list(/obj/item/stack/sheet/prefall = 10, //Changed to use more readily available Pre-Fall Alloys for CB. Maybe we'll see more use out of them this way.
 				/obj/item/stack/cable_coil = 10,
 				/obj/item/electronics/airlock = 1
 				)
@@ -398,7 +453,7 @@
 
 /datum/crafting_recipe/blast_doors
 	name = "Blast Door"
-	reqs = list(/obj/item/stack/sheet/prewar = 20, //Again, changed to use more readily available materials.
+	reqs = list(/obj/item/stack/sheet/prefall = 20, //Again, changed to use more readily available materials.
 				/obj/item/stack/cable_coil = 15,
 				/obj/item/electronics/airlock = 1
 				)
@@ -827,7 +882,7 @@
 	time = 300
 	reqs = list(
 				/obj/item/instrument/violin = 1,
-				/obj/item/stack/sheet/animalhide/deathclaw = 1,
+				/obj/item/stack/sheet/animalhide/aethergiest = 1,
 				/obj/item/reagent_containers/food/snacks/grown/horsenettle =1
 				)
 	tools = list(TOOL_SCREWDRIVER, TOOL_WELDER)

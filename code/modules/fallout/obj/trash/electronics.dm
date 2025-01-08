@@ -4,7 +4,7 @@
 
 /obj/item/trash/f13/electronic/toaster
 	name = "toaster"
-	desc = "A working toaster of prewar design, for making toast. You can insert various things inside the slot. This General Electronics model has two slots."
+	desc = "A working toaster of prefall design, for making toast. You can insert various things inside the slot. This General Electronics model has two slots."
 	icon_state = "toaster"
 	components = list(	/obj/item/stock_parts/capacitor=1,
 						/obj/item/stock_parts/matter_bin=1,
@@ -53,8 +53,8 @@
 	if(!istype(U) || !istype(W))
 		return ..()
 
-	if(istype(W,/obj/item/kitchen/fork) || istype(W,/obj/item/melee/onehanded/knife) || istype(W,/obj/item/hand_item/healable/licker))
-		if(alert(U, "You sure you want to jam that in there?",,"Yes","No") == "Yes")
+	if(istype(W,/obj/item/kitchen/fork) || istype(W,/obj/item/melee/onehanded/knife) || istype(W,/obj/item/hand_item/tactile/licker))
+		if(alert(U, "I sure you want to jam that in there?",,"Yes","No") == "Yes")
 			if(do_after(user, 10, 1, target = src))
 				U.visible_message(span_warning("[user] jams [W] into [src]!"), span_notice("You jam [W] into [src]!"))
 				U.transferItemToLoc(W,src)

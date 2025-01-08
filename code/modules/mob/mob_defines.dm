@@ -212,3 +212,14 @@
 
 	///is the mob set to always whisper?
 	var/is_autowhisper = FALSE
+
+	///round_healthtext_to_this_number
+	var/HP_text_roundto = 5
+
+	/// if we did anything hostile, let us get attacked in crit, until we take this much more damage
+	var/in_crit_HP_penalty = 0
+
+	/// FORMAT: list("quid" = list("last_heard" = time, "message_mode" = MODE_SAY), etc)
+	var/list/heard_data = list()
+
+	var/last_crit = 0

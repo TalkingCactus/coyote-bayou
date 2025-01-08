@@ -29,7 +29,6 @@
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	unsuitable_atmos_damage = 10
 	robust_searching = 1
-	stat_attack = CONSCIOUS
 	gold_core_spawnable = HOSTILE_SPAWN
 	faction = list("skeleton")
 	see_in_dark = 8
@@ -70,7 +69,7 @@
 	speed = 2
 	gold_core_spawnable = NO_SPAWN
 	speak_chance = 1
-	speak = list("THE GODS WILL IT!","DEUS VULT!","REMOVE KABAB!")
+	//speak = list("THE GODS WILL IT!","DEUS VULT!","REMOVE KABAB!")
 	force_threshold = 10 //trying to simulate actually having armor
 	obj_damage = 50
 	melee_damage_lower = 25

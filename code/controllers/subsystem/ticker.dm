@@ -456,8 +456,9 @@ SUBSYSTEM_DEF(ticker)
 	if(m)
 		to_chat(world, "<span class='purple'><b>Tip: </b>[html_encode(m)]</span>")
 	// Queue up the next tip even if it didn't send one so long as it was an organic tip that wasn't sent by an admin.
-	if(isnull(override))
-		addtimer(CALLBACK(src,PROC_REF(send_midround_tip)), midround_tip_interval*(rand(5,15)*0.1))//Random tip interval of +- 50% the average
+	//I'm turning this system off for now.  It is useful in concept but in reality it pulls people harshly out of roleplay.  ~TK
+	//if(isnull(override))
+	//	addtimer(CALLBACK(src,PROC_REF(send_midround_tip)), midround_tip_interval*(rand(5,15)*0.1))//Random tip interval of +- 50% the average
 
 /datum/controller/subsystem/ticker/proc/check_queue()
 	var/hpc = CONFIG_GET(number/hard_popcap)
@@ -580,7 +581,7 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/send_news_report()
 	var/news_message
-	var/news_source = "New Boston Publishing"
+	var/news_source = "Wasteland Publishing"
 	switch(news_report)
 		if(NUKE_SYNDICATE_BASE)
 			news_message = "In a daring raid, the heroic crew of [station_name()] detonated a nuclear device in the heart of a terrorist base."
@@ -628,7 +629,7 @@ SUBSYSTEM_DEF(ticker)
 	if(SSblackbox.first_death)
 		var/list/ded = SSblackbox.first_death
 		//fortuna addition. list of random names for the roundend news investigator
-		var/list/investigator = list("New Boston Investigators","A band of couriers","Patrolling wasters","A few mysterious strangers")
+		var/list/investigator = list("Wasteland Investigators","A band of couriers","Patrolling wasters","A few mysterious strangers")
 		if(ded.len)
 			news_message += "[pick(investigator)] discovered the corpse of a person of interest in the area. Their name was: [ded["name"]], the [ded["role"]], who died in a nearby [ded["area"]].[ded["last_words"] ? " Their last words were: \"[ded["last_words"]]\"" : ""]"
 		else
@@ -726,22 +727,10 @@ SUBSYSTEM_DEF(ticker)
 	save_admin_data()
 	update_everything_flag_in_db()
 	if(!round_end_sound)
-		round_end_sound = pick(\
-		'sound/roundend/fallout_dodgeball_truncated.ogg',
-		'sound/roundend/get_fucked.ogg',
-		'sound/roundend/roundend_jean_baptist.ogg',
-		'sound/roundend/roundend_nuclear_backyard.ogg',
-		'sound/roundend/roundend_patrolling.ogg',
-		'sound/roundend/roundend_real_tunnel_snake.ogg',
-		'sound/roundend/roundend_smoothskin.ogg',
-		'sound/roundend/roundend_tunnel_snakes_rule.ogg',
-		'sound/roundend/gondolabridge.ogg',
-		'sound/roundend/haveabeautifultime.ogg',
-		'sound/roundend/whereisyourpowerarmor.ogg',
-		'sound/roundend/timetodie.ogg',
-		'sound/roundend/ishouldkickyourass.ogg',
-		'sound/roundend/evilmrnv.ogg'\
-		)
+		round_end_sound = pick(
+			'sound/items/dodgeball.ogg',
+			'sound/items/deerplush.ogg',
+			)
 
 	SEND_SOUND(world, sound(round_end_sound))
 	text2file(login_music, "data/last_round_lobby_music.txt")

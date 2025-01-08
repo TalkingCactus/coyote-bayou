@@ -86,39 +86,48 @@
 /mob/proc/get_photo_description(obj/item/camera/camera)
 	return "a ... thing?"
 
-/mob/proc/show_message(msg, type, alt_msg, alt_type, pref_check)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
-	if(audiovisual_redirect)
-		audiovisual_redirect.show_message(msg ? "<avredirspan class='small'>[msg]</avredirspan>" : null, type, alt_msg ? "<avredirspan class='small'>[alt_msg]</avredirspan>" : null, alt_type)
+/mob/proc/show_message(msg, type, alt_msg, alt_type, pref_check, datum/rental_mommy/chat/momchat, force)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
+	if(!force)
+		if(audiovisual_redirect)
+			audiovisual_redirect.show_message(msg ? "<avredirspan class='small'>[msg]</avredirspan>" : null, type, alt_msg ? "<avredirspan class='small'>[alt_msg]</avredirspan>" : null, alt_type)
 
-	if(!client)
-		return
-	
-	if(pref_check && !CHECK_PREFS(src, pref_check))
-		return
+		if(!client)
+			return
+		
+		if(pref_check && !CHECK_PREFS(src, pref_check))
+			return
 
-	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
+		msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 
-	if(type)
-		if(type & MSG_VISUAL && eye_blind )//Vision related
-			if(!alt_msg)
-				return
-			else
-				msg = alt_msg
-				type = alt_type
-
-		if(type & MSG_AUDIBLE && !can_hear())//Hearing related
-			if(!alt_msg)
-				return
-			else
-				msg = alt_msg
-				type = alt_type
-				if(type & MSG_VISUAL && eye_blind)
+		if(type)
+			if(type & MSG_VISUAL && eye_blind )//Vision related
+				if(!alt_msg)
 					return
-	// voice muffling
-	if(stat == UNCONSCIOUS)
-		if(type & MSG_AUDIBLE) //audio
-			to_chat(src, "<I>... You can almost hear something ...</I>")
-		return
+				else
+					msg = alt_msg
+					type = alt_type
+
+			if(type & MSG_AUDIBLE && !can_hear())//Hearing related
+				if(!alt_msg)
+					return
+				else
+					msg = alt_msg
+					type = alt_type
+					if(type & MSG_VISUAL && eye_blind)
+						return
+		// voice muffling
+		if(stat == UNCONSCIOUS)
+			if(type & MSG_AUDIBLE) //audio
+				to_chat(src, "<I>... You can almost hear something ...</I>")
+			return
+	var/msg_backup = msg
+	///NOW HOLD ON THERE BUCKO, I think you're forgetting something~
+	if(momchat && momchat.furry_dating_sim && (isdummy(momchat.source) || CHECK_PREFS(src, SHOW_ME_HORNY_FURRIES))) // its right here
+		if(!momchat.recipiant)
+			momchat.recipiant = src // for me? aw ya shouldntve!
+		msg = SSchat.BuildHornyFurryDatingSimMessage(momchat) // in my subsystem~
+	if(!msg || !length(msg))
+		msg = msg_backup // just in case
 	to_chat(src, msg)
 
 /**
@@ -149,7 +158,8 @@
 		mob/target,
 		target_message,
 		visible_message_flags = NONE,
-		pref_check
+		pref_check,
+		list/data = list()
 		)
 	var/turf/T = get_turf(src)
 	if(!T)
@@ -158,11 +168,14 @@
 	if(!length(hearers)) // yes, hearers is correct
 		return
 	hearers -= ignored_mobs
+	var/datum/rental_mommy/chat/momchat = LAZYLEN(data) ? data["mom"] : null
 
 	var/saycolor = src.get_chat_color()
 	var/targetsaycolor = null
 	if(!!target)
 		targetsaycolor = target.get_chat_color()
+	if(!self_message)
+		self_message = message
 
 	if(target_message && target && istype(target) && target.client)
 		hearers -= target
@@ -189,6 +202,9 @@
 	//if(visible_message_flags & EMOTE_MESSAGE)
 	//	message = "<span class='emote'><b>[src]</b> [message]</span>"
 
+	if(momchat)
+		momchat.message = message
+
 	for(var/mob/M in hearers)
 		if(!M.client)
 			continue
@@ -197,6 +213,8 @@
 		//This entire if/else chain could be in two lines but isn't for readabilty's sake.
 		var/blind = M.is_blind()
 		var/msg = message
+		//if(M == src)
+		//	msg = self_message
 		if(M.see_invisible<invisibility || (T != loc && T != src) || blind)//if src is invisible to us or is inside something (and isn't a turf),
 			msg = blind_message
 
@@ -211,13 +229,23 @@
 				if(!!target)
 					var/sanitizedtargetsaycolor = M.client.sanitize_chat_color(targetsaycolor)
 					msg = color_keyword(msg, sanitizedtargetsaycolor, target.name)
-			M.show_message(msg, MSG_VISUAL, msg, MSG_AUDIBLE)
+			var/datum/rental_mommy/chat/yourmom
+			if(momchat && M.should_hornify(momchat))
+				yourmom = SSrentaldatums.CheckoutChatMommy()
+				yourmom.copy_mommy(momchat)
+				yourmom.recipiant = M
+				yourmom.message = msg
+				yourmom.hide_name_n_verb = TRUE
+			M.show_message(msg, MSG_VISUAL, msg, MSG_AUDIBLE, momchat = yourmom)
+			if(yourmom)
+				yourmom.checkin()
+	momchat?.checkin()
 
 ///Adds the functionality to self_message.
-/mob/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, mob/target, target_message, visible_message_flags = NONE, pref_check)
+/mob/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, mob/target, target_message, visible_message_flags = NONE, pref_check, list/data = list())
 	. = ..()
-	//if(self_message && target != src)
-		//show_message(self_message, MSG_VISUAL, blind_message, MSG_AUDIBLE, pref_check)
+	// if(self_message && target != src)
+	// 	show_message(self_message, null, blind_message, null, pref_check)
 
 /**
  * Show a message to all mobs in earshot of this atom
@@ -237,7 +265,8 @@
 		self_message,
 		ignored_mobs,
 		audible_message_flags = NONE,
-		pref_check
+		pref_check,
+		list/data = list()
 		)
 	var/turf/T = get_turf(src)
 	if(!T)
@@ -246,6 +275,8 @@
 	if(!length(hearers))
 		return
 	hearers -= ignored_mobs
+	if(!self_message)
+		self_message = message
 	//if(self_message)
 		//hearers -= src
 //	var/raw_msg = message
@@ -254,19 +285,35 @@
 	//if(audible_message_flags & EMOTE_MESSAGE)
 	//	message = "<span class='emote'><b>[src]</b> [message]</span>"
 
+	var/datum/rental_mommy/chat/momchat = LAZYLEN(data) ? data["mom"] : null
+
 	var/saycolor = src.get_chat_color()
 
 	for(var/mob/M in hearers)
 		if(pref_check && !CHECK_PREFS(M, pref_check))
 			continue
-		var/msg = M.can_hear() ? message : deaf_message
+		var/msg = message
+		//if(M == src)
+			//msg = self_message
+		var/datum/rental_mommy/chat/yamum = null
+		if(momchat && M.should_hornify(momchat))
+			yamum = SSrentaldatums.CheckoutChatMommy()
+			yamum.copy_mommy(momchat)
+			yamum.recipiant = M
+			yamum.message = message
+			yamum.hide_name_n_verb = TRUE
+		if(!M.can_hear())
+			msg = deaf_message
 		if(M.client?.prefs.color_chat_log)
 			var/sanitizedsaycolor = M.client.sanitize_chat_color(saycolor)
 			msg = color_for_chatlog(msg, sanitizedsaycolor, src.name)
 		if(audible_message_flags & EMOTE_MESSAGE && runechat_prefs_check(M, audible_message_flags))
 			M.create_chat_message(src, raw_message = msg, runechat_flags = audible_message_flags)
 		if(!CHECK_BITFIELD(audible_message_flags, ONLY_OVERHEAD))
-			M.show_message(msg, MSG_AUDIBLE, msg, MSG_VISUAL)
+			M.show_message(msg, MSG_AUDIBLE, msg, MSG_VISUAL, momchat = yamum)
+		if(yamum)
+			yamum.checkin()
+	momchat?.checkin()
 
 /**
  * Show a message to all mobs in earshot of this one
@@ -280,10 +327,10 @@
  * * hearing_distance (optional) is the range, how many tiles away the message can be heard.
  * * ignored_mobs (optional) doesn't show any message to any given mob in the list.
  */
-/mob/audible_message(message, deaf_message, hearing_distance = DEFAULT_MESSAGE_RANGE, self_message, list/ignored_mobs, audible_message_flags = NONE, pref_check)
+/mob/audible_message(message, deaf_message, hearing_distance = DEFAULT_MESSAGE_RANGE, self_message, list/ignored_mobs, audible_message_flags = NONE, pref_check, list/data = list())
 	. = ..()
-	//if(self_message)
-		//show_message(self_message, MSG_AUDIBLE, deaf_message, MSG_VISUAL, pref_check)
+	// if(self_message)
+	// 	show_message(self_message, null, deaf_message, null, pref_check)
 
 
 ///Returns the client runechat visible messages preference according to the message type.
@@ -310,7 +357,7 @@
 /mob/proc/restrained(ignore_grab)
 	return
 
-/mob/proc/incapacitated(ignore_restraints, ignore_grab)
+/mob/proc/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, check_immobilized = FALSE, allow_crit = FALSE)
 	return
 
 //This proc is called whenever someone clicks an inventory ui slot.
@@ -519,7 +566,7 @@
 	if(ismecha(loc))
 		return
 
-	if(incapacitated())
+	if(incapacitated(allow_crit = TRUE))
 		return
 
 	var/obj/item/I = get_active_held_item()
@@ -671,7 +718,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 		usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", name, replacetext(oocnotes, "\n", "<BR>")), text("window=[];size=500x200", name))
 		onclose(usr, "[name]")
 	if(href_list["enlargeImageCreature"])
-		var/followers_clinic_full_of_big_strong_gay_dogs_in_it = PfpHostLink(profilePicture)
+		var/followers_clinic_full_of_big_strong_gay_dogs_in_it = SSchat.GetPicForMode(src, MODE_PROFILE_PIC)
 		var/dat = {"
 			<img src='[followers_clinic_full_of_big_strong_gay_dogs_in_it]' width='100%' height='100%' 'object-fit: scale-down;'>
 			<br>

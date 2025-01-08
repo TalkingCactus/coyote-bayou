@@ -2,7 +2,7 @@
 	name = "YK-42b Pulse Rifle"
 	desc = "The YK42B rifle is an electrical pulse weapon that was developed by the Yuma Flats Energy Consortium. It excels in damage against heavily armored opponents, especially power armor."
 	icon_state = "ionrifle"
-	item_state = "ionrifle"	//so the human update icon uses the icon_state instead.
+	inhand_icon_state = "ionrifle"	//so the human update icon uses the icon_state instead.
 	can_flashlight = 1
 	flags_1 =  CONDUCT_1
 	ammo_type = list(/obj/item/ammo_casing/energy/ion)
@@ -20,7 +20,7 @@
 	name = "ion carbine"
 	desc = "The MK.II Prototype Ion Projector is a lightweight carbine version of the larger ion rifle, built to be ergonomic and efficient."
 	icon_state = "ioncarbine"
-	item_state = "ioncarbine4"
+	inhand_icon_state = "ioncarbine4"
 	ammo_type = list(/obj/item/ammo_casing/energy/ion/carbine)
 	ammo_x_offset = 2
 	flight_x_offset = 18
@@ -33,9 +33,9 @@
 	name = "pulse pistol"
 	desc = "This weapon makes a continual and quiet hum, even when the power cell is removed. Written on the side is 'Type III Pulse Projector,' whatever that means."
 	icon_state = "tesla"
-	item_state = "tesla"
+	inhand_icon_state = "tesla"
 	cell_type = /obj/item/stock_parts/cell/ammo/ecp // ECP has 20,000 charge, shot drain is 2000. This gives it 10 shots vs a rifle's 15.
-	weapon_class = WEAPON_CLASS_NORMAL
+	weapon_class = WEAPON_CLASS_SMALL
 	weapon_weight = GUN_ONE_HAND_AKIMBO
 	init_recoil = HANDGUN_RECOIL(1.5, 1.5)
 
@@ -59,7 +59,7 @@
 	name = "floral somatoray"
 	desc = "A tool that discharges controlled radiation which induces mutation in plant cells."
 	icon_state = "flora"
-	item_state = "gun"
+	inhand_icon_state = "gun"
 	ammo_type = list(/obj/item/ammo_casing/energy/flora/yield, /obj/item/ammo_casing/energy/flora/mut)
 	modifystate = 1
 	ammo_x_offset = 1
@@ -71,7 +71,7 @@
 	name = "meteor gun"
 	desc = "For the love of god, make sure you're aiming this the right way!"
 	icon_state = "meteor_gun"
-	item_state = "c20r"
+	inhand_icon_state = "c20r"
 	w_class = WEIGHT_CLASS_BULKY
 	ammo_type = list(/obj/item/ammo_casing/energy/meteor)
 	cell_type = "/obj/item/stock_parts/cell/potato"
@@ -85,7 +85,7 @@
 	desc = "The pen is mightier than the sword."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "pen"
-	item_state = "pen"
+	inhand_icon_state = "pen"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	weapon_class = WEAPON_CLASS_TINY
@@ -95,7 +95,7 @@
 	name = "\improper Mind Flayer"
 	desc = "A prototype weapon recovered from the ruins of Research-Station Epsilon."
 	icon_state = "xray"
-	item_state = null
+	inhand_icon_state = null
 	ammo_type = list(/obj/item/ammo_casing/energy/mindflayer)
 	ammo_x_offset = 2
 	weapon_class = WEAPON_CLASS_NORMAL
@@ -105,7 +105,7 @@
 	name = "small energy crossbow"
 	desc = "An ancient classic brought into the modern era. This weapon fires bolts of plasma that not only sear with an intense heat, but also hamper the victim's senses."
 	icon_state = "crossbow"
-	item_state = "crossbow"
+	inhand_icon_state = "crossbow"
 	custom_materials = list(/datum/material/iron=2000)
 	silenced = null
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt)
@@ -127,7 +127,7 @@
 	name = "smoocher"
 	desc = "A pair of lips, perfect for blowing kisses."
 	icon_state = null
-	item_state = "kisser"
+	inhand_icon_state = "kisser"
 	force = 0
 	force_unwielded = 0
 	force_wielded = 0
@@ -142,15 +142,17 @@
 	desc = "A simple piece of leather, shaped to hold one rock, and hurl it at a target at high speed. Due to the abundance of stray stones and rubble, this weapon has effectively unlimited reloads."
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt/sling)
 	weapon_weight = GUN_ONE_HAND_ONLY
+	w_class = WEIGHT_CLASS_TINY
 	force = 5
 	force_unwielded = 5
 	force_wielded = 10
 	throwforce = 5
+	silenced = TRUE
 	icon = 'modular_coyote/icons/objects/bows.dmi'
 	lefthand_file = 'icons/mob/inhands/equipment/belt_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/belt_righthand.dmi'
 	icon_state = "sling"
-	item_state = "utility"
+	inhand_icon_state = "utility"
 	pin = null
 	no_pin_required = TRUE
 	fire_sound = 'sound/weapons/punchmiss.ogg'
@@ -160,11 +162,12 @@
 	name = "sling staff"
 	desc = "A simple piece of leather strapped to a staff allowing it greater damage both in melee and at range. Due to the abundance of stray stones and rubble, this weapon has effectively unlimited reloads."
 	weapon_weight = GUN_TWO_HAND_ONLY
-	w_class = WEIGHT_CLASS_BULKY
+	w_class = WEIGHT_CLASS_NORMAL
 	force = 25
 	force_unwielded = 25
 	force_wielded = 35
 	throwforce = 25
+	silenced = TRUE
 	icon_state = "slingstaff"
 	overheat_time = 40 // 4.0 seconds
 	init_recoil = LASER_CARBINE_RECOIL(2, 1)
@@ -177,7 +180,7 @@
 	name = "candy corn crossbow"
 	desc = "A weapon favored by Syndicate trick-or-treaters."
 	icon_state = "crossbow_halloween"
-	item_state = "crossbow"
+	inhand_icon_state = "crossbow"
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt/halloween)
 	weapon_class = WEAPON_CLASS_SMALL
 	weapon_weight = GUN_ONE_HAND_ONLY
@@ -201,7 +204,7 @@
 	name = "plasma cutter"
 	desc = "A mining tool capable of expelling concentrated plasma bursts. You could use it to cut limbs off xenos! Or, you know, mine stuff."
 	icon_state = "plasmacutter"
-	item_state = "plasmacutter"
+	inhand_icon_state = "plasmacutter"
 	ammo_type = list(/obj/item/ammo_casing/energy/miningplasma)
 	flags_1 = CONDUCT_1
 	attack_verb = list("attacked", "slashed", "cut", "sliced")
@@ -267,7 +270,7 @@
 	name = "bluespace wormhole projector"
 	desc = "A projector that emits high density quantum-coupled bluespace beams."
 	ammo_type = list(/obj/item/ammo_casing/energy/wormhole, /obj/item/ammo_casing/energy/wormhole/orange)
-	item_state = null
+	inhand_icon_state = null
 	icon_state = "wormhole_projector"
 	pin = null
 	automatic_charge_overlays = FALSE
@@ -279,7 +282,7 @@
 
 /obj/item/gun/energy/wormhole_projector/update_icon_state()
 	icon_state = "[initial(icon_state)][current_firemode_index]"
-	item_state = icon_state
+	inhand_icon_state = icon_state
 
 /obj/item/gun/energy/wormhole_projector/update_ammo_types()
 	. = ..()
@@ -375,7 +378,7 @@
 /obj/item/gun/energy/laser/instakill
 	name = "instakill rifle"
 	icon_state = "instagib"
-	item_state = "instagib"
+	inhand_icon_state = "instagib"
 	desc = "A specialized ASMD laser-rifle, capable of flat-out disintegrating most targets in a single hit."
 	ammo_type = list(/obj/item/ammo_casing/energy/instakill)
 	force = 60
@@ -385,7 +388,7 @@
 /obj/item/gun/energy/laser/instakill/red
 	desc = "A specialized ASMD laser-rifle, capable of flat-out disintegrating most targets in a single hit. This one has a red design."
 	icon_state = "instagibred"
-	item_state = "instagibred"
+	inhand_icon_state = "instagibred"
 	ammo_type = list(/obj/item/ammo_casing/energy/instakill/red)
 	weapon_class = WEAPON_CLASS_NORMAL
 	weapon_weight = GUN_ONE_HAND_ONLY
@@ -393,7 +396,7 @@
 /obj/item/gun/energy/laser/instakill/blue
 	desc = "A specialized ASMD laser-rifle, capable of flat-out disintegrating most targets in a single hit. This one has a blue design."
 	icon_state = "instagibblue"
-	item_state = "instagibblue"
+	inhand_icon_state = "instagibblue"
 	ammo_type = list(/obj/item/ammo_casing/energy/instakill/blue)
 	weapon_class = WEAPON_CLASS_NORMAL
 	weapon_weight = GUN_ONE_HAND_ONLY
@@ -405,7 +408,7 @@
 	name = "one-point bluespace-gravitational manipulator"
 	desc = "An experimental, multi-mode device that fires bolts of Zero-Point Energy, causing local distortions in gravity."
 	ammo_type = list(/obj/item/ammo_casing/energy/gravity/repulse, /obj/item/ammo_casing/energy/gravity/attract, /obj/item/ammo_casing/energy/gravity/chaos)
-	item_state = "gravity_gun"
+	inhand_icon_state = "gravity_gun"
 	icon_state = "gravity_gun"
 	pin = null
 	var/power = 4

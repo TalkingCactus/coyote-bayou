@@ -441,8 +441,8 @@
 	var/third_person_verb = "lapping at"
 	var/action_verb = "lick at"
 	var/action_verb_2 = "lick"
-	heal_brute = 2
-	heal_burn = 2
+	heal_brute = 5
+	heal_burn = 5
 	heal_mobs = 5
 	self_delay = 2 SECONDS
 	other_delay = 2 SECONDS
@@ -618,6 +618,7 @@
 	heal_per_tick = 0.01
 	bandage_power = 0.01
 	is_bandage = TRUE
+	bandage_staunch = WOUND_BLEED_BANDAGE_SW_MULTIPLIER
 
 /// ...
 /*
@@ -731,8 +732,8 @@
 	self_delay = 80
 	other_delay = 60
 	heal_mobs = 40
-	heal_brute = 3
-	heal_burn = 3
+	// heal_brute = 3
+	// heal_burn = 3
 	heal_per_tick = SUTURE_MEDICAL_HEAL_OVER_TIME
 	//heal_over_time_per_tick = SUTURE_MEDICAL_HEAL_RATE
 	covering_lifespan = SUTURE_GOOD_MAX_DURATION
@@ -777,7 +778,7 @@
 
 /obj/item/stack/medical/mesh
 	name = "regenerative mesh"
-	desc = "An advanced bacteriostatic mesh used to dress burns and sanitize burns. Also removes infection directly, unlike ointment. Best for severe burns. This is the kind of thing you would expect to see in a pre-war hospital."
+	desc = "An advanced bacteriostatic mesh used to dress burns and sanitize burns. Also removes infection directly, unlike ointment. Best for severe burns. This is the kind of thing you would expect to see in a Pre-Fall hospital."
 	gender = PLURAL
 	singular_name = "regenerative mesh"
 	icon_state = "regen_mesh"
@@ -801,7 +802,7 @@
 
 /obj/item/stack/medical/mesh/advanced
 	name = "advanced regenerative mesh"
-	desc = "An advanced mesh made with aloe extracts and sterilizing chemicals, used for the most critical burns. Also removes infection directly, unlike ointment. This is the kind of thing you would expect to see in a pre-war hospital for rich people."
+	desc = "An advanced mesh made with aloe extracts and sterilizing chemicals, used for the most critical burns. Also removes infection directly, unlike ointment. This is the kind of thing you would expect to see in a Pre-Fall hospital for rich people."
 	gender = PLURAL
 	singular_name = "advanced regenerative mesh"
 	icon_state = "aloe_mesh"

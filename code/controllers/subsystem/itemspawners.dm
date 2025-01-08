@@ -4,7 +4,7 @@ SUBSYSTEM_DEF(itemspawners)
 	init_order = INIT_ORDER_ITEMSPAWNERS
 	var/cull_spawners_by = 0.5 // 50% of the items will be culled
 	var/list/to_cull = list()
-	var/restock_trash_interval = 1 HOURS
+	var/restock_trash_interval = 2 HOURS
 	COOLDOWN_DECLARE(next_trash_delivery)
 
 /datum/controller/subsystem/itemspawners/Initialize(start_timeofday)
@@ -77,7 +77,7 @@ SUBSYSTEM_DEF(itemspawners)
 		return
 	COOLDOWN_START(src, next_trash_delivery, restock_trash_interval)
 	log_game("Restocking trash piles...")
-	message_admins("Restocking trash piles...")
+	//message_admins("Restocking trash piles...")
 
 	for(var/datum/weakref/TS in GLOB.trash_piles)
 		var/obj/item/storage/trash_stack/tresh = TS?.resolve()

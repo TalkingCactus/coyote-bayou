@@ -315,6 +315,7 @@
 	max_items = 3 // battery, persona core, capacitor. Battery cant be removed, so really 1
 	max_w_class = STORAGE_BOX_DEFAULT_MAX_SIZE
 	rustle_sound = TRUE
+	max_depth = 999 // zap
 	quota = list(
 		/obj/item/stock_parts/capacitor = 1,
 		/obj/item/stock_parts/cell = 1,
@@ -323,7 +324,6 @@
 
 /datum/component/storage/concrete/charger_internals/Initialize()
 	. = ..()
-	can_hold = typecacheof(list(/obj/item/stock_parts/cell, /obj/item/stock_parts/capacitor, /obj/item/persona_core/charger))
 
 /obj/item/storage/box/charger_internals
 	name = "Internal component compartment"
@@ -430,7 +430,7 @@
 	desc = "A dense powerpack welded into a battery housing. Supposedly holds charge."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "cell"
-	item_state = "cell"
+	inhand_icon_state = "cell"
 	start_charged = FALSE
 	maxcharge = 10000 // base charge
 	interaction_flags_item = INTERACT_ITEM_ATTACK_HAND_IS_SHIFT

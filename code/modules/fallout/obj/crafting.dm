@@ -27,7 +27,7 @@
 	name = "basic crafting components obtained from salvaging"
 	desc = "This should not be visible. Tell someone about it."
 	icon = 'icons/fallout/objects/crafting.dmi'
-	item_state = "null"
+	inhand_icon_state = "null"
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/crafting/diode
@@ -131,7 +131,7 @@
 
 /obj/item/crafting/wonderglue
 	name = "wonder glue"
-	desc = "A pre-War brand of glue that has retained its adhesive qualities.<br>A glue itself is a liquid acrylic adhesive, meant to fix broken plastics and ceramics or used in the assembly of a great assortment of items."
+	desc = "A Pre-Fall brand of glue that has retained its adhesive qualities.<br>A glue itself is a liquid acrylic adhesive, meant to fix broken plastics and ceramics or used in the assembly of a great assortment of items."
 	icon_state = "wonderglue1"
 
 /obj/item/crafting/wonderglue/New()
@@ -145,7 +145,7 @@
 
 /obj/item/crafting/abraxo
 	name = "Abraxo"
-	desc = "A pre-War cleaning agent produced by Abraxodyne Chemical.<br>Its powdery flakes seem useful for dealing with toxic spills."
+	desc = "A Pre-Fall cleaning agent produced by Abraxodyne Chemical.<br>Its powdery flakes seem useful for dealing with toxic spills."
 	icon_state = "abraxo"
 
 /obj/item/circuitboard/machine/autolathe/ammo/improvised

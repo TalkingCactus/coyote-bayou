@@ -32,7 +32,7 @@
 	//tiles within they start making noise, does count the mobs tile
 
 	speak_emote = list("clacks", "chitters", "snips", "snaps")
-	emote_see = list("waggles its antenna", "clicks its mandibles", "picks up your scent", "goes on the hunt")
+	// emote_see = list("waggles its antenna", "clicks its mandibles", "picks up your scent", "goes on the hunt")
 	attack_verb_simple = list ("rips", "tears", "stings")
 	turns_per_move = 5
 	guaranteed_butcher_results = list(/obj/item/stack/sheet/sinew = 1, /obj/item/reagent_containers/food/snacks/meat/slab/ant_meat = 2, /obj/effect/spawner/lootdrop/f13/deadantloot = 1)
@@ -62,7 +62,7 @@
 	blood_volume = 0
 	decompose = FALSE
 	tastes = list("dirt" = 1, "sand" = 1, "metal?" = 1)
-	loot = list(/obj/effect/spawner/lootdrop/f13/common, /obj/effect/gibspawner/larva)
+	loot = list(/obj/effect/gibspawner/larva)
 	loot_drop_amount = 1
 	loot_amount_random = TRUE
 
@@ -111,7 +111,7 @@
 	decompose = FALSE
 	a_intent = INTENT_HARM
 	blood_volume = 0
-	loot = list(/obj/effect/spawner/lootdrop/f13/uncommon, /obj/effect/gibspawner/larva)
+	loot = list(/obj/effect/gibspawner/larva)
 	loot_drop_amount = 1
 	loot_amount_random = TRUE
 	extra_projectiles = 3
@@ -180,7 +180,7 @@
 	var/spawn_time = 30 SECONDS
 	//var/spawn_text = "hatches from"
 	blood_volume = 0
-	loot = list(/obj/effect/spawner/lootdrop/f13/rare, /obj/effect/gibspawner/larva)
+	loot = list(/obj/effect/gibspawner/larva)
 	loot_drop_amount = 5
 	loot_amount_random = TRUE
 
@@ -260,7 +260,7 @@
 	var/scorpion_color = "radscorpion" //holder for icon set
 	var/list/icon_sets = list("radscorpion", "radscorpion_blue", "radscorpion_black")
 	blood_volume = 0
-	loot = list(/obj/effect/spawner/lootdrop/f13/uncommon, /obj/effect/gibspawner/larva)
+	loot = list(/obj/effect/gibspawner/larva)
 	loot_drop_amount = 1
 	loot_amount_random = TRUE
 	emote_taunt = list("snips")
@@ -335,7 +335,7 @@
 	speak_chance = 0
 	turns_per_move = 5
 
-	move_to_delay = 2.0
+	move_to_delay = 3
 	// m2d 3 = standard, less is fast, more is slower.
 
 	retreat_distance = 3
@@ -360,7 +360,6 @@
 	emote_taunt_sound = list('sound/f13npc/cazador/cazador_alert.ogg')
 	emote_taunt_sound = list('sound/f13npc/cazador/cazador_charge1.ogg', 'sound/f13npc/cazador/cazador_charge2.ogg', 'sound/f13npc/cazador/cazador_charge3.ogg')
 	idlesound = list('sound/creatures/cazador_buzz.ogg')
-	stat_attack = CONSCIOUS
 	robust_searching = TRUE
 	taunt_chance = 30
 	speed = 1
@@ -380,7 +379,7 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 	death_sound = 'sound/f13npc/cazador/cazador_death.ogg'
 	blood_volume = 0
-	loot = list(/obj/effect/spawner/lootdrop/f13/trash, /obj/effect/gibspawner/larva)
+	loot = list(/obj/effect/gibspawner/larva)
 	loot_drop_amount = 1
 	loot_amount_random = TRUE
 
@@ -402,7 +401,7 @@
 	if(prob(50))
 		return ..()
 	else
-		visible_message(span_danger("[src] dodges [Proj]!"))
+		//visible_message(span_danger("[src] dodges [Proj]!"))
 		return 0
 
 
@@ -481,6 +480,8 @@
 	waddle_up_time = 3
 	waddle_side_time = 2
 	can_ghost_into = TRUE
+	retreat_distance = 3
+	minimum_distance = 2
 
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	speak_chance = 0
@@ -523,7 +524,7 @@
 	)
 	desc_short = "A gigantic fly that's more disgusting than actually threatening. Tends to dodge bullets."
 	pop_required_to_jump_into = BIG_MOB_MIN_PLAYERS
-	loot = list(/obj/effect/spawner/lootdrop/f13/trash, /obj/effect/gibspawner/larva)
+	loot = list(/obj/effect/gibspawner/larva)
 	loot_drop_amount = 1
 	loot_amount_random = TRUE
 
@@ -531,7 +532,7 @@
 	if(!Proj)
 		return
 	if(prob(50))
-		visible_message(span_danger("[src] dodges [Proj]!"))
+		//visible_message(span_danger("[src] dodges [Proj]!"))
 		return BULLET_ACT_FORCE_PIERCE
 	else
 		. = ..()
@@ -554,10 +555,11 @@
 	icon_dead = "pillbug_dead"
 	icon_gib = "radroach_gib"
 	can_ghost_into = TRUE
+	move_to_delay = 4
 	waddle_amount = 1
 	waddle_up_time = 1
 	waddle_side_time = 1
-	loot = list(/obj/effect/spawner/lootdrop/f13/trash, /obj/effect/gibspawner/larva)
+	loot = list(/obj/effect/gibspawner/larva)
 	loot_drop_amount = 1
 	loot_amount_random = TRUE
 	speed = 1
@@ -690,7 +692,7 @@
 
 /mob/living/simple_animal/hostile/pillbug/leader/Initialize()
 	.=..()
-	resize = 3.0
+	resize = 2.0
 	update_transform()
 
 /mob/living/simple_animal/hostile/pillbug/leader/become_the_mob(mob/user)
