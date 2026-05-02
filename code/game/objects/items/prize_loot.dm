@@ -44,9 +44,6 @@
 			qdel(src)
 			return
 
-/obj/item/lockpick_set/proc/can_use(mob/user)
-	return HAS_TRAIT(user, TRAIT_SECURITYEXPERT)
-
 /obj/item/locked_box
 	name = "locked box"
 	desc = "An object that contains objects that may be useful."
@@ -74,7 +71,7 @@
 	//so you can't spam click the locked crate
 	var/used = FALSE
 	//this will just add whatever is here right before locked crate
-	//example: prewar clothing locked crate
+	//example: prefall clothing locked crate
 	var/easy_naming = ""
 	//this makes it to where one can either allow or disallow the addition of the loot tables
 	var/enable_loot_initialize = TRUE
@@ -108,7 +105,7 @@
 		. += "[src] appears to be unlocked."
 	if(fragile)
 		. += "There are cracks, [src] may crumble from any sudden movements."
-	if(user.client.prefs.special_p >= 8)
+	if(user.client.prefs.stat_perception >= 8)
 		if(trapped)
 			. += "The lock looks tampered with."
 		. += "There [prize_amount > 1 ? "are" : "is"] [prize_amount] [prize_amount > 1 ? "objects" : "object"]."
@@ -160,16 +157,12 @@
 			return
 
 		var/obj/item/lockpick_set/tool = W
-		if(!tool.can_use(user))
-			to_chat(user, span_warning("You're not really sure what to do with this..."))
-			return
-
 		if(lock_tier > 3 && tool.lockpick_tier < 2)
 			to_chat(user, span_warning("You need a better set of tools to get past security measures like this!"))
 			return
 
 		var/success_after_tier = max(100 - (lock_tier * 20), 0) //the higher the lock tier, the harder it is, down to a max of 0
-		var/success_after_skill = min((user.client.prefs.special_p * 5) + success_after_tier, 100) //the higher the persons perception, the better, up to a max of 100, with 50 added
+		var/success_after_skill = min((user.client.prefs.stat_perception * 5) + success_after_tier, 100) //the higher the persons perception, the better, up to a max of 100, with 50 added
 		if(!prob(success_after_skill))
 			to_chat(user, span_warning("You fail to pick [src]."))
 			return
@@ -197,20 +190,20 @@
 	easy_naming = "armor "
 	prize_amount = 4
 
-/obj/item/locked_box/armor/prewar_clothes
-	easy_naming = "prewar clothing "
+/obj/item/locked_box/armor/prefall_clothes
+	easy_naming = "prefall clothing "
 	prize_amount = 4
 
-/obj/item/locked_box/armor/prewar_clothes/initialize_prizes()
-	global_loot_lists = list(GLOB.loot_prewar_clothing)
+/obj/item/locked_box/armor/prefall_clothes/initialize_prizes()
+	global_loot_lists = list(GLOB.loot_prefall_clothing)
 	. = ..()
 
-/obj/item/locked_box/armor/prewar_costumes
-	easy_naming = "prewar costumes "
+/obj/item/locked_box/armor/prefall_costumes
+	easy_naming = "prefall costumes "
 	prize_amount = 4
 
-/obj/item/locked_box/armor/prewar_costumes/initialize_prizes()
-	global_loot_lists = list(GLOB.loot_prewar_costume)
+/obj/item/locked_box/armor/prefall_costumes/initialize_prizes()
+	global_loot_lists = list(GLOB.loot_prefall_costume)
 	. = ..()
 
 /obj/item/locked_box/armor/tier1
@@ -531,9 +524,9 @@
 	prize_amount = 2
 	locked = TRUE
 
-/obj/item/locked_box/misc/crafting/advanced/initialize_prizes()
-	global_loot_lists = list(GLOB.loot_craft_advanced)
-	. = ..()
+// /obj/item/locked_box/misc/crafting/advanced/initialize_prizes()
+// 	global_loot_lists = list(GLOB.loot_craft_advanced)
+// 	. = ..()
 
 /obj/item/locked_box/misc/resource
 	easy_naming = "resource "
@@ -609,9 +602,9 @@
 	locked = TRUE
 	lock_tier = 3
 
-/obj/item/locked_box/misc/skillbook/initialize_prizes()
-	global_loot_lists = list(GLOB.loot_skillbook)
-	. = ..()
+// /obj/item/locked_box/misc/skillbook/initialize_prizes()
+// 	global_loot_lists = list(GLOB.loot_skillbook)
+// 	. = ..()
 
 /obj/item/locked_box/misc/attachments
 	easy_naming = "attachment "
@@ -631,20 +624,20 @@
 /obj/item/locked_box/misc/blueprints/tier1
 	lock_tier = 2
 
-/obj/item/locked_box/misc/blueprints/tier1/initialize_prizes()
-	global_loot_lists = list(GLOB.loot_t1_blueprint)
-	. = ..()
+// /obj/item/locked_box/misc/blueprints/tier1/initialize_prizes()
+// 	global_loot_lists = list(GLOB.loot_t1_blueprint)
+// 	. = ..()
 
-/obj/item/locked_box/misc/blueprints/tier2
-	lock_tier = 3
+// /obj/item/locked_box/misc/blueprints/tier2
+// 	lock_tier = 3
 
-/obj/item/locked_box/misc/blueprints/tier2/initialize_prizes()
-	global_loot_lists = list(GLOB.loot_t2_blueprint)
-	. = ..()
+// /obj/item/locked_box/misc/blueprints/tier2/initialize_prizes()
+// 	global_loot_lists = list(GLOB.loot_t2_blueprint)
+// 	. = ..()
 
-/obj/item/locked_box/misc/blueprints/tier3
-	lock_tier = 4
+// /obj/item/locked_box/misc/blueprints/tier3
+// 	lock_tier = 4
 
-/obj/item/locked_box/misc/blueprints/tier3/initialize_prizes()
-	global_loot_lists = list(GLOB.loot_t3_blueprint)
-	. = ..()
+// /obj/item/locked_box/misc/blueprints/tier3/initialize_prizes()
+// 	global_loot_lists = list(GLOB.loot_t3_blueprint)
+// 	. = ..()

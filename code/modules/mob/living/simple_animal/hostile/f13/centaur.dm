@@ -25,6 +25,7 @@
 	loot = list(/obj/effect/spawner/lootdrop/f13/uncommon)
 	loot_drop_amount = 2
 	loot_amount_random = TRUE
+	bounty = 25
 
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	robust_searching = TRUE
@@ -44,11 +45,10 @@
 	//tiles within they start making noise
 	turns_per_move = 5
 	speak_emote = list("growls")
-	emote_see = list("screeches", "screams", "howls", "bellows", "flails", "fidgets", "festers")
+	//emote_see = list("screeches", "screams", "howls", "bellows", "flails", "fidgets", "festers")
 	a_intent = INTENT_HARM
 	attack_verb_simple = list("whipped", "whacked", "whomped", "wailed on", "smacked", "smashed", "bapped")
 	unsuitable_atmos_damage = 20
-	stat_attack = CONSCIOUS
 	gold_core_spawnable = HOSTILE_SPAWN
 	faction = list("hostile", "supermutant")
 	guaranteed_butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/human/centaur = 3,
@@ -133,7 +133,7 @@
 		'sound/voice/abomscream3.ogg'
 	)
 
-/mob/living/simple_animal/hostile/abomination/say(message, datum/language/language = null, list/spans = list(), language, sanitize, ignore_spam, forced = null, just_chat)
+/mob/living/simple_animal/hostile/abomination/say(message, datum/language/language = null, list/spans = list(), language, sanitize, ignore_spam, forced = null, only_overhead)
 	..()
 	if(stat)
 		return
@@ -202,7 +202,7 @@
 	. = ..()
 	abom_sounds = list('sound/voice/abomination1.ogg', 'sound/voice/abomscream.ogg', 'sound/voice/abommoan.ogg', 'sound/voice/abomscream2.ogg', 'sound/voice/abomscream3.ogg')
 
-/mob/living/simple_animal/hostile/abomhorror/nsb/say(message, datum/language/language = null, list/spans = list(), language, sanitize, ignore_spam, forced = null, just_chat)
+/mob/living/simple_animal/hostile/abomhorror/nsb/say(message, datum/language/language = null, list/spans = list(), language, sanitize, ignore_spam, forced = null, only_overhead)
 	..()
 	if(stat)
 		return

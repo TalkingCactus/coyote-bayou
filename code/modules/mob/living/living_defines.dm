@@ -1,7 +1,7 @@
 /mob/living
 	flags_1 = HEAR_1 | CRITICAL_ATOM_1
 	see_invisible = SEE_INVISIBLE_LIVING
-	sight = 0
+	sight = SEE_PIXELS
 	see_in_dark = 2
 	hud_possible = list(HEALTH_HUD,STATUS_HUD,ANTAG_HUD,NANITE_HUD,DIAG_NANITE_FULL_HUD,RAD_HUD,ONLINE_HUD)
 	pressure_resistance = 10
@@ -28,6 +28,7 @@
 	var/staminaloss = 0		//Stamina damage, or exhaustion. You recover it slowly naturally, and are knocked down if it gets too high. Holodeck and hallucinations deal this.
 	var/crit_threshold = HEALTH_THRESHOLD_CRIT // when the mob goes from "normal" to crit
 
+	var/can_glow_revive = TRUE
 	var/mobility_flags = MOBILITY_FLAGS_DEFAULT
 
 	var/living_flags = NONE
@@ -176,3 +177,5 @@
 
 	/// The icon state to use while resting.
 	var/icon_resting
+
+	var/coolshadow = TRUE

@@ -7,7 +7,7 @@
 //Chef
 /obj/item/clothing/head/chefhat
 	name = "chef's hat"
-	item_state = "chef"
+	inhand_icon_state = "chef"
 	icon_state = "chef"
 	desc = "The commander in chef's head wear."
 	strip_delay = 10
@@ -22,7 +22,7 @@
 	name = "captain's hat"
 	desc = "It's good being the king."
 	icon_state = "captain"
-	item_state = "that"
+	inhand_icon_state = "that"
 	flags_inv = 0
 	strip_delay = 60
 
@@ -186,7 +186,7 @@
 	name = "warden's campaign hat"
 	desc = "A special armored campaign hat with the security insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection. Has the letters 'FMJ' enscribed on its side."
 	icon_state = "wardendrill"
-	item_state = "wardendrill"
+	inhand_icon_state = "wardendrill"
 	dog_fashion = null
 	var/mode = DRILL_DEFAULT
 
@@ -224,8 +224,8 @@
 	. = ..()
 	UnregisterSignal(M, COMSIG_MOB_SAY)
 
-/obj/item/clothing/head/warden/drill/proc/handle_speech(datum/source, mob/speech_args)
-	var/message = speech_args[SPEECH_MESSAGE]
+/obj/item/clothing/head/warden/drill/proc/handle_speech(datum/source, datum/rental_mommy/chat/mom)
+	var/message = mom.message
 	if(message[1] != "*")
 		switch (mode)
 			if(DRILL_SHOUTING)
@@ -247,7 +247,7 @@
 
 				if(prob(30))
 					message += pick(", eh?", ", EH?")
-		speech_args[SPEECH_MESSAGE] = message
+		mom.message = message
 
 /obj/item/clothing/head/beret/sec
 	name = "security beret"

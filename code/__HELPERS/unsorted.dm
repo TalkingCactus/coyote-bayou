@@ -15,8 +15,6 @@
 	var/textb = copytext(HTMLstring, 6, 8)
 	return rgb(255 - hex2num(textr), 255 - hex2num(textg), 255 - hex2num(textb))
 
-//Better performant than an artisanal proc and more reliable than Turn(). From TGMC.
-#define REVERSE_DIR(dir) ( ((dir & 85) << 1) | ((dir & 170) >> 1) )
 //Returns location. Returns null if no location was found.
 /proc/get_teleport_loc(turf/location,mob/target,distance = 1, density = FALSE, errorx = 0, errory = 0, eoffsetx = 0, eoffsety = 0)
 /*
@@ -1715,6 +1713,9 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	if(ismob(something))
 		return something
 	if(istext(something))
+		var/mob/Mm = locate(something)
+		if(Mm) // if its a REF()
+			return Mm 
 		var/client/C = LAZYACCESS(GLOB.directory, something)
 		if(C)
 			return C.mob
@@ -1765,6 +1766,12 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	if(!clint)
 		return null
 	return clint.mob
+
+/proc/ckey2client(ckey) // I know its already a proc up in this document, mine's better
+	var/client/clint = LAZYACCESS(GLOB.directory, ckey)
+	if(!clint)
+		return null
+	return clint
 
 /// Takes in a ckey, a mob, client, or even prefs, and finds the prefs, one way or another
 /proc/extract_prefs(something) // one way or another, im getting your prefs (to break)

@@ -29,7 +29,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "radio headset"
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys."
 	icon_state = "headset"
-	item_state = "headset"
+	inhand_icon_state = "headset"
 	custom_materials = list(/datum/material/iron=75)
 	subspace_transmission = TRUE
 	canhear_range = 0 // can't hear headsets from very far away
@@ -73,7 +73,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	QDEL_NULL(keyslot2)
 	return ..()
 
-/obj/item/radio/headset/talk_into(mob/living/M, message, channel, list/spans,datum/language/language)
+/obj/item/radio/headset/talk_into(atom/movable/M, message, channel, list/spans, datum/language/language, datum/rental_mommy/chat/momchat)
 	if (!listening)
 		return ITALICS | REDUCE_RANGE
 
@@ -95,7 +95,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "syndicate headset"
 	desc = "A syndicate headset that can be used to hear all radio frequencies. Protects ears from flashbangs."
 	icon_state = "syndie_headset"
-	item_state = "syndie_headset"
+	inhand_icon_state = "syndie_headset"
 	bowman = TRUE
 
 /obj/item/radio/headset/syndicate/alt/leader
@@ -123,7 +123,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "security bowman headset"
 	desc = "This is used by your elite security force. Protects ears from flashbangs."
 	icon_state = "sec_headset_alt"
-	item_state = "sec_headset_alt"
+	inhand_icon_state = "sec_headset_alt"
 	bowman = TRUE
 
 /obj/item/radio/headset/headset_eng
@@ -142,7 +142,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "reclaimer radio headset"
 	desc = "A sciency headset. Like usual."
 	icon_state = "sci_headset"
-	item_state = "headset_alt"
+	inhand_icon_state = "headset_alt"
 	keyslot = new /obj/item/encryptionkey/headset_sci
 
 /obj/item/radio/headset/headset_medsci
@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "\proper the captain's bowman headset"
 	desc = "The headset of the boss. Protects ears from flashbangs."
 	icon_state = "com_headset_alt"
-	item_state = "com_headset_alt"
+	inhand_icon_state = "com_headset_alt"
 	bowman = TRUE
 
 /obj/item/radio/headset/heads/rd
@@ -189,7 +189,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "\proper the head of security's bowman headset"
 	desc = "The headset of the man in charge of keeping order and protecting the station. Protects ears from flashbangs."
 	icon_state = "com_headset_alt"
-	item_state = "com_headset_alt"
+	inhand_icon_state = "com_headset_alt"
 	bowman = TRUE
 
 /obj/item/radio/headset/heads/ce
@@ -245,7 +245,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "padded radio headset"
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys and protects the ears."
 	icon_state = "headset"
-	item_state = "headset"
+	inhand_icon_state = "headset"
 	keyslot = null
 	bowman = TRUE
 
@@ -260,7 +260,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "\improper CentCom bowman headset"
 	desc = "A headset especially for emergency response personnel. Protects ears from flashbangs."
 	icon_state = "cent_headset_alt"
-	item_state = "cent_headset_alt"
+	inhand_icon_state = "cent_headset_alt"
 	keyslot = null
 	bowman = TRUE
 
@@ -312,7 +312,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "\proper the head of security's bowman headset"
 	desc = "The headset of the man in charge of keeping order and protecting the station. Protects ears from flashbangs.\nTo access the security channel, use :s. For command, use :c. For vault, use :v"
 	icon_state = "com_headset_alt"
-	item_state = "com_headset_alt"
+	inhand_icon_state = "com_headset_alt"
 	frequency = FREQ_VAULT
 	freerange = TRUE
 	freqlock = TRUE
@@ -342,7 +342,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "NCR Command radio headset"
 	desc = "This is used by the New California Republic.\nTo access the NCR channel, use :w. \nTo access the Ranger channel, use :r. Protects ears from flashbangs."
 	icon_state = "com_headset_alt"
-	item_state = "com_headset_alt"
+	inhand_icon_state = "com_headset_alt"
 	keyslot = new /obj/item/encryptionkey/headset_ranger
 	linked_faction = FACTION_NCR
 	factionized = TRUE
@@ -356,7 +356,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "Legion radio headset"
 	desc = "This is used by Caesar's Legion.\nTo access the Legion channel, use :l."
 	icon_state = "sec_headset"
-	item_state = "headset_alt"
+	inhand_icon_state = "headset_alt"
 	keyslot = new /obj/item/encryptionkey/headset_legion
 	linked_faction = FACTION_LEGION
 	factionized = TRUE
@@ -365,7 +365,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	desc = "This is used by the Centurion of Caesar's Legion.\nTo access the Legion channel, use :l. Protects ears from flashbangs."
 	command = TRUE
 	icon_state = "sec_headset_alt"
-	item_state = "sec_headset_alt"
+	inhand_icon_state = "sec_headset_alt"
 
 /obj/item/radio/headset/headset_legion/cent/ComponentInitialize()
 	. = ..()
@@ -404,63 +404,63 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "khan radio headset"
 	desc = "This is used by the Khans.\nTo access the Khan channel, use :h."
 	icon_state = "syndie_headset" 
-	item_state = "headset_alt"
+	inhand_icon_state = "headset_alt"
 	keyslot = new /obj/item/encryptionkey/headset_khans
 
 /obj/item/radio/headset/headset_town/guild
 	name = "guild radio headset"
-	desc = "This is used by the residents of the new boston guild.\nTo access the guild channel, use :g as in guild or f to talk in new boston channel."
+	desc = "This is used by the residents of the towns guild.\nTo access the guild channel, use :g as in guild or f to talk in town channel."
 	icon_state = "mine_headset" 
-	item_state = "headset_alt"
+	inhand_icon_state = "headset_alt"
 	keyslot = new /obj/item/encryptionkey/headset_town/guild
 
 /obj/item/radio/headset/headset_biker
 	name = "Hell's Nomads radio headset"
 	desc = "This is used by the Hell's Nomads.\nTo access the Hell's Nomads channel, use :b, to access the ashdown, use :d"
 	icon_state = "syndie_headset" 
-	item_state = "headset_alt"
+	inhand_icon_state = "headset_alt"
 	keyslot = new /obj/item/encryptionkey/headset_biker
 
 /obj/item/radio/headset/headset_town
-	name = "New Boston radio headset"
-	desc = "This is used by the town of Nash.\
-		\nTo access the Nash channel, use :f."
+	name = "town radio headset"
+	desc = "This is used by the town of town.\
+		\nTo access the town channel, use :f."
 	icon_state = "mine_headset"
 	keyslot = new /obj/item/encryptionkey/headset_town
 
 /obj/item/radio/headset/headset_town/lawman
-	name = "New Boston sheriff radio headset"
-	desc = "This is used by Nash's local sheriff force. Protects ears from flashbangs.\
-		\nTo access the Nash channel, use :f.\
-		\nTo access the Nash sheriff channel, use :l."
+	name = "town sheriff radio headset"
+	desc = "This is used by town's local sheriff force. Protects ears from flashbangs.\
+		\nTo access the town channel, use :f.\
+		\nTo access the town sheriff channel, use :l."
 	icon_state = "sec_headset_alt"
-	item_state = "sec_headset_alt"
+	inhand_icon_state = "sec_headset_alt"
 	bowman = TRUE
 	keyslot = new /obj/item/encryptionkey/headset_town/lawman
 
 /obj/item/radio/headset/headset_town/commerce
-	name = "New Boston commerce radio headset"
-	desc = "This is used by Nash's small business owners.\
-		\nTo access the Nash channel, use :f.\
-		\nTo access the Nash commerce channel, use :j."
+	name = "town commerce radio headset"
+	desc = "This is used by town's small business owners.\
+		\nTo access the town channel, use :f.\
+		\nTo access the town commerce channel, use :j."
 	keyslot = new /obj/item/encryptionkey/headset_town/commerce
 
 /obj/item/radio/headset/headset_town/mayor
-	name = "New Boston mayoral radio headset"
-	desc = "This is used by Nash's mayor (and secretary). Protects ears from flashbangs.\
-		\nTo access the Nash channel, use :f.\
-		\nTo access the Nash mayor channel, use :y.\
-		\nTo access the Nash sheriff channel, use :l.\
-		\nTo access the Nash medical channel, use :m.\
-		\nTo access the Nash commerce channel, use :j."
+	name = "town mayoral radio headset"
+	desc = "This is used by town's mayor (and secretary). Protects ears from flashbangs.\
+		\nTo access the town channel, use :f.\
+		\nTo access the town mayor channel, use :y.\
+		\nTo access the town sheriff channel, use :l.\
+		\nTo access the town medical channel, use :m.\
+		\nTo access the town commerce channel, use :j."
 	bowman = TRUE
 	command = TRUE
 	keyslot = new /obj/item/encryptionkey/headset_town/mayor
 
 /obj/item/radio/headset/headset_town/medical
-	name = "New Boston medical radio headset"
-	desc = "This is used by Nash's medical folk.\
-		\nTo access the Nash channel, use :f.\
+	name = "town medical radio headset"
+	desc = "This is used by town's medical folk.\
+		\nTo access the town channel, use :f.\
 		\nTo access the medical channel, use :m"
 	icon_state = "med_headset"
 	keyslot = new /obj/item/encryptionkey/headset_town/medical
@@ -495,7 +495,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "\improper Vault-Tec bowman headset"
 	desc = "A headset especially for emergency response personnel. Protects ears from flashbangs.\nTo access the Vault-Tec channel, use :y."
 	icon_state = "cent_headset_alt"
-	item_state = "cent_headset_alt"
+	inhand_icon_state = "cent_headset_alt"
 	keyslot = null
 
 /obj/item/radio/headset/silicon/pai
@@ -582,7 +582,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/AltClick(mob/living/user)
 	. = ..()
-	if(!istype(user) || !Adjacent(user) || user.incapacitated())
+	if(!istype(user) || !Adjacent(user) || user.incapacitated(allow_crit = TRUE))
 		return
 	if (command)
 		use_command = !use_command

@@ -58,6 +58,8 @@
 				output += "<center><p><a href='byond://?src=[REF(src)];quirkconversion=1'>Click here to do something about that!</a></p>"
 			else
 				output += "<center><p><a href='byond://?src=[REF(src)];quirks=1'>Configure Quirks!</a></p>"
+		output += "<center><p><a href='byond://?src=[REF(src)];show_hornychat=1'>Open VisualChat / Profile Pic Settings!</a></p>"
+		// output += "<center><p><a href='byond://?src=[REF(src)];show_hornychat=1'>Configure Profile Pics!</a></p>"
 
 	if(SSticker.current_state <= GAME_STATE_PREGAME)
 		output += "<p>Please be patient, the game is starting soon!</p>"
@@ -65,8 +67,8 @@
 		output += "<p><a href='byond://?src=[REF(src)];refresh_chat=1)'>(Fix Chat Window)</a></p>"
 		output += "<p><a href='byond://?src=[REF(src)];fit_viewport_lobby=1)'>(Fit Viewport)</a></p>"
 	else
-		output += "<p><a href='byond://?src=[REF(src)];manifest=1'>View the Crew Manifest</a></p>"
-		output += "<p><a href='byond://?src=[REF(src)];directory=1'>View Character Directory</a></p>"
+		// output += "<p><a href='byond://?src=[REF(src)];manifestmanifest=1'>View the Crew Manifest</a></p>"
+		//output += "<p><a href='byond://?src=[REF(src)];directory=1'>View Character Directory</a></p>"
 		output += "<p><a href='byond://?src=[REF(src)];late_join=1'>Join Game!</a></p>"
 		output += "<p>[LINKIFY_READY("Observe", PLAYER_READY_TO_OBSERVE)]</p>"
 		output += "<p><a href='byond://?src=[REF(src)];join_as_creature=1'>Join as Simple Creature!</a></p>"
@@ -78,7 +80,7 @@
 
 	output += "</center>"
 
-	var/datum/browser/popup = new(src, "playersetup", "<div align='center'>New Player Options</div>", 250, 400)
+	var/datum/browser/popup = new(src, "playersetup", "<div align='center'>Game Preferences</div>", 400, 600)
 	popup.set_window_options("can_close=0")
 	popup.set_content(output.Join())
 	popup.open(FALSE)
@@ -177,9 +179,13 @@
 		client.prefs.ShowChoices(src)
 		return 1
 
-	if(href_list["directory"])
-		client.show_character_directory()
+	if(href_list["show_hornychat"])
+		SSchat.HornyPreferences(src)
 		return 1
+
+	// if(href_list["directory"])
+	// 	client.show_character_directory()
+	// 	return 1
 
 	if(href_list["quirkconversion"])
 		SSquirks.ConvertOldQuirklistToNewQuirklist(client.prefs)
@@ -257,8 +263,8 @@
 
 	if(href_list["join_as_creature"])
 		CreatureSpawn()
-	if(href_list["manifest"])
-		ViewManifest()
+	// if(href_list["manifest"])
+	// 	ViewManifest()
 
 	if(href_list["SelectedJob"])
 		if(!SSticker || !SSticker.IsRoundInProgress())
@@ -540,7 +546,7 @@
 	job.standard_assign_skills(character.mind)
 
 	SSticker.minds += character.mind
-	character.client.init_verbs() // init verbs for the late join
+	// Removed duplicate init_verbs() call - verbs already finalized in Login()
 	var/mob/living/carbon/human/humanc
 	if(ishuman(character))
 		humanc = character	//Let's retypecast the var to be human,
@@ -604,11 +610,15 @@
 
 				H.dropItemToGround(suit)
 				to_chat(H, span_danger("You can't wear this armour, it's too heavy!"))
+		if(H.client && H.client.prefs.quester_uid) // Time to log the heck in!
+			SSeconomy.get_quest_book(H) // loads their quest data on spawn
+			SSeconomy.player_login(H)
+			SSeconomy.apply_daily_cash_modifier(H)
 
 	character.client.is_in_game = 1
 	spawn(5 MINUTES)
-		if(character.client.is_in_game)
-			character.client.is_in_game = 2
+		if(character?.client?.is_in_game)
+			character?.client?.is_in_game = 2
 
 			for(var/i in GLOB.player_list)
 				if(isliving(i))
@@ -687,13 +697,13 @@
 		C.profilePicture = P.creature_profilepic
 		C.pfphost = P.creature_pfphost
 		C.verbose_species = "[P.creature_species]"
-		C.special_s = P.special_s
-		C.special_p = P.special_p
-		C.special_e = P.special_e
-		C.special_c = P.special_c
-		C.special_i = P.special_i
-		C.special_a = P.special_a
-		C.special_l = P.special_l
+		C.stat_strength = P.stat_strength
+		C.stat_perception = P.stat_perception
+		C.stat_endurance = P.stat_endurance
+		C.stat_charisma = P.stat_charisma
+		C.stat_intelligence = P.stat_intelligence
+		C.stat_agility = P.stat_agility
+		C.stat_luck = P.stat_luck
 		//C.fuzzy = P.creature_fuzzy
 		//C.resize = P.creature_body_size
 		//Disable their mob's AI so they don't wander after the player ghosts out of them
@@ -768,7 +778,7 @@
 			dat += "</td><td valign='top'>"
 	dat += "</td></tr></table></center>"
 	dat += "</div></div>"
-	var/datum/browser/popup = new(src, "latechoices", "Choose Profession", 680, 580)
+	var/datum/browser/popup = new(src, "latechoices", "Choose Profession", 680, 680)
 	popup.add_stylesheet("playeroptions", 'html/browser/playeroptions.css')
 	popup.set_content(jointext(dat, ""))
 	popup.open(FALSE) // 0 is passed to open so that it doesn't use the onclose() proc
@@ -811,8 +821,8 @@
 		mind.active = 0					//we wish to transfer the key manually
 		mind.transfer_to(H)					//won't transfer key since the mind is not active
 		mind.original_character = H
-	H.name = real_name
-	client.init_verbs()
+
+	// Removed early init_verbs() call - verbs will be initialized after Login() in BYOND 516
 	. = H
 	new_character = .
 	if(transfer_after)
@@ -834,11 +844,10 @@
 		return
 	client.crew_manifest_delay = world.time + (1 SECONDS)
 
-	var/dat = "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'></head><body>"
-	dat += "<h4>Crew Manifest</h4>"
+	var/dat = "<h4>Crew Manifest</h4>"
 	dat += GLOB.data_core.get_manifest_dr(OOC = 1)
 
-	src << browse(dat, "window=manifest;size=387x420;can_close=1")
+	src << browse(HTML_SKELETON(dat), "window=manifest;size=387x420;can_close=1")
 
 /mob/dead/new_player/Move()
 	return 0

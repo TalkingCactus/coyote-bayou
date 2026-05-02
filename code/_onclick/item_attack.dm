@@ -8,6 +8,9 @@
  *afterattack. The return value does not matter.
  */
 /obj/item/proc/melee_attack_chain(mob/user, atom/target, params, attackchain_flags, damage_multiplier = 1)
+	// if(user != target && !isitem(target) && user.incapacitated() && !extract_ckey(target)) // no attacking mobs, other players is okay
+	// 	to_chat(user, span_danger("You are to messed up to use [src] on anything but yourself!"))
+	// 	return
 	if(isliving(user))
 		var/mob/living/L = user
 		if(!CHECK_MOBILITY(L, MOBILITY_USE) && !(attackchain_flags & ATTACK_IS_PARRY_COUNTERATTACK))
@@ -104,9 +107,13 @@
 					return FALSE
 	//<--
 
-	if((force || damage_override) && damtype != STAMINA && HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, span_warning("You don't want to harm other living beings!"))
-		return
+	if((force || damage_override) && damtype != STAMINA)
+		if(HAS_TRAIT(user, TRAIT_PACIFISM))
+			to_chat(user, span_warning("You don't want to harm other living beings!"))
+			return
+		else if(!PVPcheck(user, M, src))
+			to_chat(user, span_alert("You both need to have Combat Intent enabled to hurt each other!"))
+			return
 
 	//var/bigleagues = 10 //flat additive
 	//var/littleleagues = 5
@@ -117,32 +124,69 @@
 	//var/smutant = force*0.25 //Not using this for FEV mutated as this could let you do a lot of trolling.
 	//var/ghoulmelee = force*0.25 //negative trait, this will cut 25% of the damage done by melee
 
-	//var/regular = force*(user.special_s/100)//SPECIAL integration
+	//var/regular = force*(user.stat_strength/100)//SPECIAL integration
 
 	//force += regular//SPECIAL integration
 
 	var/force_modifier = 0
+	var/special_mod = 0
 	if(force >= 5)
 		if(HAS_TRAIT(user, TRAIT_GHOULMELEE))
 			force_modifier = (-force * 0.2) // You do 80% damage because you're a walking corpse
 		if(HAS_TRAIT(user, TRAIT_PANICKED_ATTACKER))
 			force_modifier = (-force * 0.8) // You do 20% damage because of fear
+		if(user.health < user.crit_threshold)
+			force_modifier = (-force * 0.2) // You do 80% damage because you're in critical condition
 		else
 			if(HAS_TRAIT(user, TRAIT_BIG_LEAGUES))
-				force_modifier += 10
+				force_modifier += 25
 			if(HAS_TRAIT(user, TRAIT_LITTLE_LEAGUES))
-				force_modifier += 5
+				force_modifier += 18
 			if(HAS_TRAIT(user, TRAIT_GENTLE))
-				force_modifier += -5
+				force_modifier += -18
 			if(HAS_TRAIT(user, TRAIT_WIMPY))
-				force_modifier += -10
+				force_modifier += -25
 			if(HAS_TRAIT(user, TRAIT_BUFFOUT_BUFF))
-				force_modifier += 10
+				force_modifier += 50
 			if(HAS_TRAIT(user, TRAIT_FEV))
 				force_modifier += (force * 0.1)
 			if(HAS_TRAIT(user, TRAIT_SMUTANT))
 				force_modifier += (force * 0.1)
-	force_modifier = clamp(force_modifier, -force, force * 0.25)
+			switch(user.get_stat(STAT_STRENGTH)) // COOLSTAT IMPLEMENTATION: STRENGTH
+				if(0, 1)
+					special_mod = -25
+				if(2)
+					special_mod = -20
+				if(3)
+					special_mod = -10
+				if(4)
+					special_mod = -5
+				if(5)
+					special_mod = 0
+				if(6)
+					special_mod = 5
+				if(7)
+					special_mod = 10
+				if(8)
+					special_mod = 15
+				if(9)
+					special_mod = 30
+	force_modifier = clamp(force_modifier + special_mod, -force, force * 0.25)
+	if(ishostile(M))
+		user.in_crit_HP_penalty = HOSTILES_ATTACK_UNTIL_THIS_FAR_INTO_CRIT
+	
+	var/str = user.get_stat(STAT_STRENGTH) // COOLSTAT IMPLEMENTATION: STRENGTH
+	if(str > 3)
+		var/chance2fling = (str - 3) * 20
+		if(prob(chance2fling))
+			var/howfar = 1
+			if(str > 8)
+				howfar = rand(1, str - 7)
+			if(HAS_TRAIT(user, TRAIT_LITTLE_LEAGUES))
+				howfar += 1
+			if(HAS_TRAIT(user, TRAIT_BIG_LEAGUES))
+				howfar += 2
+			knockback(M, user, howfar)
 
 	var/force_out = force + force_modifier
 	if(force_out <= 0)
@@ -152,6 +196,9 @@
 
 	M.lastattacker = user.real_name
 	M.lastattackerckey = user.ckey
+	if(isanimal(M))
+		var/mob/living/simple_animal/SA = M
+		SA.give_credit(user)
 
 	user.do_attack_animation(M)
 	if(damage_override)
@@ -161,6 +208,30 @@
 
 	log_combat(user, M, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
 	add_fingerprint(user)
+
+/proc/knockback(atom/movable/hurted, mob/living/attacker, howfar)
+	if(!ismovable(hurted))
+		return
+	if(hurted.anchored)
+		return
+	var/direction = get_dir(attacker, hurted)
+	if(howfar < 0)
+		direction = turn(direction, 180)
+		howfar *= -1
+	var/atom/throw_target = get_edge_target_turf(hurted, direction)
+	hurted.safe_throw_at(throw_target, howfar, 1, attacker)
+
+/proc/PVPcheck(mob/living/attacker, mob/living/hurted)
+	if(!attacker || !hurted)
+		return TRUE // sure do whatever
+	if(isanimal(hurted))
+		return TRUE // mob
+	if(!attacker.client || !hurted.client)
+		return TRUE // one of them lacks a clint
+	// now the real PVP check
+	if(attacker.enabled_combat_indicator && hurted.enabled_combat_indicator)
+		return TRUE
+	return FALSE
 
 //the equivalent of the standard version of attack() but for object targets.
 /obj/item/proc/attack_obj(obj/O, mob/living/user, damage_override)

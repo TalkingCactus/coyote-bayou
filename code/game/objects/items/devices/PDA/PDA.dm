@@ -23,9 +23,9 @@ GLOBAL_LIST_EMPTY(PDAs)
 	desc = "The Coyote-Co DataPal is an electronic device. Functionality is determined by a preprogrammed ROM cartridge."
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "pda"
-	item_state = "Pip-boy"
+	inhand_icon_state = "Pip-boy"
 	item_flags = NOBLUDGEON
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = INV_SLOTBIT_ID | INV_SLOTBIT_GLOVES
 	armor = ARMOR_VALUE_GENERIC_ITEM
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -34,6 +34,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	force = 15
 	backstab_multiplier = 1.5
 	throwforce = 0
+	mob_overlay_icon = 'icons/mob/clothing/hands.dmi'
 
 	//Main variables
 	var/owner = null // String name of owner
@@ -50,6 +51,8 @@ GLOBAL_LIST_EMPTY(PDAs)
 	var/obj/item/radio/radio = null //the radio inside the pipboy
 	/// The internal geiger counter
 	var/obj/item/geiger_counter/geiger
+	/// our internal extinguisher
+	var/obj/item/extinguisher/extinguisher
 	var/g_on = FALSE
 	var/g_rads
 	//variables exclusively used on 'update_overlays' (which should never be called directly, and 'update_icon' doesn't use args anyway)
@@ -111,6 +114,8 @@ GLOBAL_LIST_EMPTY(PDAs)
 	var/list/blocked_pdas
 
 	var/list/saved_frequencies = list("Common" = FREQ_COMMON)
+	hud_type = DATA_HUD_MEDICAL_ADVANCED
+	hudwhere = list(SLOT_BELT, SLOT_WEAR_ID, SLOT_GLOVES)
 
 /obj/item/pda/examine(mob/user)
 	. = ..()
@@ -149,7 +154,9 @@ GLOBAL_LIST_EMPTY(PDAs)
 		inserted_item =	new /obj/item/pen(src)
 	radio = new /obj/item/radio(src)
 	geiger = new /obj/item/geiger_counter(src)
+	extinguisher = new /obj/item/extinguisher/waster(src)
 	new_overlays = TRUE
+	personalize()
 
 /obj/item/pda/ComponentInitialize()
 	. = ..()
@@ -180,11 +187,18 @@ GLOBAL_LIST_EMPTY(PDAs)
 // 	to_chat(M, "[src] is now skinned as '[choice]'.")
 
 
-/obj/item/pda/equipped(mob/user, slot)
-	. = ..()
-	if(equipped || !user.client)
+/// its reasonbable to assume that if a PDA spawns in or under a player mob, it belongs to that player, right?
+/obj/item/pda/proc/personalize()
+	var/mob/living/someone = owner || recursive_loc_path_search(loc, /mob/living, 5)
+	if(!someone)
 		return
-	update_style(user.client)
+	var/datum/preferences/P = extract_prefs(someone)
+	if(!P)
+		return
+	SEND_SIGNAL(src, COMSIG_ITEM_SET_SKIN, P.pda_skin)
+	var/ringertone = P.pda_ringmessage
+	if(LAZYLEN(ringertone))
+		ttone = ringertone
 
 /obj/item/pda/proc/update_style(client/C)
 	background_color = C.prefs.pda_color
@@ -1309,6 +1323,8 @@ GLOBAL_LIST_EMPTY(PDAs)
 		QDEL_NULL(radio)
 	if(istype(geiger))
 		QDEL_NULL(geiger)
+	if(istype(extinguisher))
+		QDEL_NULL(extinguisher)
 	return ..()
 
 //AI verb and proc for sending PDA messages.
@@ -1342,7 +1358,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 			var/datum/picture/Pic = aicamera.selectpicture(user)
 			aiPDA.picture = Pic
 
-	if(incapacitated())
+	if(incapacitated(allow_crit = TRUE))
 		return
 
 	aiPDA.create_message(src, selected)
@@ -1372,7 +1388,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		to_chat(usr, "You do not have a PDA. You should make an issue report about this.")
 
 /mob/living/silicon/ai/proc/cmd_show_message_log(mob/user)
-	if(incapacitated())
+	if(incapacitated(allow_crit = TRUE))
 		return
 	if(!isnull(aiPDA))
 		var/HTML = "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>AI PDA Message Log</title></head><body>[aiPDA.tnote]</body></html>"

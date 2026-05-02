@@ -160,9 +160,10 @@
 
 /mob/living/carbon/human/equipped_speed_mods()
 	. = ..()
+	var/str_mod = get_str_mod()
 	for(var/sloties in get_all_slots() - list(l_store, r_store, s_store))
 		var/obj/item/thing = sloties
-		. += thing?.slowdown
+		. += (thing?.slowdown * str_mod)
 
 /mob/living/carbon/human/doUnEquip(obj/item/I, force, newloc, no_move, invdrop = TRUE)
 	var/index = get_held_index_of_item(I)
@@ -295,7 +296,7 @@
 		qdel(I)
 
 /mob/living/carbon/human/proc/smart_equipbag() // take most recent item out of bag or place held item in bag
-	if(incapacitated())
+	if(incapacitated(allow_crit = TRUE))
 		return
 	var/obj/item/thing = get_active_held_item()
 	var/obj/item/equipped_back = get_item_by_slot(SLOT_BACK)
@@ -326,7 +327,7 @@
 	return
 
 /mob/living/carbon/human/proc/smart_equipbelt() // put held thing in belt or take most recent item out of belt //
-	if(incapacitated())
+	if(incapacitated(allow_crit = TRUE))
 		return
 	var/obj/item/thing = get_active_held_item()
 	var/obj/item/equipped_belt = get_item_by_slot(SLOT_BELT)

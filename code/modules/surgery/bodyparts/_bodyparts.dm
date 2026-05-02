@@ -228,7 +228,19 @@
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
 //Damage will not exceed max_damage using this proc
 //Cannot apply negative damage
-/obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, blocked = 0, updating_health = TRUE, required_status = null, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, damage_coverings = TRUE) // maybe separate BRUTE_SHARP and BRUTE_OTHER eventually somehow hmm
+/obj/item/bodypart/proc/receive_damage(
+		brute = 0,
+		burn = 0,
+		stamina = 0,
+		blocked = 0,
+		updating_health = TRUE,
+		required_status = null,
+		wound_bonus = 0,
+		bare_wound_bonus = 0,
+		sharpness = SHARP_NONE,
+		damage_coverings = TRUE,
+		ignore_bleed_resistances = FALSE,
+	) // maybe separate BRUTE_SHARP and BRUTE_OTHER eventually somehow hmm
 	if(owner && (owner.status_flags & GODMODE))
 		return FALSE	//godmode
 	var/dmg_mlt = CONFIG_GET(number/damage_multiplier)
@@ -239,11 +251,12 @@
 	burn = max(0, burn - burn_reduction)
 	//No stamina scaling.. for now..
 
-	if(!brute && !burn && !stamina)
+	if(!brute && !burn && !stamina && !wound_bonus)
 		return FALSE
 
 	brute *= wound_damage_multiplier
 	burn *= wound_damage_multiplier
+	wound_bonus *= wound_damage_multiplier
 
 	switch(animal_origin)
 		if(ALIEN_BODYPART,LARVA_BODYPART) //aliens take some additional burn //nothing can burn with so much snowflake code around
@@ -263,7 +276,7 @@
 
 	// what kind of wounds we're gonna roll for, take the greater between brute and burn, then if it's brute, we subdivide based on sharpness
 	var/wounding_type = WOUND_BLUNT// (brute > burn ? WOUND_BLUNT : WOUND_BURN) is the old code here
-	var/wounding_dmg = max(brute, burn)
+	var/wounding_dmg = max(brute, burn, wound_bonus)
 	var/mangled_state = get_mangled_state()
 	var/bio_state = owner.get_biological_state()
 	var/easy_dismember = HAS_TRAIT(owner, TRAIT_EASYDISMEMBER) // if we have easydismember, we don't reduce damage when redirecting damage to different types (slashing weapons on mangled/skinless limbs attack at 100% instead of 50%)
@@ -304,7 +317,7 @@
 	// now we have our wounding_type and are ready to carry on with wounds and dealing the actual damage
 
 	if(owner && wounding_dmg >= WOUND_MINIMUM_DAMAGE && wound_bonus != CANT_WOUND)
-		check_wounding(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus)
+		check_wounding(wounding_type, wounding_dmg, wound_bonus, bare_wound_bonus, ignore_bleed_resistances)
 
 	/*
 	// END WOUND HANDLING
@@ -397,7 +410,7 @@
  * * wound_bonus- The wound_bonus of an attack
  * * bare_wound_bonus- The bare_wound_bonus of an attack
  */
-/obj/item/bodypart/proc/check_wounding(woundtype, damage, wound_bonus, bare_wound_bonus)
+/obj/item/bodypart/proc/check_wounding(woundtype, damage, wound_bonus, bare_wound_bonus, ignore_bleed_resistances = FALSE)
 	// actually roll wounds if applicable
 	if(woundtype == WOUND_SLASH || woundtype == WOUND_PIERCE)
 		if(!is_organic_limb())
@@ -420,7 +433,7 @@
 		min(damage * WOUND_DAMAGE_RANDOM_MAX_MULT, WOUND_MAX_CONSIDERED_DAMAGE)
 		)
 	var/injury_roll = base_roll
-	injury_roll += check_woundings_mods(woundtype, damage, wound_bonus, bare_wound_bonus)
+	injury_roll += check_woundings_mods(woundtype, damage, wound_bonus, bare_wound_bonus, ignore_bleed_resistances)
 
 	if(injury_roll < WOUND_MINIMUM_DAMAGE)
 		return FALSE // not enough to wound
@@ -472,6 +485,10 @@
 
 /obj/item/bodypart/proc/apply_bleed_wound(woundtype, wounds_checking)
 	var/datum/wound/bleed/this_wound
+	if(!woundtype)
+		woundtype = pick(WOUND_SLASH, WOUND_PIERCE)
+	if(!wounds_checking)
+		wounds_checking = GLOB.global_wound_types[woundtype]
 	for(var/datum/wound/bleed/bloody in wounds)
 		if(bloody.type in wounds_checking)
 			this_wound = bloody
@@ -509,24 +526,25 @@
  * Arguments:
  * * It's the same ones on [receive_damage]
  */
-/obj/item/bodypart/proc/check_woundings_mods(wounding_type, damage, wound_bonus, bare_wound_bonus)
+/obj/item/bodypart/proc/check_woundings_mods(wounding_type, damage, wound_bonus, bare_wound_bonus, ignore_bleed_resistances = FALSE)
 	var/armor_ablation = 0
 	var/injury_mod = 0
 
-	if(owner && ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		var/list/clothing = H.clothingonpart(src)
-		for(var/c in clothing)
-			var/obj/item/clothing/C = c
-			// unlike normal armor checks, we tabluate these piece-by-piece manually so we can also pass on appropriate damage the clothing's limbs if necessary
-			armor_ablation += C.armor.getRating("wound")
-/*			if(wounding_type == WOUND_SLASH)
-				C.take_damage_zone(body_zone, damage, BRUTE, armour_penetration)
-			else if(wounding_type == WOUND_BURN && damage >= 10) // lazy way to block freezing from shredding clothes without adding another var onto apply_damage()
-				C.take_damage_zone(body_zone, damage, BURN, armour_penetration) */
+	if(!ignore_bleed_resistances)
+		if(owner && ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			var/list/clothing = H.clothingonpart(src)
+			for(var/c in clothing)
+				var/obj/item/clothing/C = c
+				// unlike normal armor checks, we tabluate these piece-by-piece manually so we can also pass on appropriate damage the clothing's limbs if necessary
+				armor_ablation += C.armor.getRating("wound")
+	/*			if(wounding_type == WOUND_SLASH)
+					C.take_damage_zone(body_zone, damage, BRUTE, armour_penetration)
+				else if(wounding_type == WOUND_BURN && damage >= 10) // lazy way to block freezing from shredding clothes without adding another var onto apply_damage()
+					C.take_damage_zone(body_zone, damage, BURN, armour_penetration) */
 
-		if(!armor_ablation)
-			injury_mod += bare_wound_bonus
+	if(!armor_ablation)
+		injury_mod += bare_wound_bonus
 
 	injury_mod -= armor_ablation
 	injury_mod += wound_bonus
@@ -1004,6 +1022,8 @@
 		return TRUE
 	if(bleed_dam)
 		return TRUE
+	if(LAZYLEN(wounds))
+		return TRUE
 
 /**
  * update_wounds() is called whenever a wound is gained or lost on this bodypart, as well as if there's a change of some kind on a bone wound possibly changing disabled status
@@ -1047,8 +1067,8 @@
 					span_notice("You remove the [current_gauze.name] on your [name]."))
 		else
 			owner.visible_message(
-				span_notice("\The [current_gauze] on [owner]'s [name] fall away, no longer needed."),
-				span_notice("\The [current_gauze] on your [name] fall away, no longer needed."))
+				span_notice("\The [current_gauze] on [owner]'s [name] fall apart!"),
+				span_notice("\The [current_gauze] on your [name] fall apart!"))
 		QDEL_NULL(current_gauze)
 		. = TRUE
 	if(current_suture && (which_covering == "suture" || which_covering == "both"))
@@ -1063,8 +1083,8 @@
 					span_notice("You pop the [current_suture.name] on your [name]."))
 		else
 			owner.visible_message(
-				span_notice("\The [current_suture] on [owner]'s [name] absorb into [owner.p_their()] skin as [owner.p_their()] wounds close."),
-				span_notice("\The [current_suture] on your [name] absorb into [owner.p_their()] skin as [owner.p_their()] wounds close."))
+				span_notice("\The [current_suture] on [owner]'s [name] pop open!"),
+				span_notice("\The [current_suture] on your [name] pop open!"))
 		QDEL_NULL(current_suture)
 		. = TRUE
 
@@ -1094,6 +1114,12 @@
 	for(var/datum/wound/woundie in wounds)
 		if(woundie.get_blood_flow(FALSE))
 			return TRUE
+
+/obj/item/bodypart/proc/aggravate_wound(scalar)
+	if(status != BODYPART_ORGANIC) // maybe in the future we can bleed oil from aug parts, but not now
+		return
+	for(var/datum/wound/woundie in wounds)
+		woundie.aggravate_wound(scalar)
 
 /**
  * apply_gauze() is used to- well, apply gauze to a bodypart
@@ -1135,6 +1161,10 @@
 		if(!just_check)
 			apply_gauze_to_limb(gauze, skill_mult)
 		return BANDAGE_NEW_APPLIED
+	if(gauze.int_modifier > current_gauze.int_modifier) // restore its length
+		if(!just_check)
+			apply_gauze_to_limb(gauze, skill_mult)
+		return BANDAGE_NEW_APPLIED
 
 /obj/item/bodypart/proc/apply_gauze_to_limb(obj/item/stack/medical/gauze/gauze, skill_mult = 1)
 	QDEL_NULL(current_gauze)
@@ -1168,8 +1198,8 @@
 		return
 	if(!istype(current_gauze, /obj/item/stack/medical/gauze))
 		return
-	var/heal_amt = current_gauze.heal_per_tick
-	var/bleed_healing = current_gauze.bandage_power * (istype(current_suture) ? SUTURE_AND_BANDAGE_BONUS : 1)
+	var/heal_amt = current_gauze.heal_per_tick * current_gauze.int_modifier
+	var/bleed_healing = current_gauze.bandage_power * (istype(current_suture) ? SUTURE_AND_BANDAGE_BONUS : 1) * current_gauze.int_modifier
 	covering_heal_nutrition_mod(bleed_healing, heal_amt)
 
 	/* else if(!current_gauze.told_owner_its_out_of_juice)
@@ -1267,9 +1297,9 @@
 		if(!just_check)
 			apply_suture_to_limb(suture, skill_mult)
 		return SUTURE_NEW_APPLIED
-	if(S_TIMER_COOLDOWN_TIMELEFT(src, SUTURE_COOLDOWN_ID) < (current_suture.covering_lifespan * SUTURE_MIDLIFE_DURATION)) // restore its length
+	if(suture.int_modifier > suture.int_modifier) // restore its length
 		if(!just_check)
-			apply_suture_to_limb(suture, skill_mult)
+			apply_gauze_to_limb(suture, skill_mult)
 		return SUTURE_NEW_APPLIED
 
 /obj/item/bodypart/proc/apply_suture_to_limb(obj/item/stack/medical/suture/suture, skill_mult = 1)
@@ -1305,8 +1335,8 @@
 		return
 	if(!istype(current_suture, /obj/item/stack/medical/suture))
 		return
-	var/heal_amt = current_suture.heal_per_tick
-	var/bleed_healing = current_suture.suture_power * (istype(current_gauze) ? SUTURE_AND_BANDAGE_BONUS : 1)
+	var/heal_amt = current_suture.heal_per_tick * current_suture.int_modifier
+	var/bleed_healing = current_suture.suture_power * (istype(current_gauze) ? SUTURE_AND_BANDAGE_BONUS : 1) * current_suture.int_modifier
 	covering_heal_nutrition_mod(bleed_healing, heal_amt)
 
 /**
@@ -1324,17 +1354,17 @@
 	if((brute + burn) < 1)
 		return FALSE
 
-	var/damage_raw = brute + (burn * SUTURE_BURN_MULT)
-	var/damage_to_do = 0
-	switch(damage_raw)
-		if(SUTURE_DAMAGE_THRESHOLD_LOW to SUTURE_DAMAGE_THRESHOLD_MED)
-			damage_to_do = 1
-		if(SUTURE_DAMAGE_THRESHOLD_MED to SUTURE_DAMAGE_THRESHOLD_MAX)
-			damage_to_do = 3
-		if(SUTURE_DAMAGE_THRESHOLD_MAX to INFINITY)
-			damage_to_do = INFINITY // fucker's coming off
-		else
-			return FALSE
+	// var/damage_raw = brute + (burn * SUTURE_BURN_MULT)
+	var/damage_to_do = 100
+	// switch(damage_raw)
+	// 	if(SUTURE_DAMAGE_THRESHOLD_LOW to SUTURE_DAMAGE_THRESHOLD_MED)
+	// 		damage_to_do = 1
+	// 	if(SUTURE_DAMAGE_THRESHOLD_MED to SUTURE_DAMAGE_THRESHOLD_MAX)
+	// 		damage_to_do = 3
+	// 	if(SUTURE_DAMAGE_THRESHOLD_MAX to INFINITY)
+	// 		damage_to_do = INFINITY // fucker's coming off
+	// 	else
+	// 		return FALSE
 
 	current_suture.covering_hitpoints -= damage_to_do
 	/* if(current_suture.covering_hitpoints > 0)

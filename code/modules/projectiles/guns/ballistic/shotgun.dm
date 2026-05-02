@@ -15,7 +15,7 @@
 	lefthand_file = 'icons/fallout/onmob/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/fallout/onmob/weapons/guns_righthand.dmi'
 	icon_state = "pump"
-	item_state = "shotgun"
+	inhand_icon_state = "shotgun"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot
 	weapon_class = WEAPON_CLASS_RIFLE
 	weapon_weight = GUN_TWO_HAND_ONLY
@@ -33,6 +33,7 @@
 	init_firemodes = list(
 		/datum/firemode/semi_auto/slower
 	)
+	reloading_time = 0.5 SECONDS
 
 /* /obj/item/gun/ballistic/shotgun/process_chamber(mob/living/user, empty_chamber = 0)
 	return ..() //changed argument value
@@ -117,7 +118,7 @@
 	lefthand_file = 'icons/fallout/onmob/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/fallout/onmob/weapons/guns_righthand.dmi'
 	icon_state = "caravan"
-	item_state = "shotgundouble"
+	inhand_icon_state = "shotgundouble"
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/caravan
 	weapon_class = WEAPON_CLASS_CARBINE
 	weapon_weight = GUN_TWO_HAND_ONLY
@@ -163,7 +164,7 @@
 	lefthand_file = 'icons/fallout/onmob/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/fallout/onmob/weapons/guns_righthand.dmi'
 	icon_state = "widowmaker"
-	item_state = "shotgundouble"
+	inhand_icon_state = "shotgundouble"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/dual
 	weapon_class = WEAPON_CLASS_CARBINE
 	weapon_weight = GUN_TWO_HAND_ONLY
@@ -214,7 +215,7 @@
 	lefthand_file = 'icons/fallout/onmob/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/fallout/onmob/weapons/guns_righthand.dmi'
 	icon_state = "shotpistol"
-	item_state = "357colt"
+	inhand_icon_state = "357colt"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/single
 	weapon_class = WEAPON_CLASS_TINY
 	weapon_weight = GUN_ONE_HAND_AKIMBO
@@ -233,10 +234,10 @@
 
 /obj/item/gun/ballistic/revolver/shotpistol/flair_gun
 	name = "Flair Gun"
-	desc = "This plastic orange flare gun has been reinforced with a high strength prewar alloy pipe insert, allowing it to fit a .50 bmg cartridge. Hopefully your hand is reinforced too."
+	desc = "This plastic orange flare gun has been reinforced with a high strength prefall alloy pipe insert, allowing it to fit a .50 bmg cartridge. Hopefully your hand is reinforced too."
 	icon = 'modular_coyote/icons/objects/pistols.dmi'
 	icon_state = "flaregun50_civ"
-	item_state = "gun"
+	inhand_icon_state = "gun"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/single/fifty
 
 
@@ -255,7 +256,7 @@
 	name = "hunting shotgun"
 	desc = "A traditional hunting shotgun with wood furniture and a four-shell capacity underneath."
 	icon_state = "pump"
-	item_state = "shotgunpump"
+	inhand_icon_state = "shotgunpump"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/lethal
 	weapon_class = WEAPON_CLASS_RIFLE
 	weapon_weight = GUN_TWO_HAND_ONLY
@@ -282,9 +283,9 @@
 	name = "sawed-off hunting shotgun"
 	desc = "A traditional hunting shotgun with wood furniture and a two-plus-one-shell capacity. This one has probably been modified, in quotes, by someone with a name like Cletus."
 	icon_state = "pump-sawn"
-	item_state = "shotgun" // Is this how it figures out the in hand sprite to pair with player sprites? This doesn't match anything in guns_left/righthand.dmi...
+	inhand_icon_state = "shotgun" // Is this how it figures out the in hand sprite to pair with player sprites? This doesn't match anything in guns_left/righthand.dmi...
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/shorty
-	weapon_class = WEAPON_CLASS_NORMAL
+	weapon_class = WEAPON_CLASS_SMALL
 	weapon_weight = GUN_TWO_HAND_ONLY
 	damage_multiplier = GUN_LESS_DAMAGE_T1
 	init_firemodes = list(
@@ -309,13 +310,13 @@
 
 /obj/item/gun/ballistic/shotgun/police
 	name = "police shotgun"
-	desc = "A pre-war shotgun with large magazine and folding stock, made from steel and polymers. Flashlight attachment rail."
+	desc = "A Pre-Fall shotgun with large magazine and folding stock, made from steel and polymers. Flashlight attachment rail."
 	mob_overlay_icon = 'icons/fallout/onmob/backslot_weapon.dmi'
 	icon_state = "shotgunpolice"
-	item_state = "shotgunpolice"
+	inhand_icon_state = "shotgunpolice"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/police
 	sawn_desc = "Portable but with a poor recoil managment."
-	weapon_class = WEAPON_CLASS_NORMAL
+	weapon_class = WEAPON_CLASS_SMALL
 	weapon_weight = GUN_TWO_HAND_ONLY
 	damage_multiplier = GUN_EXTRA_DAMAGE_0
 	slot_flags = INV_SLOTBIT_BACK | INV_SLOTBIT_BELT
@@ -343,13 +344,13 @@
 /obj/item/gun/ballistic/shotgun/police/proc/toggle_stock(mob/living/user)
 	stock = !stock
 	if(stock)
-		slot_flags = INV_SLOTBIT_BACK
-		w_class = WEIGHT_CLASS_BULKY
+		slot_flags = INV_SLOTBIT_BACK | INV_SLOTBIT_BELT
+		w_class = WEIGHT_CLASS_NORMAL
 		to_chat(user, "You unfold the stock.")
 		recoil_tag = SSrecoil.give_recoil_tag(RIFLE_RECOIL(1, 1))
 	else
 		slot_flags = INV_SLOTBIT_BACK | INV_SLOTBIT_BELT
-		w_class = WEIGHT_CLASS_NORMAL
+		w_class = WEIGHT_CLASS_SMALL
 		to_chat(user, "You fold the stock.")
 		recoil_tag = SSrecoil.give_recoil_tag(init_recoil)
 	update_icon()
@@ -373,7 +374,7 @@
 	name = "trench shotgun"
 	desc = "A quick military shotgun designed for close-quarters fighting, equipped with a bayonet lug."
 	icon_state = "trench"
-	item_state = "shotguntrench"
+	inhand_icon_state = "shotguntrench"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/trench
 	weapon_class = WEAPON_CLASS_RIFLE
 	weapon_weight = GUN_TWO_HAND_ONLY
@@ -406,10 +407,10 @@
 * * * * * * * * * * * * */
 /obj/item/gun/ballistic/shotgun/s163
 	name = "S163 Minotaur shotgun"
-	desc = "A S163 Minotaur shotgun, was in used by Lithuanian police departments and military personal. A reliable top loading shotgun design made by the Leo Company. It has a 3+1 magazine tube capacity alongside a built in small ammo counter"
+	desc = "A S163 Minotaur shotgun, was in used by Lithuanian police departments and military personal. A reliable top loading shotgun design made by the Leo Company. It has a 5+1 magazine tube capacity alongside a built in small ammo counter"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/mino
 	icon_state = "s163"
-	item_state = "s163"
+	inhand_icon_state = "s163"
 	weapon_class = WEAPON_CLASS_RIFLE
 	weapon_weight = GUN_TWO_HAND_ONLY
 	damage_multiplier = GUN_LESS_DAMAGE_T1
@@ -465,7 +466,7 @@
 	name = "Browning Auto-5"
 	desc = "A semi automatic shotgun with a four round tube."
 	icon_state = "auto5"
-	item_state = "shotgunauto5"
+	inhand_icon_state = "shotgunauto5"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/com/compact
 	weapon_class = WEAPON_CLASS_RIFLE
 	weapon_weight = GUN_TWO_HAND_ONLY
@@ -481,7 +482,7 @@
 	name = " Venn Family Shotgun"
 	desc = "A semi automatic shotgun with a four round tube. Has an etching into the side."
 	icon_state = "auto5"
-	item_state = "shotgunauto5"
+	inhand_icon_state = "shotgunauto5"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/com/compact
 	weapon_class = WEAPON_CLASS_RIFLE
 	weapon_weight = GUN_TWO_HAND_ONLY
@@ -509,9 +510,9 @@
 	name = "mare's leg shotgun"
 	desc = "A speedy pistol grip lever action shotgun with a five-shell capacity underneath plus one in chamber."
 	icon_state = "shotgunlever"
-	item_state = "shotgunlever"
+	inhand_icon_state = "shotgunlever"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/trench
-	weapon_class = WEAPON_CLASS_NORMAL
+	weapon_class = WEAPON_CLASS_SMALL
 	weapon_weight = GUN_TWO_HAND_ONLY
 	damage_multiplier = GUN_LESS_DAMAGE_T2 //can bump to T1 if this is too poor
 	cock_delay = GUN_COCK_SHOTGUN_FAST
@@ -537,7 +538,7 @@
 	name = "lever action shotgun"
 	desc = "A speedy lever action shotgun with a five-shell capacity underneath plus one in chamber."
 	icon_state = "lashotgunstocked"
-	item_state = "shotgunlever"
+	inhand_icon_state = "shotgunlever"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/trench
 	weapon_class = WEAPON_CLASS_RIFLE
 	weapon_weight = GUN_TWO_HAND_ONLY
@@ -561,7 +562,7 @@
 	name = "Mourning Sunrise"
 	desc = "A speedy lever action shotgun with a sunrise painted on the furnishings, morbid in context of it's purpose."
 	icon_state = "latribal"
-	item_state = "shotgunlever"
+	inhand_icon_state = "shotgunlever"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/trench
 	weapon_class = WEAPON_CLASS_RIFLE
 	weapon_weight = GUN_TWO_HAND_ONLY
@@ -584,7 +585,7 @@
 	name = "Neostead 2000"
 	desc = "An advanced shotgun with two separate magazine tubes, allowing you to quickly toggle between ammo types."
 	icon_state = "neostead"
-	item_state = "shotguncity"
+	inhand_icon_state = "shotguncity"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/tube
 	weapon_class = WEAPON_CLASS_RIFLE
 	weapon_weight = GUN_TWO_HAND_ONLY
@@ -638,7 +639,7 @@
 	name = "Winchester City-Killer shotgun"
 	desc = "A high capacity pump action shotgun with black tactical furniture made by Winchester Arms. This particular model uses a internal tube magazine."
 	icon_state = "citykiller"
-	item_state = "shotguncity"
+	inhand_icon_state = "shotguncity"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/com/citykiller
 	weapon_class = WEAPON_CLASS_RIFLE
 	weapon_weight = GUN_TWO_HAND_ONLY
@@ -664,7 +665,7 @@
 	righthand_file = 'icons/fallout/onmob/weapons/guns_righthand.dmi'
 	mob_overlay_icon = 'icons/fallout/onmob/backslot_weapon.dmi'
 	icon_state = "shotgunriot"
-	item_state = "shotgunriot"
+	inhand_icon_state = "shotgunriot"
 	mag_type = /obj/item/ammo_box/magazine/d12g
 	weapon_class = WEAPON_CLASS_RIFLE
 	weapon_weight = GUN_TWO_HAND_ONLY
@@ -682,7 +683,7 @@
 	lefthand_file = 'icons/fallout/onmob/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/fallout/onmob/weapons/guns_righthand.dmi'
 	icon_state = "needlesg"
-	item_state = "needlesg"
+	inhand_icon_state = "needlesg"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/needler
 	weapon_class = WEAPON_CLASS_RIFLE
 	weapon_weight = GUN_TWO_HAND_ONLY
@@ -703,7 +704,7 @@
 	name = "Pancor Jackhammer"
 	desc = "A drum-loaded, fully automatic shotgun. The pinnacle of turning things into swiss cheese."
 	icon_state = "pancor"
-	item_state = "cshotgun1"
+	inhand_icon_state = "cshotgun1"
 	fire_sound = 'sound/f13weapons/repeater_fire.ogg'
 	mag_type = /obj/item/ammo_box/magazine/d12g
 	weapon_class = WEAPON_CLASS_RIFLE
@@ -721,12 +722,12 @@
 	desc = "This powerfist has been modified to have two shotgun barrels welded to it, with the trigger integrated into the knuckle guard. For those times when you want to punch someone and shoot them in the face at the same time."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "ballisticfist"
-	item_state = "powerfist"
+	inhand_icon_state = "powerfist"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/dual
 	fire_sound = 'sound/f13weapons/caravan_shotgun.ogg'
-	weapon_class = WEAPON_CLASS_NORMAL
+	weapon_class = WEAPON_CLASS_SMALL
 	slot_flags = INV_SLOTBIT_BELT | INV_SLOTBIT_GLOVES
 	var/transfer_prints = TRUE //prevents runtimes with forensics when held in glove slot
 	init_firemodes = list(
@@ -738,6 +739,6 @@
 /obj/item/gun/ballistic/shotgun/shotttesting
 	name = "shotgun"
 	icon_state = "shotgunpolice"
-	item_state = "shotgunpolice"
+	inhand_icon_state = "shotgunpolice"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/lethal/test
 	damage_multiplier = 7

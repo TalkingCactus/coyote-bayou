@@ -32,12 +32,13 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("metal barricade", /obj/structure/deployable_barricade/metal, 2, 1, time = 1 SECONDS), \
 	new/datum/stack_recipe("iron ingot", /obj/item/ingot/iron, 6, time = 100), \
 	new/datum/stack_recipe("anomalous artifact exclusion cube", /obj/item/storage/box/artifactcontainer/metal, 1, time = 10),
+	new/datum/stack_recipe("primative chemical isolator", /obj/item/reagent_containers/glass/primitive_chem_isolator, 6, time = 20),\
 	/*new/datum/stack_recipe("metal parts", /obj/item/stack/crafting/metalparts, 5), \ very easy to find already*/
 	new/datum/stack_recipe("length of chain", /obj/item/blacksmith/chain, 1, time = 50), \
 	new/datum/stack_recipe("metal tin", /obj/item/storage/wallet/stash, 5), \
-	new/datum/stack_recipe("regular arrowhead", /obj/item/stack/arrowhead, 2, 1, time = 2.5 SECONDS), \
-	new/datum/stack_recipe("bludgeoning arrowhead", /obj/item/stack/arrowhead/bludgeon, 1, 1, time = 1 SECONDS), \
-	new/datum/stack_recipe("field arrowhead", /obj/item/stack/arrowhead/field, 1, 1, time = 1 SECONDS), \
+	new/datum/stack_recipe("regular arrowhead", /obj/item/stack/arrowhead, 2, 1, 25, time = 2.5 SECONDS, is_stack = TRUE), \
+	new/datum/stack_recipe("bludgeoning arrowhead", /obj/item/stack/arrowhead/bludgeon, 1, 1, 25, time = 1 SECONDS, is_stack = TRUE), \
+	new/datum/stack_recipe("field arrowhead", /obj/item/stack/arrowhead/field, 1, 1, 25, time = 1 SECONDS, is_stack = FALSE), \
 	null, \
 	new/datum/stack_recipe("lock", /obj/item/lock_construct, 1), \
 	new/datum/stack_recipe("key", /obj/item/key, 1), \
@@ -143,7 +144,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	desc = "Sheets made out of metal."
 	singular_name = "metal sheet"
 	icon_state = "sheet-metal"
-	item_state = "sheet-metal"
+	inhand_icon_state = "sheet-metal"
 	custom_materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
 	throwforce = 10
 	flags_1 = CONDUCT_1
@@ -215,7 +216,7 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 	singular_name = "plasteel sheet"
 	desc = "This sheet is an alloy of iron and plasma."
 	icon_state = "sheet-plasteel"
-	item_state = "sheet-metal"
+	inhand_icon_state = "sheet-metal"
 	custom_materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT, /datum/material/plasma=MINERAL_MATERIAL_AMOUNT)
 	throwforce = 10
 	flags_1 = CONDUCT_1
@@ -249,7 +250,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("wooden floor tile", /obj/item/stack/tile/wood, 1, 4, 20), \
 	new/datum/stack_recipe("dispute stick", /obj/item/melee/classic_baton/coyote/oldquarterstaff/disputestick, 1, 1, 0.5 SECONDS, is_stack = FALSE), \
 	new/datum/stack_recipe("wooden quarterstaff", /obj/item/melee/classic_baton/coyote/oldquarterstaff, 1, 1, 0.5 SECONDS, is_stack = FALSE), \
-	new/datum/stack_recipe("wooden arrow shaft", /obj/item/arrow_shaft, 1, 1, 0.5 SECONDS, is_stack = FALSE), \
+	new/datum/stack_recipe("wooden arrow shaft", /obj/item/arrow_shaft, 1, 1, 25, 0.5 SECONDS, is_stack = FALSE), \
 	null, \
 	new/datum/stack_recipe("anomalous artifact exclusion cube", /obj/item/storage/box/artifactcontainer/wood, 1, time = 10),
 	new/datum/stack_recipe_list("pews", list( \
@@ -319,7 +320,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	desc = "One can only guess that this is a bunch of wood. You might be able to make a stake with this if you use something sharp on it"
 	singular_name = "wood plank"
 	icon_state = "sheet-wood"
-	item_state = "sheet-wood"
+	inhand_icon_state = "sheet-wood"
 	icon = 'icons/obj/stack_objects.dmi'
 	custom_materials = list(/datum/material/wood=MINERAL_MATERIAL_AMOUNT)
 	sheettype = "wood"
@@ -388,7 +389,7 @@ GLOBAL_LIST_INIT(bamboo_recipes, list ( \
 	desc = "Finely cut bamboo sticks."
 	singular_name = "cut bamboo"
 	icon_state = "sheet-bamboo"
-	item_state = "sheet-bamboo"
+	inhand_icon_state = "sheet-bamboo"
 	icon = 'icons/obj/stack_objects.dmi'
 	custom_materials = list(/datum/material/bamboo = MINERAL_MATERIAL_AMOUNT)
 	throwforce = 15
@@ -438,6 +439,7 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	new/datum/stack_recipe("empty sandbag", /obj/item/emptysandbag, 4), \
 	new/datum/stack_recipe("padded floor tile", /obj/item/stack/tile/padded, 1, 4, 20), \
 	new/datum/stack_recipe("mattress", /obj/structure/bed/mattress, 2, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("bedroll", /obj/item/roller/bedroll, 4, one_per_turf = TRUE, on_floor = TRUE), \
 	null, \
 	new/datum/stack_recipe("blindfold", /obj/item/clothing/glasses/sunglasses/blindfold, 2), \
 	new/datum/stack_recipe("beekeeping hood", /obj/item/clothing/head/beekeeper_head, 2), \
@@ -511,14 +513,14 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 			new /datum/stack_recipe("welcome mat", /obj/structure/rug/mat/welcome, 10, time = 30, one_per_turf = FALSE, on_floor = TRUE),\
 		)), \
 	null, \
-	))
+))
 
 /obj/item/stack/sheet/cloth
 	name = "cloth"
 	desc = "Is it cotton? Linen? Denim? Burlap? Canvas? You can't tell."
 	singular_name = "cloth roll"
 	icon_state = "sheet-cloth"
-	item_state = "sheet-cloth"
+	inhand_icon_state = "sheet-cloth"
 	resistance_flags = FLAMMABLE
 	force = 0
 	throwforce = 0
@@ -553,7 +555,7 @@ GLOBAL_LIST_INIT(durathread_recipes, list ( \
 	desc = "A fabric sown from incredibly durable threads, known for its usefulness in armor production."
 	singular_name = "durathread roll"
 	icon_state = "sheet-durathread"
-	item_state = "sheet-cloth"
+	inhand_icon_state = "sheet-cloth"
 	resistance_flags = FLAMMABLE
 	force = 0
 	throwforce = 0
@@ -604,7 +606,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 	singular_name = "cardboard sheet"
 	icon_state = "sheet-card"
 	custom_materials = list(/datum/material/cardboard = MINERAL_MATERIAL_AMOUNT)
-	item_state = "sheet-card"
+	inhand_icon_state = "sheet-card"
 	resistance_flags = FLAMMABLE
 	force = 0
 	throwforce = 0
@@ -646,7 +648,7 @@ GLOBAL_LIST_INIT(runed_metal_recipes, list ( \
 	desc = "Sheets of cold metal with shifting inscriptions writ upon them."
 	singular_name = "runed metal sheet"
 	icon_state = "sheet-runed"
-	item_state = "sheet-runed"
+	inhand_icon_state = "sheet-runed"
 	icon = 'icons/obj/stack_objects.dmi'
 	custom_materials = list(/datum/material/runedmetal = MINERAL_MATERIAL_AMOUNT)
 	sheettype = "runed"
@@ -723,7 +725,7 @@ GLOBAL_LIST_INIT(runed_metal_recipes, list ( \
 	desc = "Sheets made out of brass."
 	singular_name = "brass sheet"
 	icon_state = "sheet-brass"
-	item_state = "sheet-brass"
+	inhand_icon_state = "sheet-brass"
 	icon = 'icons/obj/stack_objects.dmi'
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	throwforce = 10
@@ -785,7 +787,7 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	desc = "On closer inspection, what appears to be wholly-unsuitable-for-building brass is actually more structurally stable bronze."
 	singular_name = "bronze sheet"
 	icon_state = "sheet-brass"
-	item_state = "sheet-brass"
+	inhand_icon_state = "sheet-brass"
 	icon = 'icons/obj/stack_objects.dmi'
 	custom_materials = list(/datum/material/bronze = MINERAL_MATERIAL_AMOUNT)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -814,7 +816,7 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	desc = "Rare kind of gems which are only gained by blood sacrifice to minor deities. They are needed in crafting powerful objects."
 	singular_name = "lesser gem"
 	icon_state = "sheet-lessergem"
-	item_state = "sheet-lessergem"
+	inhand_icon_state = "sheet-lessergem"
 	novariants = TRUE
 	merge_type = /obj/item/stack/sheet/lessergem
 
@@ -824,7 +826,7 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	desc = "Rare kind of gems which are only gained by blood sacrifice to minor deities. They are needed in crafting powerful objects."
 	singular_name = "greater gem"
 	icon_state = "sheet-greatergem"
-	item_state = "sheet-greatergem"
+	inhand_icon_state = "sheet-greatergem"
 	novariants = TRUE
 	merge_type = /obj/item/stack/sheet/greatergem
 
@@ -832,7 +834,7 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 
 GLOBAL_LIST_INIT(bone_recipes, list(
 	new /datum/stack_recipe("bone dagger", /obj/item/melee/onehanded/knife/bone, 2, time = 20),
-	new /datum/stack_recipe("bone arrowhead", /obj/item/stack/arrowhead/bone, 1, 1, time = 2 SECONDS),
+	new /datum/stack_recipe("bone arrowhead", /obj/item/stack/arrowhead/bone, 1, 1, 25, time = 2 SECONDS, is_stack = TRUE),
 	null, \
 	new /datum/stack_recipe("bone armor", /obj/item/clothing/suit/armor/light/tribal/bone, 6, time = 30),
 	new /datum/stack_recipe("skull helmet", /obj/item/clothing/head/helmet/skull, 4, time = 30),
@@ -841,7 +843,6 @@ GLOBAL_LIST_INIT(bone_recipes, list(
 	new/datum/stack_recipe_list("medicine", list( \
 		new /datum/stack_recipe("bone pestle", /obj/item/pestle, 1, time = 20),\
 		new /datum/stack_recipe("bone mortar", /obj/item/reagent_containers/glass/mortar, 3, time = 20),\
-		new /datum/stack_recipe("bone chemical isolator", /obj/item/reagent_containers/glass/primitive_chem_isolator, 3, time = 20),\
 	)), \
 	null, \
 ))
@@ -850,7 +851,7 @@ GLOBAL_LIST_INIT(bone_recipes, list(
 	name = "bones"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "bone"
-	item_state = "sheet-bone"
+	inhand_icon_state = "sheet-bone"
 	custom_materials = list(/datum/material/bone = MINERAL_MATERIAL_AMOUNT)
 	singular_name = "bone"
 	desc = "Someone's been drinking their milk."
@@ -858,6 +859,7 @@ GLOBAL_LIST_INIT(bone_recipes, list(
 	throwforce = 5
 	max_amount = 12
 	w_class = WEIGHT_CLASS_NORMAL
+	slot_flags = INV_SLOTBIT_NECK | INV_SLOTBIT_MASK
 	throw_speed = 1
 	throw_range = 3
 	grind_results = list(/datum/reagent/carbon = 10)
@@ -886,7 +888,7 @@ GLOBAL_LIST_INIT(plastic_recipes, list(
 	desc = "Processed oil turned into plastic, flexible and durable."
 	singular_name = "plastic sheet"
 	icon_state = "sheet-plastic"
-	item_state = "sheet-plastic"
+	inhand_icon_state = "sheet-plastic"
 	custom_materials = list(/datum/material/plastic=MINERAL_MATERIAL_AMOUNT)
 	throwforce = 7
 	grind_results = list(/datum/reagent/glitter/white = 60)
@@ -915,7 +917,7 @@ new /datum/stack_recipe("paper frame door", /obj/structure/mineral_door/paperfra
 	desc = "A thin wooden frame with paper attached."
 	singular_name = "paper frame"
 	icon_state = "sheet-paper"
-	item_state = "sheet-paper"
+	inhand_icon_state = "sheet-paper"
 	custom_materials = list(/datum/material/paper = MINERAL_MATERIAL_AMOUNT)
 	merge_type = /obj/item/stack/sheet/paperframes
 	resistance_flags = FLAMMABLE
@@ -1026,7 +1028,7 @@ GLOBAL_LIST_INIT(hay_recipes, list ( \
 	desc = "A bundle of hay. Useful for weaving. Hail the Wickerman." //Brahmin can't currently eat this.
 	singular_name = "hay stalk"
 	icon_state = "sheet-hay"
-	item_state = "sheet-hay"
+	inhand_icon_state = "sheet-hay"
 	force = 1
 	throwforce = 1
 	throw_speed = 1
@@ -1055,20 +1057,20 @@ GLOBAL_LIST_INIT(hay_recipes, list ( \
 	amount = 5
 
 /*
-prewar alloys
+prefall alloys
 */
-GLOBAL_LIST_INIT(prewar_recipes, list ( \
+GLOBAL_LIST_INIT(prefall_recipes, list ( \
 	new/datum/stack_recipe("modern chair", /obj/structure/chair/comfy/modern, 2, time = 5, one_per_turf = TRUE, on_floor = TRUE),
 	new/datum/stack_recipe("gun locker", /obj/structure/guncase, 4, time = 10, one_per_turf = TRUE, on_floor = TRUE),
-	new/datum/stack_recipe("anomalous artifact exclusion cube", /obj/item/storage/box/artifactcontainer/prewar, 1, time = 10),
+	new/datum/stack_recipe("anomalous artifact exclusion cube", /obj/item/storage/box/artifactcontainer/prefall, 1, time = 10),
 ))
 
-/obj/item/stack/sheet/prewar
-	name = "pre-war alloys"
-	singular_name = "pre war alloy"
+/obj/item/stack/sheet/prefall
+	name = "Pre-Fall alloys"
+	singular_name = "pre fall alloy"
 	desc = "This sheet was manufactured by using advanced smelting techniques before the war."
 	icon_state = "sheet-prewar"
-	item_state = "sheet-metal"
+	inhand_icon_state = "sheet-metal"
 	custom_materials = list(
 		/datum/material/plasma = MINERAL_MATERIAL_AMOUNT * 0.5,
 		/datum/material/titanium = MINERAL_MATERIAL_AMOUNT * 0.5,
@@ -1078,19 +1080,19 @@ GLOBAL_LIST_INIT(prewar_recipes, list ( \
 	flags_1 = CONDUCT_1
 	armor = ARMOR_VALUE_GENERIC_ITEM
 	resistance_flags = FIRE_PROOF
-	merge_type = /obj/item/stack/sheet/prewar
+	merge_type = /obj/item/stack/sheet/prefall
 	grind_results = list(/datum/reagent/iron = 20, /datum/reagent/toxin/plasma = 20)
 
-/obj/item/stack/sheet/prewar/get_main_recipes()
+/obj/item/stack/sheet/prefall/get_main_recipes()
 	. = ..()
-	. += GLOB.prewar_recipes
+	. += GLOB.prefall_recipes
 
-/obj/item/stack/sheet/prewar/five
+/obj/item/stack/sheet/prefall/five
 	amount = 5
 
-/obj/item/stack/sheet/prewar/twenty
+/obj/item/stack/sheet/prefall/twenty
 	amount = 20
 
-/obj/item/stack/sheet/prewar/fifty
+/obj/item/stack/sheet/prefall/fifty
 	amount = 50
 

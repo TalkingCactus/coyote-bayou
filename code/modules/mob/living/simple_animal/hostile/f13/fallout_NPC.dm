@@ -37,9 +37,10 @@
 	max_heal_amount = 0.9
 	heal_per_life = 0.115
 	tactical_retreat = 10
-	loot = list(/obj/effect/spawner/lootdrop/f13/common, /obj/effect/gibspawner/human)
+	loot = list(/obj/effect/gibspawner/human)
 	loot_drop_amount = 2
 	loot_amount_random = TRUE
+	bounty = 30
 
 
 /obj/effect/mob_spawn/human/corpse/vault
@@ -57,7 +58,7 @@
 /mob/living/simple_animal/hostile/vault/dweller/Aggro()
 	..()
 	summon_backup(15)
-	say("HELP!!")
+	say("HELP!!", only_overhead = TRUE)
 
 /mob/living/simple_animal/hostile/vault/dweller/dweller1
 	icon_state = "vault_dweller1"
@@ -109,7 +110,7 @@
 		SP_DISTANT_SOUND(LASER_DISTANT_SOUND),
 		SP_DISTANT_RANGE(LASER_RANGE_DISTANT)
 	)
-
+	speed = 10 // added to make his dumbass hold still - Jaeger
 
 /mob/living/simple_animal/hostile/vault/security/Aggro()
 	..()
@@ -144,7 +145,7 @@
 	response_harm_simple = "hits"
 	retreat_distance = 6
 	minimum_distance = 6
-	speed = 0
+	speed = 4
 	ranged_cooldown_time = 22
 	extra_projectiles = 2
 	stat_attack = 1
@@ -156,9 +157,10 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 35
 	harm_intent_damage = 8
-	loot = list(/obj/effect/spawner/lootdrop/f13/common, /obj/effect/gibspawner/human)
+	loot = list(/obj/effect/gibspawner/human)
 	loot_drop_amount = 2
 	loot_amount_random = TRUE
+	bounty = 30
 
 	projectiletype = /obj/item/projectile/bullet/c46x30mm
 	projectilesound = 'sound/weapons/gunshot_smg.ogg'
@@ -170,7 +172,7 @@
 	faction = list("enclave")
 	check_friendly_fire = 1
 	status_flags = CANPUSH
-	speak = list("For the Enclave!", "Stars and Stripes!", "Liberty or death!")
+	//speak = list("For the Enclave!", "Stars and Stripes!", "Liberty or death!")
 	speak_emote = list("pulls out a weapon", "shouts")
 	projectile_sound_properties = list(
 		SP_VARY(FALSE),
@@ -219,11 +221,12 @@
 	max_heal_amount = 0.85
 	heal_per_life = 0.115
 	tactical_retreat = 10
+	speed = 4 // added to make his dumbass hold still - Jaeger
 
 /mob/living/simple_animal/hostile/enclave/scientist/Aggro()
 	..()
 	summon_backup(15)
-	say("Intruder!!") 
+	say("Intruder!!", only_overhead = TRUE) 
 
 // Enclave Armored Infantry
 /mob/living/simple_animal/hostile/enclave/soldier
@@ -242,7 +245,7 @@
 	ranged_cooldown_time = 12
 	healable = 1
 	attack_verb_simple = "power-fists"
-	loot = list(/obj/effect/spawner/lootdrop/f13/uncommon, /obj/effect/gibspawner/human)
+	loot = list(/obj/effect/gibspawner/human)
 	loot_drop_amount = 2
 	loot_amount_random = TRUE
 	projectiletype = /obj/item/projectile/f13plasma/scatter
@@ -257,6 +260,8 @@
 		SP_DISTANT_SOUND(PLASMA_DISTANT_SOUND),
 		SP_DISTANT_RANGE(PLASMA_RANGE_DISTANT)
 	)
+	speed = 4 // added to make his dumbass hold still - Jaeger
+	bounty = 50
 
 // Enclave corpses
 /obj/effect/mob_spawn/human/corpse/enclavescientist
@@ -300,7 +305,7 @@
 	response_help_simple = "pokes"
 	response_disarm_simple = "shoves"
 	response_harm_simple = "hits"
-	speed = 1
+	speed = 4
 	stat_attack = 1
 	robust_searching = 1
 	maxHealth = 200
@@ -314,14 +319,15 @@
 	unsuitable_atmos_damage = 15
 	check_friendly_fire = 1
 	status_flags = CANPUSH
-	speak = list("Semper Invicta!")
+	//speak = list("Semper Invicta!")
 	speak_emote = list("rushes")
 	speak_chance = 1
 	ignore_other_mobs = TRUE // we fight
 	override_ignore_other_mobs = TRUE
-	loot = list(/obj/effect/spawner/lootdrop/f13/uncommon, /obj/effect/gibspawner/human)
+	loot = list(/obj/effect/gibspawner/human)
 	loot_drop_amount = 2
 	loot_amount_random = TRUE
+	bounty = 30
 
 /obj/effect/mob_spawn/human/corpse/bs
 	name = "Tech-trooper"
@@ -343,7 +349,7 @@
 	minimum_distance = 5
 	healable = 1
 	ranged = 1
-	loot = list(/obj/effect/spawner/lootdrop/f13/rare, /obj/effect/gibspawner/human)
+	loot = list(/obj/effect/gibspawner/human)
 	loot_drop_amount = 2
 	loot_amount_random = TRUE
 	projectiletype = /obj/item/projectile/beam/laser/pistol/hitscan
@@ -358,6 +364,7 @@
 		SP_DISTANT_SOUND(LASER_DISTANT_SOUND),
 		SP_DISTANT_RANGE(LASER_RANGE_DISTANT)
 	)
+	speed = 4 // added to make his dumbass hold still - Jaeger
 
 /mob/living/simple_animal/hostile/bs/paladin
 	name = "Tech-Trooper Commander"
@@ -371,7 +378,7 @@
 	health = 480
 	healable = 1
 	ranged = 1
-	loot = list(/obj/effect/spawner/lootdrop/f13/rare, /obj/effect/gibspawner/human)
+	loot = list(/obj/effect/gibspawner/human)
 	loot_drop_amount = 5
 	loot_amount_random = TRUE
 	projectiletype = /obj/item/projectile/beam/laser/lasgun/hitscan
@@ -386,6 +393,7 @@
 		SP_DISTANT_SOUND(LASER_DISTANT_SOUND),
 		SP_DISTANT_RANGE(LASER_RANGE_DISTANT)
 	)
+	speed = 4 // added to make his dumbass hold still - Jaeger
 
 /obj/effect/mob_spawn/human/corpse/bs/paladin
 	name = "Brotherhood Paladin"
@@ -415,7 +423,7 @@
 	response_help_simple = "pokes"
 	response_disarm_simple = "shoves"
 	response_harm_simple = "hits"
-	speed = 1
+	speed = 4
 	stat_attack = 1
 	robust_searching = 1
 	maxHealth = 120
@@ -430,7 +438,7 @@
 	unsuitable_atmos_damage = 15
 	check_friendly_fire = 1
 	status_flags = CANPUSH
-	speak = list("Patrolling the Mojave almost makes you wish for a nuclear winter.", "When I got this assignment I was hoping there would be more gambling.", "It's been a long tour, all I can think about now is going back home.", "You know, if you were serving, you'd probably be halfway to general by now.", "You oughtta think about enlisting. We need you here.")
+	//speak = list("Patrolling the Mojave almost makes you wish for a nuclear winter.", "When I got this assignment I was hoping there would be more gambling.", "It's been a long tour, all I can think about now is going back home.", "You know, if you were serving, you'd probably be halfway to general by now.", "You oughtta think about enlisting. We need you here.")
 	speak_emote = list("says")
 	speak_chance = 1
 	ignore_other_mobs = TRUE // we fight
@@ -468,6 +476,7 @@
 		SP_DISTANT_SOUND(RIFLE_LIGHT_DISTANT_SOUND),
 		SP_DISTANT_RANGE(RIFLE_LIGHT_RANGE_DISTANT)
 	)
+	speed = 10 // added to make his dumbass hold still - Jaeger
 
 /mob/living/simple_animal/hostile/ncr/ranger
 	name = "NCR Ranger"
@@ -495,6 +504,8 @@
 		SP_DISTANT_SOUND(PISTOL_HEAVY_DISTANT_SOUND),
 		SP_DISTANT_RANGE(PISTOL_HEAVY_RANGE_DISTANT)
 	)
+	speed = 4 // added to make his dumbass hold still - Jaeger
+
 /obj/effect/mob_spawn/human/corpse/ncr/ranger
 	name = "NCR Ranger"
 	uniform = /obj/item/clothing/under/f13/ranger/patrol
@@ -535,7 +546,7 @@
 	unsuitable_atmos_damage = 15
 	check_friendly_fire = 1
 	status_flags = CANPUSH
-	speak = list("Ave, true to Caesar.", "True to Caesar.", "Ave, Amicus.", "The new slave girls are quite beautiful.", "Give me cause, Profligate.", "Degenerates like you belong on a cross.")
+	//speak = list("Ave, true to Caesar.", "True to Caesar.", "Ave, Amicus.", "The new slave girls are quite beautiful.", "Give me cause, Profligate.", "Degenerates like you belong on a cross.")
 	speak_emote = list("says")
 	speak_chance = 1
 	ignore_other_mobs = TRUE // we fight
@@ -573,6 +584,7 @@
 		SP_DISTANT_SOUND(RIFLE_MEDIUM_DISTANT_SOUND),
 		SP_DISTANT_RANGE(RIFLE_MEDIUM_RANGE_DISTANT)
 	)
+	speed = 4 // added to make his dumbass hold still - Jaeger
 
 /mob/living/simple_animal/hostile/legion/decan
 	name = "Legion Decanus"
@@ -600,6 +612,7 @@
 		SP_DISTANT_SOUND(RIFLE_MEDIUM_DISTANT_SOUND),
 		SP_DISTANT_RANGE(RIFLE_MEDIUM_RANGE_DISTANT)
 	)
+	speed = 4 // added to make his dumbass hold still - Jaeger
 
 /mob/living/simple_animal/hostile/legion/decan
 
@@ -641,7 +654,7 @@
 	a_intent = INTENT_HARM
 	unsuitable_atmos_damage = 15
 	status_flags = CANPUSH
-	speak = list("Blood, blood, blood, blood!", "You'll make a fine stew!", "Perish interloper!")
+	//speak = list("Blood, blood, blood, blood!", "You'll make a fine stew!", "Perish interloper!")
 	speak_emote = list("says")
 	speak_chance = 1
 	ignore_other_mobs = TRUE // we fight

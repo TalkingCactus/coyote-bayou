@@ -2,6 +2,105 @@
 #define HANDS_SLOT_AMT		2
 #define BACKPACK_SLOT_AMT	4
 
+#define DEFAULT_FEATURES list(\
+		"mcolor" = "CCCCCC",\
+		"mcolor2" = "EEEEEE",\
+		"mcolor3" = "777777",\
+		"tail_lizard" = "Fox",\
+		"tail_human" = "Fox",\
+		"snout" = "Mammal, Long",\
+		"horns" = "None",\
+		"horns_color" = "85615a",\
+		"blood_color" = "",\
+		"ears" = "Fox",\
+		"wings" = "None",\
+		"wings_color" = "FFF",\
+		"frills" = "None",\
+		"deco_wings" = "None",\
+		"spines" = "None",\
+		"legs" = "Digitigrade",\
+		"insect_wings" = "Plain",\
+		"insect_fluff" = "None",\
+		"insect_markings" = "None",\
+		"arachnid_legs" = "Plain",\
+		"arachnid_spinneret" = "Plain",\
+		"arachnid_mandibles" = "Plain",\
+		"mam_body_markings" = list(),\
+		"mam_ears" = "Fox",\
+		"mam_snouts" = "Mammal, Long",\
+		"mam_tail" = "Fox",\
+		"mam_tail_animated" = "Fox",\
+		"derg_body" = "Smooth Dragon Body",\
+		"derg_belly" = "None",\
+		"derg_horns" = "None",\
+		"derg_mane" = "None",\
+		"derg_ears" = "Fox",\
+		"derg_eyes" = "None",\
+		"xenodorsal" = "Standard",\
+		"xenohead" = "Standard",\
+		"xenotail" = "Xenomorph Tail",\
+		"taur" = "None",\
+		"genitals_use_skintone" = FALSE,\
+		"has_cock" = FALSE,\
+		"cock_shape" = DEF_COCK_SHAPE,\
+		"cock_size" = COCK_SIZE_DEF,\
+		"cock_diameter_ratio" = COCK_DIAMETER_RATIO_DEF,\
+		"cock_color" = "ffffff",\
+		"cock_taur" = FALSE,\
+		"has_balls" = FALSE,\
+		"balls_color" = "ffffff",\
+		"balls_shape" = DEF_BALLS_SHAPE,\
+		"balls_size" = BALLS_SIZE_DEF,\
+		"balls_cum_rate" = CUM_RATE,\
+		"balls_cum_mult" = CUM_RATE_MULT,\
+		"balls_efficiency" = CUM_EFFICIENCY,\
+		"has_breasts" = FALSE,\
+		"breasts_color" = "ffffff",\
+		"breasts_size" = BREASTS_SIZE_DEF,\
+		"breasts_shape" = DEF_BREASTS_SHAPE,\
+		"breasts_producing" = FALSE,\
+		"has_butt" = FALSE,\
+		"butt_color" = "ffffff",\
+		"butt_size" = BUTT_SIZE_DEF,\
+		"has_belly" = FALSE,\
+		"belly_color" = "ffffff",\
+		"belly_size" = BELLY_SIZE_DEF,\
+		"belly_shape" = DEF_BELLY_SHAPE,\
+		"has_vag" = FALSE,\
+		"vag_shape" = DEF_VAGINA_SHAPE,\
+		"vag_color" = "ffffff",\
+		"has_womb" = FALSE,\
+		"balls_visibility" = GEN_VISIBLE_NO_UNDIES,\
+		"breasts_visibility"= GEN_VISIBLE_NO_UNDIES,\
+		"cock_visibility" = GEN_VISIBLE_NO_UNDIES,\
+		"vag_visibility" = GEN_VISIBLE_NO_UNDIES,\
+		"butt_visibility" = GEN_VISIBLE_NO_UNDIES,\
+		"belly_visibility" = GEN_VISIBLE_NO_UNDIES,\
+		"balls_visibility_flags" = GEN_VIS_FLAG_DEFAULT,\
+		"breasts_visibility_flags"= GEN_VIS_FLAG_DEFAULT,\
+		"cock_visibility_flags" = GEN_VIS_FLAG_DEFAULT,\
+		"vag_visibility_flags" = GEN_VIS_FLAG_DEFAULT,\
+		"butt_visibility_flags" = GEN_VIS_FLAG_DEFAULT,\
+		"belly_visibility_flags" = GEN_VIS_FLAG_DEFAULT,\
+		"genital_visibility_flags" = GEN_VIS_OVERALL_FLAG_DEFAULT,\
+		"genital_order" = DEF_COCKSTRING,\
+		"genital_hide" = NONE,\
+		"genital_whitelist" = "Sammt Bingus, fluntly, theBungus",\
+		"ipc_screen" = "Sunburst",\
+		"ipc_antenna" = "None",\
+		"flavor_text" = "",\
+		"silicon_flavor_text" = "",\
+		"ooc_notes" = "",\
+		"background_info_notes" = "",\
+		"flist" = "",\
+		"meat_type" = "Mammalian",\
+		"taste" = "something",\
+		"body_model" = MALE,\
+		"body_size" = RESIZE_DEFAULT_SIZE,\
+		"body_width" = RESIZE_DEFAULT_WIDTH,\
+		"color_scheme" = OLD_CHARACTER_COLORING,\
+		"chat_color" = "whoopsie")
+
 GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences
@@ -11,6 +110,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/vr_path
 	var/default_slot = 1				//Holder so it doesn't default to slot 1, rather the last one used
 	var/max_save_slots = 30
+	var/lockdown = FALSE // prevents any funny business while we delete
 
 	//non-preference stuff
 	var/muted = 0
@@ -48,8 +148,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/buttons_locked = FALSE
 	var/hotkeys = FALSE
 	var/chat_on_map = TRUE
-	var/max_chat_length = CHAT_MESSAGE_MAX_LENGTH
+	var/max_chat_length = CHAT_MESSAGE_LENGTH_DEFAULT
+	var/chat_width = CHAT_MESSAGE_WIDTH
 	var/see_chat_non_mob = TRUE
+	var/see_furry_dating_sim = TRUE
+	var/visualchat_see_horny_radio = TRUE
+	var/visualchat_use_contrasting_color = TRUE
 	///Whether emotes will be displayed on runechat. Requires chat_on_map to have effect. Boolean.
 	var/see_rc_emotes = TRUE
 	///Whether to apply mobs' runechat color to the chat log as well
@@ -81,7 +185,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/preferred_chaos = null
 	var/pda_style = MONO
 	var/pda_color = "#808000"
-	var/pda_skin = PDA_SKIN_CLASSIC
+	var/pda_skin = "Random!"
+	var/pda_ringmessage = "beep-boop"
 
 	var/my_shark = "Bingus Whale"
 
@@ -145,9 +250,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/eye_type = DEFAULT_EYES_TYPE	//Eye type
 	var/split_eye_colors = FALSE
 	var/tbs = TBS_DEFAULT // turner broadcasting system
-	var/kisser = KISS_DEFAULT // Kiss this (     Y     )
-	/// which quester UID we're using
-	var/quester_uid
+	var/kisser = KISS_DEFAULT // Kiss this  /         V         \.
+	/// which quester UID we're using      (          |          ).
+	var/quester_uid //                    (__________) (__________)
 	var/dm_open = TRUE
 	var/needs_a_friend = FALSE // for the quest
 	var/list/blocked_from_dms = list() // list of quids
@@ -158,111 +263,19 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/historical_banked_points = 0
 	/// tight list of the character's active quests
 	var/list/saved_active_quests = list()
+	var/anticipated_daily_change = 0
 	var/saved_unclaimed_points = 0
+	/// Last time we spawned in and took economic damage
+	var/last_quest_login = 0 // its a big number, but our savefiles simply arent bloated enough, and I've got a sonic OC to round out
+	/// every single world.realtime we've logged in
+	var/list/days_spawned_in = list() // "Hey sonic, is that a truckload of chilidogs?"
+	var/list/quest_bank_editor_prefs = list()
+	var/show_health_smilies = TRUE
 	var/datum/species/pref_species = new /datum/species/mammal()	//Mutant race
 	/// If our species supports it, this will override our appearance. See species.dm. "Default" will just use the base icon
 	var/alt_appearance = "Default"
 	var/admin_wire_tap = TRUE
-	var/list/features = list(
-		"mcolor" = "FFFFFF",
-		"mcolor2" = "FFFFFF",
-		"mcolor3" = "FFFFFF",
-		"tail_lizard" = "Smooth",
-		"tail_human" = "None",
-		"snout" = "Round",
-		"horns" = "None",
-		"horns_color" = "85615a",
-		"blood_color" = "",
-		"ears" = "None",
-		"wings" = "None",
-		"wings_color" = "FFF",
-		"frills" = "None",
-		"deco_wings" = "None",
-		"spines" = "None",
-		"legs" = "Plantigrade",
-		"insect_wings" = "Plain",
-		"insect_fluff" = "None",
-		"insect_markings" = "None",
-		"arachnid_legs" = "Plain",
-		"arachnid_spinneret" = "Plain",
-		"arachnid_mandibles" = "Plain",
-		"mam_body_markings" = list(),
-		"mam_ears" = "None",
-		"mam_snouts" = "None",
-		"mam_tail" = "None",
-		"mam_tail_animated" = "None",
-		"derg_body" = "Smooth Dragon Body",
-		"derg_belly" = "None",
-		"derg_horns" = "None",
-		"derg_mane" = "None",
-		"derg_ears" = "None",
-		"derg_eyes" = "None",
-		"xenodorsal" = "Standard",
-		"xenohead" = "Standard",
-		"xenotail" = "Xenomorph Tail",
-		"taur" = "None",
-		"genitals_use_skintone" = FALSE,
-		"has_cock" = FALSE,
-		"cock_shape" = DEF_COCK_SHAPE,
-		"cock_size" = COCK_SIZE_DEF, // didnt use the same naming convention, what a dick
-		"cock_diameter_ratio" = COCK_DIAMETER_RATIO_DEF,
-		"cock_color" = "ffffff",
-		"cock_taur" = FALSE,
-		"has_balls" = FALSE,
-		"balls_color" = "ffffff",
-		"balls_shape" = DEF_BALLS_SHAPE,
-		"balls_size" = BALLS_SIZE_DEF,
-		"balls_cum_rate" = CUM_RATE,
-		"balls_cum_mult" = CUM_RATE_MULT,
-		"balls_efficiency" = CUM_EFFICIENCY,
-		"has_breasts" = FALSE,
-		"breasts_color" = "ffffff",
-		"breasts_size" = BREASTS_SIZE_DEF,
-		"breasts_shape" = DEF_BREASTS_SHAPE,
-		"breasts_producing" = FALSE,
-		"has_butt" = FALSE,
-		"butt_color" = "ffffff",
-		"butt_size" = BUTT_SIZE_DEF,
-		"has_belly" = FALSE,
-		"belly_color" = "ffffff",
-		"belly_size" = BELLY_SIZE_DEF,
-		"belly_shape" = DEF_BELLY_SHAPE,
-		"has_vag" = FALSE,
-		"vag_shape" = DEF_VAGINA_SHAPE,
-		"vag_color" = "ffffff",
-		"has_womb" = FALSE,
-		"balls_visibility" = GEN_VISIBLE_NO_UNDIES,
-		"breasts_visibility"= GEN_VISIBLE_NO_UNDIES,
-		"cock_visibility" = GEN_VISIBLE_NO_UNDIES,
-		"vag_visibility" = GEN_VISIBLE_NO_UNDIES,
-		"butt_visibility" = GEN_VISIBLE_NO_UNDIES,
-		"belly_visibility" = GEN_VISIBLE_NO_UNDIES,
-		"balls_visibility_flags" = GEN_VIS_FLAG_DEFAULT,
-		"breasts_visibility_flags"= GEN_VIS_FLAG_DEFAULT,
-		"cock_visibility_flags" = GEN_VIS_FLAG_DEFAULT,
-		"vag_visibility_flags" = GEN_VIS_FLAG_DEFAULT,
-		"butt_visibility_flags" = GEN_VIS_FLAG_DEFAULT,
-		"belly_visibility_flags" = GEN_VIS_FLAG_DEFAULT,
-		"genital_visibility_flags" = GEN_VIS_OVERALL_FLAG_DEFAULT,
-		"genital_order" = DEF_COCKSTRING,
-		"genital_hide" = NONE,
-		"genital_whitelist" = "Sammt Bingus, fluntly, theBungus",
-		"ipc_screen" = "Sunburst",
-		"ipc_antenna" = "None",
-		"flavor_text" = "",
-		"silicon_flavor_text" = "",
-		"ooc_notes" = "",
-		"background_info_notes" = "",
-		"flist" = "",
-		"meat_type" = "Mammalian",
-		"taste" = "something",
-		"body_model" = MALE,
-		"body_size" = RESIZE_DEFAULT_SIZE,
-		"body_width" = RESIZE_DEFAULT_WIDTH,
-		"color_scheme" = OLD_CHARACTER_COLORING,
-		"chat_color" = "whoopsie"
-		)
-
+	var/list/features = DEFAULT_FEATURES
 	var/custom_speech_verb = "default" //if your say_mod is to be something other than your races
 	var/custom_tongue = "default" //if your tongue is to be something other than your races
 	var/modified_limbs = list() //prosthetic/amputated limbs
@@ -288,6 +301,53 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/creature_pfphost = ""
 	var/creature_body_size = 1
 	var/creature_fuzzy = FALSE
+
+	var/see_pfp_max_hight = 300
+	var/see_pfp_max_widht = 300
+
+	var/list/ProfilePics = list(
+		list(
+			"Mode" = MODE_PROFILE_PIC,
+			"Host" = "",
+			"URL" = "",
+		),
+		list(
+			"Mode" = MODE_SAY,
+			"Host" = "",
+			"URL" = "",
+		),
+		list(
+			"Mode" = MODE_ASK,
+			"Host" = "",
+			"URL" = "",
+		),
+		list(
+			"Mode" = MODE_SING,
+			"Host" = "",
+			"URL" = "",
+		),
+		list(
+			"Mode" = MODE_EXCLAIM,
+			"Host" = "",
+			"URL" = "",
+		),
+		list(
+			"Mode" = MODE_YELL,
+			"Host" = "",
+			"URL" = "",
+		),
+		list(
+			"Mode" = MODE_WHISPER,
+			"Host" = "",
+			"URL" = "",
+		),
+		list(
+			"Mode" = ":example:",
+			"Host" = "",
+			"URL" = "",
+		),
+	)
+	var/list/mommychat_settings = list() // will be set by SSchat (goodness me)
 
 	/// Quirk list
 	/// okay lets compromise, we'll have type paths, but they're strings, happy?
@@ -378,13 +438,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/hide_ckey = FALSE //pref for hiding if your ckey shows round-end or not
 
-	var/special_s = 5
-	var/special_p = 5
-	var/special_e = 5
-	var/special_c = 5
-	var/special_i = 5
-	var/special_a = 5
-	var/special_l = 5
+	var/stat_strength = 5
+	var/stat_perception = 5
+	var/stat_endurance = 5
+	var/stat_charisma = 5
+	var/stat_intelligence = 5
+	var/stat_agility = 5
+	var/stat_luck = 5
 
 	var/custom_pixel_x = 0
 	var/custom_pixel_y = 0
@@ -409,7 +469,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/side_waddle_time = 2
 
 	/// Button to switch from input bar to hotkey mode.
-	var/input_mode_hotkey = "Ctrl+Tab"
+	var/input_mode_hotkey = "Tab"
+	/// lets the user see runechat that's offscreen
+	var/see_fancy_offscreen_runechat = TRUE
+	/// lets the user see runechat that's hidden behind a wall
+	var/see_hidden_runechat = TRUE
 
 /datum/preferences/New(client/C)
 	parent = C
@@ -463,6 +527,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	dat += "<a href='?_src_=prefs;preference=tab;tab=[SETTINGS_TAB]' [current_tab == SETTINGS_TAB ? "class='linkOn'" : ""]>Character Settings</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=[APPEARANCE_TAB]' [current_tab == APPEARANCE_TAB ? "class='linkOn'" : ""]>Character Appearance</a>"
+	dat += "<a href='?_src_=prefs;preference=tab;tab=[CHAR_INFO_TAB]' [current_tab == CHAR_INFO_TAB ? "class='linkOn'" : ""]>Character Info</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=[ERP_TAB]' [current_tab == ERP_TAB ? "class='linkOn'" : ""]>Underlying Appearance</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=[LOADOUT_TAB]' [current_tab == LOADOUT_TAB ? "class='linkOn'" : ""]>Loadout</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=[GAME_PREFERENCES_TAB]' [current_tab == GAME_PREFERENCES_TAB ? "class='linkOn'" : ""]>Game Preferences</a>"
@@ -498,6 +563,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "<center><h2>Quest Board UID</h2>"
 			dat += "[quester_uid]</center>"
+			var/cash_change = SSeconomy.player_login(src)
+			var/list/llogin_msg = list()
+			llogin_msg += "<center><B>Last Login:</B> [time2text(last_quest_login)]"
+			llogin_msg += " <B>Banked Cash:</B> [SSeconomy.format_currency(saved_unclaimed_points, TRUE)]"
+			if(cash_change > 0)
+				llogin_msg += " ([span_green("[SSeconomy.format_currency(cash_change, TRUE)]")] activity bonus)"
+			else if(cash_change < 0)
+				llogin_msg += " ([span_alert("[SSeconomy.format_currency(cash_change, TRUE)]")] inactivity tax)"
+			llogin_msg += "</center>"
+			dat += llogin_msg.Join()
 			if(CONFIG_GET(flag/roundstart_traits))
 				dat += "<center>"
 				if(SSquirks.initialized && !(PMC_QUIRK_OVERHAUL_2K23 in current_version))
@@ -506,16 +581,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<h2>Configure Quirks</a></h2><br></center>"
 				dat += "</a>"
 				dat += "<center><b>Current Quirks:</b> [get_my_quirks()]</center>"
-			dat += "<center><h2>S.P.E.C.I.A.L.</h2>"
+			dat += "<center><h2>Character Atributes</h2>"
 			dat += "<a href='?_src_=prefs;preference=special;task=menu'>Allocate Points</a><br></center>"
 			//Left Column
-			dat += "<table><tr><td width='30%'valign='top'>"
+			dat += "<table><tr><td width='70%'valign='top'>"
 			dat += "<h2>Identity</h2>"
 			if(jobban_isbanned(user, "appearance"))
 				dat += "<b>You are banned from using custom names and appearances. You can continue to adjust your characters, but you will be randomised once you join the game.</b><br>"
-			dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=name;task=random'>Random Name</A> "
-			dat += "<b>Always Random Name:</b><a style='display:block;width:30px' href='?_src_=prefs;preference=name'>[be_random_name ? "Yes" : "No"]</a><BR>"
 
+			dat += "<a href='?_src_=prefs;preference=setup_hornychat;task=input'>Configure VisualChat / Profile Pictures!</a><BR>"
 			dat += "<b>Name:</b> "
 			dat += "<a href='?_src_=prefs;preference=name;task=input'>[real_name]</a><BR>"
 
@@ -525,7 +599,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Orientation:</b> <a href='?_src_=prefs;preference=kisser;task=input'>[kisser]</a><BR>"
 			dat += "</td>"
 			//Middle Column
-			dat +="<td width='30%' valign='top'>"
+			dat +="<td width='25%' valign='top'>"
 			dat += "<h2>Matchmaking preferences:</h2>"
 			if(SSmatchmaking.initialized)
 				for(var/datum/matchmaking_pref/match_pref as anything in SSmatchmaking.all_match_types)
@@ -540,12 +614,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<b>Refresh once the game has finished setting up...</b><br>"
 			dat += "</td>"
 			//Right column
-			dat +="<td width='30%' valign='top'>"
-			dat += "<h2>Profile Picture ([pfphost]):</h2><BR>"
-			dat += "<b>Picture:</b> <a href='?_src_=prefs;preference=ProfilePicture;task=input'>[profilePicture ? "<img src=[PfpHostLink(profilePicture, pfphost)] width='125' height='auto' max-height='300'>" : "Upload a picture!"]</a><BR>"
-			dat += "<h2>Simple Creature Profile Picture ([creature_pfphost]):</h2><BR>"
-			dat += "<b>Picture:</b> <a href='?_src_=prefs;preference=CreatureProfilePicture;task=input'>[creature_profilepic ? "<img src=[PfpHostLink(creature_profilepic, creature_pfphost)] width='125' height='auto' max-height='300'>" : "Upload a picture!"]</a><BR>"
-			dat += "</td>"
+			// dat +="<td width='30%' valign='top'>"
+			// // dat += "<h2>Profile Picture ([pfphost]):</h2><BR>"
+			// // dat += "<b>Picture:</b> <a href='?_src_=prefs;preference=ProfilePicture;task=input'>[profilePicture ? "<img src=[PfpHostLink(profilePicture, pfphost)] width='125' height='auto' max-height='300'>" : "Upload a picture!"]</a><BR>"
+			// dat += "<h2>Simple Creature Profile Picture ([creature_pfphost]):</h2><BR>"
+			// dat += "<b>Picture:</b> <a href='?_src_=prefs;preference=CreatureProfilePicture;task=input'>[creature_profilepic ? "<img src=[PfpHostLink(creature_profilepic, creature_pfphost)] width='125' height='auto' max-height='300'>" : "Upload a picture!"]</a><BR>"
+			// dat += "</td>"
 			/*
 			dat += "<b>Special Names:</b><BR>"
 			var/old_group
@@ -606,94 +680,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						dat += "<a style='white-space:nowrap;' href='?_src_=prefs;preference=changeslot;num=[i];' [i == default_slot ? "class='linkOn'" : ""]>[name]</a> "
 					dat += "</center>"
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
-			dat += APPEARANCE_CATEGORY_COLUMN
-			dat += "<h3>Flavor Text</h3>"
-			dat += "<a href='?_src_=prefs;preference=flavor_text;task=input'><b>Set Examine Text</b></a><br>"
-			if(length(features["flavor_text"]) <= 40)
-				if(!length(features["flavor_text"]))
-					dat += "\[...\]"
-				else
-					dat += "[features["flavor_text"]]"
-			else
-				dat += "[TextPreview(features["flavor_text"])]...<BR>"
-			dat += "<h3>Silicon Flavor Text</h3>"
-			dat += "<a href='?_src_=prefs;preference=silicon_flavor_text;task=input'><b>Set Silicon Examine Text</b></a><br>"
-			if(length(features["silicon_flavor_text"]) <= 40)
-				if(!length(features["silicon_flavor_text"]))
-					dat += "\[...\]"
-				else
-					dat += "[features["silicon_flavor_text"]]"
-			else
-				dat += "[TextPreview(features["silicon_flavor_text"])]...<BR>"
-			dat += "<h3>OOC notes</h3>"
-			dat += "<a href='?_src_=prefs;preference=ooc_notes;task=input'><b>Set OOC notes</b></a><br>"
-			var/ooc_notes_len = length(features["ooc_notes"])
-			if(ooc_notes_len <= 40)
-				if(!ooc_notes_len)
-					dat += "\[...\]<br>"
-				else
-					dat += "[features["ooc_notes"]]<br>"
-			else
-				dat += "[TextPreview(features["ooc_notes"])]...<br>"
-
-			dat += "<a href='?_src_=prefs;preference=background_info_notes;task=input'><b>Set Background Info Notes</b></a><br>"
-			var/background_info_notes_len = length(features["background_info_notes"])
-			if(background_info_notes_len <= 40)
-				if(!background_info_notes_len)
-					dat += "\[...\]<br>"
-				else
-					dat += "[features["background_info_notes"]]<br>"
-			else
-				dat += "[TextPreview(features["background_info_notes"])]...<br>"
-
-			//outside link stuff
-			dat += "<h3>Outer hyper-links settings</h3>"
-			dat += "<a href='?_src_=prefs;preference=flist;task=input'><b>Set F-list link</b></a><br>"
-			var/flist_len = length(features["flist"])
-			if(flist_len <= 40)
-				if(!flist_len)
-					dat += "\[...\]"
-				else
-					dat += "[features["flist"]]"
-			else
-				dat += "[TextPreview(features["flist"])]...<br>"
-
-			//Start Creature Character
-			dat += "<h2>Simple Creature Character</h2>"
-			dat += "<b>Creature Species</b><a style='display:block;width:100px' href='?_src_=prefs;preference=creature_species;task=input'>[creature_species ? creature_species : "Eevee"]</a><BR>"
-			dat += "<b>Creature Name</b><a style='display:block;width:100px' href='?_src_=prefs;preference=creature_name;task=input'>[creature_name ? creature_name : "Eevee"]</a><BR>"
-			/*
-			if(CONFIG_GET(number/body_size_min) != CONFIG_GET(number/body_size_max))
-				dat += "<b>Size:</b> <a href='?_src_=prefs;preference=creature_body_size;task=input'>[creature_body_size*100]%</a><br>"
-			dat += "<b>Scaling:</b> <a href='?_src_=prefs;preference=creature_toggle_fuzzy;task=input'>[creature_fuzzy ? "Fuzzy" : "Sharp"]</a><br>"
-			*/
-			dat += "<a href='?_src_=prefs;preference=creature_flavor_text;task=input'><b>Set Creature Examine Text</b></a><br>"
-			if(length(creature_flavor_text) <= 40)
-				if(!length(creature_flavor_text))
-					dat += "\[...\]<br>"
-				else
-					dat += "[creature_flavor_text]<br>"
-			else
-				dat += "[TextPreview(creature_flavor_text)]...<br>"
-			dat += "<a href='?_src_=prefs;preference=creature_ooc;task=input'><b>Set Creature OOC Notes</b></a><br>"
-			if(length(creature_ooc) <= 40)
-				if(!length(creature_ooc))
-					dat += "\[...\]<br>"
-				else
-					dat += "[creature_ooc]<br>"
-			else
-				dat += "[TextPreview(creature_ooc)]...<br>"
-			if(creature_species)
-				if(!LAZYLEN(GLOB.creature_selectable))
-					generate_selectable_creatures()
-				if(!(creature_species in GLOB.creature_selectable))
-					creature_species = initial(creature_species)
-				dat += "[icon2base64html(GLOB.creature_selectable_icons[creature_species])]<br>"
-			// End creature Character
-
-			dat += "</td>"
-			//	END COLUMN 1
-			//	START COLUMN 2
+			
+			//	START COLUMN 1
 			dat += APPEARANCE_CATEGORY_COLUMN
 
 			dat += "<h3>Body</h3>"
@@ -714,7 +702,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(!chosen_limb_id || !(chosen_limb_id in pref_species.allowed_limb_ids))
 					chosen_limb_id = pref_species.limbs_id || pref_species.id
 				dat += "<b>Body Sprite:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=bodysprite;task=input'>[chosen_limb_id]</a><br>"
-			
+			dat += "</td>"
+			dat += APPEARANCE_CATEGORY_COLUMN
 			var/use_skintones = pref_species.use_skintones			
 			var/mutant_colors
 			if((MUTCOLORS in pref_species.species_traits) || (MUTCOLORS_PARTSONLY in pref_species.species_traits))
@@ -748,66 +737,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "<b>[modification]: [modified_limbs[modification][1]]</b><BR>"
 
 			dat += "</td>"
-			//	END COLUMN 2
-			//	START COLUMN 3
-			dat += APPEARANCE_CATEGORY_COLUMN
-
-			dat += "<h2>Voice</h2>"
-			dat += "<b>Custom Tongue:</b><br>"
-			dat += "</b><a style='display:block;width:100px' href='?_src_=prefs;preference=tongue;task=input'>[custom_tongue]</a><br>"
-
-			// Coyote ADD: Blurbleblurhs
-			dat += "<b>Voice Sound:</b></b><a style='display:block;width:100px' href='?_src_=prefs;preference=typing_indicator_sound;task=input'>[features_speech["typing_indicator_sound"]]</a><br>"
-			dat += "<b>Voice When:</b></b><a style='display:block;width:100px' href='?_src_=prefs;preference=typing_indicator_sound_play;task=input'>[features_speech["typing_indicator_sound_play"]]</a><br>"			
-			dat += "</b><a style='display:block;width:100px' href='?_src_=prefs;preference=typing_indicator_speed;task=input'>[features_speech["typing_indicator_speed"]]</a><br>"
-			dat += "</b><a style='display:block;width:100px' href='?_src_=prefs;preference=typing_indicator_pitch;task=input'>[features_speech["typing_indicator_pitch"]]</a><br>"
-			dat += "</b><a style='display:block;width:100px' href='?_src_=prefs;preference=typing_indicator_variance;task=input'>[features_speech["typing_indicator_variance"]]</a><br>"
-			dat += "</b><a style='display:block;width:100px' href='?_src_=prefs;preference=typing_indicator_volume;task=input'>[features_speech["typing_indicator_volume"]]</a><br>"
-			dat += "</b><a style='display:block;width:100px' href='?_src_=prefs;preference=typing_indicator_max_words_spoken;task=input'>[features_speech["typing_indicator_max_words_spoken"]]</a><br>"
-			
-			dat += "<center><h2>Custom Say Verbs</h2></center>"
-			dat += "<a href='?_src_=prefs;preference=custom_say;verbtype=custom_say;task=input'>Says</a>"
-			dat += "<BR><a href='?_src_=prefs;preference=custom_say;verbtype=custom_whisper;task=input'>Whispers</a>"
-			dat += "<BR><a href='?_src_=prefs;preference=custom_say;verbtype=custom_ask;task=input'>Asks</a>"
-			dat += "<BR><a href='?_src_=prefs;preference=custom_say;verbtype=custom_exclaim;task=input'>Exclaims</a>"
-			dat += "<BR><a href='?_src_=prefs;preference=custom_say;verbtype=custom_yell;task=input'>Yells</a>"
-			dat += "<BR><a href='?_src_=prefs;preference=custom_say;verbtype=custom_sing;task=input'>Sings</a>"
-			//dat += "<BR><a href='?_src_=prefs;preference=soundindicatorpreview'>Preview Sound Indicator</a><BR>"
-			dat += "</td>"
-			// Coyote ADD: End
-			dat += APPEARANCE_CATEGORY_COLUMN
-			if(HAIR in pref_species.species_traits)
-				dat += "<h3>Hair</h3>"
-				dat += "<b>Style Up:</b><br>"
-				dat += "<a href='?_src_=prefs;preference=previous_hair_style;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_hair_style;task=input'>&gt;</a><br>"
-				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=hair_style;task=input'>[hair_style]<br>"
-				dat += "<span style='border:1px solid #161616; background-color: #[hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair;task=input'>Change</a><br><BR>"
-
-				// Coyote ADD: Hair gradients
-				dat += "<b>Gradient Up:</b><br>"
-				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=grad_style;task=input'>[features_override["grad_style"]]</a>"
-				dat += "<span style='border:1px solid #161616; background-color: #[features_override["grad_color"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=grad_color;task=input'>Change</a><br><BR>"
-				// Coyote ADD: End
-
-				dat += "<b>Style Down:</b><br>"
-				dat += "<a href='?_src_=prefs;preference=previous_hair_style_2;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_hair_style_2;task=input'>&gt;</a><br>"
-				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=hair_style_2;task=input'>[features_override["hair_style_2"]]</a>"
-				dat += "<span style='border:1px solid #161616; background-color: #[features_override["hair_color_2"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair_color_2;task=input'>Change</a><br><BR>"
-
-				dat += "<b>Gradient Down:</b><br>"
-				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=grad_style_2;task=input'>[features_override["grad_style_2"]]</a>"
-				dat += "<span style='border:1px solid #161616; background-color: #[features_override["grad_color_2"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=grad_color_2;task=input'>Change</a><br><BR>"
-
-				dat += "<b>Facial Style:</b><br>"
-				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=facial_hair_style;task=input'>[facial_hair_style]<br>"
-				dat += "<a href='?_src_=prefs;preference=previous_facehair_style;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_facehair_style;task=input'>&gt;</a><br>"
-				dat += "<span style='border: 1px solid #161616; background-color: #[facial_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=facial;task=input'>Change</a><br><BR>"
-
-			dat += "<b>Show/hide Undies:</b><br>"
-			dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=toggle_undie_preview;task=input'>[preview_hide_undies ? "Hidden" : "Visible"]<br>"
-
-			dat += "</td>"
-
+			//	END COLUMN 1
+			//  START COLUMN 2
 			dat += APPEARANCE_CATEGORY_COLUMN
 			if(!(NOEYES in pref_species.species_traits))
 				dat += "<h3>Eyes</h3>"
@@ -828,11 +759,43 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						dat += "<span style='border: 1px solid #161616; background-color: #[left_eye_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=eye_left;task=input'>Change</a><br>"
 						dat += "<b>Right Color</b><br>"
 						dat += "<span style='border: 1px solid #161616; background-color: #[right_eye_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=eye_right;task=input'>Change</a><br>"
+			//  END COLUMN 2
+			dat += APPEARANCE_CATEGORY_COLUMN
+			if(HAIR in pref_species.species_traits)
+				dat += "<h3>Hair</h3>"
+				dat += "<b>Style Up:</b><br>"
+				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=hair_style;task=input'>[hair_style]<br>"
+				dat += "<a href='?_src_=prefs;preference=previous_hair_style;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_hair_style;task=input'>&gt;</a><br>"
+				dat += "<span style='border:1px solid #161616; background-color: #[hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair;task=input'>Change</a><br><BR>"
 
-			dat += "<h3>Randomization</h3>"
-			dat += "<b>Random Body:</b><a style='display:block;width:100px' href='?_src_=prefs;preference=all;task=random'>Randomize!</A><BR>"
-			dat += "<b>Always Random Body:</b><a href='?_src_=prefs;preference=all'>[be_random_body ? "Yes" : "No"]</A><BR>"
+				// Coyote ADD: Hair gradients
+				dat += "<b>Gradient Up:</b><br>"
+				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=grad_style;task=input'>[features_override["grad_style"]]</a>"
+				dat += "<span style='border:1px solid #161616; background-color: #[features_override["grad_color"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=grad_color;task=input'>Change</a><br><BR>"
+				// Coyote ADD: End
 
+				dat += "<b>Style Down:</b><br>"
+				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=hair_style_2;task=input'>[features_override["hair_style_2"]]</a>"
+				dat += "<a href='?_src_=prefs;preference=previous_hair_style_2;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_hair_style_2;task=input'>&gt;</a><br>"
+				dat += "<span style='border:1px solid #161616; background-color: #[features_override["hair_color_2"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair_color_2;task=input'>Change</a><br><BR>"
+
+				dat += "<b>Gradient Down:</b><br>"
+				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=grad_style_2;task=input'>[features_override["grad_style_2"]]</a>"
+				dat += "<span style='border:1px solid #161616; background-color: #[features_override["grad_color_2"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=grad_color_2;task=input'>Change</a><br><BR>"
+
+				dat += "<b>Facial Style:</b><br>"
+				dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=facial_hair_style;task=input'>[facial_hair_style]<br>"
+				dat += "<a href='?_src_=prefs;preference=previous_facehair_style;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_facehair_style;task=input'>&gt;</a><br>"
+				dat += "<span style='border: 1px solid #161616; background-color: #[facial_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=facial;task=input'>Change</a><br><BR>"
+
+			dat += "<b>Show/hide Undies:</b><br>"
+			dat += "<a style='display:block;width:100px' href='?_src_=prefs;preference=toggle_undie_preview;task=input'>[preview_hide_undies ? "Hidden" : "Visible"]<br>"
+
+			dat += "</td>"
+
+			//end column 3 or something
+			//start column 4
+			dat += APPEARANCE_CATEGORY_COLUMN
 			//Waddling
 			dat += "<h3>Waddling</h3>"
 			dat += "<b>Waddle Amount:</b><a href='?_src_=prefs;preference=waddle_amount;task=input'>[waddle_amount]</a><br>"
@@ -855,10 +818,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<a href='?_src_=prefs;preference=pixel_y;task=input'>&#8597;[py]</a><br>"
 			
 			dat += "</td>"
-
-			//end column 5 or something
-			//start column 6
-
 			//Mutant stuff
 			var/mutant_category = 0
 			mutant_category++
@@ -1083,6 +1042,142 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "</td>"
 			dat += "</tr></table>"*/
 
+		if(CHAR_INFO_TAB)
+			if(path)
+				var/savefile/S = new /savefile(path)
+				if(S)
+					dat += "<center>"
+					var/name
+					var/unspaced_slots = 0
+					for(var/i=1, i<=max_save_slots, i++)
+						unspaced_slots++
+						if(unspaced_slots > 8)
+							dat += "<br>"
+							unspaced_slots = 0
+						S.cd = "/character[i]"
+						S["real_name"] >> name
+						if(!name)
+							name = "Character[i]"
+						dat += "<a style='white-space:nowrap;' href='?_src_=prefs;preference=changeslot;num=[i];' [i == default_slot ? "class='linkOn'" : ""]>[name]</a> "
+					dat += "</center>"
+			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
+			dat += APPEARANCE_CATEGORY_COLUMN
+			dat += "<h3>Flavor Text</h3>"
+			dat += "<a href='?_src_=prefs;preference=flavor_text;task=input'><b>Set Examine Text</b></a><br>"
+			dat += "<a href='?_src_=prefs;preference=setup_hornychat;task=input'>Configure VisualChat / Profile Pictures!</a><BR>"
+			if(length(features["flavor_text"]) <= 40)
+				if(!length(features["flavor_text"]))
+					dat += "\[...\]"
+				else
+					dat += "[features["flavor_text"]]"
+			else
+				dat += "[TextPreview(features["flavor_text"])]...<BR>"
+			dat += "<h3>Silicon Flavor Text</h3>"
+			dat += "<a href='?_src_=prefs;preference=silicon_flavor_text;task=input'><b>Set Silicon Examine Text</b></a><br>"
+			if(length(features["silicon_flavor_text"]) <= 40)
+				if(!length(features["silicon_flavor_text"]))
+					dat += "\[...\]"
+				else
+					dat += "[features["silicon_flavor_text"]]"
+			else
+				dat += "[TextPreview(features["silicon_flavor_text"])]...<BR>"
+			dat += "<h3>OOC notes</h3>"
+			dat += "<a href='?_src_=prefs;preference=ooc_notes;task=input'><b>Set OOC notes</b></a><br>"
+			var/ooc_notes_len = length(features["ooc_notes"])
+			if(ooc_notes_len <= 40)
+				if(!ooc_notes_len)
+					dat += "\[...\]<br>"
+				else
+					dat += "[features["ooc_notes"]]<br>"
+			else
+				dat += "[TextPreview(features["ooc_notes"])]...<br>"
+
+			dat += "<a href='?_src_=prefs;preference=background_info_notes;task=input'><b>Set Background Info Notes</b></a><br>"
+			var/background_info_notes_len = length(features["background_info_notes"])
+			if(background_info_notes_len <= 40)
+				if(!background_info_notes_len)
+					dat += "\[...\]<br>"
+				else
+					dat += "[features["background_info_notes"]]<br>"
+			else
+				dat += "[TextPreview(features["background_info_notes"])]...<br>"
+
+			//outside link stuff
+			dat += "<h3>Outer hyper-links settings</h3>"
+			dat += "<a href='?_src_=prefs;preference=flist;task=input'><b>Set F-list link</b></a><br>"
+			var/flist_len = length(features["flist"])
+			if(flist_len <= 40)
+				if(!flist_len)
+					dat += "\[...\]"
+				else
+					dat += "[features["flist"]]"
+			else
+				dat += "[TextPreview(features["flist"])]...<br>"
+
+			dat += "</td>"
+			dat += APPEARANCE_CATEGORY_COLUMN
+
+			//Start Creature Character
+			dat += "<h2>Simple Creature Character</h2>"
+			dat += "<b>Creature Species</b><a style='display:block;width:100px' href='?_src_=prefs;preference=creature_species;task=input'>[creature_species ? creature_species : "Eevee"]</a><BR>"
+			dat += "<b>Creature Name</b><a style='display:block;width:100px' href='?_src_=prefs;preference=creature_name;task=input'>[creature_name ? creature_name : "Eevee"]</a><BR>"
+			/*
+			if(CONFIG_GET(number/body_size_min) != CONFIG_GET(number/body_size_max))
+				dat += "<b>Size:</b> <a href='?_src_=prefs;preference=creature_body_size;task=input'>[creature_body_size*100]%</a><br>"
+			dat += "<b>Scaling:</b> <a href='?_src_=prefs;preference=creature_toggle_fuzzy;task=input'>[creature_fuzzy ? "Fuzzy" : "Sharp"]</a><br>"
+			*/
+			dat += "<a href='?_src_=prefs;preference=creature_flavor_text;task=input'><b>Set Creature Examine Text</b></a><br>"
+			if(length(creature_flavor_text) <= 40)
+				if(!length(creature_flavor_text))
+					dat += "\[...\]<br>"
+				else
+					dat += "[creature_flavor_text]<br>"
+			else
+				dat += "[TextPreview(creature_flavor_text)]...<br>"
+			dat += "<a href='?_src_=prefs;preference=creature_ooc;task=input'><b>Set Creature OOC Notes</b></a><br>"
+			if(length(creature_ooc) <= 40)
+				if(!length(creature_ooc))
+					dat += "\[...\]<br>"
+				else
+					dat += "[creature_ooc]<br>"
+			else
+				dat += "[TextPreview(creature_ooc)]...<br>"
+			if(creature_species)
+				if(!LAZYLEN(GLOB.creature_selectable))
+					generate_selectable_creatures()
+				if(!(creature_species in GLOB.creature_selectable))
+					creature_species = initial(creature_species)
+				dat += "[icon2base64html(GLOB.creature_selectable_icons[creature_species])]<br>"
+			// End creature Character
+
+			dat += "</td>"
+			dat += APPEARANCE_CATEGORY_COLUMN
+
+			dat += "<h2>Voice</h2>"
+			dat += "<b>Custom Tongue:</b><br>"
+			dat += "</b><a style='display:block;width:100px' href='?_src_=prefs;preference=tongue;task=input'>[custom_tongue]</a><br>"
+
+			// Coyote ADD: Blurbleblurhs
+			dat += "<b>Voice Sound:</b></b><a style='display:block;width:100px' href='?_src_=prefs;preference=typing_indicator_sound;task=input'>[features_speech["typing_indicator_sound"]]</a><br>"
+			dat += "<b>Voice When:</b></b><a style='display:block;width:100px' href='?_src_=prefs;preference=typing_indicator_sound_play;task=input'>[features_speech["typing_indicator_sound_play"]]</a><br>"			
+			dat += "</b><a style='display:block;width:100px' href='?_src_=prefs;preference=typing_indicator_speed;task=input'>[features_speech["typing_indicator_speed"]]</a><br>"
+			dat += "</b><a style='display:block;width:100px' href='?_src_=prefs;preference=typing_indicator_pitch;task=input'>[features_speech["typing_indicator_pitch"]]</a><br>"
+			dat += "</b><a style='display:block;width:100px' href='?_src_=prefs;preference=typing_indicator_variance;task=input'>[features_speech["typing_indicator_variance"]]</a><br>"
+			dat += "</b><a style='display:block;width:100px' href='?_src_=prefs;preference=typing_indicator_volume;task=input'>[features_speech["typing_indicator_volume"]]</a><br>"
+			dat += "</b><a style='display:block;width:100px' href='?_src_=prefs;preference=typing_indicator_max_words_spoken;task=input'>[features_speech["typing_indicator_max_words_spoken"]]</a><br>"
+			dat += "</td>"
+			
+			dat += APPEARANCE_CATEGORY_COLUMN
+			dat += "<center><h2>Custom Say Verbs</h2></center>"
+			dat += "<a href='?_src_=prefs;preference=custom_say;verbtype=custom_say;task=input'>Says</a>"
+			dat += "<BR><a href='?_src_=prefs;preference=custom_say;verbtype=custom_whisper;task=input'>Whispers</a>"
+			dat += "<BR><a href='?_src_=prefs;preference=custom_say;verbtype=custom_ask;task=input'>Asks</a>"
+			dat += "<BR><a href='?_src_=prefs;preference=custom_say;verbtype=custom_exclaim;task=input'>Exclaims</a>"
+			dat += "<BR><a href='?_src_=prefs;preference=custom_say;verbtype=custom_yell;task=input'>Yells</a>"
+			dat += "<BR><a href='?_src_=prefs;preference=custom_say;verbtype=custom_sing;task=input'>Sings</a>"
+			//dat += "<BR><a href='?_src_=prefs;preference=soundindicatorpreview'>Preview Sound Indicator</a><BR>"
+			dat += "</td>"
+			// Coyote ADD: End
 		/// just kidding I moved it down here lol
 		if(ERP_TAB) // hoo haw preferences
 			if(path)
@@ -1342,6 +1437,26 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 										[preview_hide_undies ? "Hidden" : "Visible"]
 							</a>"}
 					dat += "</td>"
+					dat += "<td class='undies_cell'>"
+					dat += "<div class='undies_label'>PDA Style</div>"
+					dat += {"<a 
+								class='undies_link' 
+								href='
+									?_src_=prefs;
+									preference=choose_pda_skin'>
+										[pda_skin]
+							</a>"}
+					dat += "</td>"
+					dat += "<td class='undies_cell'>"
+					dat += "<div class='undies_label'>PDA Ringmessage</div>"
+					dat += {"<a 
+								class='undies_link' 
+								href='
+									?_src_=prefs;
+									preference=choose_pda_message'>
+										[pda_ringmessage]
+							</a>"}
+					dat += "</td>"
 					dat += "</tr>"
 					dat += "</table>"
 				if(PREFS_ALL_HAS_GENITALS_SET) // fuck it
@@ -1357,6 +1472,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>tgui Style:</b> <a href='?_src_=prefs;preference=tgui_fancy'>[(tgui_fancy) ? "Fancy" : "No Frills"]</a><br>"
 			dat += "<b>Show Runechat Chat Bubbles:</b> <a href='?_src_=prefs;preference=chat_on_map'>[chat_on_map ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Runechat message char limit:</b> <a href='?_src_=prefs;preference=max_chat_length;task=input'>[max_chat_length]</a><br>"
+			dat += "<b>Runechat message width:</b> <a href='?_src_=prefs;preference=chat_width;task=input'>[chat_width]</a><br>"
+			dat += "<b>Runechat off-screen:</b> <a href='?_src_=prefs;preference=offscreen;task=input'>[see_fancy_offscreen_runechat ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>See Runechat for non-mobs:</b> <a href='?_src_=prefs;preference=see_chat_non_mob'>[see_chat_non_mob ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>See Runechat emotes:</b> <a href='?_src_=prefs;preference=see_rc_emotes'>[see_rc_emotes ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Use Runechat color in chat log:</b> <a href='?_src_=prefs;preference=color_chat_log'>[color_chat_log ? "Enabled" : "Disabled"]</a><br>"
@@ -1410,13 +1527,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Screen Shake:</b> <a href='?_src_=prefs;preference=screenshake'>[(screenshake==100) ? "Full" : ((screenshake==0) ? "None" : "[screenshake]")]</a><br>"
 			if (user && user.client && !user.client.prefs.screenshake==0)
 				dat += "<b>Damage Screen Shake:</b> <a href='?_src_=prefs;preference=damagescreenshake'>[(damagescreenshake==1) ? "On" : ((damagescreenshake==0) ? "Off" : "Only when down")]</a><br>"
-			var/p_chaos
-			if (!preferred_chaos)
-				p_chaos = "No preference"
-			else
-				p_chaos = preferred_chaos
-			dat += "<b>Preferred Chaos Amount:</b> <a href='?_src_=prefs;preference=preferred_chaos;task=input'>[p_chaos]</a><br>"
+
+			dat += "<b>Show Health Smileys:</b> <a href='?_src_=prefs;preference=show_health_smilies;task=input'>[show_health_smilies ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<br>"
+			dat += "<b>Max PFP Examine Image Height:</b> <a href='?_src_=prefs;preference=max_pfp_hight;task=input'>[see_pfp_max_hight]</a><br>"
+			dat += "<b>Max PFP Examine Image Width:</b> <a href='?_src_=prefs;preference=max_pfp_with;task=input'>[see_pfp_max_widht]</a><br>"
 			dat += "</td>"
 			dat += "</tr></table>"
 			if(unlock_content)
@@ -1590,6 +1705,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 								extra_loadout_data += "<BR><a href='?_src_=prefs;preference=gear;loadout_rename=1;loadout_gear_name=[html_encode(gear.name)];'>Name</a> [loadout_item[LOADOUT_CUSTOM_NAME] ? loadout_item[LOADOUT_CUSTOM_NAME] : "N/A"]"
 							if(gear.loadout_flags & LOADOUT_CAN_DESCRIPTION)
 								extra_loadout_data += "<BR><a href='?_src_=prefs;preference=gear;loadout_redescribe=1;loadout_gear_name=[html_encode(gear.name)];'>Description</a>"
+							if(gear.loadout_flags & LOADOUT_CAN_COLOR)
+								extra_loadout_data += "<BR><a href='?_src_=prefs;preference=gear;loadout_recolor=1;loadout_gear_name=[html_encode(gear.name)];'>Color</a> <span style='border: 1px solid #161616; background-color: [loadout_item[LOADOUT_CUSTOM_COLOR] ? loadout_item[LOADOUT_CUSTOM_COLOR] : "#FFFFFF"];'>&nbsp;&nbsp;&nbsp;</span>"
 						else if((gear_points - gear.cost) < 0)
 							class_link = "style='white-space:normal;' class='linkOff'"
 						else if(donoritem)
@@ -1720,10 +1837,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<hr><center>"
 
 	if(!IsGuestKey(user.key))
+		dat += "<a href='?_src_=prefs;preference=delete_character'>Delete</a> "
 		dat += "<a href='?_src_=prefs;preference=load'>Undo</a> "
 		dat += "<a href='?_src_=prefs;preference=save'>Save Setup</a> "
 
 	dat += "<a href='?_src_=prefs;preference=reset_all'>Reset Setup</a>"
+	if(check_rights_for(user.client, R_DEFAULT))
+		dat += "<a href='?_src_=prefs;preference=export_icon'>Export Icon</a>"
 	dat += "</center>"
 
 	winset(user, "preferences_window", "is-visible=1;focus=0;")
@@ -1737,7 +1857,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /// takes in whatever's at features["genital_order"] and spits out a list in order of what's present
 /// reverses it cus its more intuitive that way (for everyone but me)
-/datum/preferences/proc/decode_cockstring(reverse = TRUE)
+/datum/preferences/proc/decode_cockstring(reverse = TRUE) // my code my rules
 	var/list/list_out = list()
 	list_out = splittext(features["genital_order"], ":")
 	list_out = reverseList(list_out)
@@ -2353,25 +2473,41 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 /datum/preferences/proc/SetSpecial(mob/user)
 	var/list/dat = list()
 
-	var/total = special_s + special_p + special_e + special_c + special_i + special_a + special_l
+	var/total = stat_strength + stat_perception + stat_endurance + stat_charisma + stat_intelligence + stat_agility + stat_luck
 
 	dat += "<center><b>Allocate points</b></center>"
-	dat += "<center>Note: SPECIAL is purely cosmetic. These points have no effect on gameplay.</center><br>"
+	dat += "<center>Note: These stats are used for both roleplaying and have mechanical benefits applied to them.  They will be described below in detail.</center><br>"
+	dat += "<center>All stats have a baseline of 5. Going above will give benefits, going below will give negatives.</center><br>"
+	dat += "<center>For the use of pure roleplay you can use your HUD d20 icon or go to the roleplaying tab.</center><br>"
 	dat += "<center>[total] out of 40 possible</center><br>"
-	dat += "<b>Strength	   :</b> <a href='?_src_=prefs;preference=special_s;task=input'>[special_s]</a><BR>"
-	dat += "<b>Perception  :</b> <a href='?_src_=prefs;preference=special_p;task=input'>[special_p]</a><BR>"
-	dat += "<b>Endurance   :</b> <a href='?_src_=prefs;preference=special_e;task=input'>[special_e]</a><BR>"
-	dat += "<b>Charisma    :</b> <a href='?_src_=prefs;preference=special_c;task=input'>[special_c]</a><BR>"
-	dat += "<b>Intelligence:</b> <a href='?_src_=prefs;preference=special_i;task=input'>[special_i]</a><BR>"
-	dat += "<b>Agility     :</b> <a href='?_src_=prefs;preference=special_a;task=input'>[special_a]</a><BR>"
-	dat += "<b>Luck        :</b> <a href='?_src_=prefs;preference=special_l;task=input'>[special_l]</a><BR>"
+	dat += "<hr>"
+	dat += "<b>Brawn	    :</b> <a href='?_src_=prefs;preference=stat_strength;task=input'>[stat_strength]</a><BR>"
+	dat += "<b>Brawn handles your characters physical prowess. Adjusting how much damage you do with melee combat and how fast you move in heavy armor.</a><BR>"
+	dat += "<hr>"
+	dat += "<b>Awareness    :</b> <a href='?_src_=prefs;preference=stat_perception;task=input'>[stat_perception]</a><BR>"
+	dat += "<b>Awareness handles how well your character handles ranged weapons. Be they slings, bows, or firearms. It also effects damage outputs with these weapons.</a><BR>"
+	dat += "<hr>"
+	dat += "<b>Toughness    :</b> <a href='?_src_=prefs;preference=stat_endurance;task=input'>[stat_endurance]</a><BR>"
+	dat += "<b>Toughness handles your characters raw hp total as well as some damage resistance to your stamina pool.</a><BR>"
+	dat += "<hr>"
+	dat += "<b>Moxy		    :</b> <a href='?_src_=prefs;preference=stat_charisma;task=input'>[stat_charisma]</a><BR>"
+	dat += "<b>Moxy is your personal charisma with npcs and vending machines (don't ask how they know you're cute). It adjusts prices from vendors and selling to the scrappers.</a><BR>"
+	dat += "<hr>"
+	dat += "<b>Smarts		:</b> <a href='?_src_=prefs;preference=stat_intelligence;task=input'>[stat_intelligence]</a><BR>"
+	dat += "<b>Smarts is your smarts!  Be you book or street smart. It handles parry windows, tending healing amount, and bandage/suture effectiveness. It also adjusts your backstab damage with melee weapons.</a><BR>"
+	dat += "<hr>"
+	dat += "<b>Deftness		:</b> <a href='?_src_=prefs;preference=stat_agility;task=input'>[stat_agility]</a><BR>"
+	dat += "<b>Deftness handles your personal agility. Giving passive dodge chances while increasing walking speeds. It also adjusts how fast you can attack with melee weapons.</a><BR>"
+	dat += "<hr>"
+	dat += "<b>Fate         :</b> <a href='?_src_=prefs;preference=stat_luck;task=input'>[stat_luck]</a><BR>"
+	dat += "<b>Fate has a hand in everything you do. Some folks are just born luckier.</a><BR>"
 	if (total>40)
 		dat += "<center>Maximum exceeded, please change until your total is at or below 40<center>"
 	else
 		dat += "<center><a href='?_src_=prefs;preference=special;task=close'>Done</a></center>"
 
 	user << browse(null, "window=preferences")
-	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>S.P.E.C.I.A.L</div>", 300, 400) //no reason not to reuse the occupation window, as it's cleaner that way
+	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Attributes</div>", 300, 400) //no reason not to reuse the occupation window, as it's cleaner that way
 	popup.set_window_options("can_close=0")
 	popup.set_content(dat.Join())
 	popup.open(0)
@@ -2409,6 +2545,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	save_preferences()
 
 /datum/preferences/Topic(href, href_list, hsrc)			//yeah, gotta do this I guess..
+	if(lockdown)
+		return
 	. = ..()
 	if(href_list["close"])
 		var/client/C = usr.client
@@ -2416,6 +2554,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			C.clear_character_previews()
 
 /datum/preferences/proc/process_link(mob/user, list/href_list)
+	if(lockdown)
+		return
 	if(href_list["jobbancheck"])
 		var/datum/db_query/query_get_jobban = SSdbcore.NewQuery(
 			"SELECT reason, bantime, duration, expiration_time, IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE [format_table_name("player")].ckey = [format_table_name("ban")].a_ckey), a_ckey) FROM [format_table_name("ban")] WHERE ckey = :ckey AND (bantype = 'JOB_PERMABAN'  OR (bantype = 'JOB_TEMPBAN' AND expiration_time > Now())) AND isnull(unbanned) AND job = :job",
@@ -2456,6 +2596,24 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			features["genital_visibility_flags"] = new_bit
 	if(href_list["preference"] == "toggle_undie_preview")
 		TOGGLE_VAR(preview_hide_undies)
+
+	if(href_list["preference"] == "choose_pda_skin")
+		var/pickedPDASkin = input(user, "Choose your DataPal appearance. (You can change this in-game by ctrl-shift-clicking the DataPal!)", "Character Preference", pda_skin) as null|anything in GLOB.pda_skins
+		if(pickedPDASkin)
+			pda_skin = pickedPDASkin
+
+	if(href_list["preference"] == "choose_pda_message")
+		var/new_message = stripped_multiline_input_or_reflect(
+			user, 
+			"What message would you like to display when someone rings your DataPal? (Leave blank to disable)",
+			"DataPal Ring Message",
+			pda_ringmessage,
+			30)
+		if(!isnull(new_message))
+			if(new_message)
+				pda_ringmessage = new_message
+			else
+				pda_ringmessage = "beep-boop"
 
 	if(href_list["preference"] == "genital_hide")
 		var/hideit = text2num(href_list["hideflag"])
@@ -2585,46 +2743,63 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(href_list["preference"] in GLOB.preferences_custom_names)
 				ask_for_custom_name(user,href_list["preference"])
 			switch(href_list["preference"])
-				if("special_s")
+				if("max_pfp_hight")
+					var/newhight = input(user, "How many pixels tall should profile examine images be when you see em?", "tall") as num|null
+					if(newhight)
+						see_pfp_max_hight = newhight
+					else
+						to_chat("Okay!")
+					return 1
+				if("max_pfp_with")
+					var/newhight = input(user, "How many pixels wide should profile examine images be when you see em?", "wide") as num|null
+					if(newhight)
+						see_pfp_max_widht = newhight
+					else
+						to_chat("Okay!")
+					return 1
+				if("show_health_smilies")
+					TOGGLE_VAR(show_health_smilies)
+					return 1
+				if("stat_strength")
 					var/new_point = input(user, "Choose Amount(1-9)", "Strength") as num|null
 					if(new_point)
-						special_s = max(min(round(text2num(new_point)), 9),1)
+						stat_strength = max(min(round(text2num(new_point)), 9),1)
 					SetSpecial(user)
 					return 1
-				if("special_p")
+				if("stat_perception")
 					var/new_point = input(user, "Choose Amount(1-9)", "Perception") as num|null
 					if(new_point)
-						special_p = max(min(round(text2num(new_point)), 9),1)
+						stat_perception = max(min(round(text2num(new_point)), 9),1)
 					SetSpecial(user)
 					return 1
-				if("special_e")
+				if("stat_endurance")
 					var/new_point = input(user, "Choose Amount(1-9)", "Endurance") as num|null
 					if(new_point)
-						special_e = max(min(round(text2num(new_point)), 9),1)
+						stat_endurance = max(min(round(text2num(new_point)), 9),1)
 					SetSpecial(user)
 					return 1
-				if("special_c")
+				if("stat_charisma")
 					var/new_point = input(user, "Choose Amount(1-9)", "Charisma") as num|null
 					if(new_point)
-						special_c = max(min(round(text2num(new_point)), 9),1)
+						stat_charisma = max(min(round(text2num(new_point)), 9),1)
 					SetSpecial(user)
 					return 1
-				if("special_i")
+				if("stat_intelligence")
 					var/new_point = input(user, "Choose Amount(1-9)", "Intelligence") as num|null
 					if(new_point)
-						special_i = max(min(round(text2num(new_point)), 9),1)
+						stat_intelligence = max(min(round(text2num(new_point)), 9),1)
 					SetSpecial(user)
 					return 1
-				if("special_a")
+				if("stat_agility")
 					var/new_point = input(user, "Choose Amount(1-9)", "Agility") as num|null
 					if(new_point)
-						special_a = max(min(round(text2num(new_point)), 9),1)
+						stat_agility = max(min(round(text2num(new_point)), 9),1)
 					SetSpecial(user)
 					return 1
-				if("special_l")
+				if("stat_luck")
 					var/new_point = input(user, "Choose Amount(1-9)", "Luck") as num|null
 					if(new_point)
-						special_l = max(min(round(text2num(new_point)), 9),1)
+						stat_luck = max(min(round(text2num(new_point)), 9),1)
 					SetSpecial(user)
 					return 1
 				if("ghostform")
@@ -3630,7 +3805,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						input_mode_hotkey = "Ctrl+Tab"
 					else
 						input_mode_hotkey = "Tab"
-					parent.change_input_toggle_key(input_mode_hotkey)
+					parent.change_input_toggle_key(input_mode_hotkey, send_chat = TRUE)
 					
 				if("ui")
 					var/pickedui = input(user, "Choose your UI style.", "Character Preference", UI_style)  as null|anything in GLOB.available_ui_styles
@@ -3646,19 +3821,26 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/pickedPDAColor = input(user, "Choose your PDA Interface color.", "Character Preference",pda_color) as color|null
 					if(pickedPDAColor)
 						pda_color = pickedPDAColor
-				if("pda_skin")
-					var/pickedPDASkin = input(user, "Choose your PDA reskin.", "Character Preference", pda_skin) as null|anything in GLOB.pda_reskins
-					if(pickedPDASkin)
-						pda_skin = pickedPDASkin
 				if ("max_chat_length")
 					var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
 					if (!isnull(desiredlength))
 						max_chat_length = clamp(desiredlength, 1, CHAT_MESSAGE_MAX_LENGTH)
 
+				if ("chat_width")
+					var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
+					if (!isnull(desiredlength))
+						chat_width = clamp(desiredlength, 1, CHAT_MESSAGE_MAX_WIDTH)
+					
+				if("offscreen")
+					TOGGLE_VAR(see_hidden_runechat)
+
 				if("hud_toggle_color")
 					var/new_toggle_color = input(user, "Choose your HUD toggle flash color:", "Game Preference",hud_toggle_color) as color|null
 					if(new_toggle_color)
 						hud_toggle_color = new_toggle_color
+
+				if("setup_hornychat")
+					SSchat.HornyPreferences(user)
 
 				if("gender")
 					var/chosengender = input(user, "Select your character's gender.", "Gender Selection", gender) as null|anything in list(MALE,FEMALE,"nonbinary","object")
@@ -4193,8 +4375,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					load_preferences()
 					load_character()
 
+				if("delete_character")
+					run_deletion_song_and_dance()
+
+				if("export_icon")
+					export_render(current_tab)
+
 				if("changeslot")
 					if(!load_character(text2num(href_list["num"])))
+						initialize_preferences() // just so we dont carry over literally everything from the last character
 						random_character()
 						real_name = random_unique_name(gender)
 						save_character()
@@ -4247,7 +4436,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					else
 						loadout_data["SAVE_[loadout_slot]"] = list(new_loadout_data) //double packed because you somehow had no save slot in your loadout?
 
-		if(href_list["loadout_color"] || href_list["loadout_rename"] || href_list["loadout_redescribe"])
+		if(href_list["loadout_color"] || href_list["loadout_rename"] || href_list["loadout_redescribe"] || href_list["loadout_recolor"])
 		//if the gear doesn't exist, or they don't have it, ignore the request
 			var/name = html_decode(href_list["loadout_gear_name"])
 			var/datum/gear/G = GLOB.loadout_items[gear_category][gear_subcategory][name]
@@ -4273,6 +4462,28 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				var/new_description = stripped_input(user, "Enter new description for item. Maximum 500 characters.", "Loadout Item Redescribing", null, 500)
 				if(new_description)
 					user_gear[LOADOUT_CUSTOM_DESCRIPTION] = new_description
+
+			if(href_list["loadout_recolor"] && (G.loadout_flags & LOADOUT_CAN_COLOR))
+				// var/enter_the_matrix = alert(
+				// 	user,
+				// 	"Use the simple Color Picker to choose a solid color, or use the more advanced (and convoluted) Color Matrix editor to recolor this?",
+				// 	"Colorize, Quick or Advanced?",
+				// 	"Color Picker",
+				// 	"Matrix Editor",
+				// 	"Cancel",
+				// )
+				// if(enter_the_matrix == "Color Picker")
+				var/new_color = input(
+					user,
+					"Pick a cool new color for your [G.name]! =3",
+					"Recolor Your Thing",
+					user_gear[LOADOUT_CUSTOM_COLOR] || "#FFFFFF",
+				) as color|null
+				if(new_color)
+					user_gear[LOADOUT_CUSTOM_COLOR] = "#[sanitize_hexcolor(new_color, 6)]"
+					to_chat(user, span_notice("Your [G.name] has been recolored to [user_gear[LOADOUT_CUSTOM_COLOR]]!"))
+				// else if(enter_the_matrix == "Matrix Editor")
+				// 	gear_color_matrix_setup_thing(user, user_gear, G)
 
 	ShowChoices(user)
 	return 1
@@ -4300,14 +4511,36 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	character.gender = gender
 	character.age = age
 	//special stuff
-	character.special_s = special_s
-	character.special_p = special_p
-	character.special_e = special_e
-	character.special_c = special_c
-	character.special_i = special_i
-	character.special_a = special_a
-	character.special_l = special_l
+	character.stat_strength = stat_strength
+	character.stat_perception = stat_perception
+	character.stat_endurance = stat_endurance
+	character.stat_charisma = stat_charisma
+	character.stat_intelligence = stat_intelligence
+	character.stat_agility = stat_agility
+	character.stat_luck = stat_luck
 	character.fuzzy = fuzzy
+	var/end_mod = 1
+	switch(character.get_stat(STAT_ENDURANCE)) // COOLSTAT IMPLEMENTATION: ENDURANCE
+		if(0, 1)
+			end_mod = 0.10
+		if(2)
+			end_mod = 0.50
+		if(3)
+			end_mod = 0.85
+		if(4)
+			end_mod = 0.90
+		if(5)
+			end_mod = 1
+		if(6)
+			end_mod = 1.1
+		if(7)
+			end_mod = 1.2
+		if(8)
+			end_mod = 1.5
+		if(9)
+			end_mod = 2
+	character.maxHealth *= end_mod
+
 
 	character.eye_over_hair = eye_over_hair
 	character.left_eye_color = left_eye_color
@@ -4347,8 +4580,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(!roundstart_checks || (pref_species.id in GLOB.roundstart_races))
 		chosen_species = pref_species.type
 	else
-		chosen_species = /datum/species/human
-		pref_species = new /datum/species/human
+		chosen_species = /datum/species/mammal
+		pref_species = new /datum/species/mammal
 		save_character()
 
 	var/old_size = character.dna.features["body_size"]
@@ -4422,13 +4655,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				var/obj/item/bodypart/new_limb
 				switch(modified_limb)
 					if(BODY_ZONE_L_ARM)
-						new_limb = new/obj/item/bodypart/l_arm/robot/surplus(character)
+						new_limb = new/obj/item/bodypart/l_arm/robot/surplus_upgraded(character)
 					if(BODY_ZONE_R_ARM)
-						new_limb = new/obj/item/bodypart/r_arm/robot/surplus(character)
+						new_limb = new/obj/item/bodypart/r_arm/robot/surplus_upgraded(character)
 					if(BODY_ZONE_L_LEG)
-						new_limb = new/obj/item/bodypart/l_leg/robot/surplus(character)
+						new_limb = new/obj/item/bodypart/l_leg/robot/surplus_upgraded(character)
 					if(BODY_ZONE_R_LEG)
-						new_limb = new/obj/item/bodypart/r_leg/robot/surplus(character)
+						new_limb = new/obj/item/bodypart/r_leg/robot/surplus_upgraded(character)
 				var/prosthetic_type = modified_limbs[modified_limb][2]
 				if(prosthetic_type != "prosthetic") //lets just leave the old sprites as they are
 					new_limb.icon = wrap_file("icons/mob/augmentation/cosmetic_prosthetic/[prosthetic_type].dmi")
@@ -4560,6 +4793,176 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(find_gear)
 		loadout_data["SAVE_[save_slot]"] -= list(find_gear)
 
+/// sux0rs I gotta do this, but hey, I love to sux0r my cox0r
+/datum/preferences/proc/initialize_preferences()
+	pda_style                     = initial(pda_style)
+	pda_color                     = initial(pda_color)
+	pda_skin                      = initial(pda_skin)
+	pda_ringmessage                = initial(pda_ringmessage)
+	my_shark                      = initial(my_shark)
+	genital_whitelist             = initial(genital_whitelist)
+	whoflags                      = initial(whoflags)
+	uses_glasses_colour           = initial(uses_glasses_colour)
+	show_in_directory             = initial(show_in_directory)
+	directory_tag                 = initial(directory_tag)
+	directory_erptag              = initial(directory_erptag)
+	directory_ad                  = initial(directory_ad)
+	real_name                     = initial(real_name)
+	be_random_name                = initial(be_random_name)
+	be_random_body                = initial(be_random_body)
+	gender                        = initial(gender)
+	age                           = initial(age)
+	view_pixelshift               = initial(view_pixelshift)
+	enable_personal_chat_color    = initial(enable_personal_chat_color)
+	personal_chat_color           = initial(personal_chat_color)
+	lust_tolerance                = initial(lust_tolerance)
+	sexual_potency                = initial(sexual_potency)
+	unholypref                    = initial(unholypref)
+	preview_hide_undies           = initial(preview_hide_undies)
+	undershirt_overclothes        = initial(undershirt_overclothes)
+	undies_overclothes            = initial(undies_overclothes)
+	socks_overclothes             = initial(socks_overclothes)
+	underwear_overhands           = initial(underwear_overhands)
+	underwear                     = initial(underwear)
+	undie_color                   = initial(undie_color)
+	undershirt                    = initial(undershirt)
+	shirt_color                   = initial(shirt_color)
+	socks                         = initial(socks)
+	socks_color                   = initial(socks_color)
+	backbag                       = initial(backbag)
+	jumpsuit_style                = initial(jumpsuit_style)
+	hair_style                    = initial(hair_style)
+	hair_style_2                  = initial(hair_style_2)
+	hair_color                    = initial(hair_color)
+	facial_hair_style             = initial(facial_hair_style)
+	facial_hair_color             = initial(facial_hair_color)
+	skin_tone                     = initial(skin_tone)
+	use_custom_skin_tone          = initial(use_custom_skin_tone)
+	left_eye_color                = initial(left_eye_color)
+	right_eye_color               = initial(right_eye_color)
+	eye_type                      = initial(eye_type)
+	split_eye_colors              = initial(split_eye_colors)
+	tbs                           = initial(tbs)
+	kisser                        = initial(kisser)
+	dm_open                       = initial(dm_open)
+	needs_a_friend                = initial(needs_a_friend)
+	saved_finished_quests_old     = list()
+	saved_finished_quests         = list()
+	number_of_finished_quests     = initial(number_of_finished_quests)
+	historical_banked_points      = initial(historical_banked_points)
+	saved_active_quests           = list()
+	anticipated_daily_change      = initial(anticipated_daily_change)
+	saved_unclaimed_points        = initial(saved_unclaimed_points)
+	last_quest_login              = initial(last_quest_login)
+	days_spawned_in               = list()
+	quest_bank_editor_prefs       = list()
+	show_health_smilies           = initial(show_health_smilies)
+	alt_appearance                = initial(alt_appearance)
+	admin_wire_tap                = initial(admin_wire_tap)
+	features                      = DEFAULT_FEATURES // SUFFER
+	custom_speech_verb            = initial(custom_speech_verb)
+	custom_tongue                 = initial(custom_tongue)
+	modified_limbs                = initial(modified_limbs)
+	chosen_limb_id                = initial(chosen_limb_id)
+	security_records              = initial(security_records)
+	medical_records               = initial(medical_records)
+	custom_names                  = list()
+	preferred_ai_core_display     = initial(preferred_ai_core_display)
+	prefered_security_department  = initial(prefered_security_department)
+	custom_species                = initial(custom_species)
+	creature_species              = initial(creature_species)
+	creature_name                 = initial(creature_name)
+	creature_flavor_text          = initial(creature_flavor_text)
+	creature_ooc                  = initial(creature_ooc)
+	creature_image                = initial(creature_image)
+	creature_profilepic           = initial(creature_profilepic)
+	creature_pfphost              = initial(creature_pfphost)
+	creature_body_size            = initial(creature_body_size)
+	creature_fuzzy                = initial(creature_fuzzy)
+	char_quirks                   = list()
+	all_quirks                    = list()
+	quirk_category                = initial(quirk_category)
+	job_preferences               = list()
+	joblessrole                   = initial(joblessrole)
+	current_tab                   = initial(current_tab)
+	erp_tab_page                  = initial(erp_tab_page)
+	unlock_content                = initial(unlock_content)
+	uplink_spawn_loc              = initial(uplink_spawn_loc)
+	show_mismatched_markings      = initial(show_mismatched_markings)
+	gear_points                   = initial(gear_points)
+	gear_categories               = null
+	chosen_gear                   = list()
+	loadout_data                  = list()
+	loadout_slot                  = initial(loadout_slot)
+	gear_category                 = initial(gear_category)
+	gear_subcategory              = initial(gear_subcategory)
+	eye_over_hair                 = initial(eye_over_hair)
+	persistent_scars              = initial(persistent_scars)
+	scars_list                    = list("1" = "", "2" = "", "3" = "", "4" = "", "5" = "")
+	scars_index                   = initial(scars_index)
+	hide_ckey                     = initial(hide_ckey)
+	stat_strength                     = initial(stat_strength)
+	stat_perception                     = initial(stat_perception)
+	stat_endurance                     = initial(stat_endurance)
+	stat_charisma                     = initial(stat_charisma)
+	stat_intelligence                     = initial(stat_intelligence)
+	stat_agility                     = initial(stat_agility)
+	stat_luck                     = initial(stat_luck)
+	custom_pixel_x                = initial(custom_pixel_x)
+	custom_pixel_y                = initial(custom_pixel_y)
+	permanent_tattoos             = initial(permanent_tattoos)
+	matchmaking_prefs             = list()
+	fuzzy                         = initial(fuzzy)
+	waddle_amount                 = initial(waddle_amount)
+	up_waddle_time                = initial(up_waddle_time)
+	side_waddle_time              = initial(side_waddle_time)
+	input_mode_hotkey             = initial(input_mode_hotkey)
+	pref_species                  = new /datum/species/mammal()
+	quester_uid                   = generate_quester_id()
+
+/datum/preferences/proc/run_deletion_song_and_dance()
+	lockdown = TRUE
+	/// stage one, ask if they are sure, and detail the fact that this will delete the character forever
+	/// with no chance of retrieval
+	var/stage1text = "You have clicked the button that will delete [real_name]. If you go through with this, [real_name] will \
+		be deleted, forever. There are no backups available, and no way to retrieve [real_name] once deleted. All of your \
+		flavor texts, quirks, and preferences associated with [real_name] will be lost, permanently and forever. The only things that will \
+		remain of [real_name] are things you have written down or screenshotted. Are you sure you want to delete [real_name]?"
+	var/choose = alert(usr, stage1text, "Character Deletion", "Yes, Delete This Character Forever", "NO WAIT I CHANGED MY MIND")
+	if(choose != "Yes, Delete This Character Forever")
+		lockdown = FALSE
+		to_chat(usr, span_green("Your character remains safe and sound."))
+		return
+	/// stage two, ask if they are really sure, and ask if they'd like to go back and save their flavor text or keep a screenshot of their prefs
+	/// a chance to back out, but also a chance to save some stuff
+	var/stage2text = "Are you absolutely sure you want to delete [real_name]? Have you saved their flavor text, OOC notes, or any other \
+		information you want to keep? You might also want to take a screenshot of [real_name]'s preferences, just in case you want to \
+		recreate them later. Again, there are no backups of [real_name] stored on the server or anywhere else, and there is no possible way \
+		to undo this or retrieve any data relating to [real_name]. Once deleted, [real_name] is *gone* for *good*. \
+		Are you sure you want to delete [real_name]?"
+	var/choose2 = alert(usr, stage2text, "Character Deletion", "Yes, Delete This Character Forever", "NO WAIT I CHANGED MY MIND")
+	if(choose2 != "Yes, Delete This Character Forever")
+		lockdown = FALSE
+		to_chat(usr, span_green("Your character remains safe and sound."))
+		return
+	/// stage three, have them type in the name of the character to confirm they really want to delete it
+	var/confirmtext = "To confirm that you really want to delete [real_name], type in their name exactly as it appears in the text box below. \
+		Please be careful, as this is your last chance to back out of deleting [real_name]. Again, just to be clear, the file structure \
+		that we use with BYOND to save your individual characters does not allow for any feasible method of backing up or restoring \
+		deleted characters. Once you delete [real_name], they are gone forever. Please confirm that you want to delete [real_name] by typing \
+		their name in the box below."
+	var/confirm = input(usr, confirmtext, "Character Deletion") as text|null
+	if(confirm != real_name)
+		lockdown = FALSE
+		to_chat(usr, span_green("Your character remains safe and sound."))
+		return
+	/// stage four, actually delete the character
+	log_game("[parent.ckey] has deleted [real_name] via the preferences menu. [real_name] is gone, forever. RIP.")
+	to_chat(usr, span_danger("So be it. Deleting [real_name]..."))
+	delete_character(default_slot, real_name)
+	to_chat(usr, span_danger("Character deletion complete. They are gone, forever."))
+	lockdown = FALSE
+
 /datum/preferences/proc/get_my_quirks()
 	if(!LAZYLEN(char_quirks))
 		return "None!"
@@ -4590,6 +4993,40 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			cells_left = quirks_per_row
 	dat += "</table>"
 	return dat.Join()
+
+/datum/preferences/proc/export_render()
+	//make mannequin
+	var/mob/living/carbon/human/dummy/mannequin = SSdummy.get_a_dummy()
+	mannequin.cut_overlays()
+	copy_to(mannequin, initial_spawn = TRUE, sans_underpants = preview_hide_undies)
+
+	//add custom loadout?
+	if(current_tab == LOADOUT_TAB)
+		SSjob.equip_loadout(parent.mob, mannequin, FALSE, bypass_prereqs = TRUE, can_drop = FALSE)
+	else
+		//add job loadout?
+		var/equip_job = TRUE
+		switch(current_tab)
+			if(APPEARANCE_TAB)
+				equip_job = FALSE
+			if(ERP_TAB)
+				equip_job = FALSE
+		var/datum/job/previewJob = get_highest_job()
+		if(previewJob && equip_job)
+			mannequin.job = previewJob.title
+			previewJob.equip(mannequin, TRUE, preference_source = parent)
+
+	mannequin.remove_filter("cool_shadow")
+	mannequin.regenerate_icons()
+	COMPILE_OVERLAYS(mannequin)
+
+	var time_string = time2text(world.realtime, "MM-DD-YY") + "_" + time2text(world.timeofday, "hh-mm-ss")
+	for(var/D in GLOB.cardinals)
+		mannequin.dir = D
+		parent << ftp(parent.RenderIcon(mannequin), "char_preview_[D]_[time_string].dmi")
+	to_chat(parent, "Exported preview icons.")
+
+	SSdummy.return_dummy(mannequin)
 
 #undef MAX_FREE_PER_CAT
 #undef HANDS_SLOT_AMT

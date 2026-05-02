@@ -49,40 +49,49 @@
 
 	if(istype(user))
 		user.DelayNextAction(considered_action = TRUE, immediate = FALSE)
-	user.newtonian_move(get_dir(target, user))
+		user.newtonian_move(get_dir(target, user))
 	update_icon()
 	return 1
 
 /obj/item/ammo_casing/proc/calc_spread(mob/living/user, spread = 0, distro = 0, variance = 0, atom/fired_from)
 	. = 0
 	if(!randomspread) // usually true
-		return
+		return 0
 	if(!isliving(user))
-		return
+		return 0
 	var/gun_bullet_spread = 0
 	gun_bullet_spread += BB?.spread || 0 // bullet's inherent inaccuracy
 	gun_bullet_spread += distro || 0 // gun's inaccuracy
 	gun_bullet_spread += variance || 0 // cartridge's inaccuracy
+	if(!user.client) // ai
+		return rand(-gun_bullet_spread, gun_bullet_spread)
 	. = SSrecoil.get_output_offset(gun_bullet_spread, user, fired_from)
 
 /obj/item/ammo_casing/proc/ready_proj(atom/target, mob/living/user, quiet, zone_override = "", damage_multiplier = 1, penetration_multiplier = 1, projectile_speed_multiplier = 1, fired_from, damage_threshold_penetration = 0)
 	if (!BB)
 		return
+	if(smoky)
+		SSeffects.do_effect(EFFECT_SMOKE_CONE_SMALL, get_turf(src), get_turf(target))
 	BB.original = target
 	BB.firer = user
-	if(isplayer(user) && !user.enabled_combat_indicator)
+	var/shooter_living = istype(user)
+	// var/am_player = isplayer(user)
+	if(shooter_living && !BB.not_harmful)
+		// if((am_player && !user.enabled_combat_indicator) || !am_player)
 		BB.factionize(user.faction)
 		BB.safety_switch = TRUE // disabled the factionize after it range from shooterd
 		BB.is_player_projectile = TRUE
+	else if(isliving(user) || istype(user, /obj/machinery/porta_turret))
+		BB.factionize(user.faction) // 'faction' is on both types, but arent eh same var, thanks for telling me that that works (and to never use it), Pali!
 	BB.fired_from = fired_from
 	if (zone_override)
 		BB.def_zone = zone_override
-	else
+	else if (shooter_living)
 		BB.def_zone = user.zone_selected
+	else
+		BB.def_zone = BODY_ZONE_CHEST
 	BB.suppressed = quiet
 	BB.damage_threshold_penetration = damage_threshold_penetration
-	if(HAS_TRAIT(user,TRAIT_PANICKED_ATTACKER))
-		BB.damage_mod *= 0.2 // lol
 
 	if(isgun(fired_from))
 		var/obj/item/gun/G = fired_from
@@ -102,13 +111,39 @@
 			BB.ricochet_decay_chance = 0
 			BB.ricochet_decay_damage = max(BB.ricochet_decay_damage, 0.1)
 			BB.ricochet_incidence_leeway = 0 */
+	if(shooter_living)
+		if(HAS_TRAIT(user,TRAIT_PANICKED_ATTACKER))
+			BB.damage_mod *= 0.2 // lol
+		if( user.InCritical())//I'M IN
+			BB.damage_mod *= 0.2 // lol
+		var/per_mod = 1
+		switch(user.get_stat(STAT_PERCEPTION)) // COOLSTAT IMPLEMENTATION: PERCEPTION
+			if(0, 1)
+				per_mod = 0.2
+			if(2)
+				per_mod = 0.25
+			if(3)
+				per_mod = 0.85
+			if(4)
+				per_mod = 0.95
+			if(5)
+				per_mod = 1
+			if(6)
+				per_mod = 1.1
+			if(7)
+				per_mod = 1.15
+			if(8)
+				per_mod = 1.25
+			if(9)
+				per_mod = 1.35
+		BB.damage_mod *= per_mod
 
 	if(reagents && BB.reagents)
 		reagents.trans_to(BB, reagents.total_volume) //For chemical darts/bullets
 		qdel(reagents)
 
 /obj/item/ammo_casing/proc/throw_proj(atom/target, turf/targloc, mob/living/user, params, spread)
-	var/turf/curloc = get_turf(user)
+	var/turf/curloc = get_turf(user) || get_turf(src)
 	if (!istype(targloc) || !istype(curloc) || !BB)
 		return 0
 
@@ -123,7 +158,7 @@
 		if(target) //if the target is right on our location we'll skip the travelling code in the proj's fire()
 			direct_target = target
 	if(!direct_target)
-		BB.preparePixelProjectile(target, user, params, spread)
+		BB.preparePixelProjectile(target, (user || src), params, spread)
 	var/angle = text2num(params2list(params)["angle"])
 	BB.fire(angle, direct_target, spread)
 	BB = null

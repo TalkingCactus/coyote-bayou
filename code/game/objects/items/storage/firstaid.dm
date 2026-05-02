@@ -75,7 +75,7 @@
 	name = "burn treatment kit"
 	desc = "A specialized medical kit for when the toxins lab <i>-spontaneously-</i> burns down."
 	icon_state = "burn"
-	item_state = "firstaid-ointment"
+	inhand_icon_state = "firstaid-ointment"
 	possible_icons = list("burn","burn2","burn3","burn4")
 
 /obj/item/storage/firstaid/fire/PopulateContents()
@@ -92,7 +92,7 @@
 	name = "toxin treatment kit"
 	desc = "Used to treat toxic blood content and radiation poisoning."
 	icon_state = "toxin"
-	item_state = "firstaid-toxin"
+	inhand_icon_state = "firstaid-toxin"
 	possible_icons = list("toxin","toxin2","toxin3","toxin4")
 
 /obj/item/storage/firstaid/toxin/PopulateContents()
@@ -108,7 +108,7 @@
 	name = "radiation treatment kit"
 	desc = "Used to treat minor toxic blood content and major radiation poisoning."
 	icon_state = "rad"
-	item_state = "firstaid-toxin"
+	inhand_icon_state = "firstaid-toxin"
 	possible_icons = list("rad","rad2","rad3")
 
 /obj/item/storage/firstaid/radbgone/PopulateContents()
@@ -130,7 +130,7 @@
 	name = "oxygen deprivation treatment kit"
 	desc = "A box full of oxygen goodies."
 	icon_state = "oxy"
-	item_state = "firstaid-o2"
+	inhand_icon_state = "firstaid-o2"
 	possible_icons = list("oxy", "oxy2", "oxy3", "oxy4")
 
 /obj/item/storage/firstaid/o2/PopulateContents()
@@ -146,7 +146,7 @@
 	name = "brute trauma treatment kit"
 	desc = "A first aid kit for when you get toolboxed."
 	icon_state = "brute"
-	item_state = "firstaid-brute"
+	inhand_icon_state = "firstaid-brute"
 	possible_icons = list("brute", "brute2", "brute3", "brute4")
 
 /obj/item/storage/firstaid/brute/PopulateContents()
@@ -235,7 +235,7 @@
 	desc = "It's an airtight container for storing medication."
 	icon_state = "pill_canister"
 	icon = 'icons/obj/chemical.dmi'
-	item_state = "contsolid"
+	inhand_icon_state = "contsolid"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
@@ -362,7 +362,7 @@
 /obj/item/storage/pill_bottle/aranesp/PopulateContents()
 	for(var/i in 1 to 5)
 		new /obj/item/reagent_containers/pill/aranesp(src)
-
+/*
 /obj/item/storage/pill_bottle/psicodine
 	name = "bottle of psicodine pills"
 	desc = "Contains pills used to treat mental distress and traumas."
@@ -370,7 +370,7 @@
 /obj/item/storage/pill_bottle/psicodine/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/pill/psicodine(src)
-
+*/
 /obj/item/storage/pill_bottle/happiness
 	name = "happiness pill bottle"
 	desc = "The label is long gone, in its place an 'H' written with a marker."
@@ -473,37 +473,6 @@
 	STR.max_items = 16
 	STR.max_w_class = WEIGHT_CLASS_BULKY
 	STR.max_combined_w_class = 20
-	STR.can_hold = typecacheof(list(
-	/obj/item/storage/pill_bottle,
-	/obj/item/reagent_containers/hypospray,
-	/obj/item/pinpointer/crew,
-	/obj/item/tele_iv,
-	/obj/item/sequence_scanner,
-	/obj/item/sensor_device,
-	/obj/item/bodybag,
-	/obj/item/surgicaldrill/advanced,
-	/obj/item/healthanalyzer,
-	/obj/item/reagent_containers/syringe,
-	/obj/item/clothing/glasses/hud/health,
-	/obj/item/hemostat,
-	/obj/item/scalpel,
-	/obj/item/retractor,
-	/obj/item/cautery,
-	/obj/item/surgical_drapes,
-	/obj/item/bonesetter,
-	/obj/item/autosurgeon,
-	/obj/item/organ,
-	/obj/item/implant,
-	/obj/item/implantpad,
-	/obj/item/implantcase,
-	/obj/item/implanter,
-	/obj/item/circuitboard/computer/operating,
-	/obj/item/circuitboard/computer/crew,
-	/obj/item/stack/sheet/glass,
-	/obj/item/stack/sheet/mineral/silver,
-	/obj/item/organ_storage,
-	/obj/item/reagent_containers/chem_pack
-	))
 
 //hijacking the minature first aids for hypospray boxes. <3
 /obj/item/storage/hypospraykit
@@ -515,7 +484,7 @@
 	throw_speed = 3
 	throw_range = 7
 	var/empty = FALSE
-	item_state = "firstaid"
+	inhand_icon_state = "firstaid"
 	custom_price = PRICE_REALLY_EXPENSIVE
 	custom_premium_price = PRICE_REALLY_EXPENSIVE
 
@@ -523,9 +492,6 @@
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 12
-	STR.can_hold = typecacheof(list(
-	/obj/item/hypospray/mkii,
-	/obj/item/reagent_containers/glass/bottle/vial))
 
 /obj/item/storage/hypospraykit/regular
 	icon_state = "firstaid-mini"
@@ -542,7 +508,7 @@
 	name = "burn treatment hypospray kit"
 	desc = "A specialized hypospray kit for burn treatments. Apply with sass."
 	icon_state = "burn-mini"
-	item_state = "firstaid-ointment"
+	inhand_icon_state = "firstaid-ointment"
 
 /obj/item/storage/hypospraykit/fire/PopulateContents()
 	if(empty)
@@ -554,7 +520,7 @@
 /obj/item/storage/hypospraykit/toxin
 	name = "toxin treatment hypospray kit"
 	icon_state = "toxin-mini"
-	item_state = "firstaid-toxin"
+	inhand_icon_state = "firstaid-toxin"
 
 /obj/item/storage/hypospraykit/toxin/PopulateContents()
 	if(empty)
@@ -566,7 +532,7 @@
 /obj/item/storage/hypospraykit/o2
 	name = "oxygen deprivation hypospray kit"
 	icon_state = "oxy-mini"
-	item_state = "firstaid-o2"
+	inhand_icon_state = "firstaid-o2"
 
 /obj/item/storage/hypospraykit/o2/PopulateContents()
 	if(empty)
@@ -578,7 +544,7 @@
 /obj/item/storage/hypospraykit/brute
 	name = "brute trauma hypospray kit"
 	icon_state = "brute-mini"
-	item_state = "firstaid-brute"
+	inhand_icon_state = "firstaid-brute"
 
 /obj/item/storage/hypospraykit/brute/PopulateContents()
 	if(empty)

@@ -4,11 +4,12 @@
 	icon = 'icons/effects/spacevines.dmi'
 	icon_state = "flower_bud"
 	layer = SPACEVINE_MOB_LAYER
-	opacity = 0
-	canSmoothWith = list()
-	smooth = SMOOTH_FALSE
-	/// The amount of time it takes to create a venus human trap, in deciseconds
-	var/growth_time = 1200
+	opacity = FALSE
+	canSmoothWith = null
+	smoothing_flags = NONE
+	/// The amount of time it takes to create a venus human trap.
+	var/growth_time = 120 SECONDS
+	bounty = 20
 
 /obj/structure/alien/resin/flower_bud_enemy/Initialize()
 	. = ..()

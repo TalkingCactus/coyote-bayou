@@ -1,6 +1,7 @@
 //Fallout 13 super mutants directory
 
 /mob/living/simple_animal/hostile/supermutant
+	bounty = 25
 	name = "super mutant"
 	desc = "A gigantic, green, angry-looking humanoid wrapped in a jumpsuit that may have fit him... her? at some point. \
 		They're a mountain of furry muscle, and their fists look like they could punch through solid steel. Have fun!"
@@ -13,19 +14,18 @@
 	maxHealth = 130 
 	health = 130
 	speak_chance = 10
-	speak = list(
-		"GRRRRRR!",
-		"ARGH!",
-		"NNNNNGH!",
-		"HMPH!",
-		"ARRRRR!"
-		)
+	//speak = list(
+		// "GRRRRRR!",
+		// "ARGH!",
+		// "NNNNNGH!",
+		// "HMPH!",
+		// "ARRRRR!"
+		// )
 	speak_emote = list(
 		"shouts",
 		"yells"
 		)
 	move_to_delay = 5
-	stat_attack = CONSCIOUS
 	robust_searching = 1
 	environment_smash = ENVIRONMENT_SMASH_WALLS
 	emote_taunt_sound = list(
@@ -78,7 +78,7 @@
 	max_heal_amount = 0.9
 	heal_per_life = 0.115
 	tactical_retreat = 10
-	loot = list(/obj/effect/spawner/lootdrop/f13/common, /obj/effect/gibspawner/generic/animal)
+	loot = list(/obj/effect/gibspawner/generic/animal)
 	loot_drop_amount = 2
 	loot_amount_random = TRUE
 
@@ -118,10 +118,10 @@
 	speak_chance = 7 //30 //Oh my god he never shuts up.
 	move_resist = MOVE_FORCE_OVERPOWERING
 	mob_size = MOB_SIZE_LARGE
-	speak = list("Hey! These my brahmins!", "And I say, HEY-YEY-AAEYAAA-EYAEYAA! HEY-YEY-AAEYAAA-EYAEYAA! I SAID HEY, what's going on?", "What do you want from my brahmins?!", "Me gonna clean brahmin poop again now!", "I love brahmins, brahmins are good, just poop much!", "Do not speak to my brahmins ever again, you hear?!", "Bad raiders come to steal my brahmins - I crush with wrench!", "Do not come to my brahmins! Do not touch my brahmins! Do not look at my brahmins!", "I'm watching you, and my brahmins watch too!", "Brahmins say moo, and I'm saying - hey, get your ugly face out of my way!", "I... I remember, before the fire... THERE WERE NO BRAHMINS!", "No! No wind brahmin here! Wind brahmin lie!")
+	//speak = list("Hey! These my brahmins!", "And I say, HEY-YEY-AAEYAAA-EYAEYAA! HEY-YEY-AAEYAAA-EYAEYAA! I SAID HEY, what's going on?", "What do you want from my brahmins?!", "Me gonna clean brahmin poop again now!", "I love brahmins, brahmins are good, just poop much!", "Do not speak to my brahmins ever again, you hear?!", "Bad raiders come to steal my brahmins - I crush with wrench!", "Do not come to my brahmins! Do not touch my brahmins! Do not look at my brahmins!", "I'm watching you, and my brahmins watch too!", "Brahmins say moo, and I'm saying - hey, get your ugly face out of my way!", "I... I remember, before the fire... THERE WERE NO BRAHMINS!", "No! No wind brahmin here! Wind brahmin lie!")
 	speak_emote = list("shouts", "yells")
 	emote_hear = list("yawns", "mumbles","sighs")
-	emote_see = list("raises his wrench", "shovels some dirt away", "waves his wrench above his head angrily")
+	// emote_see = list("raises his wrench", "shovels some dirt away", "waves his wrench above his head angrily")
 	response_help_simple = "touches"
 	response_disarm_simple = "pushes"
 	response_harm_simple = "punches"
@@ -136,6 +136,7 @@
 	..()
 
 /mob/living/simple_animal/hostile/supermutant/meleemutant
+	bounty = 20
 	name = "sledgehammer supermutant"
 	desc = "An enormous, green tank of a humanoid wrapped in thick sheets of metal and boiled leather from hopefully a brahmin or two. \
 		They're a mountain of furry muscle, and their fists look like they could punch through solid steel. \
@@ -164,6 +165,7 @@
 	..()
 
 /mob/living/simple_animal/hostile/supermutant/rangedmutant
+	bounty = 30
 	desc = "An enormous green mass of a humanoid wrapped in thick sheets of metal and boiled leather from hopefully a brahmin or two. \
 		They're a mountain of furry muscle, and their fists look like they could punch through solid steel. \
 		If that wasn't bad enough, this monstrous critter is wielding a crude shotgun. Lovely."
@@ -204,6 +206,7 @@
 	)
 
 /mob/living/simple_animal/hostile/supermutant/rangedmutant/varmint
+	bounty = 30
 	desc = "An enormous green mass of a humanoid wrapped in thick sheets of metal and boiled leather from hopefully a brahmin or two. \
 		They're a mountain of furry muscle, and their fists look like they could punch through solid steel. \
 		If that wasn't bad enough, this monstrous critter is wielding some kind of rifle. Lovely."
@@ -228,6 +231,7 @@
 	..()
 
 /mob/living/simple_animal/hostile/supermutant/legendary
+	bounty = 50
 	name = "legendary super mutant"
 	desc = "A huge and ugly mutant humanoid.He has a faint yellow glow to him, scars adorn his body. This super mutant is a grizzled vetern of combat. Look out!"
 	color = "#FFFF00"
@@ -249,6 +253,7 @@
 	..()
 
 /mob/living/simple_animal/hostile/supermutant/nightkin
+	bounty = 50
 	name = "nightkin"
 	desc = "A blue variant of the standard Super Mutant, equiped with steathboys."
 	icon = 'icons/fallout/mobs/supermutant.dmi'
@@ -265,7 +270,7 @@
 	attack_verb_simple = "slashes"
 	attack_sound = "sound/weapons/bladeslice.ogg"
 	footstep_type = FOOTSTEP_MOB_HEAVY
-	loot = list(/obj/effect/spawner/lootdrop/f13/uncommon, /obj/effect/gibspawner/generic/animal)
+	loot = list(/obj/effect/gibspawner/generic/animal)
 	loot_drop_amount = 2
 	loot_amount_random = TRUE
 
@@ -281,6 +286,7 @@
 	..()
 
 /mob/living/simple_animal/hostile/supermutant/nightkin/rangedmutant
+	bounty = 60
 	name = "nightkin veteran"
 	desc = "A blue variant of the standard Super Mutant, equiped with steathboys.  This one is holding an Assault Rifle."
 	icon = 'icons/fallout/mobs/supermutant.dmi'
@@ -302,7 +308,7 @@
 	minimum_distance = 6
 	projectiletype = /obj/item/projectile/bullet/a556/simple
 	projectilesound = 'sound/f13weapons/assaultrifle_fire.ogg'
-	loot = list(/obj/item/ammo_box/magazine/m556/rifle, /obj/effect/gibspawner/generic/animal)
+	loot = list(/obj/effect/gibspawner/generic/animal)
 	footstep_type = FOOTSTEP_MOB_HEAVY
 	projectile_sound_properties = list(
 		SP_VARY(FALSE),
@@ -327,6 +333,7 @@
 	..()
 
 /mob/living/simple_animal/hostile/supermutant/nightkin/elitemutant
+	bounty = 50
 	name = "nightkin elite"
 	desc = "A blue variant of the standard Super Mutant, and a remnant of the Masters Army."
 	icon = 'icons/fallout/mobs/supermutant.dmi'
@@ -347,7 +354,7 @@
 	minimum_distance = 7
 	projectiletype = /obj/item/projectile/f13plasma/repeater
 	projectilesound = 'sound/f13weapons/plasma_rifle.ogg'
-	loot = list(/obj/item/stock_parts/cell/ammo/mfc, /obj/effect/gibspawner/generic/animal)
+	loot = list(/obj/effect/gibspawner/generic/animal)
 	footstep_type = FOOTSTEP_MOB_HEAVY
 	projectile_sound_properties = list(
 		SP_VARY(FALSE),
@@ -377,7 +384,7 @@
 	desc = "A super mutant covered in blue markings that has been indoctrinated into the Cult Of Rain. This one wields a sledgehammer blessed by the rain gods."
 	color = "#6B87C0"
 	speak_chance = 10
-	speak = list("The rain cleanses!", "Sacrifices for the rain gods!", "The thunder guides my fury!", "I am become the storm, destroyer of all heretics!", "The priests will be pleased with my sacrifices!")
+	//speak = list("The rain cleanses!", "Sacrifices for the rain gods!", "The thunder guides my fury!", "I am become the storm, destroyer of all heretics!", "The priests will be pleased with my sacrifices!")
 	maxHealth = 360
 	health = 360
 	damage_coeff = list(BRUTE = 0.5, BURN = 1, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
@@ -390,7 +397,7 @@
 	desc = "A super mutant covered in blue markings that has been indoctrinated into the Cult Of Rain. This one wields a hunting rifle blessed by the rain gods."
 	color = "#6B87C0"
 	speak_chance = 10
-	speak = list("The rain cleanses!", "Sacrifices for the rain gods!", "The thunder guides my fury!", "I am become the storm, destroyer of all heretics!", "The priests will be pleased with my sacrifices!")
+	//speak = list("The rain cleanses!", "Sacrifices for the rain gods!", "The thunder guides my fury!", "I am become the storm, destroyer of all heretics!", "The priests will be pleased with my sacrifices!")
 	maxHealth = 360
 	health = 360
 	damage_coeff = list(BRUTE = 1, BURN = 0.5, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
@@ -403,7 +410,7 @@
 	desc = "A nightkin that spreads the word of the Cult Of Rain. They are covered in dark blue markings, indicating that they have been blessed by the rain god Odile."
 	color = "#6666FF"
 	speak_chance = 10
-	speak = list("The rain speaks through me!", "Witness the gifts of rain!", "The great flood will come upon us! Do not fear it!", "My life for the rain gods!", "The rain gods can always use more sacrifices!")
+	//speak = list("The rain speaks through me!", "Witness the gifts of rain!", "The great flood will come upon us! Do not fear it!", "My life for the rain gods!", "The rain gods can always use more sacrifices!")
 	maxHealth = 360
 	health = 360
 	damage_coeff = list(BRUTE = -0.1, BURN = 1, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
@@ -412,17 +419,17 @@
 	var/charging = FALSE
 	footstep_type = FOOTSTEP_MOB_HEAVY
 
-/mob/living/simple_animal/hostile/supermutant/nightkin/rain/bullet_act(obj/item/projectile/Proj)
-	if(!Proj)
-		return
-	if(prob(30))
-		visible_message(span_danger("\The [src] lets out a vicious war cry!"))
-		Charge()
-	if(prob(85) || Proj.damage > 30)
-		return ..()
-	else
-		visible_message(span_danger("\The [Proj] is abosrbed by \the [src]'s thick skin, strengthening it!"))
-		return 0
+// /mob/living/simple_animal/hostile/supermutant/nightkin/rain/bullet_act(obj/item/projectile/Proj)
+// 	if(!Proj)
+// 		return
+// 	if(prob(30))
+// 		visible_message(span_danger("\The [src] lets out a vicious war cry!"))
+// 		Charge()
+// 	if(prob(85) || Proj.damage > 30)
+// 		return ..()
+// 	else
+// 		visible_message(span_danger("\The [Proj] is abosrbed by \the [src]'s thick skin, strengthening it!"))
+// 		return 0
 
 /mob/living/simple_animal/hostile/supermutant/nightkin/rain/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect)
 	if(!charging)
@@ -492,7 +499,7 @@
 	desc = "A nightkin that spreads the word of the Cult Of Rain. They are covered in dark blue markings, indicating that they have been blessed by the rain lord Ignacio."
 	color = "#6666FF"
 	speak_chance = 10
-	speak = list("The rain speaks through me!", "Witness the gifts of rain!", "The great flood will come upon us! Do not fear it!", "My life for the rain gods!", "The rain gods can always use more sacrifices!")
+	//speak = list("The rain speaks through me!", "Witness the gifts of rain!", "The great flood will come upon us! Do not fear it!", "My life for the rain gods!", "The rain gods can always use more sacrifices!")
 	maxHealth = 380
 	health = 380
 	damage_coeff = list(BRUTE = 1, BURN = -0.25, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
@@ -506,17 +513,17 @@
 	. = ..()
 	AddComponent(/datum/component/glow_heal, chosen_targets = /mob/living/simple_animal/hostile/supermutant, allow_revival = FALSE, restrict_faction = null, type_healing = BRUTELOSS | FIRELOSS)
 
-/mob/living/simple_animal/hostile/supermutant/nightkin/rangedmutant/rain/bullet_act(obj/item/projectile/Proj)
-	if(!Proj)
-		return
-	if(prob(20))
-		visible_message(span_danger("\The [src] lets out a vicious war cry!"))
-		fire_release()
-	if(prob(85) || Proj.damage > 30)
-		return ..()
-	else
-		visible_message(span_danger("\The [Proj] is absorbed by \the [src]'s thick skin, strengthening it!"))
-		return 0
+// /mob/living/simple_animal/hostile/supermutant/nightkin/rangedmutant/rain/bullet_act(obj/item/projectile/Proj)
+// 	if(!Proj)
+// 		return
+// 	if(prob(20))
+// 		visible_message(span_danger("\The [src] lets out a vicious war cry!"))
+// 		fire_release()
+// 	if(prob(85) || Proj.damage > 30)
+// 		return ..()
+// 	else
+// 		visible_message(span_danger("\The [Proj] is absorbed by \the [src]'s thick skin, strengthening it!"))
+// 		return 0
 
 /mob/living/simple_animal/hostile/supermutant/nightkin/rangedmutant/rain/proc/fire_release()
 	playsound(get_turf(src),'sound/magic/fireball.ogg', 200, 1)
@@ -534,7 +541,7 @@
 	desc = "A nightkin that writes the word of the Cult Of Rain. They are covered in dark blue markings and are adorned in pieces of bone armor, indicating that they are blessed by the rain lord Hyacinth."
 	color = "#6666FF"
 	speak_chance = 10
-	speak = list("The great flood will come, I will make sure of it!", "Rain lord Odile, I call upon you for wrath!", "Rain creator Hyacinth, I call upon you for a tranquil mind!", "Rain lord Ignacio, I call upon you for protection!", "The storm rages within!")
+	//speak = list("The great flood will come, I will make sure of it!", "Rain lord Odile, I call upon you for wrath!", "Rain creator Hyacinth, I call upon you for a tranquil mind!", "Rain lord Ignacio, I call upon you for protection!", "The storm rages within!")
 	maxHealth = 440
 	health = 440
 	damage_coeff = list(BRUTE = 0.5, BURN = 0.5, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)

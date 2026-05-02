@@ -102,21 +102,6 @@
 	message_param = "dances %t."
 	restraint_check = TRUE
 
-/datum/emote/hearthand
-	key = "hearthand"
-	key_third_person = "hearthands"
-	message = "makes a heart with their hands."
-	message_param = "makes a heart with their hands at %t."
-	restraint_check = TRUE
-
-/datum/emote/ok
-	key = "ok"
-	key_third_person = "oks"
-	message = "makes an okay sign with their hand."
-	message_param = "makes an okay sign with their hand at %t."
-	restraint_check = TRUE
-
-
 /datum/emote/thumbup
 	key = "thumbsup"
 	key_third_person = "thumbsups"
@@ -134,13 +119,13 @@
 /datum/emote/living/deathgasp
 	key = "deathgasp"
 	key_third_person = "deathgasps"
-	message = "seizes up and falls limp, their eyes dead and lifeless..."
+	message = ""
 	message_robot = "shudders violently for a moment before falling still, its eyes slowly darkening."
 	message_AI = "lets out a flurry of sparks, its screen flickering as its systems slowly halt."
 	message_alien = "lets out a waning guttural screech, green blood bubbling from its maw..."
 	message_larva = "lets out a sickly hiss of air and falls limply to the floor..."
 	message_monkey = "lets out a faint chimper as it collapses and stops moving..."
-	message_simple =  "stops moving..."
+	message_simple =  ""
 	stat_allowed = UNCONSCIOUS
 
 /datum/emote/living/deathgasp/run_emote(mob/user, params)
@@ -347,6 +332,68 @@
 	message = "grins."
 	message_param = "grins at %t."
 
+/datum/emote/gurp
+	key = "gurp"
+	key_third_person = "GURPS!"
+	message = "lets out a loud GURP!"
+	emote_type = EMOTE_AUDIBLE
+	sound = 'sound/f13effects/sunsetsounds/gurp.ogg'
+
+/datum/emote/living/glitchcall
+	key = "glitchy"
+	key_third_person = "glitches"
+	message = "emits a glitchy sound."
+	sound = "modular_coyote/sound/typing/synth_possessed.ogg"
+
+/datum/emote/living/glitchsigh
+	key = "glitchsigh"
+	key_third_person = "glitchsighs"
+	message = "emits a glitchy sound."
+	sound = "modular_coyote/sound/typing/synth_possessed_sigh.ogg"
+
+/datum/emote/living/glitchping
+	key = "glitchping"
+	key_third_person = "glitchpings"
+	message = "emits a glitchy sound."
+	sound = "modular_coyote/sound/typing/synth_possessed_ping.ogg"
+
+/datum/emote/living/glitchhonk
+	key = "glitchhonk"
+	key_third_person = "glitchhonks"
+	message = "emits a glitchy sound."
+	sound = "modular_coyote/sound/typing/hivebot-bark-005.ogg"
+
+/datum/emote/living/glitchhonk2
+	key = "glitchblare"
+	key_third_person = "glitchblares"
+	message = "emits a glitchy sound."
+	sound = "modular_coyote/sound/typing/hivebot-bark-003.ogg"
+
+/datum/emote/living/glitchhonk3
+	key = "glitchhorn"
+	key_third_person = "glitchhorns"
+	message = "emits a glitchy sound."
+	sound = "modular_coyote/sound/typing/hivebot-bark-001.ogg"
+
+/datum/emote/living/spark
+	key = "spark"
+	key_third_person = "sparks"
+	message_param = "%t."
+
+/datum/emote/living/spark/run_emote(mob/user, params)
+	..()
+	do_sparks(5,FALSE,user)
+
+/datum/emote/living/sparkq
+	key = "sparkq"
+	key_third_person = "sparkq"
+	message_param = "%t."
+
+/datum/emote/living/sparkq/run_emote(mob/user, params)
+	..()
+	playsound(user, 'sound/effects/portalboy_hit.ogg', 100, TRUE)
+	do_sparks(5, FALSE, user, /datum/effect_system/spark_spread/quantum)
+
 /datum/emote/living/groan
 	key = "groan"
 	key_third_person = "groans"
@@ -359,15 +406,6 @@
 	key_third_person = "grimaces"
 	message = "grimaces."
 	message_param = "grimaces at %t."
-
-/datum/emote/living/jump
-	key = "jump"
-	key_third_person = "jumps"
-	restraint_check = TRUE
-
-/datum/emote/living/jump/run_emote(mob/user, params)
-	. = ..()
-	INVOKE_ASYNC(user, TYPE_PROC_REF(/atom/,do_double_bounce), -1, 5, -4, 0, 0.8 SECONDS)
 
 /datum/emote/living/kiss
 	key = "kiss"
@@ -419,26 +457,6 @@
 	key_third_person = "nods"
 	message = "nods."
 	message_param = "nods at %t."
-
-/datum/emote/living/look
-	key = "look"
-	key_third_person = "looks at something."
-	message = "looks at something."
-	message_param = "looks at %t."
-
-/datum/emote/living/nibl
-	key = "nibl"
-	key_third_person = "nibbles on something."
-	message = "nibbles on something."
-	message_param = "nibbles on %t."
-
-/datum/emote/living/oof
-	key = "oof"
-	key_third_person = "oofs"
-	message = "makes pained sounds."
-	message_param = "makes pained sounds at %t."
-	emote_type = EMOTE_AUDIBLE
-	sound = 'sound/effects/oof.ogg'
 
 /datum/emote/living/fenfrantic
 	key = "fenfrantic"
@@ -493,16 +511,6 @@
 	message_param = "scowls at %t."
 	emote_type = EMOTE_AUDIBLE
 
-/datum/emote/living/spark
-	key = "spark"
-	key_third_person = "sparks"
-	message = "emits a bunch of sparks!"
-	message_param = "emits a bunch of sparks because of %t!"
-
-/datum/emote/living/spark/run_emote(mob/user, params)
-	..()
-	do_fake_sparks(5,FALSE,user)
-
 /datum/emote/living/shake
 	key = "shake"
 	key_third_person = "shakes"
@@ -538,12 +546,6 @@
 			return 'sound/effects/femalesigh1.ogg'
 		else
 			return 'sound/effects/malesigh1.ogg'
-
-/datum/emote/living/sit
-	key = "sit"
-	key_third_person = "sits"
-	message = "sits down."
-	message_param = "sits down on %t."
 
 /datum/emote/living/smile
 	key = "smile"
@@ -723,6 +725,8 @@
 	key_third_person = "custom"
 	message = null
 	emote_type = EMOTE_VISIBLE
+	mommychat = TRUE
+	mommychat_partial = FALSE // full blown
 
 /datum/emote/living/custom/proc/check_invalid(mob/user, input)
 	if(stop_bad_mime.Find(input, 1, 1))
@@ -750,14 +754,18 @@
 		message = params
 		if(type_override)
 			emote_type = type_override
+	original_message = message
 	message = user.say_emphasis(message)
 	var/msg_check = user.say_narrate_replace(message, user)
 	if(msg_check)
 		message = msg_check
-		omit_left_name = TRUE
+	else
+		message = "<b>[user]</b> [message]" // die(t)
+	omit_left_name = TRUE
 	. = ..()
 	omit_left_name = FALSE
 	message = null
+	original_message = null
 
 /datum/emote/living/custom/replace_pronoun(mob/user, message)
 	return message
@@ -792,29 +800,13 @@
 
 	to_chat(user, message)
 
-/* Fortuna edit: beep disabled
 /datum/emote/beep
 	key = "beep"
 	key_third_person = "beeps"
 	message = "beeps."
 	message_param = "beeps at %t."
 	sound = 'sound/machines/twobeep.ogg'
-	mob_type_allowed_typecache = list(/mob/living/brain, /mob/living/silicon, /mob/living/carbon/human)
-*/
 
-/datum/emote/living/circle
-	key = "circle"
-	key_third_person = "circles"
-	restraint_check = TRUE
-
-/datum/emote/living/circle/run_emote(mob/user, params)
-	. = ..()
-	var/obj/item/circlegame/N = new(user)
-	if(user.put_in_hands(N))
-		to_chat(user, span_notice("You make a circle with your hand."))
-	else
-		qdel(N)
-		to_chat(user, span_warning("You don't have any free hands to make a circle with."))
 
 /datum/emote/living/slap
 	key = "slap"
@@ -916,6 +908,14 @@
 		var/mob/living/carbon/C = user
 		if(. && isliving(user))
 			pick(playsound(C, 'sound/f13effects/sunsetsounds/baa.ogg', 50, 1),playsound(C, 'sound/f13effects/sunsetsounds/baa2.ogg', 50, 1))
+
+/datum/emote/living/moxi
+	key = "moxi"
+	key_third_person = "moxis"
+	message = "diligently says hi!"
+	message_param = "diligently says hi to %t."
+	emote_type = EMOTE_AUDIBLE
+	sound = 'sound/effects/moxi.ogg' //im
 
 /datum/emote/purr
 	key = "purr"
@@ -1071,13 +1071,6 @@
 	emote_type = EMOTE_AUDIBLE
 	sound = 'sound/f13effects/sunsetsounds/panda.ogg'
 
-/datum/emote/lynx
-	key = "lynx"
-	key_third_person = "growls like a bobcat"
-	message = "growls like a bobcat!"
-	emote_type = EMOTE_AUDIBLE
-	sound = 'sound/f13effects/sunsetsounds/lynx.ogg'
-
 /datum/emote/bun
 	key = "bun"
 	key_third_person = "squeals like a rabbit"
@@ -1111,13 +1104,6 @@
 	message = "let out a lengthy, rather anxious noise."
 	emote_type = EMOTE_AUDIBLE
 	sound = 'sound/f13effects/sunsetsounds/waa.ogg'
-
-/datum/emote/mission_complete
-	key = "success"
-	key_third_person = "successes"
-	message = "plays a short cheerful tune."
-	emote_type = EMOTE_AUDIBLE
-	sound = 'modular_coyote/sound/voice/mission_complete.ogg'
 
 /datum/emote/living/warcry
 	key = "warcry"
@@ -1239,6 +1225,7 @@
 	message = "raises an eyebrow menacingly!"
 	sound = 'sound/f13effects/sunsetsounds/vineboom.ogg'
 
+
 /datum/emote/living/frogcry
 	key = "frogcry"
 	key_third_person = "does an amphibian warcry!"
@@ -1272,45 +1259,6 @@
 /datum/emote/living/bounce/run_emote(mob/user, params)
 	. = ..()
 	INVOKE_ASYNC(user, TYPE_PROC_REF(/atom/,do_double_bounce), 2, 0, 2, 0, 1.5 SECONDS)
-
-/datum/emote/plap
-	key = "plap"
-	key_third_person = "plaps?"
-	emote_type = EMOTE_AUDIBLE
-	message = "plaps?"
-
-/datum/emote/plap/run_emote(mob/user, params) //Player triggers the emote
-	. = ..() // Hell if I know
-	if(. && iscarbon(user)) // Are they a carbon mob?
-		var/mob/living/carbon/C = user
-		if(. && isliving(user)) //Are they alive?  The stuff below is the sounds being listed, with percent (the 20s) and then number of times played (1)
-			pick(playsound(C, 'sound/f13effects/sunsetsounds/plap1.ogg', 20, 1),playsound(C, 'sound/f13effects/sunsetsounds/plap2.ogg', 20, 1),playsound(C, 'sound/f13effects/sunsetsounds/plap3.ogg', 20, 1))
-
-/datum/emote/gecko
-	key = "gecko"
-	key_third_person = "makes a gecko sound!"
-	message = "makes a gecko sound!"
-	emote_type = EMOTE_AUDIBLE
-	sound = 'sound/f13npc/gecko/geckocall2.ogg'
-
-/datum/emote/aie
-	key = "aie"
-	key_third_person = "makes a high pitched sound as if someone has lit their ass on fire with a blowtorch!"
-	message = "makes a high pitched sound as if someone has lit their ass on fire with a blowtorch!"
-	emote_type = EMOTE_AUDIBLE
-	sound = 'sound/f13effects/sunsetsounds/aie.ogg'
-
-/datum/emote/aie/run_emote(mob/user, params)
-	. = ..()
-	INVOKE_ASYNC(user, TYPE_PROC_REF(/atom/,do_double_bounce), 0, 5, 0, 0, 0.8 SECONDS)
-
-
-/datum/emote/nightstalker
-	key = "nstalker"
-	key_third_person = "doesn't sound happy!"
-	message = "doesn't sound happy!"
-	emote_type = EMOTE_AUDIBLE
-	sound = 'sound/f13npc/nightstalker/aggro3.ogg'
 
 /datum/emote/qrattle
 	key = "qrattle"
@@ -1416,8 +1364,6 @@
 	key_third_person = "runs their fingers through their hair, straightning it up some."
 	message = "runs their fingers through their hair, straightning it up some."
 
-
-
 /datum/emote/rattle
 	key = "rattle"
 	key_third_person = "rattles a warning!"
@@ -1429,585 +1375,12 @@
 	. = ..()
 	INVOKE_ASYNC(user, TYPE_PROC_REF(/atom/,do_double_bounce), 1, -1, 1, -1, 1.5 SECONDS)
 
-
 /datum/emote/snakehiss
 	key = "shiss"
 	key_third_person = "hisses like a reptile!"
 	message = "hisses like a reptile!"
 	emote_type = EMOTE_AUDIBLE
 	sound = 'sound/f13effects/sunsetsounds/snakehiss.ogg'
-
-/datum/emote/look
-	key = "look"
-	key_third_person = "looks"
-	message = "looks!"
-
-/datum/emote/buzz
-	key = "buzz"
-	key_third_person = "buzzes"
-	message = "buzzes."
-	message_param = "buzzes at %t."
-	emote_type = EMOTE_AUDIBLE
-	sound_vary = TRUE
-	sound = 'sound/machines/buzz-sigh.ogg'
-
-/datum/emote/buzz2
-	key = "buzz2"
-	message = "buzzes twice."
-	emote_type = EMOTE_AUDIBLE
-	sound_vary = TRUE
-	sound = 'sound/machines/buzz-two.ogg'
-
-/datum/emote/yes
-	key = "yes"
-	message = "emits an affirmative blip."
-	emote_type = EMOTE_AUDIBLE
-	sound_vary = TRUE
-	sound = 'sound/machines/synth_yes.ogg'
-
-/datum/emote/no
-	key = "no"
-	message = "emits a negative blip."
-	emote_type = EMOTE_AUDIBLE
-	sound_vary = TRUE
-	sound = 'sound/machines/synth_no.ogg'
-
-/datum/emote/ping
-	key = "ping"
-	key_third_person = "pings"
-	message = "pings."
-	message_param = "pings at %t."
-	emote_type = EMOTE_AUDIBLE
-	sound_vary = TRUE
-	sound = 'sound/machines/ping.ogg'
-
-/datum/emote/chime
-	key = "chime"
-	key_third_person = "chimes"
-	message = "chimes."
-	emote_type = EMOTE_AUDIBLE
-	sound_vary = TRUE
-	sound = 'sound/machines/chime.ogg'
-
-/datum/emote/ding
-	key = "ding"
-	key_third_person = "dings"
-	message = "dings!"
-	emote_type = EMOTE_AUDIBLE
-	sound_vary = TRUE
-	sound = 'sound/machines/ding.ogg'
-
-/datum/emote/beep
-	key = "beep"
-	key_third_person = "be-beeps"
-	message = "be-beeps!"
-	emote_type = EMOTE_AUDIBLE
-	sound_vary = TRUE
-	sound = 'sound/machines/twobeep.ogg'
-
-/datum/emote/beep2
-	key = "beep2"
-	key_third_person = "be-beeps"
-	message = "be-beeps!"
-	emote_type = EMOTE_AUDIBLE
-	sound_vary = TRUE
-	sound = 'sound/machines/twobeep_high.ogg'
-
-/datum/emote/beep3
-	key = "beep3"
-	key_third_person = "beeps"
-	message = "beeps!"
-	message_param = "beeps at %t."
-	emote_type = EMOTE_AUDIBLE
-	sound_vary = TRUE
-	sound = 'sound/machines/beep.ogg'
-
-/datum/emote/dwoop
-	key = "dwoop"
-	key_third_person = "dwoops"
-	message = "chirps happily!"
-	emote_type = EMOTE_AUDIBLE
-	sound_vary = TRUE
-	sound = 'sound/machines/dwoop.ogg'
-
-/datum/emote/honk
-	key = "honk"
-	key_third_person = "honks"
-	message = "honks."
-	emote_type = EMOTE_AUDIBLE
-	sound_vary = TRUE
-	sound = 'sound/items/bikehorn.ogg'
-
-/datum/emote/sad
-	key = "sad"
-	message = "plays a sad trombone..."
-	emote_type = EMOTE_AUDIBLE
-	sound = 'sound/misc/sadtrombone.ogg'
-
-/datum/emote/warn
-	key = "warn"
-	message = "blares an alarm!"
-	emote_type = EMOTE_AUDIBLE
-	sound = 'sound/machines/warning-buzzer.ogg'
-
-#define EMOTE_SPECIAL_STR "Strength"
-#define EMOTE_SPECIAL_PER "Perception"
-#define EMOTE_SPECIAL_END "Endurance"
-#define EMOTE_SPECIAL_CHA "Charisma"
-#define EMOTE_SPECIAL_INT "Intelligence"
-#define EMOTE_SPECIAL_AGI "Agility"
-#define EMOTE_SPECIAL_LCK "Luck"
-#define EMOTE_SPECIAL_GEN "???"
-#define EMOTE_SPECIAL_SUF "Crit"
-
-GLOBAL_LIST_INIT(special_skill_list, list(
-	EMOTE_SPECIAL_STR,
-	EMOTE_SPECIAL_PER,
-	EMOTE_SPECIAL_END,
-	EMOTE_SPECIAL_CHA,
-	EMOTE_SPECIAL_INT,
-	EMOTE_SPECIAL_AGI,
-	EMOTE_SPECIAL_LCK,
-	EMOTE_SPECIAL_GEN))
-
-GLOBAL_LIST_INIT(special_triggers, list(
-	EMOTE_SPECIAL_STR = list(
-		"s",
-		"str",
-		"strength",
-		"strangth",
-		"strong",
-		"strongth",
-		"might",
-		"power"),
-	EMOTE_SPECIAL_PER = list(
-		"p",
-		"per",
-		"perception",
-		"preception",
-		"look",
-		"see",
-		"peep"),
-	EMOTE_SPECIAL_END = list(
-		"e",
-		"end",
-		"endurance",
-		"endurence",
-		"toughness",
-		"tough",
-		"grit",
-		"beef",
-		"beefiness"),
-	EMOTE_SPECIAL_CHA = list(
-		"c",
-		"cha",
-		"charisma",
-		"charesma",
-		"charm",
-		"moxie",
-		"smarm",
-		"wink",
-		"char"),
-	EMOTE_SPECIAL_INT = list(
-		"int",
-		"i",
-		"intelligence",
-		"inteligence",
-		"intelligance",
-		"inteligance",
-		"intel",
-		"intell",
-		"intelect",
-		"intellect",
-		"smart",
-		"smartness",
-		"nerd",
-		"nerdiness",
-		"dork",
-		"dorkiness",
-		"dweeb",
-		"dweebishness"),
-	EMOTE_SPECIAL_AGI = list(
-		"agi",
-		"a",
-		"agility",
-		"agillity",
-		"quick",
-		"quickness",
-		"fast",
-		"fastness",
-		"dex",
-		"speed",
-		"speediness",
-		"initiative",
-		"athleticism",
-		"acrobatics",
-		"escape",
-		"dodge",
-		"evade",
-		"evasion",
-		"cat"),
-	EMOTE_SPECIAL_LCK = list(
-		"l",
-		"lck",
-		"luck",
-		"lick",
-		"lock",
-		"lunk",
-		"link",
-		"chance",
-		"fortune",
-		"dice",
-		"luk",
-		"luc"),
-	EMOTE_SPECIAL_GEN = list(
-		"x",
-		"non",
-		"none",
-		"generic",
-		"something",
-		"else",
-		"smth",
-		"?",
-		"rand",
-		"huh",
-		"stuff",
-		"roll")))
-
-GLOBAL_LIST_INIT(special_phrases, list(
-	EMOTE_SPECIAL_STR = list(
-		"initial" = list(
-			"tests their strength...",
-			"flexes their arm(s)...",
-			"prepares to lift...",
-			"puts their back into it..."),
-		"success" = list(
-			"is strong!",
-			"is beefy!",
-			"has some serious guns!",
-			"had some strength behind it!"),
-		"failure" = list(
-			"was too weak.",
-			"was a little wet noodle.",
-			"would loose an arm wrestling match with a mouse.",
-			"has some serious atrophy. it's a wonder they can move at all.")),
-	EMOTE_SPECIAL_PER = list(
-		"initial" = list(
-			"takes a good, long look...",
-			"squints...",
-			"looks around...",
-			"focuses in..."),
-		"success" = list(
-			"was perceptive!",
-			"noticed things!",
-			"has eyes like a hawk!",
-			"could find Doc Mitchell's keys!",
-			"noticed whatever they were trying to see!"),
-		"failure" = list(
-			"was totally oblivious.",
-			"forgot their glasses.",
-			"didn't see anything.")),
-	EMOTE_SPECIAL_END = list(
-		"initial" = list(
-			"tests their toughness...",
-			"braces themself..."),
-		"success" = list(
-			"was tough!",
-			"was one tough cookie!",
-			"doesn't even flinch!",
-			"is solid as an oak!",
-			"endured!"),
-		"failure" = list(
-			"is a floppy lil' noodle.",
-			"is made of paper.",
-			"would be torn to shreds by a light breeze.",
-			"crumpled up and blew away.")),
-	EMOTE_SPECIAL_CHA = list(
-		"initial" = list(
-			"starts to be charismatic...",
-			"puts on the charm..."),
-		"success" = list(
-			"was charismatic!",
-			"is an absolute charmer!",
-			"was good and charming!"),
-		"failure" = list(
-			"was totally uncharismatic.",
-			"isn't fooling anyone.",
-			"put their foot in their mouth.",
-			"could hear a pin drop.",
-			"miiiiight have some frontal lobe damage.",
-			"had their charms fall flat.")),
-	EMOTE_SPECIAL_INT = list(
-		"initial" = list(
-			"thinks hard...",
-			"ponders hard...",
-			"takes a moment to think...",
-			"furrows their brow..."),
-		"success" = list(
-			"was clever!",
-			"is a genius!",
-			"has a mind sharp as a whip!",
-			"had a thought!"),
-		"failure" = list(
-			"was dumb as a doornail.",
-			"burned their last braincell years ago.",
-			"is running low on braincells.",
-			"was dense as a brick.")),
-	EMOTE_SPECIAL_AGI = list(
-		"initial" = list(
-			"tries to get agile...",
-			"prepares their moves...",
-			"starts to get limber..."),
-		"success" = list(
-			"was very flexible!",
-			"had some excellent footwork!",
-			"was in perfect control!",
-			"was agile as a cat!",
-			"was agile as a fox!"),
-		"failure" = list(
-			"fell flat on their face.",
-			"fell flat on their back.",
-			"triped over themself.",
-			"has two left feet.",
-			"was clumsy as a cat.",
-			"was clumsy as a fox.")),
-	EMOTE_SPECIAL_LCK = list(
-		"initial" = list(
-			"tries their luck...",
-			"takes a chance...",
-			"puts it all on red..."),
-		"success" = list(
-			"lucked out!",
-			"was the luckiest son-of-a-gun in the wasteland!",
-			"could make a bullet turn right around and climb back into the gun!",
-			"got lucky!"),
-		"failure" = list(
-			"was unlucky.",
-			"realized their game was rigged from the start.",
-			"showed that the house always wins.")),
-	EMOTE_SPECIAL_GEN = list(
-		"initial" = list(
-			"tests their skills...",
-			"tries their skills...",
-			"attempts to do a thing...",
-			"puts their skills to the test..."),
-		"success" = list(
-			"succeeded!",
-			"did it!"),
-		"failure" = list(
-			"was really bad at whatever they did.",
-			"just really sucked.",
-			"messed up real bad.")),
-	EMOTE_SPECIAL_SUF = list(
-		"initial" = list(
-			"shouldnt see this lol"),
-		"success" = list(
-			"Ring-a-ding baby!",
-			"Wow!"),
-		"failure" = list(
-			"How could someone mess up so badly?",
-			"The game was rigged from the start."))))
-
-/mob/living/verb/emote_special_str()
-	set name = "Roll Strength"
-	set desc = "Roll for bicep circumfrence."
-	set category = "Roleplaying"
-	emote("special_strength")
-
-/mob/living/verb/emote_special_per()
-	set name = "Roll Perception"
-	set desc = "Roll for eyeball circumfrence."
-	set category = "Roleplaying"
-	emote("special_perception")
-
-/mob/living/verb/emote_special_end()
-	set name = "Roll Endurance"
-	set desc = "Roll for heart circumfrence."
-	set category = "Roleplaying"
-	emote("special_endurance")
-
-/mob/living/verb/emote_special_cha()
-	set name = "Roll Charisma"
-	set desc = "Roll for beauty circumfrence."
-	set category = "Roleplaying"
-	emote("special_charisma")
-
-/mob/living/verb/emote_special_int()
-	set name = "Roll Intelligence"
-	set desc = "Roll for brain circumfrence."
-	set category = "Roleplaying"
-	emote("special_intelligence")
-
-/mob/living/verb/emote_special_agi()
-	set name = "Roll Agility"
-	set desc = "Roll for wiggly circumfrence."
-	set category = "Roleplaying"
-	emote("special_agility")
-
-/mob/living/verb/emote_special_luc()
-	set name = "Roll Luck"
-	set desc = "Roll for some sort of circumfrence."
-	set category = "Roleplaying"
-	emote("special_luck")
-
-/datum/emote/living/special
-	key = "special"
-	message = null
-	cooldown = 2.5 SECONDS // longer than it takes for the emote to run
-	stat_allowed = UNCONSCIOUS
-	/// Delay between doing the emote and getting the results
-	var/special_delay = 2 SECONDS
-	/// So keybinds can use these emotes ezpz
-	var/special_override
-
-/datum/emote/living/special/s
-	key = "special_strength"
-	special_override = EMOTE_SPECIAL_STR
-
-/datum/emote/living/special/p
-	key = "special_perception"
-	special_override = EMOTE_SPECIAL_PER
-
-/datum/emote/living/special/e
-	key = "special_endurance"
-	special_override = EMOTE_SPECIAL_END
-
-/datum/emote/living/special/c
-	key = "special_charisma"
-	special_override = EMOTE_SPECIAL_CHA
-
-/datum/emote/living/special/i
-	key = "special_intelligence"
-	special_override = EMOTE_SPECIAL_INT
-
-/datum/emote/living/special/a
-	key = "special_agility"
-	special_override = EMOTE_SPECIAL_AGI
-
-/datum/emote/living/special/l
-	key = "special_luck"
-	special_override = EMOTE_SPECIAL_LCK
-
-/datum/emote/living/special/run_emote(mob/user, params, type_override, intentional = FALSE)
-	if(!can_run_emote(user, TRUE, intentional))
-		return FALSE
-	if(jobban_isbanned(user, "emote"))	// emote ban
-		to_chat(user, "You cannot send emotes (banned).")
-		return FALSE
-	else if(user.client && user.client.prefs.muted & MUTE_IC)	// muted
-		to_chat(user, "You cannot send IC messages (muted).")
-		return FALSE
-
-	if(isnull(user.special_a))
-		to_chat(user, span_phobia("You arent special."))
-		to_chat(user, span_notice("Mainly because you're playing a mob withough any special skills. This is probably a bug~"))
-		return FALSE
-
-	var/special_noun = null
-	var/special_phrase_input = special_override ? lowertext(special_override) : lowertext(params)
-
-	for(var/which_special in GLOB.special_skill_list)
-		/// if the thing we said after the emote is in one of these lists, pick the corresponding key
-		if(special_phrase_input in GLOB.special_triggers[which_special])
-			special_noun = which_special
-
-	if(!(special_noun in GLOB.special_skill_list) || !special_noun)
-		to_chat(user, span_alert("That's not a valid SPECIAL stat!"))
-		to_chat(user, span_notice("To use this emote, type '*special' followed by a SPECIAL stat. For instance, '*special luck' will do a (luck*10)% roll and say if you passed or not."))
-		var/valid_specials
-		for(var/word in GLOB.special_triggers)
-			valid_specials += "[GLOB.special_triggers[word][1]], "
-			valid_specials += "[GLOB.special_triggers[word][2]]. "
-		to_chat(user, span_notice("Some of the valid SPECIAL keywords are:[valid_specials]."))
-		return
-
-	var/special_skill = null
-	switch(special_noun)
-		if(EMOTE_SPECIAL_STR)
-			special_skill = user.special_s
-		if(EMOTE_SPECIAL_PER)
-			special_skill = user.special_p
-		if(EMOTE_SPECIAL_END)
-			special_skill = user.special_e
-		if(EMOTE_SPECIAL_CHA)
-			special_skill = user.special_c
-		if(EMOTE_SPECIAL_INT)
-			special_skill = user.special_i
-		if(EMOTE_SPECIAL_AGI)
-			special_skill = user.special_a
-		if(EMOTE_SPECIAL_LCK)
-			special_skill = user.special_l
-		if(EMOTE_SPECIAL_GEN) // generic random 50% chance
-			special_skill = 5
-
-	var/first_phrase = pick(GLOB.special_phrases[special_noun]["initial"])
-	var/message_first = span_notice("\[[special_noun], [special_skill]0%] <b>[user]</b> [first_phrase].")	// [Luck, 100%] User tests their Luck.
-
-	user.visible_message(
-		message = message_first,
-		self_message = message_first,
-		blind_message = message_first)
-	user.emote_for_ghost_sight(message_first)
-
-	playsound(get_turf(user), 'sound/effects/statroll.ogg', 75, TRUE)
-
-	spawn(special_delay)
-		if(!user)
-			return
-		if(!can_run_emote(user, TRUE,intentional))
-			return
-
-		var/message_second
-		if(prob(special_skill * 10))
-			var/success_phrase = pick(GLOB.special_phrases[special_noun]["success"])
-			if(prob(5)) // crit success!
-				success_phrase += " [pick(GLOB.special_phrases[EMOTE_SPECIAL_SUF]["success"])]"
-			message_second = span_green("\[Success\] <b>[user]</b> [success_phrase]") // [Success] User is pretty lucky!
-		else
-			var/fail_phrase = pick(GLOB.special_phrases[special_noun]["failure"])
-			if(prob(5)) // crit fail!
-				fail_phrase += " [pick(GLOB.special_phrases[EMOTE_SPECIAL_SUF]["failure"])]"
-			message_second = span_red("\[Failure\] <b>[user]</b> [fail_phrase]") // [Failure} User isn't very lucky...
-
-		user.visible_message(
-			message = message_second,
-			self_message = message_second,
-			blind_message = message_second)
-		user.emote_for_ghost_sight(message_second)
-
-/datum/emote/living/special/rollfor
-	key = "rollfor"
-
-/datum/emote/help
-	key = "helpme"
-	key_third_person = "yells for help!"
-	message = "says, \"Help!\""
-	emote_type = EMOTE_AUDIBLE
-
-/datum/emote/medic
-	key = "medic"
-	key_third_person = "yells for a medic!"
-	message = "says, \"Medic!\""
-	emote_type = EMOTE_AUDIBLE
-
-/datum/emote/healerhere
-	key = "healer"
-	key_third_person = "is clearly offering their services as a healer!"
-	message = "says, \"Healer for hire!\""
-	emote_type = EMOTE_AUDIBLE
-
-/datum/emote/holdstill
-	key = "hold"
-	key_third_person = "is trying to get someone to hold still!"
-	message = "says, \"Hold up!\""
-	emote_type = EMOTE_AUDIBLE
-
-/datum/emote/pullback
-	key = "pullback"
-	key_third_person = "is trying to get everyone to pull back!"
-	message = "says, \"Pull back!\""
-	emote_type = EMOTE_AUDIBLE
-
 
 //Fenny Adds Flirtatious Fucking Emotes For Furries//
 
@@ -2023,201 +1396,6 @@ GLOBAL_LIST_INIT(special_phrases, list(
 	message_param = "is <span class='love'>flirting with</span> %t sneakily!"
 	sound = 'sound/f13effects/sunsetsounds/blush.ogg'
 	message_range = 2
-
-/* For making new flirt/affection options
-/datum/emote/living/flirt/blank
-	key = "flirtblank"
-	key_third_person = "<span class='love'></span> someone!"
-	message = "<span class='love'></span> someone!"
-	message_param = "<span class='love'></span> %t!"
-*/
-
-/datum/emote/living/flirt/custom
-	key = "flirtcustom"
-	key_third_person = "is trying to <span class='love'>be flirty!</span>"
-	message = "is trying to <span class='love'>%t</span>"
-	message_param = "is trying to <span class='love'>%t</span>"
-
-/datum/emote/living/flirt/flirtlookat
-	key = "flirtlookat"
-	key_third_person = "is <span class='love'>eyeing up</span> somebody!"
-	message = "is <span class='love'>eyeing up</span> somebody!"
-	message_param = "is <span class='love'>eyeing up</span> %t sneakily!"
-
-/datum/emote/living/flirt/flirtaccept
-	key = "flirtaccept"
-	key_third_person = "lets whoever continue whatever it is they were <span class='userlove'>doing!</span>"
-	message = "lets whoever continue whatever it is they were <span class='userlove'>doing!</span>"
-	message_param = "lets %t continue whatever it is they were <span class='userlove'>doing!</span>"
-
-/datum/emote/living/flirt/flirtreject
-	key = "flirtreject"
-	key_third_person = "<span class='danger'>stops someone cold</span>, refusing to go on with this."
-	message = "<span class='danger'>stops someone cold</span>, refusing to go on with this."
-	message_param = "<span class='>danger'stops %t cold</span>, refusing to go on with this."
-	sound = 'sound/effects/ding.ogg'
-
-/datum/emote/living/flirt/flirtblush
-	key = "flirtblush"
-	key_third_person = "is <span class='love'>blushing deeply</span> at %t, their mind has clearly wandered a bit!"
-	message = "is <span class='love'>blushing deeply</span> at %t, their mind has clearly wandered a bit!"
-	message_param = "is <span class='love'>blushing deeply</span> at %t, their mind has clearly wandered a bit!"
-
-/datum/emote/living/flirt/flirtsniff
-	key = "flirtsniff"
-	key_third_person = "sniffs at somebody disapprovingly, but <span class='love'>do they mean it?</span>"
-	message = "sniffs at somebody disapprovingly, but <span class='love'>do they mean it?</span>"
-	message_param = "sniffs at %t disapprovingly, but <span class='love'>do they mean it?</span>"
-
-/datum/emote/living/flirt/flirtsmell
-	key = "flirtsmell"
-	key_third_person = "leans in close and tries to sneak a <span class='love'>snif of someone!</span>"
-	message = "leans in close and tries to sneak a <span class='love'>snif of someone!</span>"
-	message_param = "leans in close and tries to sneak a <span class='love'>snif of %t!</span>"
-
-/datum/emote/living/flirt/flirtcoo
-	key = "flirtcoo"
-	key_third_person = "makes a <span class='love'>quiet cooing noise at</span>, urging them on!"
-	message = "makes a <span class='love'>quiet cooing noise at</span>, urging them on!"
-	message_param = "makes a <span class='love'>quiet cooing noise at %t</span>, urging them on!"
-
-/datum/emote/living/flirt/flirtpinch
-	key = "flirtpinch"
-	key_third_person = "is <span class='love'>trying to pinch</span> somebody, look out they're a lil' handsy!"
-	message = "is <span class='love'>trying to pinch</span> somebody, look out they're a lil' handsy!"
-	message_param = "is <span class='love'>trying to pinch</span> %t, look out they're a lil' handsy!"
-
-/datum/emote/living/flirt/flirtcaress
-	key = "flirtcaress"
-	key_third_person = "is <span class='love'>trying to caress</span> somebody softly!"
-	message = "is <span class='love'>trying to caress</span> somebody softly!"
-	message_param = "is <span class='love'>trying to caress</span> %t softly!"
-
-/datum/emote/living/flirt/flirtbrush
-	key = "flirtbrush"
-	key_third_person = "is <span class='love'>trying to brush</span> someone!"
-	message = "is <span class='love'>trying to to brush</span> someone!"
-	message_param = "is <span class='love'>trying to brush</span> %t!"
-
-/datum/emote/living/flirt/flirtgrope
-	key = "flirtgrope"
-	key_third_person = "is <span class='love'>trying to grope</span> somebody, very handsy!"
-	message = "is <span class='love'>trying to grope</span> somebody, very handsy!"
-	message_param = "is <span class='love'>trying to grope</span> %t, very handsy!"
-
-/datum/emote/living/flirt/flirtkissy
-	key = "flirtkissy"
-	key_third_person = "makes a <span class='love'>kissy face at</span> someone!"
-	message = "makes a <span class='love'>kissy face at</span> someone!"
-	message_param = "makes a <span class='love'>kissy face at</span> %t!"
-
-/datum/emote/living/flirt/eyebrow
-	key = "flirteyebrow"
-	key_third_person = "<span class='love'>quirks their eyebrow</span> at someone knowingly!"
-	message = "<span class='love'>quirks their eyebrow</span> at someone knowingly!"
-	message_param = "<span class='love'>quirks their eyebrow</span> at %t knowingly!"
-
-/datum/emote/living/flirt/wink
-	key = "flirtwink"
-	key_third_person = "<span class='love'>winks</span> at someone knowingly!"
-	message = "<span class='love'>winks</span> at someone knowingly!"
-	message_param = "<span class='love'>winks</span> at %t knowingly!"
-
-/datum/emote/living/flirt/wave
-	key = "flirtwave"
-	key_third_person = "<span class='love'>waves</span> someone over languidly!"
-	message = "<span class='love'>waves</span> someone over languidly!"
-	message_param = "<span class='love'>waves</span> %t over languidly!"
-
-/datum/emote/living/flirt/lean
-	key = "flirtlean"
-	key_third_person = "tries to lean warmly on <span class='love'>lean warmly on</span> someone!"
-	message = "tries to <span class='love'>lean warmly on</span> someone!"
-	message_param = "tries to <span class='love'>lean warmly on</span> %t!"
-
-/datum/emote/living/flirt/snuggle
-	key = "flirtsnuggle"
-	key_third_person = "tries to <span class='love'>snuggle up against</span> someone!"
-	message = "tries to <span class='love'>snuggle up against</span> someone!"
-	message_param = "tries to <span class='love'>snuggle up against</span> %t!"
-
-/datum/emote/living/flirt/littlespoon
-	key = "flirtspoonlittle"
-	key_third_person = "is trying to be <span class='love'>the little spoon</span> for someone!"
-	message = "is trying to be <span class='love'>the little spoon</span> for someone!"
-	message_param = "is trying to be <span class='love'>the little spoon</span> for %t!"
-
-/datum/emote/living/flirt/bigspoon
-	key = "flirtspoonbig"
-	key_third_person = "is trying to be <span class='love'>the big spoon</span> for someone!"
-	message = "is trying to be <span class='love'>the big spoon</span> for someone!"
-	message_param = "is trying to be <span class='love'>the big spoon</span> for %t!"
-
-/datum/emote/living/flirt/kisslight
-	key = "flirtkisslight"
-	key_third_person = "is trying to <span class='love'>lightly kiss</span> someone!"
-	message = "is trying to <span class='love'>lightly kiss</span> someone!"
-	message_param = "is trying to <span class='love'>lightly kiss</span> %t!"
-
-/datum/emote/living/flirt/kiss
-	key = "flirtkiss"
-	key_third_person = "is trying to <span class='userlove'>kiss</span> someone!"
-	message = "is trying to <span class='userlove'>kiss</span> someone!"
-	message_param = "is trying to <span class='userlove'>kiss</span> %t!"
-
-/datum/emote/living/flirt/kissdeep
-	key = "flirtkissdeep"
-	key_third_person = "is trying to <span class='userlove'>kiss someone deeply!</span>"
-	message = "is trying to <span class='userlove'>kiss someone deeply!</span>"
-	message_param = "is trying to <span class='userlove'>kiss %t deeply!</span>"
-
-/datum/emote/living/flirt/smile
-	key = "flirtsmile"
-	key_third_person = "<span class='love'>smiles softly</span> at someone!"
-	message = "<span class='love'>smiles softly</span> at someone!"
-	message_param = "<span class='love'>smiles softly</span> at %t!"
-
-/datum/emote/living/flirt/grin
-	key = "flirtgrin"
-	key_third_person = "<span class='love'>grins mischeviously</span> at someone, they're up to no good."
-	message = "<span class='love'>grins mischeviously</span> at someone, they're up to no good."
-	message_param = "<span class='love'>grins mischeviously</span> at %t, they're up to no good."
-
-/datum/emote/living/flirt/leer
-	key = "flirtleer"
-	key_third_person = "<span class='love'>leers</span> at somebody."
-	message = "<span class='love'>leers</span> at somebody."
-	message_param = "<span class='love'>leers</span> at %t."
-
-/datum/emote/living/flirt/hairflip
-	key = "flirthairflip"
-	key_third_person = "<span class='love'>flips their hair casually</span> while looking at somebody."
-	message = "<span class='love'>flips their hair casually</span> while looking at somebody."
-	message_param = "<span class='love'>flips their hair casually</span> while looking at %t."
-
-/datum/emote/living/flirt/hairplay
-	key = "flirthairplay"
-	key_third_person = "<span class='love'>plays with their hair</span> while looking at somebody."
-	message = "<span class='love'>plays with their hair</span> while looking at somebody."
-	message_param = "<span class='love'>plays with their hair</span> while looking at %t."
-
-/datum/emote/living/flirt/sideeye
-	key = "flirtsideeye"
-	key_third_person = "<span class='love'>side-eyes at</span> somebody, getting an eyeful."
-	message = "<span class='love'>side-eyes at</span> somebody, getting an eyeful."
-	message_param = "<span class='love'>side-eyes</span> %t, getting an eyeful."
-
-/datum/emote/living/flirt/throwback
-	key = "flirtthrowback"
-	key_third_person = "<span class='love'>throws their behind back at</span> somebody, trying to booty bump them!"
-	message = "<span class='love'>throws their behind back at</span> somebody, trying to booty bump them!"
-	message_param = "<span class='love'>throws their behind back at</span> %t, trying to booty bump them!"
-
-/datum/emote/living/flirt/oopstouch
-	key = "flirtoopstouch"
-	key_third_person = "<span class='love'>accidently brushes against</span> somebody, <span class='love'>oops!</span>"
-	message = "<span class='love'>accidently brushes against</span> somebody, <span class='love'>oops!</span>"
-	message_param = "<span class='love'>accidently brushes against</span> %t, <span class='love'>oops!</span>"
 
 
 //Bubber Theft :)//
@@ -2272,7 +1450,7 @@ GLOBAL_LIST_INIT(special_phrases, list(
 
 /datum/emote/living/mow //cat looking ass playing brick game looking ass cat i swear to god I'm taking you to the vet merek
 	key = "mow"
-	key_third_person = "mows like an insane cat."
+	key_third_person = "mows like an sad cat."
 	message = "mows!"
 	emote_type = EMOTE_AUDIBLE
 	sound = 'modular_coyote/sound/verbs/mow.ogg'
@@ -2343,41 +1521,6 @@ GLOBAL_LIST_INIT(special_phrases, list(
 	message = "tilts their head."
 	message_param = "tilts their head at %t."
 
-/datum/emote/living/glitchcall
-	key = "glitchy"
-	key_third_person = "glitches"
-	message = "emits a glitchy sound."
-	sound = "modular_coyote/sound/typing/synth_possessed.ogg"
-
-/datum/emote/living/glitchsigh
-	key = "glitchsigh"
-	key_third_person = "glitchsighs"
-	message = "emits a glitchy sound."
-	sound = "modular_coyote/sound/typing/synth_possessed_sigh.ogg"
-
-/datum/emote/living/glitchping
-	key = "glitchping"
-	key_third_person = "glitchpings"
-	message = "emits a glitchy sound."
-	sound = "modular_coyote/sound/typing/synth_possessed_ping.ogg"
-
-/datum/emote/living/glitchhonk
-	key = "glitchhonk"
-	key_third_person = "glitchhonks"
-	message = "emits a glitchy sound."
-	sound = "modular_coyote/sound/typing/hivebot-bark-005.ogg"
-
-/datum/emote/living/glitchhonk2
-	key = "glitchblare"
-	key_third_person = "glitchblares"
-	message = "emits a glitchy sound."
-	sound = "modular_coyote/sound/typing/hivebot-bark-003.ogg"
-
-/datum/emote/living/glitchhonk3
-	key = "glitchhorn"
-	key_third_person = "glitchhorns"
-	message = "emits a glitchy sound."
-	sound = "modular_coyote/sound/typing/hivebot-bark-001.ogg"
 
 /datum/emote/living/rizz
 	key = "rizz"
@@ -2407,6 +1550,7 @@ GLOBAL_LIST_INIT(special_phrases, list(
 	message_param = "<span class='urgent'>%t</span>" //Funny block text
 	sound = "modular_splurt/sound/voice/alienbeeper.ogg"
 
+
 //Slime start
 
 //Framework
@@ -2434,6 +1578,7 @@ GLOBAL_LIST_INIT(special_phrases, list(
 			S.slime_mood = slime_mood
 			S.handle_body(H)
 
+
 /datum/emote/mood/sneaky
 	key = "slimesneaky"
 	slime_mood = "aslime-mischevous"
@@ -2459,3 +1604,4 @@ GLOBAL_LIST_INIT(special_phrases, list(
 	slime_mood = "aslime-angry"
 
 // Slime end
+

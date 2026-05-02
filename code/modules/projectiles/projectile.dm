@@ -236,7 +236,7 @@
 /obj/item/projectile/proc/create_statblock()
 	var/list/my_block = list()
 	my_block["projectile_name"] = name || "Unnamed Projectile"
-	my_block["projectile_damage"] = damage || 0
+	my_block["projectile_damage"] = round(damage, 0.5) || 0
 	my_block["projectile_damage_type"] = damage_type || "brute"
 	my_block["projectile_flag"] = flag || "bullet"
 	my_block["projectile_stamina"] = stamina || 0
@@ -392,7 +392,6 @@
 /obj/item/projectile/proc/on_hit(atom/target, blocked = FALSE)
 	if(fired_from)
 		SEND_SIGNAL(fired_from, COMSIG_PROJECTILE_ON_HIT, firer, target, Angle)
-
 	// i know that this is probably more with wands and gun mods in mind, but it's a bit silly that the projectile on_hit signal doesn't ping the projectile itself.
 	// maybe we care what the projectile thinks! See about combining these via args some time when it's not 5AM
 	var/obj/item/bodypart/hit_limb
@@ -450,10 +449,10 @@
 		else if(impact_effect_type && !hitscan)
 			new impact_effect_type(target_loca, hitx, hity)
 
-		var/organ_hit_text = ""
-		var/limb_hit = hit_limb
-		if(limb_hit)
-			organ_hit_text = " in \the [parse_zone(limb_hit)]"
+	//	var/organ_hit_text = ""
+	//	var/limb_hit = hit_limb
+		//if(limb_hit)
+			//organ_hit_text = " in \the [parse_zone(limb_hit)]"
 
 		if(suppressed==SUPPRESSED_VERY)
 			playsound(loc, hitsound, 5, TRUE, -1)
@@ -461,15 +460,15 @@
 			playsound(loc, hitsound, 5, 1, -1)
 			if(COOLDOWN_FINISHED(L, projectile_message_antispam))
 				COOLDOWN_START(L, projectile_message_antispam, ATTACK_MESSAGE_ANTISPAM_TIME)
-				to_chat(L, span_userdanger("You're shot by \a [src][organ_hit_text]!"))
+				// to_chat(L, span_userdanger("You're shot by \a [src][organ_hit_text]!"))
 		else
 			if(hitsound)
 				var/volume = vol_by_damage()
 				playsound(loc, hitsound, volume, 1, -1)
 			if(COOLDOWN_FINISHED(L, projectile_message_antispam))
 				COOLDOWN_START(L, projectile_message_antispam, ATTACK_MESSAGE_ANTISPAM_TIME)
-				L.visible_message(span_danger("[L] is hit by \a [src][organ_hit_text]!"), \
-						span_userdanger("[L] is hit by \a [src][organ_hit_text]!"), null, COMBAT_MESSAGE_RANGE)
+				// L.visible_message(span_danger("[L] is hit by \a [src][organ_hit_text]!"), 
+				// 		span_userdanger("[L] is hit by \a [src][organ_hit_text]!"), null, COMBAT_MESSAGE_RANGE)
 		// if(candink && def_zone == BODY_ZONE_HEAD) //fortuna edit
 		// 	var/playdink = rand(1, 10)
 		// 	if(playdink <= 3)
@@ -566,6 +565,9 @@
 #define FORCE_QDEL 3		//Force deletion.
 
 /obj/item/projectile/proc/process_hit(turf/T, atom/target, qdel_self, hit_something = FALSE)		//probably needs to be reworked entirely when pixel movement is done.
+	if(isliving(firer) && isanimal(target))
+		var/mob/living/simple_animal/SA = target
+		SA.give_credit(firer)
 	if(is_supereffective(target))
 		damage += supereffective_damage
 	damage *= damage_mod
@@ -599,12 +601,19 @@
 /obj/item/projectile/proc/faction_check(atom/target)
 	if(not_harmful)
 		return FALSE // its something that shouldnt be harmful
-	if(!isliving(target) || !LAZYLEN(faction))
+	if(!(isliving(target) || istype(target, /obj/machinery/porta_turret)) || !LAZYLEN(faction))
 		return
 	var/mob/living/maybehit = target
-	if(maybehit.shoot_me)
-		return FALSE
-	return LAZYLEN(maybehit.faction & faction)
+	if(isliving(target))
+		if(maybehit.shoot_me)
+			return FALSE // so, turrets and livings dont share the same faction var
+		if(!maybehit.client && target == original)
+			return FALSE // We're trying to shoot that thing, and since it isnt a player, hit it!
+		if(isliving(firer))
+			var/mob/living/hootreshootre = firer
+			if(hootreshootre.enabled_combat_indicator && maybehit.enabled_combat_indicator)
+				return FALSE // if they're both in combat, they're not friends, get shootabie
+	return LAZYLEN(maybehit.faction & faction) // but they're named the same so its just fine
 
 
 /// Check if the projectile is Super Effective on the target!
@@ -1217,11 +1226,15 @@
 	health = 5000
 	is_smol = FALSE
 	faction = list("neutral")
+	var/next_say = 0
 
 	variation_list = list()
 
 /mob/living/simple_animal/hostile/rat/skitter/bullet_random_debug/bullet_act(obj/item/projectile/P)
 	. = ..()
+	if(world.time < next_say)
+		return
+	next_say = world.time + (15 SECONDS)
 	say("I'm hit! That felt like it did [P.damage] damage to be exact!")
 
 

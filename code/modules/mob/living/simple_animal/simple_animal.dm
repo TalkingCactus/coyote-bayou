@@ -16,6 +16,7 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 	var/bossmob = FALSE
 	status_flags = CANPUSH
 	rotate_on_lying = TRUE
+	var/advanced = FALSE
 	var/icon_living = ""
 	///icon when the animal is dead. Don't use animated icons for this.
 	var/icon_dead = ""
@@ -57,7 +58,7 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 	var/response_harm_continuous = "hits"
 	///Harm-intent verb in present simple tense.
 	var/response_harm_simple = "hit"
-	var/harm_intent_damage = 8 //Damage taken by punches, setting slightly higher than average punch damage as if you're punching a deathclaw then you're desperate enough to need it
+	var/harm_intent_damage = 8 //Damage taken by punches, setting slightly higher than average punch damage as if you're punching a aethergiest then you're desperate enough to need it
 	/// Mob damage threshold, subtracted from incoming damage
 	var/force_threshold = 0
 	/// mob's inherent armor
@@ -103,7 +104,7 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 	var/environment_smash = ENVIRONMENT_SMASH_NONE
 
 	///LETS SEE IF I CAN SET SPEEDS FOR SIMPLE MOBS WITHOUT DESTROYING EVERYTHING. Higher speed is slower, negative speed is faster.
-	/// Breaks everything, makes player controlled mobs wayyyyy tooo slow
+	/// Breaks everything, makes player controlled mobs wayyyyy tooo slow - didn't ask teehee
 	var/speed = 1
 
 	var/idlesound = null //What to play when idling, if anything.
@@ -145,6 +146,19 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 	var/death_sound = null
 
 	var/allow_movement_on_non_turfs = FALSE
+	var/move_to_delay = 4
+	var/minimum_distance = 0
+	var/target_coords
+	var/RTS_move_target_range = 2
+
+	var/RTS_aggro_lockout = 0
+
+	var/RTS_max_RTS_frustration_seconds = 10
+	var/RTS_frustration_seconds = 0
+	var/RTS_last_frustration = 0
+	var/RTS_frustration_coords
+
+	var/no_ghost_gta
 
 	///Played when someone punches the creature.
 	var/attacked_sound = "punch"
@@ -220,6 +234,14 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 	
 	/// makes certain mobs explode into stuff when they die
 	var/am_important = FALSE // you are not important
+	coolshadow = FALSE
+
+	var/quit_stealing_my_bike = FALSE
+
+
+	var/bounty = 10
+	var/kill_credit
+
 
 
 /mob/living/simple_animal/Initialize()
@@ -241,7 +263,8 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 	/// WARNING: DUPLICATED CODE, MAKE BETTER
 	setup_mob_armor_values()
 	if (islist(mob_armor))
-		mob_armor = getArmor(arglist(mob_armor))
+		var/list/armor_list = mob_armor
+		mob_armor = getArmorFromList(armor_list)
 	else if (!mob_armor)
 		mob_armor = getArmor()
 	else if (!istype(mob_armor, /datum/armor))
@@ -364,6 +387,7 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 	RegisterSignal(src, COMSIG_ATOM_CAN_BUTCHER,PROC_REF(can_butcher))
 	RegisterSignal(src, COMSIG_MOB_IS_IMPORTANT,PROC_REF(am_i_important))
 	RegisterSignal(src, COMSIG_ATOM_QUEST_SCANNED,PROC_REF(i_got_scanned))
+	RegisterSignal(src, COMSIG_RTS_SELECTED,PROC_REF(i_got_selected))
 
 /mob/living/simple_animal/proc/i_got_scanned(datum/source, mob/scanner)
 	if(!nest_coords)
@@ -378,6 +402,15 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 
 /mob/living/simple_animal/proc/am_i_important()
 	return am_important
+
+/mob/living/simple_animal/proc/i_got_selected(datum/source, mob/selecter)
+	// if(!selecter)
+	// 	return
+	// var/myteam = selecter.ckey
+	// if(!selecter.ckey)
+	// 	myteam = "bingus"
+	// myteam = "team-[myteam]" // Team discovery channel!
+	// faction |= myteam
 
 /mob/living/simple_animal/proc/infight_check(mob/living/simple_animal/H)
 	if(SSmobs.debug_disable_mob_ceasefire)
@@ -552,6 +585,9 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 		return FALSE
 	if(turns_per_move == -1) //stops wandering entirely
 		return FALSE
+	if(RTS_move_ordered())
+		// am_within_range_of_target_coords()
+		return FALSE
 	turns_since_move++
 	if(turns_since_move < turns_per_move)
 		return TRUE
@@ -578,7 +614,7 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 				length += emote_see.len
 			var/randomValue = rand(1,length)
 			if(randomValue <= speak.len)
-				say(pick(speak), forced = "poly")
+				say(pick(speak), forced = "poly", only_overhead = TRUE)
 			else
 				randomValue -= speak.len
 				if(emote_see && randomValue <= emote_see.len)
@@ -586,7 +622,7 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 				else
 					emote("me [pick(emote_hear)]", 2)
 		else
-			say(pick(speak), forced = "poly")
+			say(pick(speak), forced = "poly", only_overhead = TRUE)
 	else
 		if(!(emote_hear && emote_hear.len) && (emote_see && emote_see.len))
 			emote("me", EMOTE_VISIBLE, pick(emote_see))
@@ -743,9 +779,9 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 /mob/living/simple_animal/emote(act, m_type=1, message = null, intentional = FALSE, only_overhead)
 	if(stat)
 		return
-	if(act == "scream")
-		message = "makes a loud and pained whimper." //ugly hack to stop animals screaming when crushed :P
-		act = "me"
+	// if(act == "scream")
+	// 	message = "makes a loud and pained whimper." //ugly hack to stop animals screaming when crushed :P
+	// 	act = "me"
 	..(act, m_type, message)
 
 /mob/living/simple_animal/proc/set_varspeed(var_value)
@@ -787,9 +823,10 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 			if(istype(newthing, /obj/effect/spawner/lootdrop))
 				var/obj/effect/spawner/lootdrop/lut = newthing
 				if(lut.delay_spawn)
-					lut.spawn_the_stuff(droppedstuff)
+					droppedstuff |= lut.spawn_the_stuff()
 				continue
-			droppedstuff |= newthing
+			else
+				droppedstuff |= newthing
 	for(var/atom/thingy in droppedstuff)
 		SEND_SIGNAL(thingy, COMSIG_ITEM_MOB_DROPPED, src)
 	loot.Cut()
@@ -797,6 +834,7 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 /mob/living/simple_animal/death(gibbed)
 	movement_type &= ~FLYING
 	unstamcrit()
+	payout()
 
 	sever_link_to_nest() // killed
 	LAZYREMOVE(GLOB.mob_spawners[initial(name)], src)
@@ -901,7 +939,7 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 			return new childspawn(target)
 
 /mob/living/simple_animal/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
-	if(incapacitated())
+	if(incapacitated(allow_crit = TRUE))
 		to_chat(src, span_warning("You can't do that right now!"))
 		return FALSE
 	if(be_close && !in_range(M, src))
@@ -928,7 +966,7 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 	. = ..()
 	if(IsUnconscious() || IsStun() || IsParalyzed() || stat || resting)
 		mobility_flags = NONE
-	else if(buckled)
+	else if(buckled || (pulledby && HAS_TRAIT(pulledby, TRAIT_STRONG_GRABBER)))
 		mobility_flags = ~MOBILITY_MOVE
 	else
 		mobility_flags = MOBILITY_FLAGS_DEFAULT
@@ -1049,12 +1087,13 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 /mob/living/simple_animal/user_buckle_mob(mob/living/M, mob/user)
 	var/datum/component/riding/riding_datum = GetComponent(/datum/component/riding)
 	if(riding_datum)
-		if(user.incapacitated())
+		if(user.incapacitated(allow_crit = TRUE))
 			return
 		for(var/atom/movable/A in get_turf(src))
 			if(A != src && A != M && A.density)
 				return
 		M.forceMove(get_turf(src))
+		no_ghost_gta = TRUE // so commanders cant just yoink someones bike
 		return ..()
 
 /mob/living/simple_animal/relaymove(mob/user, direction)
@@ -1119,46 +1158,79 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 	if(hud_used.healths)
 		if(stat != DEAD)
 			. = 1
+			if(!health)
+				health = health
 			if(health >= maxHealth)
 				hud_used.healths.icon_state = "health0"
-			else if(health > maxHealth*0.8)
+			else if(health > maxHealth*0.95)
 				hud_used.healths.icon_state = "health1"
-			else if(health > maxHealth*0.6)
+			else if(health > maxHealth*0.9)
 				hud_used.healths.icon_state = "health2"
-			else if(health > maxHealth*0.4)
+			else if(health > maxHealth*0.85)
 				hud_used.healths.icon_state = "health3"
-			else if(health > maxHealth*0.2)
+			else if(health > maxHealth*0.80)
 				hud_used.healths.icon_state = "health4"
-			else if(health > 0)
+			else if(health > maxHealth*0.75)
 				hud_used.healths.icon_state = "health5"
-			else
+			else if(health > maxHealth*0.70)
 				hud_used.healths.icon_state = "health6"
+			else if(health > maxHealth*0.65)
+				hud_used.healths.icon_state = "health7"
+			else if(health > maxHealth*0.60)
+				hud_used.healths.icon_state = "health8"
+			else if(health > maxHealth*0.55)
+				hud_used.healths.icon_state = "health9"
+			else if(health > maxHealth*0.50)
+				hud_used.healths.icon_state = "health10"
+			else if(health > maxHealth*0.45)
+				hud_used.healths.icon_state = "health11"
+			else if(health > maxHealth*0.40)
+				hud_used.healths.icon_state = "health12"
+			else if(health > maxHealth*0.35)
+				hud_used.healths.icon_state = "health13"
+			else if(health > maxHealth*0.30)
+				hud_used.healths.icon_state = "health14"
+			else if(health > maxHealth*0.25)
+				hud_used.healths.icon_state = "health15"
+			else if(health > maxHealth*0.20)
+				hud_used.healths.icon_state = "health16"
+			else if(health > maxHealth*0.15)
+				hud_used.healths.icon_state = "health17"
+			else if(health > maxHealth*0.10)
+				hud_used.healths.icon_state = "health18"
+			else if(health > maxHealth*0.05)
+				hud_used.healths.icon_state = "health19"
+			else if(health > 0)
+				hud_used.healths.icon_state = "health19"
+			else
+				hud_used.healths.icon_state = "health20"
 		else
-			hud_used.healths.icon_state = "health7"
+			hud_used.healths.icon_state = "health21"
 
 /mob/living/simple_animal/update_stamina()
 	if(stamcrit_threshold == SIMPLEMOB_NO_STAMCRIT)
 		return
 	if((staminaloss + bruteloss) >= stamcrit_threshold)
-		if(!CHECK_BITFIELD(combat_flags, COMBAT_FLAG_HARD_STAMCRIT))
-			stamcrit()
-		COOLDOWN_START(src, stamcrit_timer, stamcrit_duration) // keep resetting the timer if they're stamcritted hard enough
-		return
-	if(CHECK_BITFIELD(combat_flags, COMBAT_FLAG_HARD_STAMCRIT) && COOLDOWN_FINISHED(src, stamcrit_timer))
+		stamcrit()
+	else
 		unstamcrit()
 
 /mob/living/simple_animal/proc/stamcrit()
-	to_chat(src, span_notice("You're too exhausted to keep going..."))
+	if(CHECK_BITFIELD(combat_flags, COMBAT_FLAG_HARD_STAMCRIT))
+		return
 	ENABLE_BITFIELD(combat_flags, COMBAT_FLAG_HARD_STAMCRIT)
+	to_chat(src, span_notice("You're too exhausted to keep going..."))
 	filters += CIT_FILTER_STAMINACRIT
 	walk(src, 0)
 	set_resting(TRUE, FALSE, FALSE)
 	update_mobility()
 
 /mob/living/simple_animal/proc/unstamcrit()
+	if(!CHECK_BITFIELD(combat_flags, COMBAT_FLAG_HARD_STAMCRIT))
+		return
+	DISABLE_BITFIELD(combat_flags, COMBAT_FLAG_HARD_STAMCRIT)
 	COOLDOWN_RESET(src, stamcrit_timer)
 	to_chat(src, span_notice("You don't feel nearly as exhausted anymore."))
-	DISABLE_BITFIELD(combat_flags, COMBAT_FLAG_HARD_STAMCRIT)
 	filters -= CIT_FILTER_STAMINACRIT
 	walk(src, 0)
 	set_resting(FALSE, FALSE, FALSE)
@@ -1167,6 +1239,89 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 /mob/living/simple_animal/fully_heal(admin_revive = FALSE)
 	. = ..()
 	unstamcrit()
+
+/mob/living/simple_animal/proc/RTS_move_to_tile(targettte, delay, minimum_distance)
+	end_RTS_move()
+	if(!targettte)
+		return
+	if(!delay)
+		delay = move_to_delay
+	if(!minimum_distance)
+		minimum_distance = 0
+	set_target_coords(atom2coords(targettte))
+	set_RTS_command_aggro_lockout()
+	if(CHECK_BITFIELD(mobility_flags, MOBILITY_MOVE))
+		set_glide_size(DELAY_TO_GLIDE_SIZE(move_to_delay))
+		walk_to(src, targettte, minimum_distance, delay)
+	if(AIStatus != AI_ON && AIStatus != AI_OFF)
+		toggle_ai(AI_ON)
+
+/// if you issue a command to a mob, and they are aggroed, they'll happily ignore you
+/// this makes them unable to aggro for a short time after a command is issued
+/mob/living/simple_animal/proc/set_RTS_command_aggro_lockout()
+	RTS_aggro_lockout = world.time + SSrts.aggro_lockout_time
+
+
+/// Makes mobs smash stuff!
+/mob/living/simple_animal/proc/rts_smash_things(atom/towards)
+	return
+
+/// Makes mobs shoot stuff!
+/mob/living/simple_animal/proc/rts_shoot(atom/towards)
+	return
+
+/// <summary>
+/// This gives the mob a goal to get somewhere near, so it will evetually stop getting nearer to the target.
+/// </summary>
+/mob/living/simple_animal/proc/set_target_coords(coords)
+	target_coords = coords
+
+/mob/living/simple_animal/proc/clear_target_coords()
+	target_coords = null
+
+/mob/living/simple_animal/proc/am_within_range_of_target_coords()
+	if(!RTS_move_ordered())
+		return FALSE
+	if(!target_coords)
+		return end_RTS_move()
+	var/atom/targetloc = coords2turf(target_coords)
+	if(!targetloc)
+		return end_RTS_move()
+	var/distfrommetoit = get_dist(get_turf(src), targetloc)
+	if(distfrommetoit <= RTS_move_target_range)
+		return end_RTS_move()
+	return FALSE
+
+/mob/living/simple_animal/proc/RTS_move_ordered()
+	return !isnull(target_coords)
+
+/mob/living/simple_animal/proc/end_RTS_move()
+	target_coords = null
+	walk(src, 0)
+	return TRUE
+
+/mob/living/simple_animal/proc/check_frustration()
+	if(!RTS_frustration_coords)
+		RTS_frustration_coords = atom2coords(src)
+		return
+	if(world.time < RTS_last_frustration + (1 SECONDS))
+		return
+	RTS_last_frustration = world.time
+	var/turf/whereiwas = coords2turf(RTS_frustration_coords)
+	var/turf/whereiam = get_turf(src)
+	if(get_dist(whereiwas, whereiam) < 2)
+		frustrate()
+
+/mob/living/simple_animal/proc/frustrate()
+	RTS_frustration_seconds++
+	if(RTS_frustration_seconds >= RTS_max_RTS_frustration_seconds)
+		RTS_frustration_coords = null
+		RTS_frustration_seconds = 0
+		end_RTS_move()
+		do_huh_animation(src)
+		for(var/turf/T in orange(1,src))
+			if(prob(50))
+				do_huh_animation(T)
 
 /mob/living/simple_animal/proc/link_to_nest(atom/birthplace)
 	if(nest || !isatom(birthplace))
@@ -1185,10 +1340,10 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 /mob/living/simple_animal/proc/setup_variations()
 	if(!LAZYLEN(variation_list))
 		return FALSE // we're good here
-	if(LAZYLEN(variation_list[MOB_VARIED_NAME_GLOBAL_LIST]))
-		vary_mob_name_from_global_lists()
-	else if(LAZYLEN(variation_list[MOB_VARIED_NAME_LIST]))
-		vary_mob_name_from_local_list()
+	// if(LAZYLEN(variation_list[MOB_VARIED_NAME_GLOBAL_LIST]))
+	// 	vary_mob_name_from_global_lists()
+	// else if(LAZYLEN(variation_list[MOB_VARIED_NAME_LIST]))
+	// 	vary_mob_name_from_local_list()
 	if(LAZYLEN(variation_list[MOB_VARIED_COLOR]))
 		vary_mob_color()
 	if(LAZYLEN(variation_list[MOB_VARIED_HEALTH]))
@@ -1337,14 +1492,14 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 		return
 	if(length(mob_armor_tokens) < 1)
 		return // all done!
-	
+	var/list/armorlist = mob_armor
 	for(var/list/token in mob_armor_tokens)
 		for(var/modifier in token)
 			switch(GLOB.armor_token_operation_legend[modifier])
 				if("MULT")
-					mob_armor[modifier] = round(mob_armor[modifier] * token[modifier], 1)
+					armorlist[modifier] = round(armorlist[modifier] * token[modifier], 1)
 				if("ADD")
-					mob_armor[modifier] = max(mob_armor[modifier] + token[modifier], 0)
+					armorlist[modifier] = max(armorlist[modifier] + token[modifier], 0)
 				else
 					continue
 
@@ -1367,7 +1522,7 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 		if(60 to 80)
 			descriptors += span_alert(" could play chicken with a car and win.")
 		if(80 to INFINITY)
-			descriptors += span_warning(" could play pattycake with [istype(src, /mob/living/simple_animal/hostile/deathclaw) ? "another" : "a"] deathclaw and win.")
+			descriptors += span_warning(" could play pattycake with [istype(src, /mob/living/simple_animal/hostile/aethergiest) ? "another" : "a"] aethergiest and win.")
 	descriptors += "\n"
 	///Bullet
 	var/bullet_armor = mob_armor.getRating("bullet")
@@ -1414,19 +1569,19 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 		if(80 to INFINITY)
 			descriptors += span_warning(" this is some kind of super creature drinks plasma for breakfast.")
 	descriptors += "\n"
-	///dt
-	var/damage_threshold = mob_armor.getRating("damage_threshold")
-	switch(damage_threshold)
-		if(-INFINITY to 1)
-			descriptors += span_greenteamradio("[p_they(TRUE)] look[p_s()] like a reasonably safe opponent.")
-		if(2 to 4)
-			descriptors += span_info("[p_they(TRUE)] look[p_s()] like an even fight.")
-		if(5 to 6)
-			descriptors += span_yellowteamradio("[p_they(TRUE)] look[p_s()] like quite a gamble!")
-		if(7 to 9)
-			descriptors += span_yellowteamradio("[p_they(TRUE)] look[p_s()] like it would wipe the floor with you!")
-		if(9 to INFINITY)
-			descriptors += span_warning("What would you like your tombstone to say?")
+	// ///dt
+	// var/damage_threshold = mob_armor.getRating("damage_threshold")
+	// switch(damage_threshold)
+	// 	if(-INFINITY to 1)
+	// 		descriptors += span_greenteamradio("[p_they(TRUE)] look[p_s()] like a reasonably safe opponent.")
+	// 	if(2 to 4)
+	// 		descriptors += span_info("[p_they(TRUE)] look[p_s()] like an even fight.")
+	// 	if(5 to 6)
+	// 		descriptors += span_yellowteamradio("[p_they(TRUE)] look[p_s()] like quite a gamble!")
+	// 	if(7 to 9)
+	// 		descriptors += span_yellowteamradio("[p_they(TRUE)] look[p_s()] like it would wipe the floor with you!")
+	// 	if(9 to INFINITY)
+	// 		descriptors += span_warning("What would you like your tombstone to say?")
 	descriptors += "\n"
 	if(LAZYLEN(descriptors))
 		mob_armor_description = jointext(descriptors, "")
@@ -1516,3 +1671,68 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 	if(client && hud_used)
 		hud_used.throw_icon.icon_state = "act_throw_on"
 //End Coyote Add
+
+/mob/living/simple_animal/proc/give_credit(mob/living/attacker)
+	if(!isliving(attacker))
+		return
+	if(!attacker.client)
+		return
+	if(islist(faction) && islist(attacker.faction))
+		if(LAZYLEN(attacker.faction & faction))
+			return
+	if(lazarused) // no killing friendlies for cash!
+		return
+	kill_credit = SSeconomy.extract_quid(attacker)
+
+/mob/living/simple_animal/proc/payout()
+	if(!bounty || !kill_credit)
+		return
+	var/mob/living/kyller = SSeconomy.quid2mob(kill_credit)
+	if(!kyller)
+		return
+	var/amt = COINS_TO_CREDITS(bounty)
+	bounty = 0
+	if(!SSeconomy.adjust_funds(kyller, amt))
+		return
+	var/cashdisplay = ""
+	if(bounty >= 0)
+		cashdisplay += "+"
+	else
+		cashdisplay += "-"
+	cashdisplay += "$[CREDITS_TO_COINS(amt)]"
+	new /obj/effect/temp_visual/floaty_thing/cash(get_turf(src), cashdisplay)
+
+/obj/effect/temp_visual/floaty_thing
+	name = "floaty"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "butt"
+	duration = 5 SECONDS
+	var/textcolor = "#FFFFFF"
+	var/defer = FALSE
+	var/txtshow
+	var/matrix/finmat
+
+/obj/effect/temp_visual/floaty_thing/Initialize(atom/origin, todisplay)
+	. = ..()
+	if(!defer)
+		spawn(0)
+			numberate(origin, todisplay)
+
+/obj/effect/temp_visual/floaty_thing/proc/numberate(atom/origin, todisplay)
+	// first the vertical offset
+	transform = transform.Translate(0, 32) // close enough
+	txtshow = todisplay
+	txtshow = "<span style='color:[textcolor]'>[todisplay]</span>"
+	finmat = transform
+	finmat = finmat.Translate(0, 32)
+	if(!defer)
+		scoot_n_vanish()
+
+/obj/effect/temp_visual/floaty_thing/proc/scoot_n_vanish()
+	maptext = txtshow
+	// and scoot it up and disappear
+	animate(src, time = (duration-1), transform = finmat, alpha = 0)
+
+/obj/effect/temp_visual/floaty_thing/cash
+	textcolor = "#FFFF00"
+

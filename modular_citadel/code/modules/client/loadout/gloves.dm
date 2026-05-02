@@ -1,7 +1,7 @@
 /datum/gear/gloves
 	category = LOADOUT_CATEGORY_GLOVES
 	slot = SLOT_GLOVES
-	cost = 1
+	cost = 0
 
 /datum/gear/gloves/fingerless
 	name = "fingerless gloves"
@@ -71,3 +71,12 @@
 /datum/gear/gloves/modifpatrol
 	name = "modified patrol gloves"
 	path = /obj/item/clothing/gloves/modif_patrol
+
+/datum/gear/gloves/armwarmer
+	name = "armwarmers"
+	path = /obj/item/clothing/gloves/armwarmer
+
+/datum/gear/gloves/armwarmer/striped
+	name = "armwarmers, striped"
+	path = /obj/item/clothing/gloves/armwarmer_striped
+

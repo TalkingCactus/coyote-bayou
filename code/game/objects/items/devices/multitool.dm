@@ -15,7 +15,7 @@
 	desc = "Used for pulsing wires to test which to cut. Not recommended by doctors."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "multitool"
-	item_state = "multitool"
+	inhand_icon_state = "multitool"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	force = 5
@@ -30,6 +30,8 @@
 	usesound = 'sound/weapons/empty.ogg'
 	var/datum/integrated_io/selected_io = null  //functional for integrated circuits.
 	var/mode = 0
+	weapon_special_component = /datum/component/weapon_special/single_turf
+	block_parry_data = /datum/block_parry_data/bokken
 
 /obj/item/multitool/chaplain
 	name = "\improper hypertool"
@@ -120,7 +122,7 @@
 	var/detect_state = PROXIMITY_NONE
 	var/rangealert = 8	//Glows red when inside
 	var/rangewarning = 20 //Glows yellow when inside
-	var/hud_type = DATA_HUD_AI_DETECT
+	hud_type = DATA_HUD_AI_DETECT
 	var/hud_on = FALSE
 	var/mob/camera/aiEye/remote/ai_detector/eye
 	var/datum/action/item_action/toggle_multitool/toggle_action

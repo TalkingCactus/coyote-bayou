@@ -3,7 +3,7 @@
 	desc = "A tablet or capsule."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "pill"
-	item_state = "pill"
+	inhand_icon_state = "pill"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	possible_transfer_amounts = list()
@@ -38,13 +38,13 @@
 	if(M == user)
 		M.visible_message(span_notice("[user] attempts to [apply_method] [src]."))
 		if(self_delay)
-			if(!do_mob(user, M, self_delay))
+			if(!do_mob(user, M, self_delay, allow_incap = TRUE, allow_lying = TRUE, public_progbar = TRUE))
 				return FALSE
 		to_chat(M, span_notice("You [apply_method] [src]."))
 	else
 		M.visible_message(span_danger("[user] attempts to force [M] to [apply_method] [src]."), \
 							span_userdanger("[user] attempts to force [M] to [apply_method] [src]."))
-		if(!do_mob(user, M))
+		if(!do_mob(user, M, self_delay, allow_incap = TRUE, allow_lying = TRUE, public_progbar = TRUE))
 			return FALSE
 		M.visible_message(span_danger("[user] forces [M] to [apply_method] [src]."), \
 							span_userdanger("[user] forces [M] to [apply_method] [src]."))
@@ -171,14 +171,14 @@
 	icon_state = "pill18"
 	list_reagents = list(/datum/reagent/medicine/insulin = 50)
 	roundstart = TRUE
-
+/*
 /obj/item/reagent_containers/pill/psicodine
 	name = "psicodine pill"
 	desc = "Used to treat mental instability and phobias."
 	list_reagents = list(/datum/reagent/medicine/psicodine = 10)
 	icon_state = "pill22"
 	roundstart = TRUE
-
+*/
 /obj/item/reagent_containers/pill/antirad
 	name = "potassium iodide pill"
 	desc = "Used to treat radition used to counter radiation poisoning."
@@ -299,9 +299,10 @@
 	list_reagents = list(/datum/reagent/medicine/radx = 20)
 
 /obj/item/reagent_containers/pill/buffout
-	name = "Buffout pill"
+	name = "Beefup Pill"
 	desc = "A metallic tasting pill that greatly increases bloodflow and builds muscle mass. \
-	Side effects may include sore muscles and increased irritability."
+	Side effects may include sore muscles and increased irritability. \
+	THIS WILL NOT ADDICT YOU ON FIRST USE."
 	icon = 'icons/fallout/objects/medicine/drugs.dmi'
 	icon_state = "pill_buff"
 	list_reagents = list(/datum/reagent/drug/buffout = 10)

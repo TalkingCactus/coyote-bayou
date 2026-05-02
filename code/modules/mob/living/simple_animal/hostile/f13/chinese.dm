@@ -37,15 +37,17 @@
 	loot = list(/obj/effect/spawner/lootdrop/f13/uncommon)
 	loot_drop_amount = 2
 	loot_amount_random = TRUE
+	move_to_delay = 3.5
+	bounty = 25
 
 
-/mob/living/simple_animal/hostile/chinese/Aggro()
-	. = ..()
-	if(.)
-		return
-	summon_backup(15)
-	if(!ckey)
-		say(pick("操你祖宗十八代", "乡巴佬", "傻逼" , "妈你个", "操你大爷", "祝你生孩子没屁眼", "扯鸡巴蛋", "狗改不了吃屎", "爆你菊花" ))
+// /mob/living/simple_animal/hostile/chinese/Aggro()
+// 	. = ..()
+// 	if(.)
+// 		return
+// 	summon_backup(15)
+// 	if(!ckey)
+// 		say(pick("操你祖宗十八代", "乡巴佬", "傻逼" , "妈你个", "操你大爷", "祝你生孩子没屁眼", "扯鸡巴蛋", "狗改不了吃屎", "爆你菊花" ))
 
 /mob/living/simple_animal/hostile/chinese/ranged
 	icon_state = "chinesepistol"
@@ -92,6 +94,7 @@
 	health = 160
 	extra_projectiles = 2
 	loot = list()
+	bounty = 30
 	projectiletype = /obj/item/projectile/bullet/a556/simple
 	projectilesound = 'sound/f13weapons/assaultrifle_fire.ogg'
 	projectile_sound_properties = list(

@@ -27,14 +27,14 @@
 	name = "Type 1 First Aid Kit"
 	desc = "A kit containing large amounts of gauze, some sutures, and a stimpak"
 	item = /obj/item/storage/firstaid/regular
-	cost = 20
+	cost = 50
 	important = TRUE
 
 /datum/supplykit_item/medical/firstaid2
 	name = "Type 2 First Aid Kit"
 	desc = "A kit containing a wide variety of medical supplies, including gauze, sutures, a stim, and more."
 	item = /obj/item/storage/firstaid/ancient
-	cost = 20
+	cost = 50
 	important = TRUE
 
 /datum/supplykit_item/medical/blood
@@ -68,13 +68,37 @@
 	item = /obj/item/stack/medical/suture
 	cost = 10
 
-/* burns aren't implimented
+/datum/supplykit_item/misc/defibprimative
+	name = "Improvised Defib"
+	desc = "For reviving your friends, can be stuffed in your bag."
+	item = /obj/item/defibrillator/primitive
+	cost = 5
+
+/datum/supplykit_item/misc/defibcompact
+	name = "Compact Defib"
+	desc = "For reviving your friends, can be stuffed in your bag, or worn on your belt."
+	item = /obj/item/defibrillator/compact
+	cost = 15
+
+/datum/supplykit_item/misc/defibsalt
+	name = "Smelling Salts"
+	desc = "For reviving your friends, its small, but only has 10 uses."
+	item = /obj/item/smelling_salts
+	cost = 20
+
+/datum/supplykit_item/magic/medbeam
+	name = "Medbeam"
+	desc = "A powerful medical beam gun that lets you beam your friends back to full health, very consistant and free to use!"
+	item = /obj/item/gun/medbeam
+	cost = 70
+
+
 /datum/supplykit_item/medical/ointment
 	name = "Ointment"
 	desc = "A tube of soothing ointment that heals burns and animals."
 	item = /obj/item/stack/medical/ointment
 	cost = 10
-*/
+
 
 /datum/supplykit_item/medical/charcoalsyringe
 	name = "Charcoal Syringe"
@@ -106,6 +130,12 @@
 	item = /obj/item/reagent_containers/pill/antivenom
 	cost = 10
 
+/datum/supplykit_item/medical/purgative
+	name = "Fiery Purgative"
+	desc = "A foul liquid that violently purges your body of all toxins, chemicals, and radiation via very unpleasant means."
+	item = /obj/item/reagent_containers/pill/fiery_purgative
+	cost = 10
+
 /datum/supplykit_item/medical/radx
 	name = "Rad-x Bottle"
 	desc = "A bottle of preventative anti-radiation chemicals, massively reducing the effects of exposure."
@@ -131,37 +161,37 @@
 	cost = 10
 
 /datum/supplykit_item/medical/jet
-	name = "Jet"
+	name = "Staminup"
 	desc = "An inhaler containing a dirty chem for a quick and energetic high."
 	item = /obj/item/reagent_containers/pill/patch/jet
 	cost = 5
 
 /datum/supplykit_item/medical/medx
-	name = "Med-X"
+	name = "Morphidol"
 	desc = "A syringe containing a military stimulant, which temporary sooths pain and improves health."
 	item = /obj/item/reagent_containers/pill/patch/medx
 	cost = 5
 
 /datum/supplykit_item/medical/psycho
-	name = "Psycho"
+	name = "Berserk"
 	desc = "A cocktail of drugs that gives the user an aggressive high, improving tenacity in melee combat."
 	item = /obj/item/reagent_containers/pill/patch/psycho
 	cost = 5
 
 /datum/supplykit_item/medical/turbo
-	name = "Turbo"
+	name = "Speedster"
 	desc = "A drug that makes the user incredibly hyperactive and speedy."
 	item = /obj/item/reagent_containers/pill/patch/turbo
 	cost = 5
 
 /datum/supplykit_item/medical/steady
-	name = "Steady"
+	name = "Marksman"
 	desc = "A highly addictive cocktail that gives the user laser focus, improving ballistic precision."
 	item = /obj/item/reagent_containers/pill/patch/steady
 	cost = 5
 
 /datum/supplykit_item/medical/buffout
-	name = "Buffout Tin"
+	name = "Beefup Tin"
 	desc = "A tin of steroid pills, which improve endurance and strength in the user, temporarily bolstering health and melee ability."
 	item = /obj/item/storage/pill_bottle/chem_tin/buffout
 	cost = 20

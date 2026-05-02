@@ -10,6 +10,10 @@
 	var/list/loot_players = list()
 	var/list/lootable_trash = list()
 	var/list/garbage_list = list()
+	var/obj/effect/spawner/lootdrop/stuffspawn = /obj/effect/spawner/lootdrop/f13/trash/pile
+	var/howmany_min = 1
+	var/howmany_max = 4
+	var/image/visual
 /*
 /obj/item/storage/trash_stack/proc/initialize_lootable_trash()
 	lootable_trash = list(/obj/effect/spawner/lootdrop/f13/trash)
@@ -21,13 +25,25 @@
 		for(var/ii in i)
 			lootable_trash += ii*/
 */
+
 /obj/item/storage/trash_stack/Initialize()
 	. = ..()
-	icon_state = "trash_[rand(1,3)]"
-	GLOB.trash_piles += WEAKREF(src)
-//	initialize_lootable_trash()
+	for(var/obj/item/storage/trash_stack/roommate in loc)
+		if(roommate == src)
+			continue
+		//stack_trace("Multiple trash stacks at ([loc.x], [loc.y], [loc.z])!")
+		return INITIALIZE_HINT_QDEL
+	visual = image(icon, src, icon_state)
+	icon_state = "blank"
+	SSlootmanager.add_pile(src)
+	SSlootmanager.send_to_all_players(src)
+
+/obj/item/storage/trash_stack/proc/show(client/showee)
+	showee << visual
 
 /obj/item/storage/trash_stack/Destroy()
+	SSlootmanager.remove_pile(src)
+	qdel(visual)
 	GLOB.trash_piles -= WEAKREF(src)
 	. = ..()
 
@@ -39,6 +55,9 @@
 			qdel(A)
 
 /obj/item/storage/trash_stack/attack_hand(mob/user)
+	SiftThruTrash(user)
+
+/obj/item/storage/trash_stack/proc/SiftThruTrash(mob/user)
 	var/turf/trash_turf = get_turf(src)
 	var/ukey = ckey(user?.ckey)
 	if(!ukey)
@@ -50,7 +69,7 @@
 		playsound(get_turf(src), 'sound/f13effects/loot_trash.ogg', 100, TRUE, 1)
 	to_chat(user, span_smallnoticeital("You start picking through [src]...."))
 	rifling = TRUE
-	if(!do_mob(user, src, 3 SECONDS))
+	if(!do_mob(user, src, 1 SECONDS))
 		rifling = FALSE
 		return
 	rifling = FALSE
@@ -59,26 +78,29 @@
 		return
 	loot_players += ukey
 	to_chat(user, span_notice("You scavenge through [src]."))
-	for(var/i in 1 to rand(1,4))
-		var/list/trash_passthru = list()
-		var/obj/effect/spawner/lootdrop/f13/trash/pile/my_trash = new(trash_turf)
-		my_trash.spawn_the_stuff(trash_passthru) // fun fact, lists are references, so this'll be populated when the proc runs (cool huh?)
-		for(var/atom/movable/spawned in trash_passthru)
-			if(isitem(spawned))
-				var/obj/item/newitem = spawned
-				newitem.from_trash = TRUE
-			if(isgun(spawned))
-				var/obj/item/gun/trash_gun = spawned
-				var/prob_trash = 80
-				for(var/tries in 1 to 3)
-					if(!prob(prob_trash))
-						continue
-					prob_trash -= 40
-					var/trash_mod_path = pick(GLOB.trash_craft) // this was trash gunmods but like they're not gonna be in loot anymore
-					var/obj/item/gun_upgrade/trash_mod = new trash_mod_path
-					if(SEND_SIGNAL(trash_mod, COMSIG_ITEM_ATTACK_OBJ_NOHIT, trash_gun, null))
-						break
-					QDEL_NULL(trash_mod)
+	var/list/spawnedstuff = list()
+	for(var/i in howmany_min to rand(howmany_min, howmany_max))
+		var/obj/effect/spawner/lootdrop/my_trash = new stuffspawn(trash_turf)
+		spawnedstuff |= my_trash.spawn_the_stuff() // fun fact, lists are references, so this'll be populated when the proc runs (cool huh?)
+	for(var/atom/movable/spawned in spawnedstuff)
+		if(isitem(spawned))
+			var/obj/item/newitem = spawned
+			newitem.from_trash = TRUE
+		SEND_SIGNAL(spawned, COMSIG_ITEM_MOB_DROPPED, src)
+
+	user.client.images -= visual
+
+		// if(isgun(spawned))
+		// 	var/obj/item/gun/trash_gun = spawned
+		// 	var/prob_trash = 80
+		// 	for(var/tries in 1 to 3)
+		// 		if(!prob(prob_trash))
+		// 			continue
+		// 		prob_trash -= 40
+		// 		var/trash_mod_path = pick(GLOB.trash_craft) // this was trash gunmods but like they're not gonna be in loot anymore
+		// 		var/obj/item/gun_upgrade/trash_mod = new trash_mod_path
+		// 		if(!SEND_SIGNAL(trash_mod, COMSIG_ITEM_ATTACK_OBJ_NOHIT, trash_gun, null))
+		// 			QDEL_NULL(trash_mod)
 
 // lov dan
 /obj/item/storage/money_stack
@@ -134,3 +156,45 @@
 		for(var/ii in i)
 			lootable_trash += ii
 */
+
+
+//Loot stacks
+
+//common loot pile, drops 1 or 2 of our common loot drops
+/obj/item/storage/trash_stack/loot/common	//obj/effect/spawner/lootdrop/f13/common
+	name = "pile of scrap"
+	desc = "A pile of scrap. You might find something useful if you take a look inside."
+	icon = 'icons/fallout/objects/crafting.dmi'
+	color = "#FFFFFF"
+	icon_state = "Junk_10"
+	anchored = TRUE
+	density = FALSE
+	stuffspawn = /obj/effect/spawner/lootdrop/f13/common
+	howmany_min = 1
+	howmany_max = 2
+
+//uncommon loot pile, drops 1 or 2 of our uncommon loot drops
+/obj/item/storage/trash_stack/loot/uncommon	//obj/effect/spawner/lootdrop/f13/uncommon
+	name = "pile of shiny scrap"
+	desc = "A pile of scrap. There's probably something cool in it."
+	icon = 'icons/fallout/objects/crafting.dmi'
+	color = "#FFFFFF"
+	icon_state = "Junk_2"
+	anchored = TRUE
+	density = FALSE
+	stuffspawn = /obj/effect/spawner/lootdrop/f13/uncommon
+	howmany_min = 1
+	howmany_max = 2
+
+//rare loot pile, drops 1 or 2 of our rare loot drops
+/obj/item/storage/trash_stack/loot/rare	//obj/effect/spawner/lootdrop/f13/rare
+	name = "pile of valuables"
+	desc = "A pile of valuable-looking objects. There's gotta be something useful in there."
+	icon = 'icons/fallout/objects/crafting.dmi'
+	color = "#FFFFFF"
+	icon_state = "Junk_6"
+	anchored = TRUE
+	density = FALSE
+	stuffspawn = /obj/effect/spawner/lootdrop/f13/rare
+	howmany_min = 1
+	howmany_max = 2

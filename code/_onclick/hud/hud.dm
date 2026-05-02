@@ -6,15 +6,15 @@
 
 // The default UI style is the first one in the list
 GLOBAL_LIST_INIT(available_ui_styles, list(
-	"Fallout" = 'icons/fallout/UI/screen_fallout2.dmi', // Fallout 2 Pip-boy style UI. Walk the wasteland with style. -Pebbles
-	"Darkout" = 'icons/fallout/UI/screen_fallout2_dark.dmi', // The original Fallout 2 pipboy UI, dark
+	// "Fallout" = 'icons/fallout/UI/screen_fallout2.dmi', // Fallout 2 Pip-boy style UI. Walk the wasteland with style. -Pebbles
+	// "Darkout" = 'icons/fallout/UI/screen_fallout2_dark.dmi', // The original Fallout 2 pipboy UI, dark
 	"Midnight" = 'icons/mob/screen_midnight.dmi',
 	"Retro" = 'icons/mob/screen_retro.dmi',
 	"Plasmafire" = 'icons/mob/screen_plasmafire.dmi',
 	"Slimecore" = 'icons/mob/screen_slimecore.dmi',
 	"Operative" = 'icons/mob/screen_operative.dmi',
 	"Clockwork" = 'icons/mob/screen_clockwork.dmi',
-	"Minimal" = 'icons/mob/screen_minimal.dmi'
+	"Minimal" = 'icons/mob/screen_minimal.dmi',
 ))
 
 /proc/ui_style2icon(ui_style)
@@ -57,7 +57,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	var/atom/movable/screen/movable/action_button/hide_toggle/hide_actions_toggle
 	var/action_buttons_hidden = FALSE
 
-	var/atom/movable/screen/healths
+	var/atom/movable/screen/healths/healths
 	var/atom/movable/screen/healthdoll
 	var/atom/movable/screen/internals
 
@@ -70,6 +70,24 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	var/atom/movable/screen/aooc_hud_button
 	var/atom/movable/screen/newbie_hud_button
 	var/atom/movable/screen/chardir_hud_button
+	var/atom/movable/screen/pvp_focus_toggle/pvp_focus_toggle
+	var/atom/movable/screen/who
+	var/atom/movable/screen/bank
+	var/atom/movable/screen/roll_hud_button
+	var/atom/movable/screen/erp_tools_button
+	var/atom/movable/screen/hand_items_button
+	var/atom/movable/screen/bite_hud_button
+	var/atom/movable/screen/claw_hud_button
+	var/atom/movable/screen/tail_hud_button
+	var/atom/movable/screen/cuphand_hud_button
+	var/atom/movable/screen/beans_hud_button
+	var/atom/movable/screen/private_panel_button
+	var/atom/movable/screen/give_button
+	var/atom/movable/screen/reload_button
+	var/atom/movable/screen/tend_hud_button
+	var/atom/movable/screen/butt_hud_button
+
+
 
 	// subtypes can override this to force a specific UI style
 	var/ui_style
@@ -126,6 +144,13 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	down = null
 	sleep_hud_button = null
 	triage = null
+	aooc_hud_button = null
+	newbie_hud_button = null
+	chardir_hud_button = null
+	pvp_focus_toggle = null
+	who = null
+	roll_hud_button = null
+	erp_tools_button = null
 
 	QDEL_LIST_ASSOC_VAL(plane_masters)
 	QDEL_LIST(screenoverlays)

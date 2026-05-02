@@ -3,7 +3,7 @@
 	desc = "If you are seeing this something went wrong."
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "syndicate"
-	item_state = "flashbang"
+	inhand_icon_state = "flashbang"
 	ex_dev = 0
 	ex_heavy = 0
 	ex_light = 0
@@ -16,7 +16,7 @@
 
 /obj/item/grenade/f13/stinger
 	name = "stinger grenade"
-	desc = "A nonlethal sting-pellet grenade used for riot suppression pre-war."
+	desc = "A nonlethal sting-pellet grenade used for riot suppression Pre-Fall."
 	icon_state = "stinger"
 	throw_speed = 4
 	throw_range = 7
@@ -29,7 +29,7 @@
 
 /obj/item/grenade/f13/frag
 	name = "frag grenade"
-	desc = "A prewar military-grade fragmentation grenade with short fuse. Useless against hard armor."
+	desc = "A prefall military-grade fragmentation grenade with short fuse. Useless against hard armor."
 	icon_state = "frag_new"
 	throw_speed = 4
 	throw_range = 7
@@ -42,7 +42,7 @@
 
 /obj/item/grenade/f13/plasma
 	name = "plasma grenade"
-	desc = "A prewar military-grade plasma grenade, used for permanent riot suppression pre-war."
+	desc = "A prefall military-grade plasma grenade, used for permanent riot suppression Pre-Fall."
 	icon_state = "plasma"
 	throw_speed = 4
 	throw_range = 7
@@ -63,7 +63,7 @@
 
 /obj/item/grenade/f13/incendiary
 	name = "incendinary grenade"
-	desc = "A prewar police supression grenade designed to cause as much agony as possible against large crowds of protestors, very hot."
+	desc = "A prefall police supression grenade designed to cause as much agony as possible against large crowds of protestors, very hot."
 	icon_state = "incendinary"
 	throw_speed = 4
 	throw_range = 7
@@ -91,7 +91,7 @@
 
 /obj/item/grenade/f13/radiation
 	name = "radiation grenade"
-	desc = "A grenade designed to release a strong pulse of gamma radiation through complex pre-war science or...something."
+	desc = "A grenade designed to release a strong pulse of gamma radiation through complex Pre-Fall science or...something."
 	icon_state = "bluefrag"
 	throw_speed = 4
 	throw_range = 7

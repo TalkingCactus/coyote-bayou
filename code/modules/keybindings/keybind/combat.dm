@@ -38,7 +38,7 @@
 	return TRUE
 
 /datum/keybinding/living/active_parry
-	hotkey_keys = list("Insert", "G")
+	hotkey_keys = list("right")
 	name = "active_parry"
 	full_name = "Parry"
 	category = CATEGORY_COMBAT
@@ -118,10 +118,10 @@
 
 	//let's find someone to kill.
 	var/turf/crimescene = locate(murderer.x + xdiff, murderer.y + ydiff, murderer.z)
-	var/mob/living/victim = locate() in crimescene
+	var/mob/living/victim = find_victim(crimescene)
 	if(!istype(victim))
 		crimescene = locate(murderer.x + xdiff * 2, murderer.y + ydiff * 2, murderer.z)
-		victim = locate() in crimescene
+		victim = find_victim(crimescene)
 
 		//so no victim?
 		if(!istype(victim))
@@ -129,3 +129,32 @@
 			return
 	murderer.ClickOn(victim, params)
 	return
+
+/// find the first living mob in a turf
+/proc/find_victim(turf/crimescene)
+	for(var/mob/living/bystander in crimescene)
+		if(bystander.stat != DEAD)
+			return bystander
+	return null
+	
+/datum/keybinding/carbon/reload_gun
+	hotkey_keys = list("ShiftR")
+	name = "reload_gun"
+	full_name = "Reload gun"
+	description = "Automatically reloads the gun in your active hand."
+	category = CATEGORY_COMBAT
+
+/datum/keybinding/carbon/reload_gun/down(client/user)
+	user.mob?.ReloadGun()
+	return TRUE
+
+/datum/keybinding/carbon/reload_gun_or_throw
+	hotkey_keys = list("CtrlR")
+	name = "reload_gun_or_throw"
+	full_name = "Reload or toggle throw"
+	description = "Automatically reloads the gun in your active hand, or toggles throwing mode if you don't have a gun in your active hand."
+	category = CATEGORY_COMBAT
+
+/datum/keybinding/carbon/reload_gun_or_throw/down(client/user)
+	user.mob?.ReloadGun(TRUE)
+	return TRUE

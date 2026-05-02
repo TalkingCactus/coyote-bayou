@@ -8,7 +8,7 @@
 	icon_gib = "bear_gib"
 	mob_armor = ARMOR_VALUE_BEAR
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
-	speak = list("RAWR!","Rawr!","GRR!","Growl!")
+	//speak = list("RAWR!","Rawr!","GRR!","Growl!")
 	speak_emote = list("growls", "roars")
 	emote_hear = list("rawrs.","grumbles.","grawls.")
 	emote_taunt = list("stares ferociously", "stomps")
@@ -27,6 +27,7 @@
 	health = 60
 	spacewalk = TRUE
 	var/armored = FALSE
+	bounty = 30
 
 	obj_damage = 60
 	melee_damage_lower = 15 // i know it's like half what it used to be, but bears cause bleeding like crazy now so it works out
@@ -112,9 +113,9 @@
 
 /mob/living/simple_animal/hostile/bear/butter //The mighty companion to Cak. Several functions used from it.
 	name = "Terrygold"
-	icon_state = "butterbear"
-	icon_living = "butterbear"
-	icon_dead = "butterbear_dead"
+	icon_state = "brownbear"
+	icon_living = "brownbear"
+	icon_dead = "brownbear_dead"
 	desc = "I can't believe its not a bear!"
 	faction = list("neutral", "russian")
 	obj_damage = 11

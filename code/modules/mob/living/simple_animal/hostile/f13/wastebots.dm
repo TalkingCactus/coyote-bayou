@@ -7,8 +7,9 @@
 */
 
 /mob/living/simple_animal/hostile/handy
+	bounty = 20
 	name = "mr. handy"
-	desc = "A crazed pre-war household assistant robot, armed with a cutting saw."
+	desc = "A crazed Pre-Fall household assistant robot, armed with a cutting saw."
 	icon = 'icons/fallout/mobs/robots/wasterobots.dmi'
 	icon_state = "handy"
 	icon_living = "handy"
@@ -29,7 +30,6 @@
 		MOB_EMP_SCRAMBLE
 		)
 	healable = FALSE
-	stat_attack = CONSCIOUS
 	auto_fire_delay = GUN_AUTOFIRE_DELAY_SLOWER
 	melee_damage_lower = 12
 	melee_damage_upper = 24
@@ -47,7 +47,7 @@
 	waddle_side_time = 1
 	send_mobs = null
 	call_backup = null
-	loot = list(/obj/effect/spawner/lootdrop/f13/common, /obj/effect/gibspawner/ipc/bodypartless)
+	loot = list(/obj/effect/gibspawner/ipc/bodypartless)
 	loot_drop_amount = 2
 	loot_amount_random = TRUE
 
@@ -108,8 +108,9 @@
 	obj_damage = 300
 
 /mob/living/simple_animal/hostile/handy/gutsy
+	bounty = 50
 	name = "mr. gutsy"
-	desc = "A pre-war combat robot based off the Mr. Handy design, armed with plasma weaponry and a deadly close-range flamer."
+	desc = "A Pre-Fall combat robot based off the Mr. Handy design, armed with plasma weaponry and a deadly close-range flamer."
 	icon_state = "gutsy"
 	icon_living = "gutsy"
 	icon_dead = "securitron_dead"
@@ -169,7 +170,7 @@
 		SP_DISTANT_RANGE(PLASMA_RANGE_DISTANT)
 	)
 	desc_short = "A gutsy robot with a plasma gun."
-	loot = list(/obj/effect/spawner/lootdrop/f13/rare, /obj/effect/gibspawner/ipc/bodypartless)
+	loot = list(/obj/effect/gibspawner/ipc/bodypartless)
 	loot_drop_amount = 2
 	loot_amount_random = TRUE
 
@@ -200,8 +201,9 @@
 	obj_damage = 300
 
 /mob/living/simple_animal/hostile/handy/liberator
+	bounty = 15
 	name = "liberator"
-	desc = "A small pre-War droned used by the People's Liberation Army."
+	desc = "A small Pre-Fall droned used by the People's Liberation Army."
 	icon_state = "liberator"
 	icon_living = "leberator"
 	icon_dead = "liberator_d"
@@ -245,13 +247,14 @@
 
 /mob/living/simple_animal/hostile/handy/liberator/yellow
 	name = "liberator"
-	desc = "A small pre-War droned used by the People's Liberation Army."
+	desc = "A small Pre-Fall droned used by the People's Liberation Army."
 	icon_state = "liberator_y"
 	can_ghost_into = FALSE
 	icon_living = "liberator_y"
 	icon_dead = "liberator_y_d"
 
 /mob/living/simple_animal/hostile/handy/robobrain
+	bounty = 40
 	name = "robobrain"
 	desc = "A next-gen cyborg developed by General Atomic International"
 	icon = 'icons/fallout/mobs/robots/wasterobots.dmi'
@@ -272,7 +275,7 @@
 	retreat_distance = 2
 	minimum_distance = 2
 	check_friendly_fire = TRUE
-	loot = list(/obj/effect/spawner/lootdrop/f13/common, /obj/effect/gibspawner/ipc/bodypartless)
+	loot = list(/obj/effect/gibspawner/ipc/bodypartless)
 	loot_drop_amount = 2
 	loot_amount_random = TRUE
 	emote_taunt_sound = null
@@ -306,8 +309,9 @@
 	maxHealth = 300
 
 /mob/living/simple_animal/hostile/handy/protectron
+	bounty = 38
 	name = "protectron"
-	desc = "A pre-war security robot armed with deadly lasers."
+	desc = "A Pre-Fall security robot armed with deadly lasers."
 	icon = 'icons/fallout/mobs/robots/protectrons.dmi'
 	icon_state = "protectron"
 	icon_living = "protectron"
@@ -317,13 +321,12 @@
 	health = 100
 	speed = 4
 	can_ghost_into = TRUE
-	loot = list(/obj/effect/spawner/lootdrop/f13/common, /obj/effect/gibspawner/ipc/bodypartless)
+	loot = list(/obj/effect/gibspawner/ipc/bodypartless)
 	loot_drop_amount = 2
 	loot_amount_random = TRUE
 	melee_damage_lower = 5 //severely reduced melee damage here because its silly to have a ranged mob also be a cqc master
 	melee_damage_upper = 10
 	extra_projectiles = 0 //removed extra projectiles to make these easier to deal with on super lowpop
-	stat_attack = CONSCIOUS
 	ranged = TRUE
 	move_to_delay = 9 //WAY slower than average,
 	// m2d 3 = standard, less is fast, more is slower.
@@ -463,14 +466,14 @@
 		"bs",
 		"bighorner"
 		)
-	speak = list(
-		"Howdy partner! How about you spend some of them there hard earned coins on some of this fine merchandise.",
-		"Welcome back partner! Hoo-wee it's a good day to buy some personal protection!",
-		"Stop, this is a robbery! At these prices you are robbing me.",
-		"What a fine day partner. A fine day indeed.",
-		"Reminds me of what my grandpappy used to say, make a snap decision now and never question it. You look like you could use some product there partner.",
-		"Lotta critters out there want to chew you up partner, you could use a little hand with that now couldn't you?"
-		)
+	//speak = list(
+		// "Howdy partner! How about you spend some of them there hard earned coins on some of this fine merchandise.",
+		// "Welcome back partner! Hoo-wee it's a good day to buy some personal protection!",
+		// "Stop, this is a robbery! At these prices you are robbing me.",
+		// "What a fine day partner. A fine day indeed.",
+		// "Reminds me of what my grandpappy used to say, make a snap decision now and never question it. You look like you could use some product there partner.",
+		// "Lotta critters out there want to chew you up partner, you could use a little hand with that now couldn't you?"
+		// )
 	speak_emote = list()
 	emote_hear = list()
 	emote_see = list()
@@ -498,7 +501,7 @@
 	melee_damage_lower = 18
 	melee_damage_upper = 45
 	environment_smash = 2 //can smash walls
-	loot = list(/obj/effect/spawner/lootdrop/f13/rare, /obj/effect/gibspawner/ipc/bodypartless)
+	loot = list(/obj/effect/gibspawner/ipc/bodypartless)
 	loot_drop_amount = 3
 	loot_amount_random = TRUE
 	attack_verb_simple = "grinds their claws on"
@@ -547,6 +550,7 @@
 	can_ghost_into = FALSE
 
 /mob/living/simple_animal/hostile/handy/assaultron/laser
+	bounty = 15
 	name = "red eye assaultron"
 	desc = "A modified assaultron. It's eye has been outfitted with a deadly laser."
 	color = "#B85C00"

@@ -3,7 +3,7 @@
 	desc = "This staff is boring to watch because even though it came first you've seen everything it can do in other staves for years."
 	icon = 'icons/obj/guns/magic.dmi'
 	icon_state = "staffofnothing"
-	item_state = "staff"
+	inhand_icon_state = "staff"
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 	fire_sound = 'sound/weapons/emitter.ogg'
@@ -81,6 +81,29 @@
 		return FALSE
 	charges++
 	charge_timer = addtimer(CALLBACK(src,PROC_REF(charge)), recharge_rate, TIMER_UNIQUE|TIMER_STOPPABLE)
+
+/obj/item/gun/magic/UpdateAmmoCountOverlay()
+	if(isturf(loc))//Only show th ammo count if the magazine is, like, in an inventory or something. Mags on the ground don't need a big number on them, that's ugly.
+		maptext = ""
+	else
+		var/txte = ""
+		var/culur = "#FF0000"
+		var/shots_max = max_charges
+		var/shots_remaining = charges
+		if(shots_remaining >= shots_max)
+			culur = "#00FFFF"
+		else if(shots_remaining >= shots_max * 0.75)
+			culur = "#00FF00"
+		else if(shots_remaining >= shots_max * 0.5)
+			culur = "#FFFF00"
+		else if(shots_remaining >= shots_max * 0.25)
+			culur = "#FFA500"
+		else if(shots_remaining > 0)
+			culur = "#FF0000"
+		else
+			culur = "#FF00FF"
+		txte = "[shots_remaining]/[shots_max]"
+		maptext = "<font color='[culur]'><b>[txte]</b></font>"
 
 /obj/item/gun/magic/vv_edit_var(var_name, var_value)
 	. = ..()

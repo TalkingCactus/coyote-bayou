@@ -883,7 +883,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		if("revelation") //AI is doomsdaying!
 			to_chat(target, "<h1 class='alert'>A revelation!</h1>")
 			to_chat(target, "<br><br><span class='alert'>You feel different... Changed even! You can finally think clearly, it all makes sense now!</span><br><br>")
-			SEND_SOUND(target, get_announcer_sound('sound/f13/quest.ogg'))
+			//SEND_SOUND(target, get_announcer_sound('sound/f13/quest.ogg'))
 		if("nuke") //Meteors inbound!
 			to_chat(target, "<h1 class='alert'>Nuclear Launch Detected!</h1>")
 			to_chat(target, "<br><br><span class='alert'>WHAT?! OH NO! THIS IS IT! THE END IS COMING!</span><br><br>")
@@ -1103,7 +1103,8 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 
 /obj/effect/hallucination/danger/chasm/show_icon()
-	image = image('icons/turf/floors/Chasms.dmi',src,"smooth",TURF_LAYER)
+	var/turf/target_loc = get_turf(target)
+	image = image('icons/turf/floors/Chasms.dmi', src, "chasms-[target_loc.smoothing_junction]", TURF_LAYER)
 	if(target.client)
 		target.client.images += image
 

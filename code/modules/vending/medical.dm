@@ -30,21 +30,21 @@
 					/obj/item/healthanalyzer/wound = 4,
 					/obj/item/stack/medical/ointment = 2,
 					/obj/item/stack/medical/suture = 2,
-					/obj/item/stack/medical/bone_gel = 4,
-					/obj/item/stock_parts/chem_cartridge/simple = 4,
-					/obj/item/stock_parts/chem_cartridge/pristine = 1)
+					/obj/item/stack/medical/bone_gel = 4,)
 	contraband = list(/obj/item/reagent_containers/pill/tox = 3,
 					/obj/item/reagent_containers/pill/morphine = 4,
 					/obj/item/reagent_containers/pill/charcoal = 6)
 	premium = list(/obj/item/reagent_containers/medspray/synthflesh = 2,
 					/obj/item/storage/box/hug/medical = 1,
-					/obj/item/storage/pill_bottle/psicodine = 2,
 					/obj/item/reagent_containers/hypospray/medipen/stimpak/epipak = 12,
 					/obj/item/storage/belt/medical = 3,
 					/obj/item/wrench/medical = 1,
 					/obj/item/storage/belt/medolier = 2,
 					///obj/item/gun/syringe/dart = 2,
 					/obj/item/plunger/reinforced = 2)
+
+
+//						/obj/item/storage/pill_bottle/psicodine = 2, was in this
 
 	armor = ARMOR_VALUE_HEAVY
 	resistance_flags = FIRE_PROOF
@@ -172,7 +172,7 @@
 	name = "\improper Becoming Nook"
 	desc = "A becoming nook. Useful for becoming an Aristocrat."
 	product_ads = "You are very becoming!;Implantations available, upgrade your license chip today."
-	product_slogans = "You are very becoming, Aristocrat."
+	//product_slogans = "You are very becoming, Aristocrat."
 	products = list(/obj/item/implanter = 3,
 					/obj/item/implantcase/mindshield = 3,
 					/obj/item/implantcase/chem = 3,
@@ -204,7 +204,7 @@
 	name = "\improper Research Grants"
 	desc = "A vendor that allows the clinic to purchase researchable documents for syncing up with other research facilities."
 	product_ads = ""
-	product_slogans = ""
+	//product_slogans = ""
 	products = list(/obj/item/blueprint/research = 5)
 	contraband = list()
 	premium = list(/obj/item/documents/syndicate/blue = 3)

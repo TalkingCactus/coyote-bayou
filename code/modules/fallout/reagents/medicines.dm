@@ -24,17 +24,17 @@
 		if(method != INJECT) // Gotta be injected
 			return
 		if(M.getBruteLoss())
-			M.adjustBruteLoss(-reac_volume)
+			do_heal(M, -reac_volume, BRUTE)
 		if(M.getFireLoss())
-			M.adjustFireLoss(-reac_volume)
+			do_heal(M, -reac_volume, BURN)
 	..()
 
 // heals 1 damage of either brute or burn on life, whichever's higher
 /datum/reagent/medicine/stimpak/on_mob_life(mob/living/carbon/M)
 	if(M.getBruteLoss() > M.getFireLoss())	//Less effective at healing mixed damage types.
-		M.adjustBruteLoss(-1*REM)
+		do_heal(M, -1*REM, BRUTE)
 	else
-		M.adjustFireLoss(-1*REM)
+		do_heal(M, -1*REM, BURN)
 	. = TRUE
 	..()
 
@@ -63,9 +63,9 @@
 		if(method != INJECT) // Gotta be injected
 			return
 		if(M.getBruteLoss())
-			M.adjustBruteLoss(-reac_volume)
+			do_heal(M, -reac_volume, BRUTE)
 		if(M.getFireLoss())
-			M.adjustFireLoss(-reac_volume)
+			do_heal(M, -reac_volume, BURN)
 	..()
 
 /datum/reagent/medicine/fake_stimpak/on_mob_life(mob/living/carbon/M)
@@ -100,9 +100,9 @@
 		if(method != INJECT)
 			return
 		if(M.getBruteLoss())
-			M.adjustBruteLoss(-reac_volume)
+			do_heal(M, -reac_volume, BRUTE)
 		if(M.getFireLoss())
-			M.adjustFireLoss(-reac_volume)
+			do_heal(M, -reac_volume, BURN)
 	..()
 
 /// Slows you down and tells you that your heart's gonna get wrecked if you keep taking more
@@ -160,8 +160,8 @@
 		metabolization_rate = 3 * REAGENTS_METABOLISM //metabolizes much quicker if not injured
 	var/longpork_heal_rate = (is_longporklover ? longpork_lover_healing : longpork_hurting) *REM
 	if(!M.reagents.has_reagent(/datum/reagent/medicine/stimpak) && !M.reagents.has_reagent(/datum/reagent/medicine/healing_powder))
-		M.adjustFireLoss(longpork_heal_rate)
-		M.adjustBruteLoss(longpork_heal_rate)
+		do_heal(M, longpork_heal_rate, BURN)
+		do_heal(M, longpork_heal_rate, BRUTE)
 		M.adjustToxLoss(is_longporklover ? 0 : 3)
 		. = TRUE
 		..()
@@ -191,9 +191,9 @@
 
 /datum/reagent/medicine/healing_powder/on_mob_life(mob/living/carbon/M)
 	if(M.getBruteLoss() > M.getFireLoss())	//Less effective at healing mixed damage types.
-		M.adjustBruteLoss(-2*REM)
+		do_heal(M, -2*REM, BRUTE)
 	else
-		M.adjustFireLoss(-2*REM)
+		do_heal(M, -2*REM, BURN)
 	. = TRUE
 	..()
 
@@ -230,8 +230,8 @@
 
 /datum/reagent/medicine/healing_powder/poultice/on_mob_life(mob/living/carbon/M)
 	. = ..()
-	M.adjustBruteLoss(-1*REM)
-	M.adjustFireLoss(-1*REM)
+	do_heal(M, -1*REM, BRUTE)
+	do_heal(M, -1*REM, BURN)
 	clot_bleed_wounds(user = M, bleed_reduction_rate = clot_rate, coefficient_per_wound = clot_coeff_per_wound, single_wound_full_effect = FALSE)
 	. = TRUE
 	..()
@@ -337,14 +337,14 @@
 // MED-X REAGENT
 
 /datum/reagent/medicine/medx
-	name = "Med-X"
+	name = "Morphidol"
 
-	description = "Med-X is a potent painkiller, allowing users to withstand high amounts of pain and continue functioning. Addictive. Prolonged presence in the body can cause seizures and organ damage."
+	description = "Morphidol is a potent painkiller, allowing users to withstand high amounts of pain and continue functioning. Prolonged presence in the body can cause seizures and organ damage."
 	reagent_state = LIQUID
 	color = "#6D6374"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
-	overdose_threshold = 25
-	addiction_threshold = 16
+	overdose_threshold = 200
+	addiction_threshold = 200
 	var/od_strikes = 0 // So we dont get roflstomped by a sudden massive dose of medx
 	var/od_next_strike = 0 // there's a cool down between strikes, to give the user time to purge this stuff
 	var/od_strike_cooldown = 6 SECONDS
@@ -366,9 +366,9 @@
 
 /datum/reagent/medicine/medx/on_mob_life(mob/living/carbon/M)
 	if(M.health < 0)
-		M.adjustToxLoss(-0.5*REM, 0)
-		M.adjustBruteLoss(-0.5*REM, 0)
-		M.adjustFireLoss(-0.5*REM, 0)
+		do_heal(M, -0.5*REM, TOX)
+		do_heal(M, -0.5*REM, BRUTE)
+		do_heal(M, -0.5*REM, BURN)
 	if(M.oxyloss > 35)
 		M.setOxyLoss(35, 0)
 	if(M.losebreath >= 4)
@@ -600,10 +600,10 @@
 	ghoulfriendly = TRUE
 
 /datum/reagent/medicine/gaia/on_mob_life(mob/living/carbon/M)
-	M.adjustToxLoss(-0.75*REM, 0)
 	M.adjustOxyLoss(-0.75*REM, 0)
-	M.adjustBruteLoss(-0.75*REM, 0)
-	M.adjustFireLoss(-0.75*REM, 0)
+	do_heal(M, -0.75*REM, TOX)
+	do_heal(M, -0.75*REM, BRUTE)
+	do_heal(M, -0.75*REM, BURN)
 	..()
 
 /datum/reagent/medicine/gaia/overdose_start(mob/living/M)

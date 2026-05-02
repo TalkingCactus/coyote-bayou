@@ -3,7 +3,7 @@
 	desc = "A medical spray bottle, designed for precision application, with an unscrewable cap."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "medspray"
-	item_state = "spraycan"
+	inhand_icon_state = "spraycan"
 	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
 	item_flags = NOBLUDGEON
@@ -53,7 +53,7 @@
 	if(L == user)
 		L.visible_message(span_notice("[user] attempts to [apply_method] [src] on [user.p_them()]self."))
 		if(self_delay)
-			if(!do_mob(user, L, self_delay))
+			if(!do_mob(user, L, self_delay, allow_incap = TRUE, allow_lying = TRUE, public_progbar = TRUE))
 				return
 			if(!reagents || !reagents.total_volume)
 				return

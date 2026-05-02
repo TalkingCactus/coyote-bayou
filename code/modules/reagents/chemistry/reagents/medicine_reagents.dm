@@ -12,7 +12,7 @@
 
 /datum/reagent/medicine/on_mob_life(mob/living/carbon/M)
 	current_cycle++
-	holder.remove_reagent(type, metabolization_rate / M.metabolism_efficiency) //medicine reagents stay longer if you have a better metabolism
+	holder?.remove_reagent(type, metabolization_rate / M.metabolism_efficiency) //medicine reagents stay longer if you have a better metabolism
 
 /datum/reagent/medicine/leporazine
 	name = "Leporazine"
@@ -117,7 +117,7 @@
 			M.adjustBruteLoss(-1*REM, 0, include_roboparts = TRUE) //between 50 and 75, its at half strength
 		else
 			M.adjustBruteLoss(-3*REM, 0, include_roboparts = TRUE) //Otherwise it barely heals anything
-	..()
+	. = ..()
 	. = 1
 
 	switch(M.getFireLoss())
@@ -127,7 +127,7 @@
 			M.adjustFireLoss(-1*REM, 0, include_roboparts = TRUE) //between 50 and 75, its at half strength
 		else
 			M.adjustFireLoss(-3*REM, 0, include_roboparts = TRUE) //Otherwise it barely heals anything
-	..()
+	. = ..()
 	. = 1
 
 	switch(M.getToxLoss())
@@ -137,7 +137,7 @@
 			M.adjustToxLoss(-1*REM, 0) //between 50 and 75, its at half strength
 		else
 			M.adjustToxLoss(-3*REM, 0) //Otherwise it barely heals anything
-	..()
+	. = ..()
 	. = 1
 
 /datum/reagent/medicine/synaptizine
@@ -1342,7 +1342,7 @@
 	M.adjustBruteLoss(-5*REM, FALSE, include_roboparts = TRUE) //A ton of healing - this is a 50 telecrystal investment.
 	M.adjustFireLoss(-5*REM, FALSE, include_roboparts = TRUE)
 	M.adjustOxyLoss(-15 * effect_mult, FALSE)
-	M.adjustToxLoss(-5*REM, FALSE)
+	M.adjustToxLoss(-5*REM, TRUE)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -15*REM)
 	M.adjustCloneLoss(-3*REM, FALSE)
 	M.adjustStaminaLoss(-25*REM,FALSE)
@@ -1364,7 +1364,7 @@
 	M.adjustBruteLoss(-2*REM, FALSE, include_roboparts = TRUE)
 	M.adjustFireLoss(-2*REM, FALSE, include_roboparts = TRUE)
 	M.adjustOxyLoss(-5*REM, FALSE)
-	M.adjustToxLoss(-2*REM, FALSE)
+	M.adjustToxLoss(-2*REM, TRUE)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -5*REM)
 	M.adjustCloneLoss(-1.25*REM, FALSE)
 	M.adjustStaminaLoss(-4*REM,FALSE)
@@ -1635,7 +1635,7 @@
 			M.adjustStaminaLoss(1.5*REM, 0)
 	..()
 	return TRUE
-
+/*
 /datum/reagent/medicine/psicodine
 	name = "Psicodine"
 	description = "Suppresses anxiety and other various forms of mental distress. Overdose causes hallucinations and minor toxin damage."
@@ -1672,7 +1672,7 @@
 	M.adjustToxLoss(1, 0)
 	..()
 	. = 1
-
+*/
 /datum/reagent/medicine/silibinin
 	name = "Silibinin"
 	description = "A thistle derrived hepatoprotective flavolignan mixture that help reverse damage to the liver."
@@ -2060,6 +2060,20 @@
 	. = ..()
 	M.remove_movespeed_mod_immunities(type, list(/datum/movespeed_modifier/damage_slowdown, /datum/movespeed_modifier/damage_slowdown_flying, /datum/movespeed_modifier/monkey_health_speedmod))
 
+/datum/reagent/medicine/critmed/no_crit_pain
+	name = "UNKNOWN SUBSTANCE ERROR: 0xAAAAAA"
+	description = "Unidentifiable substance - 0xAAAAAA"
+	color = "#AAAAAA"
+	health_threshold = 50
+
+/datum/reagent/medicine/critmed/no_crit_pain/on_mob_metabolize(mob/living/M)
+	. = ..()
+	ADD_TRAIT(M, TRAIT_NOCRITPAIN, type)
+
+/datum/reagent/medicine/critmed/no_crit_pain/on_mob_end_metabolize(mob/living/M)
+	. = ..()
+	REMOVE_TRAIT(M, TRAIT_NOCRITPAIN, type)
+
 /// Slow-decaying healing 'med' as a result of listening to good music
 /// Has better effects if it builds up in your system cus of listening longer
 /datum/reagent/medicine/music
@@ -2084,6 +2098,8 @@
 
 /datum/reagent/medicine/music/on_mob_life(mob/living/carbon/M)
 	. = ..()
+	if(volume > max_effect_at)
+		volume = max_effect_at
 	if(!M.can_hear() && prob(5))
 		to_chat(M, span_alert("Boy you wish you could hear that. Probably sounds nice. Too bad you can't!"))
 		return

@@ -20,7 +20,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	attack_hand_unwieldlyness = 0
 
 	///icon state name for inhand overlays
-	var/item_state = null
+	var/inhand_icon_state = null
 	///Icon file for left hand inhand overlays
 	var/lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	///Icon file for right inhand overlays
@@ -58,6 +58,8 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	var/pokesound = 'sound/weapons/tap.ogg'
 	var/usesound = null
 	var/throwhitsound = null
+	var/equipsound = null
+	var/tableplacesound = null
 
 	/// Weight class for how much storage capacity it uses and how big it physically is meaning storages can't hold it if their maximum weight class isn't as high as it.
 	var/w_class = WEIGHT_CLASS_NORMAL
@@ -151,6 +153,8 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	///What dye registry should be looked at when dying this item; see washing_machine.dm
 	var/dying_key
 
+	var/force_harmclick = FALSE
+
 	//Grinder vars
 	var/list/grind_results //A reagent list containing the reagents this item produces when ground up in a grinder - this can be an empty list to allow for reagent transferring only
 	var/list/juice_results //A reagent list containing blah blah... but when JUICED in a grinder!
@@ -190,6 +194,10 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 
 	/// New variable for backstab multiplier
 	var/backstab_multiplier = 1.15 
+	var/shadow = FALSE
+
+	var/hud_type = null
+	var/list/hudwhere
 
 /obj/item/Initialize()
 
@@ -224,6 +232,11 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	/// Allows items to preserve their transform when picked up
 	if(!special_transform && transform != initial(transform))
 		special_transform = transform
+
+	if(!isnull(equipsound))
+		listify(equipsound)
+	if(!isnull(tableplacesound))
+		listify(tableplacesound)
 
 	/// CB Dual Wielding
 	if(force != 0)
@@ -269,6 +282,16 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 
 	if(reskinnable_component)
 		AddComponent(reskinnable_component)
+
+	if(shadow)
+		add_filter("wacky_shadow",10, list(
+			"type"="drop_shadow",
+			"x"=1,
+			"y"=-1,
+			"size"=1,
+			"offset"=0,
+			"color"= "#0000007A"))
+
 
 /obj/item/proc/check_allowed_items(atom/target, not_inside, target_self)
 	if(((src in target) && !target_self) || (!isturf(target.loc) && !isturf(target) && not_inside))
@@ -532,7 +555,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 
 // afterattack() and attack() prototypes moved to _onclick/item_attack.dm for consistency
 
-/obj/item/proc/talk_into(mob/M, input, channel, spans, datum/language/language)
+/obj/item/proc/talk_into(atom/movable/M, message, channel, list/spans, datum/language/language, datum/rental_mommy/chat/momchat)
 	return ITALICS | REDUCE_RANGE
 
 /obj/item/proc/dropped(mob/user)
@@ -550,11 +573,15 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 		. = ITEM_RELOCATED_BY_DROPPED
 	user?.update_equipment_speed_mods()
 	remove_hud_actions(user)
+	if(hud_type && istype(user))
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
+		H.remove_hud_from(user)
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_PICKUP, user)
+	play_equip_sound()
 	item_flags |= IN_INVENTORY
 	add_hud_actions(user)
 
@@ -601,6 +628,15 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	user.update_equipment_speed_mods()
 	if(user.get_active_held_item() != src && user.get_inactive_held_item() != src)
 		unwield(user)
+	if(hud_type)
+		if(slot in hudwhere)
+			var/datum/atom_hud/H = GLOB.huds[hud_type]
+			H.add_hud_to(user)
+		else
+			if(istype(user))
+				var/datum/atom_hud/H = GLOB.huds[hud_type]
+				H.remove_hud_from(user)
+
 
 //Overlays for the worn overlay so you can overlay while you overlay
 //eg: ammo counters, primed grenade flashing, etc.
@@ -620,17 +656,17 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 //If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
 //Set disable_warning to TRUE if you wish it to not give you outputs.
 /obj/item/proc/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE, clothing_check = FALSE, list/return_warning)
-	if(!M)
+	if(!equipper)
 		return FALSE
 
-	return M.can_equip(src, slot, disable_warning, bypass_equip_delay_self, clothing_check, return_warning)
+	return equipper.can_equip(src, slot, disable_warning, bypass_equip_delay_self, clothing_check, return_warning)
 
 /obj/item/verb/verb_pickup()
 	set src in oview(1)
 	set category = "Object"
 	set name = "Pick up"
 
-	if(usr.incapacitated() || !Adjacent(usr) || usr.lying)
+	if(usr.incapacitated(allow_crit = TRUE) || !Adjacent(usr) || usr.lying)
 		return
 
 	if(usr.get_active_held_item() == null) // Let me know if this has any problems -Yota
@@ -1285,7 +1321,27 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 /obj/item/attack(mob/living/M, mob/living/user, attackchain_flags = NONE, damage_multiplier = 1, damage_override)
 	// Check if the user is behind the target
 	if(get_dir(user, M) == M.dir && isliving(M))
-		damage_multiplier = backstab_multiplier // Apply the backstab multiplier
+		var/int_mod = 1
+		switch(user.get_stat(STAT_INTELLIGENCE)) // COOLSTAT IMPLEMENTATION: INTELLIGENCE
+			if(0, 1)
+				int_mod = -1 // lol
+			if(2)
+				int_mod = 1
+			if(3)
+				int_mod = 1
+			if(4)
+				int_mod = 1
+			if(5)
+				int_mod = 1
+			if(6)
+				int_mod = 1.1
+			if(7)
+				int_mod = 1.25
+			if(8)
+				int_mod = 1.50
+			if(9)
+				int_mod = 1.75
+		damage_multiplier = (backstab_multiplier * int_mod) // Apply the backstab multiplier
 		playsound(user.loc, 'sound/effects/dismember.ogg', 50, 1, -1) // Play a backstab sound
 		to_chat(user, "<span class='notice'>You backstab [M]!</span>")
 	. = ..()
@@ -1296,3 +1352,31 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 		var/mob/living/target = over
 		L.do_give(target)
 	return ..()
+
+/obj/item/proc/play_equip_sound(volume=50)
+	if(!LAZYLEN(equipsound))
+		return
+	playsound(src, safepick(equipsound), volume, TRUE)
+
+/obj/item/proc/after_placed_on_table(obj/structure/table, volume=50)
+	if(!LAZYLEN(tableplacesound))
+		return
+	playsound(src, safepick(tableplacesound), volume, TRUE)
+
+/obj/item/emp_act(severity)
+	. = ..()
+	if(obj_flags & EMAGGED || . & EMP_PROTECT_SELF)
+		return
+	obj_flags |= EMAGGED
+	desc = "[desc] The display is flickering slightly."
+
+/obj/item/emag_act(mob/user)
+	. = ..()
+	if(obj_flags & EMAGGED)
+		return
+	obj_flags |= EMAGGED
+	to_chat(user, span_warning("PZZTTPFFFT"))
+	desc = "[desc] The display is flickering slightly."
+	return TRUE
+
+

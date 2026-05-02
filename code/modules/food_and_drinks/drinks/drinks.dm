@@ -157,7 +157,7 @@
 	. = ..()
 	if (!istype(src_location) || !istype(over_location))
 		return
-	if (!user || user.incapacitated() || !user.Adjacent(src))
+	if (!user || user.incapacitated(allow_crit = TRUE) || !user.Adjacent(src))
 		return
 	if (!(locate(/obj/structure/table) in src_location) || !(locate(/obj/structure/table) in over_location))
 		return
@@ -295,7 +295,7 @@
 	name = "mug"
 	desc = "A drink served in a classy mug."
 	icon_state = "tea"
-	item_state = "coffee"
+	inhand_icon_state = "coffee"
 	spillable = TRUE
 
 /obj/item/reagent_containers/food/drinks/mug/on_reagent_change(changetype)
@@ -372,7 +372,7 @@
 	name = "Magm-Ale"
 	desc = "A true dorf's drink of choice."
 	icon_state = "alebottle"
-	item_state = "beer"
+	inhand_icon_state = "beer"
 	list_reagents = list(/datum/reagent/consumable/ethanol/ale = 30)
 	foodtype = GRAIN | ALCOHOL
 

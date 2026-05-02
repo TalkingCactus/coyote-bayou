@@ -4,7 +4,7 @@
 	desc = "The massive pressurized fuel tank for a M2 Flamethrower."
 	icon = 'icons/obj/guns/flamethrower.dmi'
 	icon_state = "m2_flamethrower_back"
-	item_state = "m2_flamethrower_back"
+	inhand_icon_state = "m2_flamethrower_back"
 	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
 	slot_flags = INV_SLOTBIT_BACK
@@ -12,8 +12,8 @@
 	var/obj/item/gun/ballistic/m2flamethrower/gun
 	var/armed = 0 //whether the gun is attached, 0 is attached, 1 is the gun is wielded.
 	var/overheat = 0
-	var/overheat_max = 12
-	var/heat_diffusion = 1
+	var/overheat_max = 30
+	var/heat_diffusion = 3
 
 /obj/item/m2flamethrowertank/Initialize()
 	. = ..()
@@ -95,10 +95,10 @@
 
 /obj/item/gun/ballistic/m2flamethrower
 	name = "\improper M2 Flamethrower"
-	desc = "A pre-war M2 Flamethrower, commonly found in National Guard armoies. This one has NCR armory markings and is issued to combat engineers."
+	desc = "A Pre-Fall M2 Flamethrower, commonly found in National Guard armoies. This one has NCR armory markings and is issued to combat engineers."
 	icon = 'icons/obj/guns/flamethrower.dmi'
 	icon_state = "m2_flamethrower_on"
-	item_state = "m2flamethrower"
+	inhand_icon_state = "m2flamethrower"
 	weapon_class = WEAPON_CLASS_RIFLE
 	flags_1 = CONDUCT_1
 	slowdown = 0.3
@@ -117,7 +117,7 @@
 	var/obj/item/m2flamethrowertank/ammo_pack
 	init_firemodes = list(
 		/datum/firemode/burst/three,
-		/datum/firemode/semi_auto
+		/datum/firemode/automatic/rpm150
 	)
 
 /obj/item/gun/ballistic/m2flamethrower/Initialize()

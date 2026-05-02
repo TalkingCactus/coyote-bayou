@@ -256,17 +256,17 @@
 		/obj/item/gun/energy/ionrifle/carbine,
 		/obj/item/gun/energy/tesla/teslacannon,
 		/obj/item/melee/onehanded/dragonfire,
-		/obj/item/melee/unarmed/deathclawgauntlet,
+		/obj/item/melee/unarmed/aethergiestgauntlet,
 		/obj/item/melee/unarmed/powerfist/goliath,
-		/obj/item/melee/powered/ripper/prewar,
-		/obj/item/twohanded/spear/bonespear/deathclaw,
+		/obj/item/melee/powered/ripper/prefall,
+		/obj/item/twohanded/spear/bonespear/aethergiest,
 		/obj/item/twohanded/sledgehammer/atomsjudgement,
 		/obj/item/sord,
 		/obj/item/melee/transforming/plasmacutter/regular/adam,
 		/obj/item/gun/ballistic/fatman,
 		/obj/item/gun/ballistic/rifle/hunting/paciencia,
 		/obj/item/gun/ballistic/revolver/shotpistol/flair_gun,
-		/obj/item/gun/energy/laser/cranklasergun/tg/particalcannon,
+		/obj/item/gun/energy/laser/tg/particlecannon,
 		/obj/item/gun/energy/laser/xcomufolaser,
 		/obj/item/gun/energy/laser/LaserAK,
 	)
@@ -410,7 +410,7 @@
 	cost = 450
 	unit_name = "high-quality meat products"
 	export_types = list(/obj/item/reagent_containers/food/snacks/meat/slab/wolf,
-						/obj/item/reagent_containers/food/snacks/meat/slab/deathclaw)
+						/obj/item/reagent_containers/food/snacks/meat/slab/aethergiest)
 
 /datum/export/item/processedmeats
 	cost = 20 // Gotta be small so people cant cheese the meat with a food processor
@@ -430,22 +430,22 @@
 				/obj/item/book/granter/trait/explosives,
 				/obj/item/book/granter/trait/techno,
 				/obj/item/book/granter/crafting_recipe/ODF,
-				/obj/item/book/granter/action/drink_fling,
-				/obj/item/book/granter/crafting_recipe/gunsmith_one)
+				/obj/item/book/granter/action/drink_fling,)
+				// /obj/item/book/granter/crafting_recipe/gunsmith_one)
 
 /datum/export/item/traitbooks
 	cost = 1000
 	unit_name = "high-quality technical manual"
 	export_types = list(/obj/item/book/granter/trait/lowsurgery,
 				/obj/item/book/granter/trait/chemistry,
-				/obj/item/book/granter/trait/trekking,
+				// /obj/item/book/granter/trait/trekking,
 				/obj/item/book/granter/trait/pa_wear,
 				/obj/item/book/granter/trait/explosives,
 				/obj/item/book/granter/trait/explosives_advanced,
-				/obj/item/book/granter/trait/rifleman,
-				/obj/item/book/granter/crafting_recipe/gunsmith_two,
-				/obj/item/book/granter/crafting_recipe/gunsmith_three,
-				/obj/item/book/granter/crafting_recipe/gunsmith_four)
+				/obj/item/book/granter/trait/rifleman,)
+				// /obj/item/book/granter/crafting_recipe/gunsmith_two,
+				// /obj/item/book/granter/crafting_recipe/gunsmith_three,
+				// /obj/item/book/granter/crafting_recipe/gunsmith_four)
 
 /datum/export/item/crops
 	cost = 50
@@ -632,7 +632,7 @@
 	/obj/item/toy/talking,
 	)
 
-/datum/export/item/prewarsalvage
+/datum/export/item/prefallsalvage
 	cost = 62.5 // 2000 credits or 200 caps for the shop per full bag. Avg 80 caps for customers per bag
 	unit_name = "saleable scrap"
 	export_types = list(/obj/item/salvage/low,

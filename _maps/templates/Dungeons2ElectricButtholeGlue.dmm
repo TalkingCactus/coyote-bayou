@@ -52,8 +52,7 @@
 /obj/machinery/porta_turret/f13/turret_22lr/burstfire/robot,
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "at" = (
@@ -273,11 +272,10 @@
 	},
 /area/f13/forest)
 "bN" = (
-/obj/structure/sign/poster/prewar/poster73,
+/obj/structure/sign/poster/prefall/poster73,
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "bO" = (
@@ -301,11 +299,10 @@
 	},
 /area/f13/forest)
 "ca" = (
-/obj/structure/sign/poster/prewar/poster79,
+/obj/structure/sign/poster/prefall/poster79,
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
 	icon_state = "r_wall";
-	smooth = 1;
 	opacity = 0
 	},
 /area/science/robotics)
@@ -498,7 +495,7 @@
 	},
 /area/f13/forest)
 "dm" = (
-/obj/structure/sign/poster/prewar/poster61,
+/obj/structure/sign/poster/prefall/poster61,
 /turf/closed/indestructible/f13vaultrusted{
 	name = "rusty reinforced wall"
 	},
@@ -865,8 +862,7 @@
 /obj/effect/turf_decal/delivery/red,
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "fk" = (
@@ -1547,7 +1543,7 @@
 /obj/structure/chair/comfy/shuttle{
 	desc = "A comfortable, secure seat. It has a futuristic vouge feel.";
 	dir = 4;
-	name = "prewar lounge chair";
+	name = "prefall lounge chair";
 	pixel_x = 10
 	},
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1712,8 +1708,7 @@
 "lk" = (
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "lo" = (
@@ -1770,19 +1765,17 @@
 	},
 /area/science/robotics)
 "lL" = (
-/obj/structure/sign/poster/prewar/poster80,
+/obj/structure/sign/poster/prefall/poster80,
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "lO" = (
 /obj/machinery/porta_turret/f13/turret_shotgun/robot,
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "lP" = (
@@ -1806,8 +1799,7 @@
 	},
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "lU" = (
@@ -1831,8 +1823,7 @@
 /obj/machinery/meter,
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "mp" = (
@@ -2339,8 +2330,7 @@
 /obj/structure/sign/plaques/deempisi,
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "pR" = (
@@ -2406,8 +2396,7 @@
 "qp" = (
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics/lab)
 "qu" = (
@@ -2843,8 +2832,7 @@
 /obj/machinery/poweredfans,
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "sY" = (
@@ -2895,8 +2883,7 @@
 /obj/machinery/computer/security/telescreen/vault,
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "to" = (
@@ -2984,8 +2971,7 @@
 	},
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "tR" = (
@@ -3058,8 +3044,7 @@
 /obj/structure/sign/poster/contraband/communist_state,
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "up" = (
@@ -3198,8 +3183,7 @@
 /obj/machinery/porta_turret/f13/turret_556/robot,
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "vz" = (
@@ -3649,8 +3633,7 @@
 /obj/structure/sign/warning/fire,
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "yc" = (
@@ -3939,8 +3922,7 @@
 /obj/structure/sign/poster/contraband/fun_police,
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "AJ" = (
@@ -4069,11 +4051,10 @@
 	},
 /area/science/robotics)
 "BN" = (
-/obj/structure/sign/poster/prewar/poster60,
+/obj/structure/sign/poster/prefall/poster60,
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "BR" = (
@@ -4204,7 +4185,6 @@
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
 	icon_state = "r_wall";
-	smooth = 1;
 	opacity = 0
 	},
 /area/science/robotics)
@@ -4389,8 +4369,7 @@
 	},
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "DV" = (
@@ -4562,7 +4541,7 @@
 /obj/structure/chair/comfy/shuttle{
 	desc = "A comfortable, secure seat. It has a very futuristic vouge feel.";
 	dir = 1;
-	name = "prewar lounge chair";
+	name = "prefall lounge chair";
 	pixel_y = 11
 	},
 /turf/open/floor/plasteel/f13/vault_floor/misc/vaultrust{
@@ -4579,8 +4558,7 @@
 /obj/machinery/porta_turret/f13/turret_9mm/burstfire/robot,
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "Fp" = (
@@ -5175,8 +5153,7 @@
 /obj/machinery/porta_turret/f13/turret_shotgun/burstfire/robot,
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "Jn" = (
@@ -5254,8 +5231,7 @@
 /obj/structure/sign/poster/contraband/syndicate_pistol,
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "JP" = (
@@ -5399,8 +5375,7 @@
 /obj/structure/decoration/vent,
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "KF" = (
@@ -5780,8 +5755,7 @@
 /obj/structure/falsewall/reinforced,
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "Nd" = (
@@ -6223,8 +6197,7 @@
 /obj/machinery/poweredfans,
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics/lab)
 "QB" = (
@@ -6525,8 +6498,7 @@
 /obj/structure/sign/poster/official/wtf_is_co2,
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "SG" = (
@@ -6641,7 +6613,7 @@
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
-/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
@@ -7223,8 +7195,7 @@
 /obj/effect/turf_decal/delivery/red,
 /turf/closed/indestructible/opshuttle{
 	icon = 'icons/turf/walls/reinforced_wall.dmi';
-	icon_state = "r_wall";
-	smooth = 1
+	icon_state = "r_wall"
 	},
 /area/science/robotics)
 "Xo" = (

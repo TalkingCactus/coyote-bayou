@@ -5,8 +5,9 @@
 
 //Securitron  TV Head jackass
 /mob/living/simple_animal/hostile/securitron
+	bounty = 25
 	name = "securitron"
-	desc = "A pre-War type of securitron.<br>Extremely dangerous machine."
+	desc = "A Pre-Fall type of securitron.<br>Extremely dangerous machine."
 	icon = 'icons/fallout/mobs/robots/wasterobots.dmi'
 	icon_state = "securitron"
 	icon_living = "securitron"
@@ -50,7 +51,7 @@
 	//tiles within they start making noise, does count the mobs tile
 
 	emote_hear = list("Beeps.")
-	speak = list("Stop Right There Criminal.")
+	//speak = list("Stop Right There Criminal.")
 	harm_intent_damage = 8
 	melee_damage_lower = 5
 	melee_damage_upper = 10
@@ -76,7 +77,7 @@
 		SP_DISTANT_SOUND(PISTOL_LIGHT_DISTANT_SOUND),
 		SP_DISTANT_RANGE(PISTOL_LIGHT_RANGE_DISTANT)
 	)
-	loot = list(/obj/effect/spawner/lootdrop/f13/common, /obj/effect/gibspawner/ipc/bodypartless)
+	loot = list()
 	loot_drop_amount = 1
 	loot_amount_random = TRUE
 	var/explodes_on_death = FALSE
@@ -87,6 +88,7 @@
 	var/ex_flames = 6
 
 /mob/living/simple_animal/hostile/securitron/nsb //NSB + Raider Bunker specific
+	bounty = 30
 	name = "Securitron"
 	faction = list("raider")
 	obj_damage = 300
@@ -143,8 +145,9 @@
 
 //Sentry Bot
 /mob/living/simple_animal/hostile/securitron/sentrybot
+	bounty = 80
 	name = "sentry bot"
-	desc = "A pre-war military robot armed with a deadly gatling laser and covered in thick armor plating."
+	desc = "A Pre-Fall military robot armed with a deadly gatling laser and covered in thick armor plating."
 	icon_state = "sentrybot"
 	icon_living = "sentrybot"
 	icon_dead = "sentrybot_dead"
@@ -197,10 +200,9 @@
 		SP_DISTANT_SOUND(LASER_DISTANT_SOUND),
 		SP_DISTANT_RANGE(LASER_RANGE_DISTANT)
 	)
-	loot = list(/obj/effect/spawner/lootdrop/f13/uncommon,
+	loot = list(
 		/obj/effect/decal/cleanable/robot_debris,
 		/obj/item/stack/crafting/electronicparts/five,
-		/obj/item/stock_parts/cell/ammo/mfc/recycled,
 		/obj/effect/gibspawner/ipc/bodypartless)
 	loot_drop_amount = 3
 	loot_amount_random = TRUE
@@ -214,8 +216,9 @@
 
 // Lil chew-chew
 /mob/living/simple_animal/hostile/securitron/sentrybot/chew
+	bounty = 500
 	name = "lil' chew-chew"
-	desc = "An oddly scorched pre-war military robot armed with a deadly gatling laser and covered in thick, oddly blue armor plating, the name Lil' Chew-Chew scratched onto it's front armour crudely, highlighted by small bits of white paint. There seems to be an odd pack on the monstrosity of a sentrie's back, a chute at the bottom of it - there's the most scorch-marks on the robot here, so it's safe to assume this robot is capable of explosions. Better watch out!"
+	desc = "An oddly scorched Pre-Fall military robot armed with a deadly gatling laser and covered in thick, oddly blue armor plating, the name Lil' Chew-Chew scratched onto it's front armour crudely, highlighted by small bits of white paint. There seems to be an odd pack on the monstrosity of a sentrie's back, a chute at the bottom of it - there's the most scorch-marks on the robot here, so it's safe to assume this robot is capable of explosions. Better watch out!"
 	extra_projectiles = 6
 	health = 1000
 	maxHealth = 1000 //CHONK
@@ -225,7 +228,7 @@
 	color = "#75FFE2"
 	aggro_vision_range = 15
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1 //cannot self-harm with it's explosion spam
-	loot = list(/obj/effect/spawner/lootdrop/f13/rare, /obj/effect/gibspawner/ipc/bodypartless)
+	loot = list(/obj/effect/gibspawner/ipc/bodypartless)
 	loot_drop_amount = 10
 	loot_amount_random = TRUE
 
@@ -244,8 +247,9 @@
 
 //Raider friendly Sentry bot with non-lethals
 /mob/living/simple_animal/hostile/securitron/sentrybot/nsb/riot //NSB + Raider Bunker specific.
+	bounty = 300
 	name = "riot-control sentry bot"
-	desc = "A pre-war military robot armed with a modified breacher shotgun and covered in thick armor plating."
+	desc = "A Pre-Fall military robot armed with a modified breacher shotgun and covered in thick armor plating."
 	projectilesound = 'sound/f13weapons/riot_shotgun.ogg'
 	projectiletype = /obj/item/projectile/bullet/shotgun_beanbag
 	retreat_distance = 0
@@ -283,7 +287,7 @@
 //Junkers
 /mob/living/simple_animal/hostile/securitron/sentrybot/self_destruct
 	name = "explosive sentry bot"
-	desc = "A pre-war military robot armed with a deadly gatling laser and covered in thick armor plating. Don't get too close to this one, it looks like it's rigged to blow!"
+	desc = "A Pre-Fall military robot armed with a deadly gatling laser and covered in thick armor plating. Don't get too close to this one, it looks like it's rigged to blow!"
 	maxHealth = 160
 	health = 160
 	color = "#B85C00"

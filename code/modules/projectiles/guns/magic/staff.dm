@@ -11,7 +11,7 @@
 	fire_sound = 'sound/magic/staff_change.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/change
 	icon_state = "staffofchange"
-	item_state = "staffofchange"
+	inhand_icon_state = "staffofchange"
 
 /obj/item/gun/magic/staff/animate
 	name = "staff of animation"
@@ -19,7 +19,7 @@
 	fire_sound = 'sound/magic/staff_animation.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/animate
 	icon_state = "staffofanimation"
-	item_state = "staffofanimation"
+	inhand_icon_state = "staffofanimation"
 
 /obj/item/gun/magic/staff/healing
 	name = "staff of resurrection"
@@ -27,7 +27,7 @@
 	fire_sound = 'sound/magic/staff_healing.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/heal
 	icon_state = "staffofhealing"
-	item_state = "staffofhealing"
+	inhand_icon_state = "staffofhealing"
 	max_charges = 1
 	recharge_rate = 10 MINUTES
 
@@ -37,7 +37,7 @@
 	fire_sound = 'sound/magic/staff_chaos.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/chaos
 	icon_state = "staffofchaos"
-	item_state = "staffofchaos"
+	inhand_icon_state = "staffofchaos"
 	max_charges = 10
 	recharge_rate = 1 MINUTES
 	no_den_usage = 1
@@ -55,7 +55,7 @@
 	fire_sound = 'sound/magic/mystical.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/chaos
 	icon_state = "triheal"
-	item_state = "broom"
+	inhand_icon_state = "broom"
 	max_charges = 30
 	recharge_rate = 6 SECONDS
 	var/allowed_projectile_types = list(/obj/item/projectile/magic/healbrute, /obj/item/projectile/magic/healburn, /obj/item/projectile/magic/healtoxin)
@@ -74,7 +74,7 @@
 	fire_sound = 'sound/magic/staff_door.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/door
 	icon_state = "staffofdoor"
-	item_state = "staffofdoor"
+	inhand_icon_state = "staffofdoor"
 	max_charges = 10
 	recharge_rate = 30 SECONDS
 	no_den_usage = 1
@@ -85,7 +85,7 @@
 	fire_sound = 'sound/magic/fireball.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/spellblade
 	icon_state = "spellblade"
-	item_state = "spellblade"
+	inhand_icon_state = "spellblade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	hitsound = 'sound/weapons/rapierhit.ogg'
@@ -108,7 +108,7 @@
 	//fire_sound = 'sound/magic/fireball.ogg'
 	//ammo_type = /obj/item/projectile/spellcard/sword
 	//icon_state = "spellblade"
-	//item_state = "spellblade"
+	//inhand_icon_state = "spellblade"
 	//lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	//righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	//hitsound = 'sound/weapons/rapierhit.ogg'
@@ -128,7 +128,7 @@
 	fire_sound = 'sound/magic/staff_change.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/locker
 	icon_state = "locker"
-	item_state = "locker"
+	inhand_icon_state = "locker"
 	max_charges = 6
 	recharge_rate = 10 SECONDS
 
@@ -179,36 +179,41 @@
 
 /****************/
 //Staff of Magic Missile//
-//Basic Mage's Staff - Shotgun adjacent (burst fire because I can't figure out true scattershot)/
+//Basic Mage's Staff - Shotgun with bayonet/
 /***************/
 
 /obj/item/gun/magic/staff/kelpmagic/magicmissile
 	name = "staff of magic missile"
 	desc = "This staff's unusual design allows it to be easily aimed from the hip and be used as a slashing weapon. Attuned to this staff is an enhanced version of the Magic Missile spell."
 	icon_state = "mmstaff"
-	max_charges = 24 // Tee hee, Kelp doesnt know that staves don't like burst fire, sshh, nobody tell em
-	recharge_rate = 10 SECONDS
+	max_charges = 6
+	recharge_rate = 8 SECONDS
 	ammo_type = /obj/item/ammo_casing/magic/kelpmagic/magicmissile/advanced
-	force_wielded = 37 // Practical all around! May change later.
+	force_wielded = 40 // Practical all around! May change later.
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "cut")
 	sharpness = SHARP_EDGED
+	init_recoil = AUTOCARBINE_RECOIL(1, 1)
 	init_firemodes = list(
-		/datum/firemode/burst/three/fast,
 		/datum/firemode/semi_auto
 	)
 
 /obj/item/ammo_casing/magic/kelpmagic/magicmissile/advanced
 	projectile_type = /obj/item/projectile/magic/kelpmagic/magicmissile/advanced
+	pellets = 6
 
 /obj/item/projectile/magic/kelpmagic/magicmissile/advanced
 	name = "greater magic missile"
 	icon_state = "arcane_barrage"
-	damage = 25 // same as the tribeam
-	damage_low = 20
+	damage = 40
+	damage_low = 30
 	damage_high = 50
 	damage_type = BURN
 	flag = "laser" // "magic" ignores all armor, "laser" checks laser, "energy" is plasma
+	spread = BULLET_SPREAD_SURPLUS
+	recoil = BULLET_RECOIL_SHOTGUN_PELLET
+	wound_falloff_tile = BULLET_WOUND_FALLOFF_PISTOL_LIGHT
+	zone_accuracy_type = ZONE_WEIGHT_SHOTGUN
 
 /****************/
 //Staff of Fireball//
@@ -249,7 +254,7 @@
 	icon_state = "lightningstaff"
 	fire_sound = 'sound/f13weapons/TeslaCannonFire.ogg'
 	max_charges = 12
-	recharge_rate = 30 SECONDS
+	recharge_rate = 8 SECONDS
 	ammo_type = /obj/item/ammo_casing/magic/kelpmagic/sparks/thunder
 	init_firemodes = list(
 		/datum/firemode/semi_auto/slow
@@ -283,7 +288,7 @@
 
 /obj/item/projectile/magic/kelpmagic/sparks/thunder/lowpower
 	name = "low power lightning bolt"
-	flag = "laser" 
+	flag = "laser"
 	damage = 40
 	damage_low = 40
 	damage_high = 60
@@ -313,8 +318,8 @@
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 	icon_state = "medstaff"
-	item_state = "staff"
-	w_class = WEIGHT_CLASS_BULKY
+	inhand_icon_state = "staff"
+	w_class = WEIGHT_CLASS_NORMAL
 	force = 20
 	force_unwielded = 20
 	force_wielded = 30
@@ -330,7 +335,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 	icon_state = "medstaff"
-	item_state = "staff"
+	inhand_icon_state = "staff"
 	w_class = WEIGHT_CLASS_BULKY
 	force = 20
 	force_unwielded = 20
@@ -378,7 +383,7 @@
 	damage_type = BURN
 	flag = "laser"
 	supereffective_damage = 5 //This should make it deal 5 damage regardless of armor
-	supereffective_faction = list("hostile", "ant", "supermutant", "deathclaw", "cazador", "raider", "china", "gecko", "wastebot", "yaoguai")
+	supereffective_faction = list("hostile", "ant", "supermutant", "aethergiest", "cazador", "raider", "china", "gecko", "wastebot", "yaoguai")
 
 /obj/item/gun/magic/staff/kelpmagic/acidstaff/lowpower
 	name = "low power staff of acid"
@@ -403,7 +408,7 @@
 	name = "staff of alchemical magma"
 	desc = "A moderately sized staff made of black bronze that seems to be a hodgepodge of clockwork components connected together. A regenerating fuel cell rests along the side, with a tube connecting to a bunsen burner at the top that expels enflamed fuel that burns as hot as magma. A design of an arcane staff thats more mechanical than arcane, designed by a wandering artificer from a far off realm."
 	icon_state = "staff of alchemy"
-	item_state = "staff of alchemy"
+	inhand_icon_state = "staff of alchemy"
 	mob_overlay_icon = 'icons/fallout/onmob/backslot_weapon.dmi'
 	fire_sound = 'sound/weapons/fire03.ogg'
 	max_charges = 20
@@ -420,22 +425,26 @@
 /obj/item/projectile/magic/kelpmagic/magmaspray
 	name = "magma spray"
 	icon_state = "nuclear" //This should make enemies with good burn armor resist the magma staff very well
-	damage = 35
-	damage_low = 30  // Does about 5-10 more damage than the magic missile wand per projectile, but the magic wand fires 6, this fires 2
-	damage_high = 40 
+	damage = 25
+	damage_low = 20  // Does about 5-10 more damage than the magic missile wand per projectile, but the magic wand fires 6, this fires 2
+	damage_high = 35
 	damage_type = BURN
 	range = 3
 	pixels_per_second = 275
 	flag = "laser"
-	supereffective_damage = 1 //Reduced number of pellets + reduced super-effective should make this less powerful against all enemies
-	supereffective_faction = list("hostile", "ant", "supermutant", "deathclaw", "cazador", "raider", "china", "gecko", "wastebot", "yaoguai") 
+	supereffective_damage = 2 //Reduced number of pellets + reduced super-effective should make this less powerful against all enemies
+	supereffective_faction = list("hostile", "ant", "supermutant", "aethergiest", "cazador", "raider", "china", "gecko", "wastebot", "yaoguai")
+	spread = BULLET_SPREAD_SURPLUS
+	recoil = BULLET_RECOIL_SHOTGUN_PELLET
+	wound_falloff_tile = BULLET_WOUND_FALLOFF_PISTOL_LIGHT
+	zone_accuracy_type = ZONE_WEIGHT_SHOTGUN
 
 //weak version
 /obj/item/gun/magic/staff/kelpmagic/flamethrower/weak
 	name = "low power staff of magma"
 	desc = "A moderately sized staff made of black bronze that seems to be a hodgepodge of clockwork components connected together. A regenerating fuel cell rests along the side, with a tube connecting to a bunsen burner at the top that expels enflamed fuel that burns as hot as magma. A design of an arcane staff thats more mechanical than arcane, designed by a wandering artificer from a far off realm."
 	icon_state = "staff of alchemy"
-	item_state = "staff of alchemy"
+	inhand_icon_state = "staff of alchemy"
 	mob_overlay_icon = 'icons/fallout/onmob/backslot_weapon.dmi'
 	fire_sound = 'sound/weapons/fire03.ogg'
 	color = "#ac233e"

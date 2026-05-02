@@ -6,6 +6,7 @@
 ///////////////
 
 /mob/living/simple_animal/hostile/giantant
+	bounty = 20
 	name = "giant ant"
 	desc = "A giant ant with twitching, darting antennae. Its outsides are a mixture of crusted, unrotting rock and chitin that bounce off bullets and melee weapons. Hardened insides compact once valueless sand and dirt to gemstones. Many a fool in their search for wealth have become part of the gemstones. Can be butchered down the thorax for minerals and shinies."
 	icon = 'icons/fallout/mobs/animals/insects.dmi'
@@ -16,7 +17,7 @@
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	mob_armor = ARMOR_VALUE_ANTS
 	speak_chance = 0
-	move_to_delay = 3
+	move_to_delay = 4
 	// m2d 3 = standard, less is fast, more is slower.
 
 	retreat_distance = 0
@@ -32,7 +33,7 @@
 	//tiles within they start making noise, does count the mobs tile
 
 	speak_emote = list("clacks", "chitters", "snips", "snaps")
-	emote_see = list("waggles its antenna", "clicks its mandibles", "picks up your scent", "goes on the hunt")
+	// emote_see = list("waggles its antenna", "clicks its mandibles", "picks up your scent", "goes on the hunt")
 	attack_verb_simple = list ("rips", "tears", "stings")
 	turns_per_move = 5
 	guaranteed_butcher_results = list(/obj/item/stack/sheet/sinew = 1, /obj/item/reagent_containers/food/snacks/meat/slab/ant_meat = 2, /obj/effect/spawner/lootdrop/f13/deadantloot = 1)
@@ -62,7 +63,7 @@
 	blood_volume = 0
 	decompose = FALSE
 	tastes = list("dirt" = 1, "sand" = 1, "metal?" = 1)
-	loot = list(/obj/effect/spawner/lootdrop/f13/common, /obj/effect/gibspawner/larva)
+	loot = list(/obj/effect/gibspawner/larva)
 	loot_drop_amount = 1
 	loot_amount_random = TRUE
 
@@ -75,6 +76,7 @@
 
 // FIREANT
 /mob/living/simple_animal/hostile/fireant
+	bounty = 25
 	name = "fireant"
 	desc = "A large reddish ant. The furnace it holds inside itself blasts intruders and the dirt it chews with flaming heat. Its insides contain more gemstones than its unremarkable kin, accessible by butchering them straight down the thorax."
 	icon = 'icons/fallout/mobs/animals/insects.dmi'
@@ -111,9 +113,13 @@
 	decompose = FALSE
 	a_intent = INTENT_HARM
 	blood_volume = 0
-	loot = list(/obj/effect/spawner/lootdrop/f13/uncommon, /obj/effect/gibspawner/larva)
+	loot = list(/obj/effect/gibspawner/larva)
 	loot_drop_amount = 1
 	loot_amount_random = TRUE
+	extra_projectiles = 3
+	ranged = TRUE
+	projectiletype = /obj/item/projectile/magic/kelpmagic/magmaspray/weak
+	projectilesound = 'sound/weapons/fire03.ogg'
 
 /mob/living/simple_animal/hostile/fireant/Initialize()
 	. = ..()
@@ -121,7 +127,7 @@
 /mob/living/simple_animal/hostile/fireant/Aggro()
 	..()
 	summon_backup(10)
-
+/*
 /mob/living/simple_animal/hostile/fireant/AttackingTarget()
 	. = ..()
 	var/atom/my_target = get_target()
@@ -129,9 +135,10 @@
 		return
 	var/mob/living/carbon/human/H = my_target
 	H.reagents.add_reagent(/datum/reagent/hellwater, 1)
-
+*/
 // ANT QUEEN
 /mob/living/simple_animal/hostile/giantantqueen
+	bounty = 300
 	name = "giant ant queen"
 	desc = "The queen of a giant ant colony. Butchering it seems like a good way to a pretty penny."
 	icon = 'icons/fallout/mobs/animals/antqueen.dmi'
@@ -176,7 +183,7 @@
 	var/spawn_time = 30 SECONDS
 	//var/spawn_text = "hatches from"
 	blood_volume = 0
-	loot = list(/obj/effect/spawner/lootdrop/f13/rare, /obj/effect/gibspawner/larva)
+	loot = list(/obj/effect/gibspawner/larva)
 	loot_drop_amount = 5
 	loot_amount_random = TRUE
 
@@ -207,6 +214,7 @@
 /////////////////
 
 /mob/living/simple_animal/hostile/radscorpion
+	bounty = 30
 	name = "giant radscorpion"
 	desc = "A mutated arthropod with an armored carapace and a powerful sting."
 	icon = 'icons/fallout/mobs/animals/insects.dmi'
@@ -224,7 +232,7 @@
 	waddle_amount = 3
 	waddle_up_time = 1
 	waddle_side_time = 1
-	move_to_delay = 3
+	move_to_delay = 4
 	// m2d 3 = standard, less is fast, more is slower.
 
 	retreat_distance = 0
@@ -256,7 +264,7 @@
 	var/scorpion_color = "radscorpion" //holder for icon set
 	var/list/icon_sets = list("radscorpion", "radscorpion_blue", "radscorpion_black")
 	blood_volume = 0
-	loot = list(/obj/effect/spawner/lootdrop/f13/uncommon, /obj/effect/gibspawner/larva)
+	loot = list(/obj/effect/gibspawner/larva)
 	loot_drop_amount = 1
 	loot_amount_random = TRUE
 	emote_taunt = list("snips")
@@ -288,6 +296,7 @@
 
 // BLACK RADSCORPION - a little tougher and slower
 /mob/living/simple_animal/hostile/radscorpion/black
+	bounty = 35
 	name = "giant rad scorpion"
 	desc = "A giant irradiated scorpion with a black exoskeleton. Its appearance makes you shudder in fear.<br>This one has giant pincers."
 	icon_state = "radscorpion_black"
@@ -304,6 +313,7 @@
 
 // BLUE RADSCORPION - a little weaker and faster
 /mob/living/simple_animal/hostile/radscorpion/blue
+	bounty = 25
 	name = "giant rad scorpion"
 	desc = "A giant irradiated scorpion with a bluish exoskeleton. Slighly smaller and faster than its reddish cousin."
 	icon_state = "radscorpion_blue"
@@ -321,6 +331,7 @@
 /////////////
 
 /mob/living/simple_animal/hostile/cazador
+	bounty = 20
 	name = "cazador"
 	desc = "A mutated insect known for its fast speed, deadly sting, and being huge bastards."
 	icon = 'icons/fallout/mobs/animals/insects.dmi'
@@ -331,7 +342,7 @@
 	speak_chance = 0
 	turns_per_move = 5
 
-	move_to_delay = 2.0
+	move_to_delay = 3
 	// m2d 3 = standard, less is fast, more is slower.
 
 	retreat_distance = 3
@@ -356,7 +367,6 @@
 	emote_taunt_sound = list('sound/f13npc/cazador/cazador_alert.ogg')
 	emote_taunt_sound = list('sound/f13npc/cazador/cazador_charge1.ogg', 'sound/f13npc/cazador/cazador_charge2.ogg', 'sound/f13npc/cazador/cazador_charge3.ogg')
 	idlesound = list('sound/creatures/cazador_buzz.ogg')
-	stat_attack = CONSCIOUS
 	robust_searching = TRUE
 	taunt_chance = 30
 	speed = 1
@@ -376,7 +386,7 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 	death_sound = 'sound/f13npc/cazador/cazador_death.ogg'
 	blood_volume = 0
-	loot = list(/obj/effect/spawner/lootdrop/f13/trash, /obj/effect/gibspawner/larva)
+	loot = list(/obj/effect/gibspawner/larva)
 	loot_drop_amount = 1
 	loot_amount_random = TRUE
 
@@ -398,11 +408,12 @@
 	if(prob(50))
 		return ..()
 	else
-		visible_message(span_danger("[src] dodges [Proj]!"))
+		//visible_message(span_danger("[src] dodges [Proj]!"))
 		return 0
 
 
 /mob/living/simple_animal/hostile/cazador/young
+	bounty = 15
 	name = "young cazador"
 	desc = "A mutated insect known for its fast speed, deadly sting, and being huge bastards. This one's little."
 	maxHealth = 20
@@ -457,6 +468,7 @@
 //////////////
 
 /mob/living/simple_animal/hostile/bloatfly
+	bounty = 5
 	name = "bloatfly"
 	desc = "A common mutated pest resembling an oversized blow-fly."
 	icon = 'icons/fallout/mobs/animals/insects.dmi'
@@ -465,7 +477,7 @@
 	icon_dead = "bloatfly_dead"
 	icon_gib = null
 	ranged = TRUE
-
+	move_to_delay = 4.5
 	speed = 1
 	maxHealth = 20
 	health = 20
@@ -477,6 +489,8 @@
 	waddle_up_time = 3
 	waddle_side_time = 2
 	can_ghost_into = TRUE
+	retreat_distance = 2
+	minimum_distance = 1
 
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	speak_chance = 0
@@ -519,7 +533,7 @@
 	)
 	desc_short = "A gigantic fly that's more disgusting than actually threatening. Tends to dodge bullets."
 	pop_required_to_jump_into = BIG_MOB_MIN_PLAYERS
-	loot = list(/obj/effect/spawner/lootdrop/f13/trash, /obj/effect/gibspawner/larva)
+	loot = list(/obj/effect/gibspawner/larva)
 	loot_drop_amount = 1
 	loot_amount_random = TRUE
 
@@ -527,7 +541,7 @@
 	if(!Proj)
 		return
 	if(prob(50))
-		visible_message(span_danger("[src] dodges [Proj]!"))
+		//visible_message(span_danger("[src] dodges [Proj]!"))
 		return BULLET_ACT_FORCE_PIERCE
 	else
 		. = ..()
@@ -538,10 +552,11 @@
 	. = ..()
 
 //////////////
-// RADROACH //
+// Pillbug //
 //////////////
 
-/mob/living/simple_animal/hostile/radroach
+/mob/living/simple_animal/hostile/pillbug
+	bounty = 2
 	name = "mutant pillbug"
 	desc = "A large mutated insect that finds its way everywhere."
 	icon = 'modular_coyote/icons/mob/pillbug.dmi'
@@ -550,10 +565,11 @@
 	icon_dead = "pillbug_dead"
 	icon_gib = "radroach_gib"
 	can_ghost_into = TRUE
+	move_to_delay = 4
 	waddle_amount = 1
 	waddle_up_time = 1
 	waddle_side_time = 1
-	loot = list(/obj/effect/spawner/lootdrop/f13/trash, /obj/effect/gibspawner/larva)
+	loot = list(/obj/effect/gibspawner/larva)
 	loot_drop_amount = 1
 	loot_amount_random = TRUE
 	speed = 1
@@ -583,9 +599,9 @@
 	randpixel = 12
 	variation_list = list(
 		MOB_COLOR_VARIATION(50, 50, 50, 255, 255, 255),
-		MOB_SPEED_LIST(2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8),
+		MOB_SPEED_LIST(3.8, 3.9, 4),
 		MOB_SPEED_CHANGE_PER_TURN_CHANCE(100),
-		MOB_HEALTH_LIST(10, 30, 1),
+		MOB_HEALTH_LIST(10, 20, 1),
 		MOB_RETREAT_DISTANCE_LIST(0, 2, 3),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(100),
 		MOB_MINIMUM_DISTANCE_LIST(1, 2, 3), //teehee ~TK <3
@@ -604,13 +620,14 @@
 	actual_retreat_message = "The %NAME skitters away from %TARGET like a lunatic!"
 	healing_message = "The %NAME bandages itself!" // ye, oh easily, thats why I love procs~
 
-/mob/living/simple_animal/hostile/radroach/become_the_mob(mob/user)
+/mob/living/simple_animal/hostile/pillbug/become_the_mob(mob/user)
 	call_backup = /obj/effect/proc_holder/mob_common/summon_backup/small_critter
 	send_mobs = /obj/effect/proc_holder/mob_common/direct_mobs/small_critter
 	. = ..()
 //Variants for Radroachers
 
-/mob/living/simple_animal/hostile/radroach/micro
+/mob/living/simple_animal/hostile/pillbug/micro
+	bounty = 1
 	name = "Micro Pillbug"
 	maxHealth = 20
 	health = 20
@@ -618,7 +635,7 @@
 	melee_damage_upper = 6
 	variation_list = list(
 		MOB_COLOR_VARIATION(200, 200, 200, 250, 250, 250), //Rmin, Gmin, Bmin, Rmax, Gmax, Bmax
-		MOB_SPEED_LIST(1.8, 2.0, 2.2),
+		MOB_SPEED_LIST(3.8, 3.9, 4),
 		MOB_SPEED_CHANGE_PER_TURN_CHANCE(80),
 		MOB_HEALTH_LIST(10, 13, 15),
 		MOB_RETREAT_DISTANCE_LIST(0, 1),
@@ -627,17 +644,18 @@
 		MOB_MINIMUM_DISTANCE_CHANGE_PER_TURN_CHANCE(50),
 	) //same as a newt for how they attack
 
-/mob/living/simple_animal/hostile/radroach/micro/Initialize()
+/mob/living/simple_animal/hostile/pillbug/micro/Initialize()
 	.=..()
 	resize = 0.75
 	update_transform()
 
-/mob/living/simple_animal/hostile/radroach/micro/become_the_mob(mob/user)
+/mob/living/simple_animal/hostile/pillbug/micro/become_the_mob(mob/user)
 	call_backup = /obj/effect/proc_holder/mob_common/summon_backup/small_critter
 	send_mobs = /obj/effect/proc_holder/mob_common/direct_mobs/small_critter
 	. = ..()
 
-/mob/living/simple_animal/hostile/radroach/strongradroach
+/mob/living/simple_animal/hostile/pillbug/strongradroach
+	bounty = 15
 	maxHealth = 140
 	health = 140
 	name = "Macro Pillbug"
@@ -647,7 +665,7 @@
 	melee_damage_upper = 20
 	variation_list = list(
 		MOB_COLOR_VARIATION(80, 80, 80, 125, 125, 125), //Rmin, Gmin, Bmin, Rmax, Gmax, Bmax
-		MOB_SPEED_LIST(2.9, 3.3, 3.5),
+		MOB_SPEED_LIST(3.8, 3.9, 4),
 		MOB_SPEED_CHANGE_PER_TURN_CHANCE(80),
 		MOB_HEALTH_LIST(15, 20, 22),
 		MOB_RETREAT_DISTANCE_LIST(0, 1),
@@ -656,12 +674,13 @@
 		MOB_MINIMUM_DISTANCE_CHANGE_PER_TURN_CHANCE(50),
 	) //same as a newt for how they attack
 
-/mob/living/simple_animal/hostile/radroach/strongradroach/become_the_mob(mob/user)
+/mob/living/simple_animal/hostile/pillbug/strongradroach/become_the_mob(mob/user)
 	call_backup = /obj/effect/proc_holder/mob_common/summon_backup/small_critter
 	send_mobs = /obj/effect/proc_holder/mob_common/direct_mobs/small_critter
 	. = ..()
 
-/mob/living/simple_animal/hostile/radroach/leader
+/mob/living/simple_animal/hostile/pillbug/leader
+	bounty = 15
 	name = "Pillbug Leader"
 	maxHealth = 40
 	health = 40
@@ -672,6 +691,7 @@
 	aggro_vision_range = 7
 	vision_range = 9
 	ranged = TRUE
+	can_glow_revive = FALSE
 	variation_list = list(
 		MOB_COLOR_VARIATION(245, 215, 0, 255, 220, 5), //Rmin, Gmin, Bmin, Rmax, Gmax, Bmax
 		MOB_SPEED_LIST(4, 4.2, 4.3),
@@ -683,12 +703,12 @@
 		MOB_MINIMUM_DISTANCE_CHANGE_PER_TURN_CHANCE(50),
 	) //same as a newt for how they attack
 
-/mob/living/simple_animal/hostile/radroach/leader/Initialize()
+/mob/living/simple_animal/hostile/pillbug/leader/Initialize()
 	.=..()
-	resize = 3.0
+	resize = 2.0
 	update_transform()
 
-/mob/living/simple_animal/hostile/radroach/leader/become_the_mob(mob/user)
+/mob/living/simple_animal/hostile/pillbug/leader/become_the_mob(mob/user)
 	call_backup = /obj/effect/proc_holder/mob_common/summon_backup/small_critter
 	send_mobs = /obj/effect/proc_holder/mob_common/direct_mobs/small_critter
 	. = ..()
@@ -707,7 +727,7 @@
 	wound_bonus = 0
 	bare_wound_bonus = 0
 	wound_falloff_tile = 0
-	
+
 	pixels_per_second = BULLET_SPEED_BASE
 	damage_falloff = BULLET_FALLOFF_DEFAULT_PISTOL_LIGHT
 
@@ -716,18 +736,18 @@
 
 /obj/item/projectile/pillbugsummon/on_hit(atom/target, blocked = FALSE)
 	..()
-	spawn_and_random_walk(/mob/living/simple_animal/hostile/radroach/summon, target, 5, walk_chance = 100, max_walk = 10, admin_spawn = FALSE)
+	spawn_and_random_walk(/mob/living/simple_animal/hostile/pillbug/summon, target, 5, walk_chance = 100, max_walk = 10, admin_spawn = FALSE)
 	//		break
 	return BULLET_ACT_HIT
 
-/mob/living/simple_animal/hostile/radroach/summon //untameable
+/mob/living/simple_animal/hostile/pillbug/summon //untameable
 	faction = list("gecko")
 	can_ghost_into = FALSE
 	guaranteed_butcher_results = list()
 	butcher_results = list()
 	del_on_death = TRUE
 
-/mob/living/simple_animal/hostile/radroach/leader/Initialize(mapload)
+/mob/living/simple_animal/hostile/pillbug/leader/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/glow_heal, chosen_targets = /mob/living/simple_animal/hostile/radroach, allow_revival = TRUE, restrict_faction = null, type_healing = BRUTELOSS)
+	AddComponent(/datum/component/glow_heal, chosen_targets = /mob/living/simple_animal/hostile/pillbug, allow_revival = TRUE, restrict_faction = null, type_healing = BRUTELOSS)
 

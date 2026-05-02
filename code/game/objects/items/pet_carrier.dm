@@ -7,7 +7,7 @@
 	desc = "A big white-and-blue pet carrier. Good for carrying <s>meat to the chef</s> cute animals around."
 	icon = 'icons/obj/pet_carrier.dmi'
 	icon_state = "pet_carrier_open"
-	item_state = "pet_carrier"
+	inhand_icon_state = "pet_carrier"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	force = 5
@@ -228,7 +228,7 @@
 	desc = "A jar, that seems to be bigger on the inside, somehow allowing lifeforms to fit through its narrow entrance."
 	open = FALSE //starts closed so it looks better on menus
 	icon_state = "bluespace_jar"
-	item_state = "bluespace_jar"
+	inhand_icon_state = "bluespace_jar"
 	lefthand_file = ""
 	righthand_file = ""
 	max_occupant_weight = MOB_SIZE_HUMAN //can fit people, like a bluespace bodybag!
@@ -307,8 +307,9 @@
 
 	if(isanimal(occupant))
 		var/mob/living/simple_animal/animal = occupant
-		occupant_gas_supply[GAS_O2] = 0.0064 //make sure it has some gas in so it isn't depressurized
-		occupant_gas_supply.set_temperature(animal.minbodytemp) //simple animals only care about temperature/pressure when their turf isnt a location
+		var/list/occupant_gas_list = occupant_gas_supply
+		occupant_gas_list[GAS_O2] = 0.0064
+		occupant_gas_supply.set_temperature(animal.minbodytemp)
 
 	if(ishuman(occupant)) //humans require resistance to cold/heat and living in no air while inside, and lose this when outside
 		START_PROCESSING(SSobj, src)

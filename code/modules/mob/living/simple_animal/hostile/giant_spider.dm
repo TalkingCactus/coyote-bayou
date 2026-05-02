@@ -57,6 +57,7 @@
 	var/playable_spider = FALSE
 	var/datum/action/innate/spider/lay_web/lay_web
 	var/directive = "" //Message passed down to children, to relay the creator's orders
+	bounty = 35
 
 /mob/living/simple_animal/hostile/poison/giant_spider/Initialize()
 	. = ..()
@@ -102,7 +103,7 @@
 	return TRUE
 
 // SOJOURN SPIDERS
-
+/*
 //Emperor - Fast, deadly, and uses clotting medicine as venom
 /mob/living/simple_animal/hostile/poison/giant_spider/emperor
 	name = "emperor spider"
@@ -114,9 +115,8 @@
 	maxHealth = 450
 	health = 450
 	vision_range = 9
-	move_to_delay = 1
+	move_to_delay = 4
 	turns_per_move = 7
-	poison_type = /datum/reagent/medicine/coagulant
 	poison_per_bite = 7
 	melee_damage_lower = 30 //might need tweaking, should be fine for now.
 	melee_damage_upper = 60
@@ -131,9 +131,8 @@
 	icon_dead = "terror_empress-dead"
 	maxHealth = 750
 	health = 750
-	move_to_delay = 2
+	move_to_delay = 5
 	turns_per_move = 2
-	poison_type = /datum/reagent/medicine/stimulants
 	poison_per_bite = 15
 	melee_damage_lower = 50
 	melee_damage_upper = 80
@@ -148,14 +147,14 @@
 	icon_dead = "spider_queen-dead"
 	maxHealth = 550
 	health = 550
-	move_to_delay = 4
+	move_to_delay = 4.5
 	turns_per_move = 7
-	poison_type = /datum/reagent/medicine/epinephrine
 	poison_per_bite = 7
 	melee_damage_lower = 40 //meant to be slightly stronger than emperor due to the beefier size.
 	melee_damage_upper = 70
 
 // END OF SOJOURN SPIDERS
+*/ //Fuck these things.
 
 //nursemaids - these create webs and eggs
 /mob/living/simple_animal/hostile/poison/giant_spider/nurse

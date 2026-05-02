@@ -1048,6 +1048,7 @@
 	anchored = TRUE
 	opacity = 1
 	density = 1
+	resistance_flags = INDESTRUCTIBLE
 
 /obj/structure/flora/chomp/bones/lrock1
 	name = "rock"
@@ -1056,6 +1057,7 @@
 	anchored = TRUE
 	opacity = 1
 	density = 1
+	resistance_flags = INDESTRUCTIBLE
 
 /obj/structure/flora/chomp/bones/lrock2
 	name = "rock"
@@ -1064,6 +1066,7 @@
 	anchored = TRUE
 	opacity = 1
 	density = 1
+	resistance_flags = INDESTRUCTIBLE
 
 /obj/structure/flora/chomp/bones/lrock3
 	name = "rock"
@@ -1072,12 +1075,14 @@
 	anchored = TRUE
 	opacity = 1
 	density = 1
+	resistance_flags = INDESTRUCTIBLE
 
 /obj/structure/flora/chomp/bones/lrock4
 	name = "rock"
 	icon = 'modular_coyote/icons/objects/desert_props_64x64.dmi'
 	icon_state = "lrock4"
 	anchored = TRUE
+	resistance_flags = INDESTRUCTIBLE
 
 /obj/structure/flora/wild_plant/thistle
 	name = "thistle"
@@ -1126,6 +1131,20 @@
 	icon = 'modular_coyote/icons/objects/trees.dmi'
 	icon_state = "pink_tree"
 	anchored = TRUE
+
+/obj/structure/flora/tree/cypress_tree
+	name = "cypress tree"
+	icon = 'modular_coyote/icons/objects/cypress.dmi'
+	icon_state = "cypress_tree"
+	anchored = TRUE
+	pixel_x = -48
+
+/obj/structure/flora/tree/rainforest_tree
+	name = "rainforest tree"
+	icon = 'modular_coyote/icons/objects/cypress.dmi'
+	icon_state = "rainforest_tree"
+	anchored = TRUE
+
 
 
 //flowers
@@ -1206,4 +1225,46 @@
 	name = "pink flowers"
 	icon = 'modular_coyote/icons/objects/flowers.dmi'
 	icon_state = "flower_pink4"
+	anchored = TRUE
+
+/obj/structure/flora/tree/virgo/bigtree1
+	name = "big tree"
+	desc = "woody"
+	icon = 'modular_coyote/icons/objects/moretrees_vr.dmi'
+	icon_state = "bigtree1"
+	anchored = TRUE
+
+/obj/structure/flora/tree/virgo/bigtree2
+	name = "big tree"
+	desc = "woody"
+	icon = 'modular_coyote/icons/objects/moretrees_vr.dmi'
+	icon_state = "bigtree2"
+	anchored = TRUE
+
+/obj/structure/flora/tree/virgo/bigtree3
+	name = "big tree"
+	desc = "woody"
+	icon = 'modular_coyote/icons/objects/moretrees_vr.dmi'
+	icon_state = "bigtree3"
+	anchored = TRUE
+
+/obj/structure/flora/tree/virgo/bigtree2
+	name = "big tree"
+	desc = "woody"
+	icon = 'modular_coyote/icons/objects/moretrees_vr.dmi'
+	icon_state = "bigtree2"
+	anchored = TRUE
+
+/obj/structure/flora/tree/virgo/bigtree3
+	name = "big tree"
+	desc = "woody"
+	icon = 'modular_coyote/icons/objects/moretrees_vr.dmi'
+	icon_state = "bigtree3"
+	anchored = TRUE
+
+/obj/structure/flora/tree/virgo/bigtree4
+	name = "big tree"
+	desc = "woody"
+	icon = 'modular_coyote/icons/objects/moretrees_vr.dmi'
+	icon_state = "bigtree4"
 	anchored = TRUE

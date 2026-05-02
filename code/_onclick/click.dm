@@ -30,6 +30,8 @@
 	if(SEND_SIGNAL(src, COMSIG_MOB_CLICKON, A, params) & COMSIG_MOB_CANCEL_CLICKON)
 		return
 	. = ClickOn(A, params)
+	if(.)
+		client?.last_meaningful_action = world.time // basically an AFK timer
 	if(!(. & DISCARD_LAST_ACTION))
 		FlushCurrentAction()
 	else
@@ -72,7 +74,7 @@
 	if(modifiers["right"]) //CIT CHANGE - allows right clicking to perform actions
 		return RightClickOn(A, params) //CIT CHANGE - ditto
 
-	if(incapacitated(ignore_restraints = 1))
+	if(incapacitated(ignore_restraints = 1, allow_crit = TRUE))
 		return
 
 	face_atom(A)
@@ -310,7 +312,7 @@
 		INVOKE_ASYNC(ML, /mob/living.verb/pulled, src)
 
 /mob/living/carbon/human/CtrlClick(mob/user)
-	if(ishuman(user) && Adjacent(user) && !user.incapacitated())
+	if(ishuman(user) && Adjacent(user) && !user.incapacitated(allow_crit = TRUE))
 		if(!user.CheckActionCooldown())
 			return FALSE
 		var/mob/living/carbon/human/H = user
@@ -495,10 +497,42 @@
 	if(client && client.click_intercept)
 		if(call(client.click_intercept, "InterceptClickOn")(src, params, A))
 			return TRUE
-
 	//Mob level intercept
 	if(click_intercept)
 		if(call(click_intercept, "InterceptClickOn")(src, params, A))
 			return TRUE
-
 	return FALSE
+/mob/proc/check_mousedown_intercept(params,A,location,control)
+	//Client level intercept
+	if(client && client.click_intercept)
+		if(call(client.click_intercept, "InterceptMouseDown")(src, params, A))
+			return TRUE
+	//Mob level intercept
+	if(click_intercept)
+		if(call(click_intercept, "InterceptMouseDown")(src, params, A))
+			return TRUE
+	return FALSE
+
+/mob/proc/check_mouseup_intercept(params,A,location,control)
+	//Client level intercept
+	if(client && client.click_intercept)
+		if(call(client.click_intercept, "InterceptMouseUp")(src, params, A))
+			return TRUE
+	//Mob level intercept
+	if(click_intercept)
+		if(call(click_intercept, "InterceptMouseUp")(src, params, A))
+			return TRUE
+	return FALSE
+
+/mob/proc/check_mousedrag_intercept(params,src_object,atom/over_object,src_location,over_location,src_control,over_control)
+	//Client level intercept
+	if(client && client.click_intercept)
+		if(call(client.click_intercept, "InterceptMouseDrag")(src,src_object, params, over_object, src_location, over_location, src_control, over_control))
+			return TRUE
+	//Mob level intercept
+	if(click_intercept)
+		if(call(click_intercept, "InterceptMouseDrag")(src,src_object, params, over_object, src_location, over_location, src_control, over_control))
+			return TRUE
+	return FALSE
+
+

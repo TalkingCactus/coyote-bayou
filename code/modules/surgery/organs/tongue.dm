@@ -95,9 +95,9 @@
 	//lick_healer = new lick_pack(src)
 	return TRUE
 
-/obj/item/organ/tongue/proc/handle_speech(datum/source, list/speech_args) //this wont proc unless there's initial_accents on the tongue
+/obj/item/organ/tongue/proc/handle_speech(datum/source, datum/rental_mommy/chat/mom) //this wont proc unless there's initial_accents on the tongue
 	for(var/datum/accent/speech_modifier in accents)
-		speech_args = speech_modifier.modify_speech(speech_args, source, owner)
+		speech_modifier.premodify_speech(mom, source, owner)
 
 /obj/item/organ/tongue/applyOrganDamage(d, maximum = maxHealth)
 	. = ..()
@@ -295,12 +295,12 @@
 	maxHealth = 60 //It's robotic!
 	organ_flags = ORGAN_SYNTHETIC
 
-/obj/item/organ/tongue/cybernetic/emp_act(severity)
+/*/obj/item/organ/tongue/cybernetic/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
 		return
 	var/errormessage = list("Runtime in tongue.dm, line 39: Undefined operation \"zapzap ow my tongue\"", "afhsjifksahgjkaslfhashfjsak", "-1.#IND", "Graham's number", "inside you all along", "awaiting at least 1 approving review before merging this taste request")
-	owner.say("The pH is appropriately [pick(errormessage)].", forced = "EMPed synthetic tongue")
+	owner.say("The pH is appropriately [pick(errormessage)].", forced = "EMPed synthetic tongue")*/
 
 /obj/item/organ/tongue/robot/ipc
 	name = "positronic voicebox"

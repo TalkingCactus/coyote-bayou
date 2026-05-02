@@ -82,13 +82,16 @@
 	if(length(armor_tokens) < 1)
 		return // all done!
 	
+	if (!islist(armor))
+		return // if it doesn't even have an armor datum, don't try to apply tokens to it
+	var/list/armorlist = armor
 	for(var/list/token in armor_tokens)
 		for(var/modifier in token)
 			switch(GLOB.armor_token_operation_legend[modifier])
 				if("MULT")
-					armor[modifier] = round(armor[modifier] * token[modifier], 1)
+					armorlist[modifier] = round(armorlist[modifier] * token[modifier], 1)
 				if("ADD")
-					armor[modifier] = max(armor[modifier] + token[modifier], 0)
+					armorlist[modifier] = max(armorlist[modifier] + token[modifier], 0)
 				else
 					continue
 
@@ -99,7 +102,7 @@
 	if(ismecha(M.loc)) // stops inventory actions in a mech
 		return
 
-	if(!. && !M.incapacitated() && loc == M && istype(over_object, /atom/movable/screen/inventory/hand))
+	if(!. && !M.incapacitated(allow_crit = TRUE) && loc == M && istype(over_object, /atom/movable/screen/inventory/hand))
 		var/atom/movable/screen/inventory/hand/H = over_object
 		if(M.putItemFromInventoryInHandIfPossible(src, H.held_index))
 			add_fingerprint(usr)
@@ -434,7 +437,7 @@ BLIND     // can't see anything
 
 /obj/item/clothing/proc/can_use(mob/user)
 	if(user && ismob(user))
-		if(!user.incapacitated())
+		if(!user.incapacitated(allow_crit = TRUE))
 			return 1
 	return 0
 

@@ -43,7 +43,7 @@
 	can_block_directions = BLOCK_DIR_NORTH | BLOCK_DIR_NORTHEAST | BLOCK_DIR_NORTHWEST | BLOCK_DIR_WEST | BLOCK_DIR_EAST
 	block_damage_absorption = 2
 	block_damage_multiplier = 0.15
-	block_damage_multiplier_override = list(
+	block_damage_multiplier_override = alist(
 		ATTACK_TYPE_MELEE = 0.25
 	)
 	block_start_delay = 0		// instantaneous block
@@ -253,7 +253,7 @@
 	icon_state = "hypereutactic"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
-	item_state = "hypereutactic"
+	inhand_icon_state = "hypereutactic"
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
 	name = "hypereutactic blade"
@@ -296,7 +296,7 @@
 	. = ..()
 	if(!user.canUseTopic(src, BE_CLOSE, FALSE) || hacked)
 		return
-	if(user.incapacitated() || !istype(user))
+	if(user.incapacitated(allow_crit = TRUE) || !istype(user))
 		to_chat(user, span_warning("You can't do that right now!"))
 		return
 	if(alert("Are you sure you want to recolor your blade?", "Confirm Repaint", "Yes", "No") == "Yes")

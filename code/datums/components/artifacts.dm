@@ -65,6 +65,11 @@
 /datum/component/artifact/process()
 	INVOKE_ASYNC(src,PROC_REF(mainloop))
 
+/// Runs the artifact's main loop. starts when touched by a mob, stops when it doesnt have anything to do
+/datum/component/artifact/UnregisterFromParent()
+	SSartifacts.number_of_artifacts[rarity]--
+	. = ..()
+
 /datum/component/artifact/proc/mainloop(force_flags)
 	ART_MASTER
 	var/update_flags = update_everything() | force_flags
@@ -74,7 +79,7 @@
 		effect.tick(master, current_target, current_holder, current_slot, update_flags)
 	if(COOLDOWN_FINISHED(src, colorwobble))
 		COOLDOWN_START(src, colorwobble, SSartifacts.art_effect_colorwobble_delay)
-		colorwobble(master, my_color)
+		// colorwobble(master, my_color)
 		if(isitem(current_holder))
 			colorwobble(current_holder, current_holder.color)
 		// if(isliving(current_target))
@@ -239,7 +244,7 @@
 	for(var/datum/artifact_effect/AE in effects)
 		total_value += AE.get_value()
 	total_value /= max(LAZYLEN(effects), 1)
-	return round(COINS_TO_CREDITS(total_value), 25)
+	return round(CREDITS_TO_COINS(total_value), 25)
 
 /datum/component/artifact/proc/tabulate_wellability()
 	SIGNAL_HANDLER
@@ -413,9 +418,9 @@
 /datum/component/artifact/proc/floaty()
 	ART_MASTER
 	var/matrix/m1 = matrix()
-	m1.Translate(0, 2)
+	m1.Translate(0, 5)
 	var/matrix/m2 = matrix()
-	m2.Translate(0, -2)
+	m2.Translate(0, -5)
 	animate(master, transform = m1, time = 5 SECONDS, loop = -1, easing = SINE_EASING, flags = ANIMATION_PARALLEL)
 	animate(transform = m2, time = 3 SECONDS, easing = SINE_EASING)
 
@@ -2477,7 +2482,7 @@
 	custom_materials = list(/datum/material/uranium=MINERAL_MATERIAL_AMOUNT)
 	grind_results = list(/datum/reagent/uranium = 20)
 
-/obj/item/storage/box/artifactcontainer/prewar
+/obj/item/storage/box/artifactcontainer/prefall
 	color = COLOR_PALE_BLUE_GRAY
 	custom_materials = list(
 		/datum/material/plasma = MINERAL_MATERIAL_AMOUNT * 0.5,

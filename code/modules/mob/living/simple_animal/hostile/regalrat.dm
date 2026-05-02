@@ -167,7 +167,7 @@
 	icon_state = "mouse_gray"
 	icon_living = "mouse_gray"
 	icon_dead = "mouse_gray_dead"
-	speak = list("Skree!","SKREEE!","Squeak?")
+	//speak = list("Skree!","SKREEE!","Squeak?")
 	speak_emote = list("skrees")
 	emote_hear = list("Hisses!")
 	emote_see = list("charges around angrily.", "stands on its hind legs threateningly.")
@@ -202,8 +202,6 @@
 	var/cheesy = FALSE
 
 	variation_list = list(
-		MOB_SPEED_LIST(1.5, 1.8, 2.0),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(50),
 		MOB_HEALTH_LIST(5, 10, 15, 20, 24),
 		MOB_RETREAT_DISTANCE_LIST(0, 1, 3),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(100),
@@ -219,7 +217,7 @@
 	icon_state = "mouse_gray"
 	icon_living = "mouse_gray"
 	icon_dead = "mouse_gray_dead"
-	speak = list("Squeak!","Squeak!!","Squeak?")
+	//speak = list("Squeak!","Squeak!!","Squeak?")
 	speak_emote = list("squeaks")
 	emote_hear = list("Squeaks.")
 	emote_see = list("dances around in a circle.", "stands on its hind legs.")
@@ -238,8 +236,6 @@
 	is_smol = TRUE
 
 	variation_list = list(
-		MOB_SPEED_LIST(0.2, 1.5, 1.8, 2.0, 5.0),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(50),
 		MOB_HEALTH_LIST(5, 10, 15, 20, 24),
 		MOB_RETREAT_DISTANCE_LIST(3, 5, 7),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(100),
@@ -269,7 +265,7 @@
 	icon_living = "mouse_gray"
 	icon_dead = "mouse_gray_dead"
 	color = "#bfe0ff"
-	speak = list("Squeak!","Squeak!!","Squeak?")
+	//speak = list("Squeak!","Squeak!!","Squeak?")
 	speak_emote = list("squeaks")
 	emote_hear = list("Squeaks.")
 	emote_see = list("dances around in a circle.", "stands on its hind legs.")
@@ -289,8 +285,6 @@
 	is_smol = TRUE
 
 	variation_list = list(
-		MOB_SPEED_LIST(0.2, 1.5, 1.8, 2.0, 5.0),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(50),
 		MOB_HEALTH_LIST(30, 35, 40, 45, 50),
 		MOB_RETREAT_DISTANCE_LIST(3, 5, 7),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(100),
@@ -327,7 +321,7 @@
 	desc = "It's a dubious rodent of unusual breed, rumored to be raised by some rat lords to be less evil... But still have anger issues from time to time."
 	response_help_continuous = "pets"
 	response_help_simple = "pet"
-	speak = list("Squeak!", "SQUUEEAAAAK!!", "Squeak?")
+	//speak = list("Squeak!", "SQUUEEAAAAK!!", "Squeak?")
 	speak_emote = list("squeaks")
 	emote_hear = list("Squeaks.")
 	emote_see = list("charges around in a circle.", "stands on its hind legs.")

@@ -2,7 +2,7 @@
 	name = "flintlock pistol"
 	desc = "An ancient but well kept blackpowder pistol."
 	icon_state = "flintlock"
-	item_state = "flintlock"
+	inhand_icon_state = "flintlock"
 	weapon_class = WEAPON_CLASS_SMALL // yarr harr fiddle dee dee, something something gundolier
 	weapon_weight = GUN_ONE_HAND_AKIMBO //need both hands to fire
 	added_spread = GUN_SPREAD_AWFUL
@@ -13,7 +13,6 @@
 	fire_sound = 'sound/f13weapons/44revolver.ogg'
 	trigger_guard = TRIGGER_GUARD_NORMAL //hate to break it to ya, flintlocks require more technical skill to operate than a cartridge loaded firearm
 	dryfire_text = "*not loaded*"
-	max_upgrades = 5
 	init_firemodes = list(
 		/datum/firemode/semi_auto/slow //slow for the sake of macros, but not toooo slow
 	)
@@ -45,18 +44,43 @@
 	..()
 	gun_tags |= GUN_PROJECTILE
 
+/obj/item/gun/flintlock/UpdateAmmoCountOverlay()
+	if(isturf(loc))//Only show th ammo count if the magazine is, like, in an inventory or something. Mags on the ground don't need a big number on them, that's ugly.
+		maptext = ""
+	else
+		var/txte = ""
+		var/culur = "#FF0000"
+		if(chambered)
+			if(cocked)
+				txte = "1/1 !C!"
+				culur = "#00FFFF"
+			else
+				txte = "1/1"
+				culur = "#FFFF00"
+		else
+			if(cocked)
+				txte = "0/1 !C!"
+				culur = "#FF0000"
+			else
+				txte = "0/1"
+				culur = "#FF0000"
+		maptext = "<font color='[culur]'><b>[txte]</b></font>"
+
+
 /obj/item/gun/flintlock/ui_data(mob/user)
 	var/list/data = ..()
 	data["cockable"] = TRUE
 	data["cocked"] = cocked || FALSE
 	data["flintlock_load_time"] = (load_time * 0.1) || 0
 	data["flintlock_prefire_time"] = (prefire_time * 0.1) || 0
+	data["flintlock_prefire_1SD"] = (prefire_randomness * 0.1) || 0
 	data["has_magazine"] = TRUE
 	data["accepted_magazines"] = "powder, and ball"
 	data["magazine_name"] = "Metal Tube"
 	data["magazine_calibers"] = "powder, and ball"
 	data["shots_remaining"] = !!chambered || 0
 	data["shots_max"] = 1
+	return data
 
 /obj/item/gun/flintlock/attack_self(mob/living/user)
 	cock(user)
@@ -95,7 +119,8 @@
 	if(!load_casing(user, to_load)) //load the ammo casing into the gun
 		to_chat(user, span_alert("You can't seem to load [to_load] into [src].")) //tell the user the gun cannot be loaded
 		return //return
-	bawx.stored_ammo -= to_load //remove the ammo casing from the box
+	bawx.stored_ammo -= to_load //remove the ammo casing from the boxx
+	bawx.update_icon() //update the icon of the boxx
 
 /// Forcemoves bluuet into the gun, and sets its chambered to the bluuet
 /obj/item/gun/flintlock/proc/load_casing(mob/living/user, obj/item/ammo_casing/bluuet)
@@ -189,25 +214,46 @@
 	firing = FALSE // the gun's firing btw
 	cocked = FALSE
 	fuse_loop.stop()
-	if(!user)
-		return FALSE // cus shit like this could happen
-	if(!chambered)
+	if(!chambered || !chambered.BB)
 		shoot_with_empty_chamber(user)
 		return FALSE
-	var/atom/tar_get = user.client?.mouseObject
-	if(!tar_get) // if the user disconnected before firing, just lob it somewhere
-		tar_get = get_step(user, user.dir)
-	user.face_atom(tar_get)
-	do_fire(tar_get, user, TRUE, user.client.mouseParams)
-	SSeffects.do_effect(EFFECT_SMOKE_CONE, get_turf(user), get_turf(tar_get))
+	var/atom/tar_get = user?.client?.mouseObject
+	if(istype(tar_get, /atom/movable/screen)) // we clicked the ~void~, and now we need to do math
+		tar_get = null
+		if(user?.client)
+			var/angel = mouse_angle_from_client(user.client)
+			var/turf/shootat = get_turf_in_angle(angel, get_turf(src), 20) // sure
+			if(shootat)
+				tar_get = shootat
+	/// this is if they disconnect, or tossed the gun before it fired, or ceased to exist, or something
+	if(!tar_get || !user || loc != user)
+		tar_get = null
+		if(prob(50) || (user && HAS_TRAIT(user, TRAIT_NICE_SHOT))) // pick someone or something to shoot
+			var/list/luckyboiz = list()
+			for(var/mob/living/luckyboi in view(get_turf(src), 20))
+				luckyboiz += luckyboi
+			if(LAZYLEN(luckyboiz))
+				tar_get = pick(luckyboiz)
+		else // if there's nothing to shoot, pick a random direction
+			tar_get = get_step(user, pick(GLOB.alldirs))
+		user = null // to prevent factionization, and let it shoot yourself (in the foot)
+	user?.face_atom(tar_get)
+	do_fire(tar_get, user, TRUE, user?.client?.mouseParams)
+	SSeffects.do_effect(EFFECT_SMOKE_CONE, get_turf(src), get_turf(tar_get))
 	chambered = null // the caseless casing thing deletes itself
 	update_icon()
+	if(!user) // on the ground, so toss it around
+		var/shootdir = turn(get_dir(get_turf(src), get_turf(tar_get)), 180)
+		var/turf/toss_thisways = get_step(get_turf(src), shootdir)
+		if(prob(50)) // throw a bit further
+			toss_thisways = get_step(toss_thisways, shootdir)
+		throw_at(toss_thisways, 4, 1, null, TRUE, TRUE)
 
 /obj/item/gun/flintlock/laser
 	name = "flintlock laser pistol"
 	desc = "An old sport shooting pistol that utilizes a compact explosively pumped ferroelectric generator to create a burst of capacitor energy out of a blackpowder charge."
 	icon_state = "flintlock_laser"
-	item_state = "flintlock_laser"
+	inhand_icon_state = "flintlock_laser"
 	weapon_class = WEAPON_CLASS_SMALL
 	weapon_weight = GUN_ONE_HAND_AKIMBO	
 	added_spread = GUN_SPREAD_AWFUL
@@ -239,7 +285,7 @@
 	desc = "An ancient but well kept blackpowder musket."
 	icon = 'modular_coyote/icons/objects/ancient.dmi'
 	icon_state = "musket1"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	weapon_class = WEAPON_CLASS_RIFLE
 	weapon_weight = GUN_TWO_HAND_ONLY //need both hands to fire
@@ -265,7 +311,7 @@
 	desc = "An ancient but well kept blackpowder musketoon; handy!"
 	icon = 'modular_coyote/icons/objects/ancient.dmi'
 	icon_state = "musketoon"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	weapon_class = WEAPON_CLASS_CARBINE
 	weapon_weight = GUN_TWO_HAND_ONLY //need both hands to fire
@@ -290,7 +336,7 @@
 	desc = "An ancient but well kept blackpowder jezail; handy!"
 	icon = 'modular_coyote/icons/objects/ancient.dmi'
 	icon_state = "jezail"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	weapon_class = WEAPON_CLASS_RIFLE
 	weapon_weight = GUN_TWO_HAND_ONLY //need both hands to fire
@@ -323,7 +369,7 @@
 	desc = "A matchlock rifle handmade by a craftsman some time after the fall of the old world. For a matchlock, its VERY high quality!"
 	icon = 'modular_coyote/icons/objects/ancient.dmi'
 	icon_state = "tanegashima"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	weapon_class = WEAPON_CLASS_RIFLE
 	weapon_weight = GUN_TWO_HAND_ONLY //need both hands to fire
@@ -343,7 +389,7 @@
 	desc = "An ancient but well kept blackpowder rock chucker!"
 	icon = 'modular_coyote/icons/objects/ancient.dmi'
 	icon_state = "spingarda"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	weapon_class = WEAPON_CLASS_CARBINE
 	weapon_weight = GUN_TWO_HAND_ONLY //need both hands to fire
@@ -362,7 +408,7 @@
 	desc = "An ancient but well kept blackpowder musket, lighter and handier than a full sized musket with a beautiful ebony stock."
 	icon = 'modular_coyote/icons/objects/ancient.dmi'
 	icon_state = "mosquete1752"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	weapon_class = WEAPON_CLASS_CARBINE
 	weapon_weight = GUN_TWO_HAND_ONLY //need both hands to fire
@@ -386,7 +432,7 @@
 	desc = "Are you sure this isn't for shooting fireworks?  Or maybe tennis balls...?"
 	icon = 'modular_coyote/icons/objects/ancient.dmi'
 	icon_state = "handcannon"
-	item_state = "flintlock"
+	inhand_icon_state = "flintlock"
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	weapon_class = WEAPON_CLASS_SMALL
 	weapon_weight = GUN_TWO_HAND_ONLY //need both hands to fire
@@ -412,7 +458,7 @@
 	desc = "Are you sure this isn't for shooting fireworks?  Or maybe tennis balls...?"
 	icon = 'modular_coyote/icons/objects/ancient.dmi'
 	icon_state = "handcannon"
-	item_state = "flintlock"
+	inhand_icon_state = "flintlock"
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	weapon_class = WEAPON_CLASS_SMALL
 	weapon_weight = GUN_TWO_HAND_ONLY //need both hands to fire
@@ -430,7 +476,7 @@
 	desc = "Is that thing even real?  Does it actually even work?"
 	icon = 'modular_coyote/icons/objects/ancient.dmi'
 	icon_state = "matchlock_handgonne"
-	item_state = "flintlock"
+	inhand_icon_state = "flintlock"
 	weapon_weight = GUN_ONE_HAND_AKIMBO
 
 /obj/item/gun/flintlock/matchlock/matchlockarquebus
@@ -438,7 +484,7 @@
 	desc = "Don't put it near someones arquebussy."
 	icon = 'modular_coyote/icons/objects/ancient.dmi'
 	icon_state = "matchlock_arquebus"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	weapon_class = WEAPON_CLASS_RIFLE
 	weapon_weight = GUN_TWO_HAND_ONLY //need both hands to fire
@@ -463,7 +509,7 @@
 	desc = "Don't put it near someones arquebussy."
 	icon = 'modular_coyote/icons/objects/ancient.dmi'
 	icon_state = "arquebus"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	weapon_class = WEAPON_CLASS_RIFLE
 	weapon_weight = GUN_TWO_HAND_ONLY //need both hands to fire
@@ -488,7 +534,7 @@
 	desc = "An ancient but well kept blackpowder matchlock musketoon; just like the 30 years war would have had!"
 	icon = 'modular_coyote/icons/objects/ancient.dmi'
 	icon_state = "matchlock_musketoon"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	weapon_class = WEAPON_CLASS_CARBINE
 	weapon_weight = GUN_TWO_HAND_ONLY //need both hands to fire
@@ -526,7 +572,7 @@
 	desc = "An ancient but well kept blackpowder sharpshooters rifle; fascinating!"
 	icon = 'modular_coyote/icons/objects/ancient.dmi'
 	icon_state = "matchlock_cavalier"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	weapon_class = WEAPON_CLASS_RIFLE
 	weapon_weight = GUN_TWO_HAND_ONLY //need both hands to fire
@@ -546,7 +592,7 @@
 	desc = "An ancient but well kept blackpowder bombard, what the FUCK!?"
 	icon = 'modular_coyote/icons/objects/ancient.dmi'
 	icon_state = "handbombard"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	weapon_class = WEAPON_CLASS_RIFLE
 	weapon_weight = GUN_TWO_HAND_ONLY //need both hands to fire

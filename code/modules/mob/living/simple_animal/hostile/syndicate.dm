@@ -26,7 +26,6 @@
 	speak_chance = 0
 	turns_per_move = 5
 	speed = 0
-	stat_attack = CONSCIOUS
 	robust_searching = 1
 	maxHealth = 100
 	health = 100
@@ -170,7 +169,7 @@
 /mob/living/simple_animal/hostile/renegade/syndicate/civilian/Aggro()
 	..()
 	summon_backup(15)
-	say("GUARDS!!")
+	say("GUARDS!!", only_overhead = TRUE)
 
 /// Redsuit Guys ///
 /mob/living/simple_animal/hostile/renegade/syndicate/space

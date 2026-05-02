@@ -8,11 +8,12 @@
 #define SETTINGS_TAB 0
 #define GAME_PREFERENCES_TAB 1
 #define APPEARANCE_TAB 2
-#define ERP_TAB 3
+#define CHAR_INFO_TAB 3
+#define ERP_TAB 4
 //#define SPEECH_TAB 3
-#define LOADOUT_TAB 4
-#define CONTENT_PREFERENCES_TAB 5
-#define KEYBINDINGS_TAB 6
+#define LOADOUT_TAB 5
+#define CONTENT_PREFERENCES_TAB 6
+#define KEYBINDINGS_TAB 7
 
 //the names of the erp tabs - can be 0, 1, or "has_cock" thru "has_womb"
 #define ERP_TAB_HOME 0
@@ -22,7 +23,10 @@
 #define LOADOUT_CATEGORY_BACKPACK 				"In backpack"
 #define LOADOUT_SUBCATEGORY_BACKPACK_GENERAL 	"General" //basically anything that there's not enough of to have its own subcategory
 //#define LOADOUT_SUBCATEGORY_BACKPACK_TOYS 		"Toys"
-#define LOADOUT_SUBCATEGORY_BACKPACK_BACKPACKS 	"Backpacks"
+#define LOADOUT_SUBCATEGORY_BACKPACK_BACKPACKS 	"Firearms"
+#define LOADOUT_SUBCATEGORY_BACKPACK_WIZARDS 	"Magic"
+#define LOADOUT_SUBCATEGORY_BACKPACK_STUFF		"Utility"
+#define LOADOUT_SUBCATEGORY_BACKPACK_MELEE	 	"Melee"
 #define LOADOUT_SUBCATEGORY_BACKPACK_RATIONS 	"Snacks"
 //#define LOADOUT_SUBCATEGORY_BACKPACK_VAULTGUNS	"Vault Guns"
 
@@ -111,10 +115,12 @@
 #define LOADOUT_COLOR "loadout_color"
 #define LOADOUT_CUSTOM_NAME "loadout_custom_name"
 #define LOADOUT_CUSTOM_DESCRIPTION "loadout_custom_description"
+#define LOADOUT_CUSTOM_COLOR "loadout_custom_description"
 
 //loadout item flags
 #define LOADOUT_CAN_NAME (1<<0) //renaming items
 #define LOADOUT_CAN_DESCRIPTION (1<<1) //adding a custom description to items
+#define LOADOUT_CAN_COLOR (1<<2) //adding a custom dick to ur butt
 
 //quirks
 #define QUIRK_POSITIVE	"Positive"

@@ -1,10 +1,11 @@
 /* IN THIS FILE
--Ghouls
+-ghouls
 */
 
-//Base Ghoul
+//Base ghoul
 /mob/living/simple_animal/hostile/ghoul
-	name = "feral ghoul"
+	bounty = 8
+	name = "feral walker"
 	desc = "A ghoul that has lost its mind and become aggressive."
 	icon = 'icons/fallout/mobs/humans/ghouls.dmi'
 	icon_state = "feralghoul"
@@ -17,7 +18,7 @@
 	maxHealth = 40 
 	health = 40
 	robust_searching = 1
-	move_to_delay = 3.1
+	move_to_delay = 5
 	turns_per_move = 5
 	waddle_amount = 2
 	waddle_up_time = 1
@@ -39,16 +40,16 @@
 		"trills",
 		"waggles"
 		)
-	emote_see = list(
-		"wags its tail",
-		"looks hungry",
-		"sniffs the air",
-		"growls",
-		"foams at the mouth",
-		"loses its shit",
-		"busts it down",
-		"goes full tilt"
-		)
+	// emote_see = list(
+	// 	"wags its tail",
+	// 	"looks hungry",
+	// 	"sniffs the air",
+	// 	"growls",
+	// 	"foams at the mouth",
+	// 	"loses its shit",
+	// 	"busts it down",
+	// 	"goes full tilt"
+	// 	)
 	a_intent = INTENT_HARM
 	speed = 1
 	harm_intent_damage = 8
@@ -105,7 +106,7 @@
 	emote_taunt_sound = list('sound/f13npc/ghoul/aggro1.ogg', 'sound/f13npc/ghoul/aggro2.ogg', 'sound/f13npc/ghoul/aggro3.ogg',) //I will not apologize. ~TK
 	idlesound = list('sound/f13npc/ghoul/idle.ogg', 'sound/effects/scrungy.ogg')
 	death_sound = 'sound/f13npc/ghoul/ghoul_death.ogg'
-	loot = list(/obj/effect/spawner/lootdrop/f13/trash)
+	loot = list()
 	/// How many things to drop on death? Set to MOB_LOOT_ALL to just drop everything in the list
 	loot_drop_amount = 1
 	/// Drop 1 - loot_drop_amount? False always drops loot_drop_amount items
@@ -120,8 +121,6 @@
 	
 	variation_list = list(
 		MOB_COLOR_VARIATION(150, 150, 150, 255, 255, 255),
-		MOB_SPEED_LIST(3.0, 3.2, 3.6, 3.8, 4),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(10),
 		MOB_HEALTH_LIST(30, 35, 40, 40, 40, 40, 41),
 		MOB_RETREAT_DISTANCE_LIST(0, 0, 1),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(5),
@@ -144,8 +143,6 @@
 	if(.)
 		return
 	summon_backup(15)
-	if(!ckey)
-		say(pick("*scrungy", "*mbark"))
 
 
 /mob/living/simple_animal/hostile/ghoul/become_the_mob(mob/user)
@@ -154,9 +151,10 @@
 	. = ..()
 
 
-// Ghoul Reaver
+// ghoul Reaver
 /mob/living/simple_animal/hostile/ghoul/reaver
-	name = "feral ghoul reaver"
+	bounty = 12
+	name = "feral walker skirmisher"
 	desc = "A ghoul that has lost its mind and become aggressive. This one is strapped with metal armor, and appears far stronger."
 	icon_state = "ghoulreaver"
 	icon_living = "ghoulreaver"
@@ -177,7 +175,7 @@
 	harm_intent_damage = 8
 	melee_damage_lower = 8
 	melee_damage_upper = 14
-	loot = list(/obj/effect/spawner/lootdrop/f13/trash)
+	loot = list()
 	loot_drop_amount = 2
 	loot_amount_random = TRUE
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
@@ -186,8 +184,6 @@
 
 	variation_list = list(
 		MOB_COLOR_VARIATION(200, 200, 200, 255, 255, 255),
-		MOB_SPEED_LIST(3.6, 3.8, 4, 4.2, 4.4),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(10),
 		MOB_HEALTH_LIST(41, 45, 50, 50, 50, 50, 51),
 		MOB_RETREAT_DISTANCE_LIST(0, 1, 1),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(5),
@@ -209,27 +205,27 @@
 	summon_backup(10)
 
 /mob/living/simple_animal/hostile/ghoul/reaver/ncr
-	name = "feral ghoul soldier"
+	name = "feral walker soldier"
 	desc = "A former US Army combatant, now ghoulified and insane. The armor that failed it in life still packs some good defense."
 	maxHealth = 60
 	can_ghost_into = FALSE
 
 /mob/living/simple_animal/hostile/ghoul/reaver/ncr_helmet
-	name = "plated feral ghoul soldier"
+	name = "plated feral walker soldier"
 	desc = "A former US Army combatant, now ghoulified and insane. The armor that failed it in life still packs some good defense."
 	maxHealth = 60
 	can_ghost_into = FALSE
 
 /mob/living/simple_animal/hostile/ghoul/reaver/ncr_officer
-	name = "feral ghoul officer"
+	name = "feral walker officer"
 	desc = "A former US Army officer, now ghoulified and insane. The armor that failed it in life still packs some good defense."
 	maxHealth = 60
 	speed = 3
 	can_ghost_into = FALSE
 
-//Cold Feral Ghoul
+//Cold Feral ghoul
 /mob/living/simple_animal/hostile/ghoul/coldferal
-	name = "cold ghoul feral"
+	name = "cold walker feral"
 	desc = "A ghoul that has lost its mind and become aggressive. This one is strapped with metal armor, and appears far stronger."
 	icon_state = "cold_feral"
 	icon_living = "cold_feral"
@@ -241,14 +237,14 @@
 	harm_intent_damage = 8
 	melee_damage_lower = 10
 	melee_damage_upper = 15
-	loot = list(/obj/item/stack/f13Cash/random/low/medchance)
+	loot = list()
 	loot_drop_amount = 2
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
 	can_ghost_into = FALSE
 
-//Frozen Feral Ghoul
+//Frozen Feral ghoul
 /mob/living/simple_animal/hostile/ghoul/frozenreaver
-	name = "frozen ghoul reaver"
+	name = "frozen walker reaver"
 	desc = "A ghoul that has lost its mind and become aggressive. This one is strapped with metal armor, and appears far stronger."
 	icon_state = "frozen_reaver"
 	icon_living = "frozen_reaver"
@@ -260,14 +256,15 @@
 	harm_intent_damage = 8
 	melee_damage_lower = 10
 	melee_damage_upper = 15
-	loot = list(/obj/item/stack/f13Cash/random/low/medchance)
+	loot = list()
 	loot_drop_amount = 4
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
 	can_ghost_into = FALSE
 
-//Legendary Ghoul
+//Legendary ghoul
 /mob/living/simple_animal/hostile/ghoul/legendary
-	name = "legendary ghoul"
+	bounty = 50
+	name = "legendary walker"
 	desc = "A ghoul that has lost its mind and become aggressive. This one has exceptionally large, bulging muscles. It looks quite strong."
 	icon_state = "glowinghoul"
 	icon_living = "glowinghoul"
@@ -284,7 +281,7 @@
 	mob_size = 5
 	wound_bonus = 0
 	bare_wound_bonus = 0
-	loot = list(/obj/item/stack/f13Cash/random/med)
+	loot = list()
 	loot_drop_amount = 5
 	loot_amount_random = FALSE
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
@@ -297,9 +294,10 @@
 	send_mobs = null
 	. = ..()
 
-//Glowing Ghoul
+//Glowing ghoul
 /mob/living/simple_animal/hostile/ghoul/glowing
-	name = "glowing feral ghoul"
+	bounty = 15
+	name = "feral walker rad-shaman"
 	desc = "A feral ghoul that has absorbed massive amounts of radiation, causing them to glow in the dark and radiate constantly."
 	icon_state = "glowinghoul"
 	icon_living = "glowinghoul"
@@ -322,7 +320,7 @@
 	light_range = 2
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
 	can_ghost_into = TRUE
-	loot = list(/obj/effect/spawner/lootdrop/f13/common)
+	loot = list()
 	loot_drop_amount = 1
 	loot_amount_random = TRUE
 	pop_required_to_jump_into = BIG_MOB_MIN_PLAYERS
@@ -331,8 +329,6 @@
 
 	variation_list = list(
 		MOB_COLOR_VARIATION(150, 150, 150, 255, 255, 255),
-		MOB_SPEED_LIST(3.0, 3.2, 3.6, 3.8, 4, 4.2),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(10),
 		MOB_HEALTH_LIST(38, 40, 42, 44),
 		MOB_RETREAT_DISTANCE_LIST(0, 2, 4),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(50),
@@ -381,10 +377,10 @@
 	melee_damage_lower = 25
 	melee_damage_upper = 30
 
-//Alive Ghoul
+//Alive ghoul
 /mob/living/simple_animal/hostile/ghoul/soldier
-	name = "ghoul soldier"
-	desc = "Have you ever seen a living ghoul before?<br>Ghouls are necrotic post-humans - decrepit, rotting, zombie-like mutants."
+	name = "walker soldier"
+	desc = "Have you ever seen a living ghoul before?<br>ghouls are necrotic post-humans - decrepit, rotting, zombie-like mutants."
 	icon_state = "soldier_ghoul"
 	icon_living = "soldier_ghoul"
 	icon_dead = "soldier_ghoul_d"
@@ -392,15 +388,15 @@
 	mob_armor = ARMOR_VALUE_GHOUL_COMBAT
 	maxHealth = 60 
 	health = 60
-	loot = list(/obj/item/stack/f13Cash/random/low/medchance)
+	loot = list()
 	loot_drop_amount = 2
 	footstep_type = FOOTSTEP_MOB_BAREFOOT
 	can_ghost_into = FALSE
 
-//Alive Ghoul
+//Alive ghoul
 /mob/living/simple_animal/hostile/ghoul/soldier/armored
-	name = "armored ghoul soldier"
-	desc = "Have you ever seen a living ghoul before?<br>Ghouls are necrotic post-humans - decrepit, rotting, zombie-like mutants."
+	name = "armored walker soldier"
+	desc = "Have you ever seen a living ghoul before?<br>ghouls are necrotic post-humans - decrepit, rotting, zombie-like mutants."
 	icon_state = "soldier_ghoul_a"
 	icon_living = "soldier_ghoul_a"
 	icon_dead = "soldier_ghoul_a_d"
@@ -412,10 +408,10 @@
 	can_ghost_into = FALSE
 	loot_drop_amount = 3
 
-//Alive Ghoul
+//Alive ghoul
 /mob/living/simple_animal/hostile/ghoul/scorched
-	name = "scorched ghoul soldier"
-	desc = "Have you ever seen a living ghoul before?<br>Ghouls are necrotic post-humans - decrepit, rotting, zombie-like mutants."
+	name = "scorched walker soldier"
+	desc = "Have you ever seen a living ghoul before?<br>ghouls are necrotic post-humans - decrepit, rotting, zombie-like mutants."
 	icon_state = "scorched_m"
 	icon_living = "scorched_m"
 	icon_dead = "scorched_m_d"
@@ -426,7 +422,7 @@
 	response_help_simple = "hugs"
 	response_disarm_simple = "pushes aside"
 	response_harm_simple = "growl"
-	move_to_delay = 4
+	move_to_delay = 5
 	faction = list("scorched", "hostile")
 	death_sound = null
 	melee_damage_upper = 20
@@ -438,8 +434,6 @@
 	loot_drop_amount = 4
 	variation_list = list(
 		MOB_COLOR_VARIATION(150, 150, 150, 255, 255, 255),
-		MOB_SPEED_LIST(3.6, 3.8, 4, 4.2, 4.4),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(10),
 		MOB_HEALTH_LIST(30, 35, 40, 40, 40, 40, 41),
 		MOB_RETREAT_DISTANCE_LIST(0, 0, 1),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(5),
@@ -447,10 +441,10 @@
 		MOB_MINIMUM_DISTANCE_CHANGE_PER_TURN_CHANCE(10)
 	)
 
-//Alive Ghoul Ranged
+//Alive ghoul Ranged
 /mob/living/simple_animal/hostile/ghoul/scorched/ranged
-	name = "Ranged Ghoul Soldier"
-	desc = "Have you ever seen a living ghoul before?<br>Ghouls are necrotic post-humans - decrepit, rotting, zombie-like mutants."
+	name = "Ranged walker Soldier"
+	desc = "Have you ever seen a living ghoul before?<br>ghouls are necrotic post-humans - decrepit, rotting, zombie-like mutants."
 	icon_state = "scorched_r"
 	icon_living = "scorched_r"
 	icon_dead = "scorched_r_d"
@@ -462,7 +456,7 @@
 	response_help_simple = "hugs"
 	response_disarm_simple = "pushes aside"
 	response_harm_simple = "ow"
-	move_to_delay = 4
+	move_to_delay = 5
 	ranged = TRUE
 	ranged_cooldown_time = 200
 	projectiletype = /obj/item/projectile/bullet/c9mm/simple
@@ -478,8 +472,6 @@
 	loot_drop_amount = 5
 	variation_list = list(
 		MOB_COLOR_VARIATION(150, 150, 150, 255, 255, 255),
-		MOB_SPEED_LIST(3.6, 3.8, 4, 4.2, 4.4),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(10),
 		MOB_HEALTH_LIST(30, 35, 40, 40, 40, 40, 41),
 		MOB_RETREAT_DISTANCE_LIST(0, 0, 1),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(5),
@@ -499,7 +491,7 @@
 	robust_searching = 1
 	turns_per_move = 5
 	speak_emote = list("wheezes")
-	emote_see = list("stares")
+	// emote_see = list("stares")
 	a_intent = INTENT_HARM
 	maxHealth = 150
 	health = 150
@@ -518,12 +510,11 @@
 	can_ghost_into = FALSE
 	loot_drop_amount = 5
 
-//Halloween Event Ghouls
+//Halloween Event ghouls
 /mob/living/simple_animal/hostile/ghoul/zombie
-	name = "ravenous feral ghoul"
+	name = "ravenous feral walker"
 	desc = "A ferocious feral ghoul, hungry for human meat."
 	faction = list("ghoul")
-	stat_attack = CONSCIOUS
 	mob_armor = ARMOR_VALUE_GHOUL_COMBAT
 	can_ghost_into = FALSE
 	maxHealth = 200
@@ -538,7 +529,7 @@
 		try_to_ghoul_zombie_infect(H)*/
 
 /mob/living/simple_animal/hostile/ghoul/zombie/reaver
-	name = "ravenous feral ghoul reaver"
+	name = "ravenous feral walker"
 	desc = "A ferocious feral ghoul, hungry for human meat. This one is strapped with metal armor, and appears far stronger."
 	icon_state = "ghoulreaver"
 	icon_living = "ghoulreaver"
@@ -592,7 +583,7 @@
 	H.apply_effect(20, EFFECT_IRRADIATE, 0)
 
 /mob/living/simple_animal/hostile/ghoul/zombie/legendary
-	name = "legendary ravenous ghoul"
+	name = "legendary ravenous walker"
 	desc = "A ferocious feral ghoul, hungry for human meat. This one has exceptionally large, bulging muscles. It looks quite strong."
 	icon_state = "glowinghoul"
 	icon_living = "glowinghoul"

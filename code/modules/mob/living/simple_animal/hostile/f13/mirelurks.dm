@@ -7,12 +7,14 @@
 
 // MIRELURK ADULT
 /mob/living/simple_animal/hostile/mirelurk
+	bounty = 15
 	name = "mirelurk"
 	desc = "A giant mutated crustacean, with a hardened exo-skeleton."
 	icon = 'icons/fallout/mobs/animals/mirelurks.dmi'
 	icon_state = "mirelurk"
 	icon_living = "mirelurk"
 	icon_dead = "mirelurk_d"
+	faction = "crabs"
 	speed = 1
 	can_ghost_into = TRUE
 	move_to_delay = 3
@@ -35,7 +37,7 @@
 		/obj/item/stack/sheet/sinew = 1
 		)
 	speak_emote = list("foams", "clacks", "chitters", "snips", "snaps")
-	emote_see = list("clack its claws", "foam at the mouth", "woobs", "extends its eyestalks")
+	// emote_see = list("clack its claws", "foam at the mouth", "woobs", "extends its eyestalks")
 	attack_verb_simple = list ("pinches", "rends", "snips", "snaps", "snibbity-snaps", "clonks", "disects")
 	maxHealth = 120
 	health = 120
@@ -50,20 +52,19 @@
 	pop_required_to_jump_into = MED_MOB_MIN_PLAYERS
 	variation_list = list(
 		MOB_COLOR_VARIATION(100, 100, 100, 255, 255, 255),
-		MOB_SPEED_LIST(3.3, 3.4, 3.5),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(100),
 		MOB_HEALTH_LIST(110, 115, 120, 130),
 		MOB_RETREAT_DISTANCE_LIST(0, 1, 2),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(70),
 		MOB_MINIMUM_DISTANCE_LIST(0, 0, 1),
 		MOB_MINIMUM_DISTANCE_CHANGE_PER_TURN_CHANCE(70),
 	)
-	loot = list(/obj/effect/spawner/lootdrop/f13/common, /obj/effect/gibspawner/xeno/bodypartless)
+	loot = list(/obj/effect/gibspawner/xeno/bodypartless)
 	loot_drop_amount = 1
 	loot_amount_random = TRUE
 
 // MIRELURK HUNTER MALES
 /mob/living/simple_animal/hostile/mirelurk/hunter
+	bounty = 18
 	name = "mirelurk hunter"
 	desc = "A giant mutated crustacean, with a hardened exoskeleton. Its appearance makes you shudder in fear. This one has giant, razor sharp claw pincers."
 	icon_state = "mirelurkhunter"
@@ -84,20 +85,19 @@
 	pop_required_to_jump_into = BIG_MOB_MIN_PLAYERS
 	variation_list = list(
 		MOB_COLOR_VARIATION(100, 100, 100, 255, 255, 255),
-		MOB_SPEED_LIST(3, 3.1, 3.2),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(100),
 		MOB_HEALTH_LIST(140, 150, 160, 170),
 		MOB_RETREAT_DISTANCE_LIST(0, 1, 2),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(70),
 		MOB_MINIMUM_DISTANCE_LIST(0, 0, 1),
 		MOB_MINIMUM_DISTANCE_CHANGE_PER_TURN_CHANCE(70),
 	)
-	loot = list(/obj/effect/spawner/lootdrop/f13/common, /obj/effect/gibspawner/xeno/bodypartless)
+	loot = list(/obj/effect/gibspawner/xeno/bodypartless)
 	loot_drop_amount = 3
 	loot_amount_random = TRUE
 
 // MIRELURK BABY
 /mob/living/simple_animal/hostile/mirelurk/baby
+	bounty = 5
 	name = "mirelurk baby"
 	desc = "A neophyte mirelurk baby, mostly harmless. Adults respond to their chittering if distressed."
 	icon_state = "mirelurkbaby"
@@ -118,15 +118,13 @@
 	pop_required_to_jump_into = 0
 	variation_list = list(
 		MOB_COLOR_VARIATION(100, 100, 100, 255, 255, 255),
-		MOB_SPEED_LIST(2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(100),
 		MOB_HEALTH_LIST(35, 39, 40, 41),
-		MOB_RETREAT_DISTANCE_LIST(5, 6, 7),
+		MOB_RETREAT_DISTANCE_LIST(15, 16),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(100),
 		MOB_MINIMUM_DISTANCE_LIST(3, 4, 5),
 		MOB_MINIMUM_DISTANCE_CHANGE_PER_TURN_CHANCE(100),
 	)
-	loot = list(/obj/effect/spawner/lootdrop/f13/trash, /obj/effect/gibspawner/xeno/bodypartless)
+	loot = list(/obj/effect/gibspawner/xeno/bodypartless)
 	loot_drop_amount = 1
 	loot_amount_random = TRUE
 

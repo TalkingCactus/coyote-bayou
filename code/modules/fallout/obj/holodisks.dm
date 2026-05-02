@@ -6,7 +6,7 @@
 	desc = "A durable laser-readable storage device produced by Wattz Electronics.<br>Based on tape holography technology, it can store information safely for extended periods of time."
 	icon = 'icons/fallout/objects/items.dmi'
 	icon_state = "holodisk"
-	item_state = "holodisk"
+	inhand_icon_state = "holodisk"
 	throwforce = 0
 	hitsound = null
 	w_class = WEIGHT_CLASS_TINY
@@ -79,10 +79,10 @@
 
 /obj/item/holodisk/musicbox
 	name = "music box"
-	desc = "A pre-War music box - remainder of humanity from the good old days."
+	desc = "A Pre-Fall music box - remainder of humanity from the good old days."
 	icon = 'icons/fallout/objects/items.dmi'
 	icon_state = "music1"
-	item_state = "music1"
+	inhand_icon_state = "music1"
 	soundFile =  'sound/f13items/music_box.ogg' //Amazing grace
 	soundLength = 320
 */

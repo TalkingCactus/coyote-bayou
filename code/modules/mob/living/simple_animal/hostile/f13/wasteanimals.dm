@@ -3,6 +3,7 @@
 ///////////
 
 /mob/living/simple_animal/hostile/gecko
+	bounty = 5
 	name = "gecko"
 	desc = "A large mutated reptile with sharp teeth."
 	icon = 'icons/fallout/mobs/animals/wasteanimals.dmi'
@@ -31,7 +32,7 @@
 	obj_damage = 20
 	melee_damage_lower = 4
 	melee_damage_upper = 12
-	move_to_delay = 1.5
+	move_to_delay = 3.5
 	retreat_distance = 0
 	minimum_distance = 0
 	aggro_vision_range = 7
@@ -55,17 +56,17 @@
 		"chortles",
 		"gecks"
 		)
-	emote_see = list(
-		"screeches",
-		"licks its eyes",
-		"twitches",
-		"scratches its frills",
-		"gonks",
-		"honks",
-		"scronks",
-		"sniffs",
-		"gecks"
-		)
+	// emote_see = list(
+	// 	"screeches",
+	// 	"licks its eyes",
+	// 	"twitches",
+	// 	"scratches its frills",
+	// 	"gonks",
+	// 	"honks",
+	// 	"scronks",
+	// 	"sniffs",
+	// 	"gecks"
+	// 	)
 	attack_verb_simple = list(
 		"bites",
 		"claws",
@@ -101,15 +102,13 @@
 	can_ghost_into = TRUE // not a bad idea at all
 	desc_short = "Short, angry, and as confused as they are tasty."
 	desc_important = "Still in development! Report wierdness on the discord!"
-	loot = list(/obj/effect/spawner/lootdrop/f13/trash)
+	loot = list()
 	loot_drop_amount = 2
 	loot_amount_random = TRUE
 
 	variation_list = list(
 		MOB_COLOR_VARIATION(50, 50, 50, 255, 255, 255),
-		MOB_SPEED_LIST(2.0, 2.2, 2.6, 2.8, 3, 3.2, 3.4, 3.6),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(50),
-		MOB_HEALTH_LIST(30, 35, 40, 45),
+		MOB_HEALTH_LIST(30, 35, 40,),
 		MOB_RETREAT_DISTANCE_LIST(0, 1, 3, 5, 7, 9),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(100),
 		MOB_MINIMUM_DISTANCE_LIST(0, 0, 0, 2, 4),
@@ -125,7 +124,7 @@
 /mob/living/simple_animal/hostile/gecko/Aggro()
 	..()
 	summon_backup(15)
-	
+
 
 /mob/living/simple_animal/hostile/gecko/summon //untameable
 	faction = list("gecko")
@@ -173,6 +172,7 @@
 //Fire Geckos//
 
 /mob/living/simple_animal/hostile/gecko/fire
+	bounty = 9
 	name = "fire spitter gecko"
 	desc = "A large mutated reptile with sharp teeth and a warm disposition. Sorta smells like sulphur."
 	icon = 'icons/fallout/mobs/animals/wasteanimals.dmi'
@@ -194,7 +194,7 @@
 	obj_damage = 20
 	melee_damage_lower = 4
 	melee_damage_upper = 12
-	move_to_delay = 1.5
+	move_to_delay = 3.5
 	retreat_distance = 0
 	minimum_distance = 0
 	aggro_vision_range = 7
@@ -218,17 +218,17 @@
 		"chortles",
 		"gecks"
 		)
-	emote_see = list(
-		"screeches",
-		"licks its eyes",
-		"twitches",
-		"scratches its frills",
-		"gonks",
-		"honks",
-		"scronks",
-		"sniffs",
-		"gecks"
-		)
+	// emote_see = list(
+	// 	"screeches",
+	// 	"licks its eyes",
+	// 	"twitches",
+	// 	"scratches its frills",
+	// 	"gonks",
+	// 	"honks",
+	// 	"scronks",
+	// 	"sniffs",
+	// 	"gecks"
+	// 	)
 	attack_verb_simple = list(
 		"bites",
 		"claws",
@@ -263,8 +263,6 @@
 
 	variation_list = list(
 		MOB_COLOR_VARIATION(200, 40, 40, 255, 45, 45),
-		MOB_SPEED_LIST(2.6, 3.0, 3.3, 3.7),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(50),
 		MOB_HEALTH_LIST(28, 30, 32),
 		MOB_RETREAT_DISTANCE_LIST(0, 1, 3),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(100),
@@ -280,6 +278,7 @@
 //rad Geckos//
 
 /mob/living/simple_animal/hostile/gecko/fire/rads
+	bounty = 8
 	name = "rad spitting gecko"
 	desc = "A large mutated reptile with sharp teeth and a warm disposition. Sorta smells like ozone."
 	icon = 'icons/fallout/mobs/animals/wasteanimals.dmi'
@@ -301,7 +300,7 @@
 	obj_damage = 20
 	melee_damage_lower = 4
 	melee_damage_upper = 12
-	move_to_delay = 1.5
+	move_to_delay = 3.5
 	retreat_distance = 0
 	minimum_distance = 0
 	aggro_vision_range = 7
@@ -325,17 +324,17 @@
 		"chortles",
 		"gecks"
 		)
-	emote_see = list(
-		"screeches",
-		"licks its eyes",
-		"twitches",
-		"scratches its frills",
-		"gonks",
-		"honks",
-		"scronks",
-		"sniffs",
-		"gecks"
-		)
+	// emote_see = list(
+	// 	"screeches",
+	// 	"licks its eyes",
+	// 	"twitches",
+	// 	"scratches its frills",
+	// 	"gonks",
+	// 	"honks",
+	// 	"scronks",
+	// 	"sniffs",
+	// 	"gecks"
+	// 	)
 	attack_verb_simple = list(
 		"bites",
 		"claws",
@@ -370,8 +369,6 @@
 
 	variation_list = list(
 		MOB_COLOR_VARIATION(40, 40, 200, 45, 45, 255),
-		MOB_SPEED_LIST(2.6, 3.0, 3.3, 3.7),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(50),
 		MOB_HEALTH_LIST(28, 30, 32),
 		MOB_RETREAT_DISTANCE_LIST(0, 1, 3),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(100),
@@ -428,6 +425,7 @@
 //Faster and more aggressive than normal geckos, but also easier even squishier.
 
 /mob/living/simple_animal/hostile/gecko/legacy
+	bounty = 6
 	name = "newt"
 	desc = "A large dog sized amphibious biped with an oddly large mouth for its size. Probably related to geckos in some way."
 	icon = 'icons/fallout/mobs/legacymobs.dmi'
@@ -452,7 +450,7 @@
 	obj_damage = 20
 	melee_damage_lower = 7
 	melee_damage_upper = 18
-	move_to_delay = 1.5
+	move_to_delay = 3.5
 	retreat_distance = 0
 	minimum_distance = 0
 	aggro_vision_range = 7
@@ -476,17 +474,17 @@
 		"chortles",
 		"gecks"
 		)
-	emote_see = list(
-		"screeches",
-		"licks its eyes",
-		"twitches",
-		"scratches its frills",
-		"gonks",
-		"honks",
-		"scronks",
-		"sniffs",
-		"gecks"
-		)
+	// emote_see = list(
+	// 	"screeches",
+	// 	"licks its eyes",
+	// 	"twitches",
+	// 	"scratches its frills",
+	// 	"gonks",
+	// 	"honks",
+	// 	"scronks",
+	// 	"sniffs",
+	// 	"gecks"
+	// 	)
 	attack_verb_simple = list(
 		"bites",
 		"claws",
@@ -519,6 +517,7 @@
 
 
 /mob/living/simple_animal/hostile/gecko/legacy/alpha
+	bounty = 10
 	name = "alpha newt"
 	desc = "A large dog sized amphibious biped with an oddly large mouth for its size. Probably related to geckos in some way. This one's drooling a lot and looks sort of tired."
 	icon = 'icons/fallout/mobs/legacymobs.dmi'
@@ -540,7 +539,7 @@
 	obj_damage = 20
 	melee_damage_lower = 7
 	melee_damage_upper = 18
-	move_to_delay = 1.5
+	move_to_delay = 3.5
 	retreat_distance = 0
 	minimum_distance = 0
 	aggro_vision_range = 7
@@ -565,9 +564,7 @@
 
 	variation_list = list(
 		MOB_COLOR_VARIATION(180, 255, 255, 255, 255, 255), //Rmin, Gmin, Bmin, Rmax, Gmax, Bmax
-		MOB_SPEED_LIST(2, 2.2, 2.4, 2.6),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(80),
-		MOB_HEALTH_LIST(30, 35, 40),
+		MOB_HEALTH_LIST(30, 35, 38),
 		MOB_RETREAT_DISTANCE_LIST(0, 1),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(50),
 		MOB_MINIMUM_DISTANCE_LIST(1, 2),
@@ -583,6 +580,7 @@
 	H.reagents.add_reagent(/datum/reagent/toxin/staminatoxin, 1)
 
 /mob/living/simple_animal/hostile/gecko/big
+	bounty = 18
 	name = "big gecko"
 	name = "big gecko"
 	desc = "A large mutated reptile with sharp teeth. This one's pretty big, but its eyes seem clouded and it moves a bit clumsily."
@@ -605,7 +603,7 @@
 	obj_damage = 20
 	melee_damage_lower = 12
 	melee_damage_upper = 24
-	move_to_delay = 1.5
+	move_to_delay = 3.5
 	retreat_distance = 0
 	minimum_distance = 0
 	aggro_vision_range = 4
@@ -633,8 +631,6 @@
 
 	variation_list = list(
 		MOB_COLOR_VARIATION(120, 80, 80, 250, 100, 100), //Rmin, Gmin, Bmin, Rmax, Gmax, Bmax
-		MOB_SPEED_LIST(2.5, 2.8, 3.0, 3.2),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(80),
 		MOB_HEALTH_LIST(100, 110, 120),
 		MOB_RETREAT_DISTANCE_LIST(0, 1),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(50),
@@ -673,8 +669,6 @@
 			MOB_RANDOM_NAME(MOB_NAME_RANDOM_ALL_OF_THEM, 5)\
 		),
 		MOB_COLOR_VARIATION(20, 190, 0, 255, 2, 0),
-		MOB_SPEED_LIST(2.0, 2.2, 2.6, 2.8, 3, 3.2, 3.4, 3.6),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(100),
 		MOB_HEALTH_LIST(2, 3, 5, 7, 30, 35, 37, 38, 40, 45, 48, 49, 49, 49, 49, 2000),
 		MOB_RETREAT_DISTANCE_LIST(0, 1, 3, 5, 7, 9),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(100),
@@ -709,17 +703,18 @@
 //////////////////////////
 
 /mob/living/simple_animal/hostile/stalker
-	name = "nightstalker"
-	desc = "A crazed genetic hybrid of rattlesnake and coyote DNA."
-	icon = 'icons/fallout/mobs/animals/nightstalker.dmi'
-	icon_state = "nightstalker"
-	icon_living = "nightstalker"
-	icon_dead = "nightstalker-dead"
+	bounty = 25
+	name = "greater hellhound"
+	desc = "A hellhound is a fierce, supernatural canine often associated with the underworld, known for its fiery eyes and ominous presence."
+	icon = 'modular_coyote/icons/mob/paramob.dmi'
+	icon_state = "hellhoundgreater"
+	icon_living = "hellhoundgreater"
+	icon_dead = "hellhound_dead"
 	icon_gib = null
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	speak_chance = 0
 	turns_per_move = 5
-	move_to_delay = 2
+	move_to_delay = 3
 	// m2d 3 = standard, less is fast, more is slower.
 
 	retreat_distance = 0
@@ -737,7 +732,6 @@
 	guaranteed_butcher_results = list(
 		/obj/item/reagent_containers/food/snacks/meat/slab/nightstalker_meat = 2,
 		/obj/item/stack/sheet/sinew = 2,
-		/obj/item/clothing/head/f13/stalkerpelt = 1,
 		/obj/item/stack/sheet/bone = 2
 		)
 	butcher_difficulty = 3
@@ -796,14 +790,14 @@
 	icon_living = "nightstalker-legion"
 	icon_dead = "nightstalker-legion-dead"
 
-// NIGHTSTALKER CUB
 /mob/living/simple_animal/hostile/stalkeryoung
-	name = "young nightstalker"
-	desc = "A juvenile crazed genetic hybrid of rattlesnake and coyote DNA."
-	icon = 'icons/fallout/mobs/animals/wasteanimals.dmi'
-	icon_state = "nightstalker_cub"
-	icon_living = "nightstalker_cub"
-	icon_dead = "nightstalker_cub_dead"
+	bounty = 50
+	name = "hellhound"
+	desc = "A hellhound is a fierce, supernatural canine often associated with the underworld, known for its fiery eyes and ominous presence."
+	icon = 'modular_coyote/icons/mob/paramob.dmi'
+	icon_state = "hellhound"
+	icon_living = "hellhound"
+	icon_dead = "hellhound_dead"
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	speak_chance = 0
 	turns_per_move = 5
@@ -812,8 +806,7 @@
 	guaranteed_butcher_results = list(
 		/obj/item/reagent_containers/food/snacks/meat/slab/nightstalker_meat = 1,
 		/obj/item/stack/sheet/sinew = 1,
-		/obj/item/stack/sheet/bone = 1,
-		/obj/item/clothing/head/f13/stalkerpelt = 1
+		/obj/item/stack/sheet/bone = 1
 		)
 	response_help_simple = "pets"
 	response_disarm_simple = "pushes aside"
@@ -908,18 +901,18 @@
 	name = "nightstalker pelt"
 	desc = "A hat made from nightstalker pelt which makes the wearer feel both comfortable and elegant."
 	icon_state = "stalkerpelt"
-	item_state = "stalkerpelt"
+	inhand_icon_state = "stalkerpelt"
 
 /obj/structure/stalkeregg
-	name = "nightstalker egg"
-	desc = "A shiny egg coming from a nightstalker."
+	name = "hellhound egg"
+	desc = "A shiny egg coming from a hellhound. They lay eggs?"
 	icon = 'icons/mob/wastemobsdrops.dmi'
 	icon_state = "stalker-egg"
 	density = 1
 	anchored = 0
 
 /obj/item/reagent_containers/food/snacks/meat/slab/nightstalker_meat
-	name = "nightstalker meat"
+	name = "hellhound meat"
 	desc = "Could taste like rich red meat or flavorful chicken, depending on where the cut comes from."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
 	bitesize = 4 //Average animal
@@ -930,7 +923,7 @@
 	foodtype = RAW | MEAT
 
 /obj/item/reagent_containers/food/snacks/meat/steak/nightstalker_meat
-	name = "nightstalker steak"
+	name = "hellhound steak"
 	desc = "A surprisingly high quality steak that could come in a variety of textures and may taste of either good chicken or rich beef"
 
 /////////////
@@ -938,6 +931,7 @@
 /////////////
 
 /mob/living/simple_animal/hostile/molerat
+	bounty = 4
 	name = "giant rat"
 	desc = "A large mutated rat that finds its way everywhere. Common in caves and underground areas."
 	icon = 'modular_coyote/icons/mob/rat.dmi'
@@ -987,8 +981,6 @@
 
 	variation_list = list(
 		MOB_COLOR_VARIATION(50, 50, 50, 255, 255, 255),
-		MOB_SPEED_LIST(2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(25),
 		MOB_HEALTH_LIST(15, 20, 25, 26),
 		MOB_RETREAT_DISTANCE_LIST(0, 1),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(100),
@@ -1013,6 +1005,7 @@
 
 
 /mob/living/simple_animal/hostile/molerat/micro
+	bounty = 2
 	name = "Swarmling"
 	maxHealth = 10
 	density = FALSE
@@ -1022,8 +1015,6 @@
 	melee_damage_upper = 6
 	variation_list = list(
 		MOB_COLOR_VARIATION(200, 200, 200, 250, 250, 250), //Rmin, Gmin, Bmin, Rmax, Gmax, Bmax
-		MOB_SPEED_LIST(1.8, 2.0, 2.2),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(80),
 		MOB_HEALTH_LIST(10, 13, 15),
 		MOB_RETREAT_DISTANCE_LIST(0, 1),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(50),
@@ -1037,6 +1028,7 @@
 	update_transform()
 
 /mob/living/simple_animal/hostile/molerat/leader
+	bounty = 10
 	name = "Giant Rat Broodmother"
 	maxHealth = 40
 	health = 40
@@ -1047,10 +1039,10 @@
 	aggro_vision_range = 7
 	vision_range = 9
 	ranged = TRUE
+	can_glow_revive = FALSE
 	variation_list = list(
 		MOB_COLOR_VARIATION(245, 215, 0, 255, 220, 5), //Rmin, Gmin, Bmin, Rmax, Gmax, Bmax
-		MOB_SPEED_LIST(2.9, 3.3, 3.5),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(80),
+
 		MOB_HEALTH_LIST(70, 75, 80),
 		MOB_RETREAT_DISTANCE_LIST(0, 1),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(50),
@@ -1085,7 +1077,7 @@
 	wound_bonus = 0
 	bare_wound_bonus = 0
 	wound_falloff_tile = 0
-	
+
 	pixels_per_second = BULLET_SPEED_BASE
 	damage_falloff = BULLET_FALLOFF_DEFAULT_PISTOL_LIGHT
 
@@ -1113,6 +1105,7 @@
 //GELCUBE
 
 /mob/living/simple_animal/hostile/gelcube
+	bounty = 100
 	name = "gelatinous cube"
 	desc = "A big green radioactive cube creature, it jiggles with menacing wiggles and is making some sort of goofy face at you."
 	icon = 'modular_coyote/icons/mob/vatgrowing.dmi'
@@ -1125,7 +1118,7 @@
 	turns_per_move = 10
 	guaranteed_butcher_results = list(/obj/item/reagent_containers/food/snacks/soup/amanitajelly = 3)
 	butcher_difficulty = 1.5
-	loot = list(/obj/item/stack/f13Cash/random/med)
+	loot = list()
 	/// How many things to drop on death? Set to MOB_LOOT_ALL to just drop everything in the list
 	loot_drop_amount = 10
 	/// Drop 1 - loot_drop_amount? False always drops loot_drop_amount items
@@ -1172,6 +1165,7 @@
 //////////
 
 /mob/living/simple_animal/hostile/bloodbird
+	bounty = 25
 	name = "Blood Bird"
 	desc = "A large mutated turkey vulture."
 	icon = 'icons/fallout/mobs/animals/bloodbird.dmi'
@@ -1197,7 +1191,7 @@
 	obj_damage = 20
 	melee_damage_lower = 25
 	melee_damage_upper = 35
-	move_to_delay = 1.5
+	move_to_delay = 3.5
 	retreat_distance = 0
 	minimum_distance = 0
 	aggro_vision_range = 9
@@ -1211,10 +1205,10 @@
 		"squawks",
 		"clacks",
 		)
-	emote_see = list(
-		"screeches",
-		"gonks"
-		)
+	// emote_see = list(
+	// 	"screeches",
+	// 	"gonks"
+	// 	)
 	attack_verb_simple = list(
 		"bites",
 		"claws",
@@ -1245,8 +1239,6 @@
 
 	variation_list = list(
 		MOB_COLOR_VARIATION(50, 50, 50, 255, 255, 255),
-		MOB_SPEED_LIST(1.5, 1.8, 2.0, 2.2),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(50),
 		MOB_HEALTH_LIST(80, 90, 100, 110),
 		MOB_RETREAT_DISTANCE_LIST(0, 0, 1),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(90),

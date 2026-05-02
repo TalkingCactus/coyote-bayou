@@ -199,7 +199,7 @@
 
 
 /mob/proc/put_in_hand_check(obj/item/I)
-	if(incapacitated() && !(I.item_flags&ABSTRACT)) //Cit change - Changes lying to incapacitated so that it's plausible to pick things up while on the ground
+	if(incapacitated(allow_crit = TRUE) && !(I.item_flags&ABSTRACT)) //Cit change - Changes lying to incapacitated so that it's plausible to pick things up while on the ground
 		return FALSE
 	if(!istype(I))
 		return FALSE
@@ -344,7 +344,7 @@
 	if(!istype(W))
 		return FALSE
 	var/list/warning = list(span_warning("You are unable to equip that!"))
-	if(!W.mob_can_equip(src, null, slot, disable_warning, bypass_equip_delay_self, clothing_check, warning))
+	if(!W.mob_can_equip(src, src, slot, disable_warning, bypass_equip_delay_self, clothing_check, warning))
 		var/failedequip = TRUE
 		if(displace_worn) // Loadouts will replace what's in that slot with what should be in there
 			var/atom/wornthing = get_item_by_slot(slot)
@@ -463,15 +463,16 @@
 // we clearly want the revolver to be re-sheathed in the previous location.
 // If anything is broken, or not working properly, contact me or fix it -leonzrygin
 //<--
-/mob/verb/quick_equip()
+/mob/verb/quick_equip(obj/item/I)
 	set name = "quick-equip"
 	set hidden = 1
 
-	if(incapacitated())
+	if(incapacitated(allow_crit = TRUE))
 		return
 
 	var/obj/item/storage
-	var/obj/item/I = get_active_held_item()
+	if(!isitem(I))
+		I = get_active_held_item()
 
 	//obj/item/melee/onehanded
 

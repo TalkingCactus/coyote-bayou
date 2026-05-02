@@ -851,6 +851,10 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	if(H.warpaint && !H.IsFeral())
 		standing += mutable_appearance('icons/mob/tribe_warpaint.dmi', H.warpaint, -MARKING_LAYER, color = H.warpaint_color)
 
+	if(H.nail_style)
+		var/mutable_appearance/nail_overlay = mutable_appearance('modular_splurt/icons/mobs/nails.dmi', "nails", -HANDS_PART_LAYER)
+		nail_overlay.color = H.nail_color
+		standing += nail_overlay
 
 	// if(standing.len) // MAYBE - WIZARD
 	H.overlays_standing[BODY_LAYER] = standing_undereyes | standing
@@ -1183,9 +1187,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 							winghacked += extra2_accessory_overlay
 				else
 					standing += extra2_accessory_overlay
-
 		H.overlays_standing[layernum] = standing
-
 	H.apply_overlay(BODY_BEHIND_LAYER)
 	H.apply_overlay(BODY_ADJ_LAYER)
 	H.apply_overlay(BODY_ADJ_UPPER_LAYER)
@@ -1222,6 +1224,34 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		var/takes_crit_damage = !HAS_TRAIT(H, TRAIT_NOCRITDAMAGE)
 		if((H.health < H.crit_threshold) && takes_crit_damage)
 			H.adjustBruteLoss(1)
+	get_comfy(H)
+
+/datum/species/proc/get_comfy(mob/living/carbon/human/H)
+	//If you haven't walked into a different tile in 5 minutes, don't drain hunger.
+	if(H.client && (((world.time - H.client?.last_move)) > 5 MINUTES))
+		if(!H.insanelycomfy)
+			to_chat(H, span_notice("You feel comfy."))
+			H.insanelycomfy = TRUE
+			for(var/mob/living/somone in range(1, H))
+				if(somone == H)
+					continue
+				if(!somone.client)
+					continue
+				SSstatpanels.discard_horny_demographic(H) // If we're comfy with someone, its likely that they are fuking each other
+				break // And the horny demographic thing is to get people who arent fuking to find people to fuk, so if theyre fuking, remove them from the list of people lookin to fuk
+	else if(H.insanelycomfy)
+		to_chat(H, span_notice("You no longer feel comfy."))
+		H.insanelycomfy = FALSE
+		SSstatpanels.collect_horny_demographic(H)
+	/// and, the even comfier thing
+	if(H.client && ((world.time - H.client?.last_meaningful_action) > 7 MINUTES) && (world.time - H.client?.last_move) > 5 MINUTES)
+		if(!H.afk)
+			to_chat(H, span_notice("You feel cozy."))
+			H.afk = TRUE
+	else if(H.afk)
+		to_chat(H, span_notice("You no longer feel cozy."))
+		H.afk = FALSE
+
 
 /datum/species/proc/spec_death(gibbed, mob/living/carbon/human/H)
 	if(H)
@@ -1253,7 +1283,12 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		if(SLOT_MASK)
 			if(H.wear_mask)
 				return FALSE
-			if(!(I.slot_flags & INV_SLOTBIT_MASK))
+			//if(!(I.slot_flags & INV_SLOTBIT_MASK))
+			//	return FALSE
+			if(HAS_TRAIT(H, TRAIT_ORAL_FIXATION))
+				if(!(I.w_class <= WEIGHT_CLASS_SMALL) && !(I.slot_flags & INV_SLOTBIT_MASK))
+					return FALSE
+			else if(!(I.slot_flags & INV_SLOTBIT_MASK))
 				return FALSE
 			if(!H.get_bodypart(BODY_ZONE_HEAD))
 				return FALSE
@@ -1403,6 +1438,9 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 				return FALSE
 			if( istype(I, /obj/item/pda) || istype(I, /obj/item/pen) || is_type_in_list(I, GLOB.default_all_armor_slot_allowed) )
 				return TRUE
+	//		if(HAS_TRAIT(H, TRAIT_PACKRAT))
+	//			if(istype(I, /obj/item/storage/backpack))
+	//				return TRUE
 			return FALSE
 		if(SLOT_HANDCUFFED)
 			if(H.handcuffed)
@@ -1477,23 +1515,6 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 				H.add_movespeed_modifier(/datum/movespeed_modifier/obesity)
 				H.update_inv_w_uniform()
 				H.update_inv_wear_suit()
-
-	//If you haven't walked into a different tile in 5 minutes, don't drain hunger.
-	if(H.client && (((world.time - H.client?.last_move)) > 5 MINUTES))
-		if(!H.insanelycomfy)
-			to_chat(H, span_notice("You feel comfy."))
-			H.insanelycomfy = TRUE
-			for(var/mob/living/somone in range(1, H))
-				if(somone == H)
-					continue
-				if(!somone.client)
-					continue
-				SSstatpanels.discard_horny_demographic(H) // If we're comfy with someone, its likely that they are fucking each other
-				break // And the horny demographic thing is to get people who arent fucking to find people to fuck, so if theyre fucking, remove them from the list of people lookin to fuck
-	else if(H.insanelycomfy)
-		to_chat(H, span_notice("You no longer feel comfy."))
-		H.insanelycomfy = FALSE
-		SSstatpanels.collect_horny_demographic(H)
 
 	// nutrition decrease and satiety
 	if (H.nutrition > 0 && H.stat != DEAD && !HAS_TRAIT(H, TRAIT_NOHUNGER) && !H.insanelycomfy)
@@ -1629,6 +1650,9 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			log_combat(user, target, "shaked")
 		return 1
 	else
+		if(user == target)
+			to_chat(user, span_warning("You can't quite give yourself CPR!"))
+			return
 		var/we_breathe = !HAS_TRAIT(user, TRAIT_NOBREATH)
 		var/we_lung = user.getorganslot(ORGAN_SLOT_LUNGS)
 
@@ -1640,6 +1664,10 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			to_chat(user, span_notice("You do not breathe, so you cannot perform CPR."))
 
 /datum/species/proc/grab(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
+	if(user.incapacitated(allow_crit = TRUE))
+		if(!extract_ckey(target)) // you can punch players, not mob
+			return FALSE
+
 	if(target.check_martial_melee_block())
 		target.visible_message(span_warning("[target] blocks [user]'s grab attempt!"), target = user, \
 			target_message = span_warning("[target] blocks your grab attempt!"))
@@ -1660,6 +1688,10 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		trait_pacifism_lesser_consequences(user)
 		return FALSE
 	//<--
+
+	if(user.incapacitated(allow_crit = TRUE))
+		if(!extract_ckey(target)) // you can punch players, not mob
+			return FALSE
 
 	if(!attacker_style && HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, span_warning("You don't want to harm [target]!"))
@@ -1699,6 +1731,28 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		var/damage = rand(user.dna.species.punchdamagelow, user.dna.species.punchdamagehigh)
 		if(HAS_TRAIT(user, TRAIT_PERFECT_ATTACKER)) // unit test no-miss trait
 			damage = user.dna.species.punchdamagehigh
+		else
+			var/special_mod = 0
+			switch(user.get_stat(STAT_STRENGTH)) // COOLSTAT IMPLEMENTATION: STRENGTH
+				if(0, 1)
+					special_mod = -INFINITY
+				if(2)
+					special_mod = -(user.dna.species.punchdamagelow + user.dna.species.punchdamagehigh) / 2
+				if(3)
+					special_mod = -(user.dna.species.punchdamagelow + user.dna.species.punchdamagehigh) / 4
+				if(4)
+					special_mod = -1
+				if(5)
+					special_mod = 0
+				if(6)
+					special_mod = rand(1, 4)
+				if(7)
+					special_mod = rand(2, 8)
+				if(8)
+					special_mod = rand(4, 12)
+				if(9)
+					special_mod = rand(5, 20)
+			damage = max(damage + special_mod, 0)
 		if(HAS_TRAIT(user, TRAIT_PANICKED_ATTACKER))
 			damage *= 0.2 // too scared!
 		var/punchedstam = target.getStaminaLoss()
@@ -1737,12 +1791,17 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 
 		target.lastattacker = user.real_name
 		target.lastattackerckey = user.ckey
+		if(isanimal(target))
+			var/mob/living/simple_animal/SA = target
+			SA.give_credit(user)
 		user.dna.species.spec_unarmedattacked(user, target)
 
 		if(user.limb_destroyer)
 			target.dismembering_strike(user, affecting.body_zone)
 
-		if(atk_verb == ATTACK_EFFECT_KICK)//kicks deal 1.5x raw damage + 0.5x stamina damage
+		if(ishuman(target) && target.ckey)
+			target.apply_damage(damage*1.5, STAMINA, affecting, armor_block)
+		else if(atk_verb == ATTACK_EFFECT_KICK)//kicks deal 1.5x raw damage + 0.5x stamina damage
 			target.apply_damage(damage*1.5, attack_type, affecting, armor_block)
 			target.apply_damage(damage*0.5, STAMINA, affecting, armor_block)
 			log_combat(user, target, "kicked")
@@ -1780,6 +1839,10 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 	playsound(place, 'sound/weapons/slap.ogg', vol, FALSE, SOUND_DISTANCE(dist), frequency = 22000) // deep bassy ass
 
 /datum/species/proc/disarm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
+	if(user.incapacitated(allow_crit = TRUE))
+		if(!extract_ckey(target)) // you can punch players, not mob
+			return FALSE
+
 	// CITADEL EDIT slap mouthy gits and booty
 	var/aim_for_mouth = user.zone_selected == "mouth"
 	var/target_on_help = target.a_intent == INTENT_HELP
@@ -2217,13 +2280,15 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		target.ShoveOffBalance(SHOVE_OFFBALANCE_DURATION)
 		log_combat(user, target, "shoved", append_message)
 
-/datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, damage_threshold = 0, sendsignal = TRUE)
+/datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, damage_threshold = 0, sendsignal = TRUE, damage_coverings = TRUE)
 	if(sendsignal)
 		SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMAGE, damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, damage_threshold)
 	var/hit_percent = (100-(blocked+armor))/100
 	hit_percent = (hit_percent * (100-H.physiology.damage_resistance))/100
 	if(!forced && hit_percent <= 0)
 		return 0
+	if(H.in_crit_HP_penalty && H.InCritical() && damage > 0)
+		H.in_crit_HP_penalty -= damage
 
 	var/sharp_mod = 1 //this line of code here is meant for species to have various damage modifiers to their brute intake based on the flag of the weapon.
 	switch(sharpness)
@@ -2257,7 +2322,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			H.damageoverlaytemp = 20
 			var/damage_amount = forced ? damage : damage * hit_percent * brutemod * H.physiology.brute_mod * sharp_mod
 			if(BP)
-				if(BP.receive_damage(damage_amount, 0, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness))
+				if(BP.receive_damage(damage_amount, 0, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness, damage_coverings = damage_coverings))
 					H.update_damage_overlays()
 					if(damage_amount < 20)
 						H.adjust_arousal(damage_amount, maso = TRUE)
@@ -2268,7 +2333,7 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 			H.damageoverlaytemp = 20
 			var/damage_amount = forced ? damage : damage * hit_percent * burnmod * H.physiology.burn_mod
 			if(BP)
-				if(BP.receive_damage(0, damage_amount, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness))
+				if(BP.receive_damage(0, damage_amount, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness, damage_coverings = damage_coverings))
 					H.update_damage_overlays()
 			else
 				H.adjustFireLoss(damage_amount)
@@ -2511,8 +2576,11 @@ GLOBAL_LIST_EMPTY(roundstart_race_names)
 		if(thermal_protection >= FIRE_SUIT_MAX_TEMP_PROTECT && !no_protection)
 			H.adjust_bodytemperature(11)
 		else
-			H.adjust_bodytemperature(BODYTEMP_HEATING_MAX + (H.fire_stacks * 12))
-			H.adjustFireLoss(H.fire_stacks)
+			// H.adjust_bodytemperature(BODYTEMP_HEATING_MAX + (H.fire_stacks * 12))
+			var/damage2do = H.fire_stacks
+			if(H.incapacitated())
+				damage2do /= 4 // in crit, fire less dead;luy
+			H.adjustFireLoss(damage2do)
 			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "on_fire", /datum/mood_event/on_fire)
 
 /datum/species/proc/CanIgniteMob(mob/living/carbon/human/H)

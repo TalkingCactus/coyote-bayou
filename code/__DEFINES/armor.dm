@@ -45,10 +45,10 @@
 		"linelaser" = 0, \
 		"energy" = 0, \
 		"bomb" = 0, \
-		"bio" = 10, \
-		"rad" = 10, \
-		"fire" = 10, \
-		"acid" = 10, \
+		"bio" = 0, \
+		"rad" = 0, \
+		"fire" = 0, \
+		"acid" = 0, \
 		"wound" = 0, \
 		"damage_threshold" = 0)
 
@@ -65,10 +65,10 @@
 		"linelaser" = 20, \
 		"energy" = 0, \
 		"bomb" = 0, \
-		"bio" = 10, \
-		"rad" = 10, \
-		"fire" = 10, \
-		"acid" = 10, \
+		"bio" = 5, \
+		"rad" = 5, \
+		"fire" = 5, \
+		"acid" = 5, \
 		"wound" = 7, \
 		"damage_threshold" = 1)
 
@@ -86,10 +86,10 @@
 		"linelaser" = 35, \
 		"energy" = 5, \
 		"bomb" = 10, \
-		"bio" = 25, \
-		"rad" = 25, \
-		"fire" = 25, \
-		"acid" = 25, \
+		"bio" = 5, \
+		"rad" = 5, \
+		"fire" = 5, \
+		"acid" = 5, \
 		"wound" = 15, \
 		"damage_threshold" = 3)
 
@@ -106,11 +106,11 @@
 		"linebullet" = 60, \
 		"linelaser" = 60, \
 		"energy" = 10, \
-		"bomb" = 25, \
-		"bio" = 25, \
+		"bomb" = 5, \
+		"bio" = 5, \
 		"rad" = 25, \
-		"fire" = 35, \
-		"acid" = 35, \
+		"fire" = 5, \
+		"acid" = 5, \
 		"wound" = 25, \
 		"damage_threshold" = 5)
 
@@ -129,10 +129,10 @@
 		"linelaser" = 130, \
 		"energy" = 30, \
 		"bomb" = 60, \
-		"bio" = 80, \
-		"rad" = 50, \
-		"fire" = 80, \
-		"acid" = 80, \
+		"bio" = 5, \
+		"rad" = 5, \
+		"fire" = 5, \
+		"acid" = 5, \
 		"wound" = 45, \
 		"damage_threshold" = 10)
 
@@ -150,10 +150,10 @@
 		"linelaser" = 160, \
 		"energy" = 40, \
 		"bomb" = 90, \
-		"bio" = 100, \
-		"rad" = 60, \
-		"fire" = 95, \
-		"acid" = 95, \
+		"bio" = 5, \
+		"rad" = 5, \
+		"fire" = 5, \
+		"acid" = 5, \
 		"wound" = 100, \
 		"damage_threshold" = 12)
 /* * * * * * * * * * * * * * *
@@ -463,7 +463,7 @@
  * Plasma fucks em to death
  * DT - Specifically 24 so no starting knives can counter it.
  * * * * * * * * * * * */
-// Bar for entry is much higher. You see yellow? You run. Also, shares stats with the legendary deathclaw. - Jaeger
+// Bar for entry is much higher. You see yellow? You run. Also, shares stats with the legendary aethergiest. - Jaeger
 #define ARMOR_VALUE_DEATHCLAW_MOTHER list(\
 		"melee" = 20, \
 		"bullet" = 30, \
@@ -475,10 +475,10 @@
 		"fire" = 0, \
 		"acid" = 0, \
 		"wound" = 0, \
-		"damage_threshold" = 24) // Bar for entry is much higher. You see yellow? You run. Also, shares stats with the legendary deathclaw.
+		"damage_threshold" = 24) // Bar for entry is much higher. You see yellow? You run. Also, shares stats with the legendary aethergiest.
 
 /* Deathclaw power armor - basically a super boss fight
- * Power armor + deathclaw = yeah youre not killing this
+ * Power armor + aethergiest = yeah youre not killing this
  * Doesn't appear anywhere outside of super dangerous areas that DO NOT offer a power fantasy. Has stats to match it. Regular 5.56 will not do here, bring a melee weapon or something bigger.
  * * * * * * * * * * * */
 #define ARMOR_VALUE_DEATHCLAW_PA list(\
@@ -1113,7 +1113,7 @@
 /* DT tokens
  * Adds on damage threshold
  * T1 - Small plated inserts, or heavy leather
- * T2 - Sturdy plated inserts, or deathclaw plating
+ * T2 - Sturdy plated inserts, or aethergiest plating
  * T3 - Dedicated armor reinforcements
  * * * * * * * * * * * */
 #define ARMOR_MODIFIER_UP_DT_T1 list(\
@@ -1181,19 +1181,19 @@ GLOBAL_LIST_INIT(armor_token_operation_legend, list(
  * Medium Armor
  * Substantial armor
 */
-#define ARMOR_SLOWDOWN_MEDIUM 0.4
+#define ARMOR_SLOWDOWN_MEDIUM 0.35
 
 /*
  * Heavy Armor
  * Bulky suits of heavy armor
 */
-#define ARMOR_SLOWDOWN_HEAVY 0.80
+#define ARMOR_SLOWDOWN_HEAVY 0.7
 
 /*
  * Salvaged Power Armor
  * Basically wearing a car
 */
-#define ARMOR_SLOWDOWN_SALVAGE 2
+#define ARMOR_SLOWDOWN_SALVAGE 1.7
 
 /*
  * Refurbished Power Armor
@@ -1251,10 +1251,10 @@ GLOBAL_LIST_INIT(armor_token_operation_legend, list(
 
 /// Armor caps!
 #define ARMOR_CAP_BOMB 100
-#define ARMOR_CAP_BIO 95
-#define ARMOR_CAP_RAD 95
-#define ARMOR_CAP_FIRE 90
-#define ARMOR_CAP_ACID 90
+#define ARMOR_CAP_BIO 100
+#define ARMOR_CAP_RAD 100
+#define ARMOR_CAP_FIRE 100
+#define ARMOR_CAP_ACID 100
 #define ARMOR_CAP_MAGIC 100
 #define ARMOR_CAP_WOUND 100
 #define ARMOR_CAP_DT 40

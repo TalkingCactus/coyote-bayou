@@ -42,7 +42,7 @@
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_DAMAGE_MULT = 1 + 10 * 0.01
 	)
-	I.req_gun_tags = list(GUN_PROJECTILE)
+	I.req_gun_tags = null
 	I.gun_loc_tag = GUN_BARREL1
 
 /obj/item/gun_upgrade/barreltwo
@@ -56,7 +56,7 @@
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_DAMAGE_MULT = 1 + rand(10,20) * 0.01
 	)
-	I.req_gun_tags = list(GUN_PROJECTILE)
+	I.req_gun_tags = null
 	I.gun_loc_tag = GUN_BARREL2
 
 /obj/item/gun_upgrade/barrelthree
@@ -70,7 +70,7 @@
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_DAMAGE_MULT = 1 + rand(10,30) * 0.01
 	)
-	I.req_gun_tags = list(GUN_PROJECTILE)
+	I.req_gun_tags = null
 	I.gun_loc_tag = GUN_BARREL3
 
 /obj/item/gun_upgrade/chipone
@@ -171,7 +171,7 @@
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_RECOIL_2H = 1 + -20 * 0.01,
-		GUN_UPGRADE_PROJ_SPEED_MULT = 1 + -20 * 0.01
+		GUN_UPGRADE_PROJ_SPEED_MULT = 1 + 20 * 0.01
 	)
 	I.req_gun_tags = list()
 	I.gun_loc_tag = GUN_MUZZLE1
@@ -186,7 +186,7 @@
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_RECOIL_2H = 1 + rand(-20,-35) * 0.01,
-		GUN_UPGRADE_PROJ_SPEED_MULT = 1 + rand(-20,-35) * 0.01
+		GUN_UPGRADE_PROJ_SPEED_MULT = 1 + rand(20,35) * 0.01
 	)
 	I.req_gun_tags = list()
 	I.gun_loc_tag = GUN_MUZZLE2
@@ -201,7 +201,7 @@
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_RECOIL_2H = 1 + rand(-20,-55) * 0.01,
-		GUN_UPGRADE_PROJ_SPEED_MULT = 1 + rand(-20,-55) * 0.01
+		GUN_UPGRADE_PROJ_SPEED_MULT = 1 + rand(20,55) * 0.01
 	)
 	I.req_gun_tags = list()
 	I.gun_loc_tag = GUN_MUZZLE3
@@ -413,14 +413,14 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
-		GUN_UPGRADE_RECOIL_2H=1 + rand(-45,20) * 0.01,
-		GUN_UPGRADE_CHARGECOST=1 + rand(-35,10) * 0.01,
-		GUN_UPGRADE_RICO_MULT=1 + rand(-45,20) * 0.01,
-		GUN_UPGRADE_FIRE_DELAY_MULT=1 + rand(-40,5) * 0.01,
-		GUN_UPGRADE_PROJ_SPEED_MULT=1 + rand(-10,55) * 0.01,
-		GUN_UPGRADE_FIRE_DELAY_MULT=1 + rand(-40,5) * 0.01,
-		GUN_UPGRADE_PROJ_SPEED_MULT=1 + rand(-10,55) * 0.01,
-		GUN_UPGRADE_DAMAGE_MULT=1 + rand(-10,44) * 0.01,
+		GUN_UPGRADE_RECOIL_2H=1 + rand(-50,-10) * 0.01,
+		GUN_UPGRADE_CHARGECOST=1 + rand(-50,-10) * 0.01,
+		GUN_UPGRADE_RICO_MULT=1 + rand(50,10) * 0.01,
+		GUN_UPGRADE_FIRE_DELAY_MULT=1 + rand(-50,-10) * 0.01,
+		GUN_UPGRADE_PROJ_SPEED_MULT=1 + rand(10,50) * 0.01,
+		GUN_UPGRADE_FIRE_DELAY_MULT=1 + rand(-50,-10) * 0.01,
+		GUN_UPGRADE_PROJ_SPEED_MULT=1 + rand(10,55) * 0.01,
+		GUN_UPGRADE_DAMAGE_MULT=1 + rand(10,50) * 0.01,
 		UPGRADE_COLOR = "#505050"
 	)
 	I.gun_loc_tag = GUN_PAINTABLE

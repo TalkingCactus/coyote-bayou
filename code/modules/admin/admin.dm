@@ -6,13 +6,23 @@
 	message_admins(finalMessage)
 	log_world(finalMessage)
 
-/proc/message_admins(msg, pref)
+/proc/message_admins(msg, pref, list/exceptfor)
+	var/list/whosend = GLOB.admins.Copy()
+	if(exceptfor)
+		exceptfor = SANITIZE_LIST(exceptfor)
+		for(var/ppl in exceptfor)
+			whosend -= extract_client(ppl)
 	msg = "<span class=\"admin filter_adminlog\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\">[msg]</span></span>"
-	to_chat(GLOB.admins, msg, confidential = TRUE, pref_check = pref)
+	to_chat(whosend, msg, confidential = TRUE, pref_check = pref)
 
-/proc/relay_msg_admins(msg, pref)
+/proc/relay_msg_admins(msg, pref, list/exceptfor)
+	var/list/whosend = GLOB.admins.Copy()
+	if(exceptfor)
+		exceptfor = SANITIZE_LIST(exceptfor)
+		for(var/ppl in exceptfor)
+			whosend -= extract_client(ppl)
 	msg = "<span class=\"admin filter_adminlog\"><span class=\"prefix\">RELAY:</span> <span class=\"message linkify\">[msg]</span></span>"
-	to_chat(GLOB.admins, msg, confidential = TRUE, pref_check = pref)
+	to_chat(whosend, msg, confidential = TRUE, pref_check = pref)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
@@ -471,7 +481,7 @@
 	if(marked_datum && istype(marked_datum, /atom))
 		dat += "<A href='?src=[REF(src)];[HrefToken()];dupe_marked_datum=1'>Duplicate Marked Datum</A><br>"
 
-	usr << browse(dat, "window=admin2;size=240x280")
+	usr << browse(HTML_SKELETON(dat), "window=admin2;size=240x280")
 	return
 
 /////////////////////////////////////////////////////////////////////////////////////////////////admins2.dm merge
@@ -1085,10 +1095,10 @@
 /client/proc/adminGreet(logout)
 	if(SSticker.HasRoundStarted())
 		var/string
-		if(logout && CONFIG_GET(flag/announce_admin_logout))
-			string = pick(
-				"Admin logout: [key_name(src)]")
-		else if(!logout && CONFIG_GET(flag/announce_admin_login) && (prefs.toggles & ANNOUNCE_LOGIN))
+	// 	if(logout && CONFIG_GET(flag/announce_admin_logout))
+	// 		string = pick(
+	// 			"Admin logout: [key_name(src)]")
+		if(!logout /* && CONFIG_GET(flag/announce_admin_login) && (prefs.toggles & ANNOUNCE_LOGIN) */)
 			string = pick(
 				"Admin login: [key_name(src)]")
 		if(string)

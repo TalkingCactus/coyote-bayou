@@ -2,7 +2,7 @@
 	name = "HUD"
 	desc = "A heads-up display that provides important info in (almost) real time."
 	flags_1 = null //doesn't protect eyes because it's a monocle, duh
-	var/hud_type = null
+	hudwhere = list(SLOT_GLASSES)
 
 /obj/item/clothing/glasses/hud/CheckParts(list/parts_list)
 	. = ..()
@@ -14,33 +14,6 @@
 			name = "prescription [name]"
 			return
 
-/obj/item/clothing/glasses/hud/equipped(mob/living/carbon/human/user, slot)
-	..()
-	if(hud_type && slot == SLOT_GLASSES)
-		var/datum/atom_hud/H = GLOB.huds[hud_type]
-		H.add_hud_to(user)
-
-/obj/item/clothing/glasses/hud/dropped(mob/living/carbon/human/user)
-	..()
-	if(hud_type && istype(user) && user.glasses == src)
-		var/datum/atom_hud/H = GLOB.huds[hud_type]
-		H.remove_hud_from(user)
-
-/obj/item/clothing/glasses/hud/emp_act(severity)
-	. = ..()
-	if(obj_flags & EMAGGED || . & EMP_PROTECT_SELF)
-		return
-	obj_flags |= EMAGGED
-	desc = "[desc] The display is flickering slightly."
-
-/obj/item/clothing/glasses/hud/emag_act(mob/user)
-	. = ..()
-	if(obj_flags & EMAGGED)
-		return
-	obj_flags |= EMAGGED
-	to_chat(user, span_warning("PZZTTPFFFT"))
-	desc = "[desc] The display is flickering slightly."
-	return TRUE
 
 ////////////
 //Med Huds//
@@ -65,7 +38,7 @@
 	name = "night vision health scanner HUD"
 	desc = "An advanced medical heads-up display that allows doctors to find patients in complete darkness."
 	icon_state = "healthhudnight"
-	item_state = "glasses"
+	inhand_icon_state = "glasses"
 	darkness_view = 24
 	flash_protect = -2
 	lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
@@ -110,7 +83,7 @@
 	name = "diagnostic HUDSunglasses"
 	desc = "Sunglasses with a diagnostic HUD."
 	icon_state = "sunhuddiag"
-	item_state = "glasses"
+	inhand_icon_state = "glasses"
 	darkness_view = 1
 	flash_protect = 1
 	tint = 1
@@ -131,7 +104,7 @@
 	name = "night vision diagnostic HUD"
 	desc = "A robotics diagnostic HUD fitted with a light amplifier."
 	icon_state = "diagnostichudnight"
-	item_state = "glasses"
+	inhand_icon_state = "glasses"
 	darkness_view = 24
 	flash_protect = -2
 	lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
@@ -215,7 +188,7 @@
 	name = "\improper HUD gar glasses"
 	desc = "GAR glasses with a HUD."
 	icon_state = "gars"
-	item_state = "garb"
+	inhand_icon_state = "garb"
 	force = 10
 	throwforce = 10
 	throw_speed = 4
@@ -227,7 +200,7 @@
 	name = "giga HUD gar glasses"
 	desc = "GIGA GAR glasses with a HUD."
 	icon_state = "supergars"
-	item_state = "garb"
+	inhand_icon_state = "garb"
 	force = 12
 	throwforce = 12
 

@@ -61,7 +61,7 @@
 #define CANT_WOUND -100
 
 // list in order of highest severity to lowest
-GLOBAL_LIST_INIT(global_wound_types, list(
+GLOBAL_LIST_INIT(global_wound_types, alist(
 	WOUND_BLUNT = list(
 		/datum/wound/blunt/critical,
 		/datum/wound/blunt/severe,
@@ -77,14 +77,14 @@ GLOBAL_LIST_INIT(global_wound_types, list(
 	))
 
 // List of slash wounds by severity
-GLOBAL_LIST_INIT(global_slash_wound_severities, list(
+GLOBAL_LIST_INIT(global_slash_wound_severities, alist(
 	WOUND_SEVERITY_MODERATE = /datum/wound/bleed/slash/moderate,
 	WOUND_SEVERITY_SEVERE = /datum/wound/bleed/slash/severe,
 	WOUND_SEVERITY_CRITICAL = /datum/wound/bleed/slash/critical
 	))
 
 // List of pierce wounds by severity
-GLOBAL_LIST_INIT(global_pierce_wound_severities, list(
+GLOBAL_LIST_INIT(global_pierce_wound_severities, alist(
 	WOUND_SEVERITY_MODERATE = /datum/wound/bleed/pierce/moderate,
 	WOUND_SEVERITY_SEVERE = /datum/wound/bleed/pierce/severe,
 	WOUND_SEVERITY_CRITICAL = /datum/wound/bleed/pierce/critical
@@ -178,6 +178,9 @@ GLOBAL_LIST_INIT(global_all_wound_types, list(
 
 /// Multiplier for bleeding if the wound has enough bandaging on it
 #define WOUND_BLEED_BANDAGE_MULTIPLIER 0.05
+
+/// Multiplier for bleeding if the wound has enough bandaging on it
+#define WOUND_BLEED_BANDAGE_SW_MULTIPLIER 0.0001
 
 /// Multiplier for bleeding if the wound has a lick on it
 #define WOUND_BLEED_LICK_MULTIPLIER 0.35
@@ -327,7 +330,7 @@ GLOBAL_LIST_INIT(global_all_wound_types, list(
 #define SUTURE_BURN_MULT 5 // its very flammable
 
 /// Base amount sutures assist wound closure
-#define SUTURE_BASE_WOUND_CLOSURE 0.40
+#define SUTURE_BASE_WOUND_CLOSURE 0.15
 /// Amount normal sutures close wounds
 #define SUTURE_GOOD_WOUND_CLOSURE (SUTURE_BASE_WOUND_CLOSURE * 1.5)
 /// Amount top tier sutures close wounds

@@ -35,6 +35,7 @@
 	var/visual_delay = 0
 
 	var/last_move = 0
+	var/last_meaningful_action = 0
 	var/area			= null
 
 	/// Last time we Click()ed. No clicking twice in one tick!
@@ -70,9 +71,6 @@
 
 	var/atom/movable/screen/click_catcher/void
 
-	//These two vars are used to make a special mouse cursor, with a unique icon for clicking
-	var/mouse_up_icon = null
-	var/mouse_down_icon = null
 
 	var/ip_intel = "Disabled"
 

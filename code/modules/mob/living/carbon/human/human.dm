@@ -7,6 +7,7 @@ GLOBAL_VAR_INIT(crotch_call_cooldown, 0)
 	icon = 'icons/mob/human.dmi'
 	icon_state = "caucasian_m"
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
+	var/put_away_them_grippers_hooh_you_got_them_grippers = 0
 	var/potato = FALSE
 
 /mob/living/carbon/human/twoman
@@ -25,6 +26,7 @@ GLOBAL_VAR_INIT(crotch_call_cooldown, 0)
 	//initialize limbs first
 	create_bodyparts()
 
+
 	//initialize dna. for spawned humans; overwritten by other code
 	create_dna(src)
 	randomize_human(src, TRUE, TRUE)
@@ -38,7 +40,8 @@ GLOBAL_VAR_INIT(crotch_call_cooldown, 0)
 	physiology = new()
 
 	AddComponent(/datum/component/personal_crafting)
-	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN, 0.3, 5)
+	if(!put_away_them_grippers_hooh_you_got_them_grippers)
+		AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN, 0.3, 5)
 	. = ..()
 
 	if(CONFIG_GET(flag/disable_stambuffer))
@@ -52,14 +55,15 @@ GLOBAL_VAR_INIT(crotch_call_cooldown, 0)
 
 /mob/living/carbon/human/ComponentInitialize()
 	. = ..()
-	if(!CONFIG_GET(flag/disable_human_mood))
-		AddComponent(/datum/component/mood)
+//	if(!CONFIG_GET(flag/disable_human_mood))
+//		AddComponent(/datum/component/mood)
 	AddComponent(/datum/component/combat_mode)
 	AddElement(/datum/element/flavor_text/carbon, _name = "Flavor Text", _save_key = "flavor_text")
-	AddElement(/datum/element/flavor_text, "", "Set Pose/Leave OOC Message", "This should be used only for things pertaining to the current round!")
 	AddElement(/datum/element/flavor_text, _name = "OOC Notes", _addendum = "Put information on ERP/lewd-related preferences here. THIS SHOULD NOT CONTAIN REGULAR FLAVORTEXT!!", _always_show = TRUE, _save_key = "ooc_notes", _examine_no_preview = TRUE)
-	AddElement(/datum/element/flavor_text, _name = "Background Info Notes", _addendum = "Put information about your character's background!", _always_show = TRUE, _save_key = "background_info_notes", _examine_no_preview = TRUE)
+	//AddElement(/datum/element/flavor_text, _name = "Background Info Notes", _addendum = "Put information about your character's background!", _always_show = TRUE, _save_key = "background_info_notes", _examine_no_preview = TRUE)
 	AddElement(/datum/element/flavor_text, _name = "F-list link", _always_show = FALSE, _save_key = "flist", _examine_no_preview = TRUE, _attach_internet_link = TRUE)
+	AddElement(/datum/element/flavor_text, "", "Set Pose/Leave OOC Message", "This should be used only for things pertaining to the current round!")
+	AddElement(/datum/element/mob_holder, "corgi")
 	RegisterSignal(src, COMSIG_HUMAN_UPDATE_GENITALS,PROC_REF(signal_update_genitals))
 
 /mob/living/carbon/human/Destroy()
@@ -337,7 +341,7 @@ GLOBAL_VAR_INIT(crotch_call_cooldown, 0)
 
 	// Gremling is just gonna do gremlin things and add this here > w> Cant be assed trying to fit this in somewhere else for now.
 	if(href_list["enlargeImage"])
-		var/dat = {"<img src='[PfpHostLink(profilePicture, pfphost)]'>"}
+		var/dat = {"<img src='[SSchat.GetPicForMode(src, MODE_PROFILE_PIC)]'>"}
 		var/datum/browser/popup = new(usr, "enlargeImage", "Full Sized Picture!",1024,1024)
 		popup.set_content(dat)
 		popup.open()
@@ -1136,7 +1140,8 @@ GLOBAL_VAR_INIT(crotch_call_cooldown, 0)
 	cut_overlay(MA)
 
 /mob/living/carbon/human/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE, check_resting = TRUE)
-	if(incapacitated() || (check_resting && !CHECK_MOBILITY(src, MOBILITY_STAND)))
+	// if(incapacitated() || (check_resting && !CHECK_MOBILITY(src, MOBILITY_STAND)))
+	if(incapacitated(allow_crit = TRUE))
 		to_chat(src, span_warning("You can't do that right now!"))
 		return FALSE
 	if(!Adjacent(M) && (M.loc != src))
@@ -1171,7 +1176,7 @@ GLOBAL_VAR_INIT(crotch_call_cooldown, 0)
 		return
 	else
 		if(hud_used.healths)
-			var/health_amount = min(health, maxHealth - clamp(getStaminaLoss()-50, 0, 80))//CIT CHANGE - makes staminaloss have less of an impact on the health hud
+			var/health_amount = min(health, maxHealth/*  - clamp(getStaminaLoss()-50, 0, 80) */)//CIT CHANGE - makes staminaloss have less of an impact on the health hud // LAGG CHANGE - removed stamina loss from health hud
 			if(..(health_amount)) //not dead
 				switch(hal_screwyhud)
 					if(SCREWYHUD_CRIT)
@@ -1362,7 +1367,7 @@ GLOBAL_VAR_INIT(crotch_call_cooldown, 0)
 	return (istype(target) && target.stat == CONSCIOUS)
 
 /mob/living/carbon/human/proc/can_be_firemanned(mob/living/carbon/target)
-	return (ishuman(target) && !CHECK_MOBILITY(target, MOBILITY_STAND))
+	return (ishuman(target))
 
 /mob/living/carbon/human/proc/fireman_carry(mob/living/carbon/target)
 	var/carrydelay = 50 //if you have latex you are faster at grabbing
@@ -1396,7 +1401,7 @@ GLOBAL_VAR_INIT(crotch_call_cooldown, 0)
 		visible_message(span_notice("[target] starts to climb onto [src]..."))
 		if(do_after(target, 15, target = src, required_mobility_flags = MOBILITY_STAND))
 			if(can_piggyback(target))
-				if(target.incapacitated(FALSE, TRUE) || incapacitated(FALSE, TRUE))
+				if(target.incapacitated(FALSE, TRUE, allow_crit = TRUE) || incapacitated(FALSE, TRUE))
 					target.visible_message(span_warning("[target] can't hang onto [src]!"))
 					return
 				/*if(dna.features["taur"] != "None" || IsFeral())  //if the mount is a taur, then everyone needs -1 hands to piggback ride.
@@ -1457,17 +1462,30 @@ GLOBAL_VAR_INIT(crotch_call_cooldown, 0)
 	if(HAS_TRAIT(src, TRAIT_IGNORESLOWDOWN))	//if we want to ignore slowdown from damage and equipment
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown)
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying)
+		// remove_movespeed_modifier(/datum/movespeed_modifier/wound_slowdown)
 		return
 	var/stambufferinfluence = (bufferedstam*(100/stambuffer))*0.2 //CIT CHANGE - makes stamina buffer influence movedelay
 	if(!HAS_TRAIT(src, TRAIT_IGNOREDAMAGESLOWDOWN))	//if we want to ignore slowdown from damage, but not from equipment
 		var/health_deficiency = ((maxHealth + stambufferinfluence) - health + (getStaminaLoss()*0.75))//CIT CHANGE - reduces the impact of staminaloss and makes stamina buffer influence it
-		if(health_deficiency >= 40)
+		var/wound_slowness = 0
+		for(var/obj/item/bodypart/BP in bodyparts)
+			for(var/datum/wound/W in BP.wounds)
+				wound_slowness += (0.5 + (W.severity * 0.5))
+		if(wound_slowness)
+			add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/wound_slowdown, TRUE, wound_slowness)
+		else
+			remove_movespeed_modifier(/datum/movespeed_modifier/wound_slowdown)
+		if(stat)
+			add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown, TRUE, (health_deficiency-39) / 65)
+			add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying, TRUE, (health_deficiency-39) / 20)
+		else if(health_deficiency >= 40)
 			add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown, TRUE, (health_deficiency-39) / 75)
 			add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying, TRUE, (health_deficiency-39) / 25)
 		else
 			remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown)
 			remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying)
 	else
+		remove_movespeed_modifier(/datum/movespeed_modifier/wound_slowdown)
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown)
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying)
 

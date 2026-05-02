@@ -3,7 +3,7 @@
 	desc = "It's not just a stick, it's a MAGIC stick!"
 	ammo_type = /obj/item/ammo_casing/magic
 	icon_state = "nothingwand"
-	item_state = "wand"
+	inhand_icon_state = "wand"
 	weapon_class = WEAPON_CLASS_SMALL
 	can_charge = TRUE
 	max_charges = 100 //100, 50, 50, 34 (max charge distribution by 25%ths)
@@ -251,16 +251,15 @@
 	icon_state = "missilewand"
 	ammo_type = /obj/item/ammo_casing/magic/kelpmagic/magicmissile/weak
 	max_charges = 1
-	recharge_rate = 6 SECONDS
+	recharge_rate = 4 SECONDS
+	init_recoil = AUTOCARBINE_RECOIL(1, 1)
 	init_firemodes = list(
 		/datum/firemode/semi_auto/faster
 	)
 
-
 /obj/item/ammo_casing/magic/kelpmagic/magicmissile/weak
 	projectile_type = /obj/item/projectile/magic/kelpmagic/magicmissile/weak
-	pellets = 6 //I've fucked with this for 4 hours straight, there is no variable that lets you make shotgun spread, variation does nothing, add_spread does nothing
-// Dont be like me, Don't try to make this a shotgun with a spread degree higher than 1 degree, you simply cant
+	pellets = 6
 
 /obj/item/projectile/magic/kelpmagic/magicmissile/weak
 	name = "weak arcane bolt"
@@ -306,6 +305,7 @@
 	ammo_type = /obj/item/ammo_casing/magic/kelpmagic/magicmissile/average
 	max_charges = 2
 	recharge_rate = 6 SECONDS
+	init_recoil = AUTOCARBINE_RECOIL(1, 1)
 	init_firemodes = list(
 	/datum/firemode/semi_auto/faster
 	)
@@ -317,11 +317,15 @@
 /obj/item/projectile/magic/kelpmagic/magicmissile/average
 	name = "arcane bolt"
 	icon_state = "arcane_barrage"
-	damage = 20
-	damage_low = 35
-	damage_high = 45
+	damage = 35
+	damage_low = 30
+	damage_high = 40
 	damage_type = BURN
 	flag = "laser"
+	spread = BULLET_SPREAD_SURPLUS
+	recoil = BULLET_RECOIL_SHOTGUN_PELLET
+	wound_falloff_tile = BULLET_WOUND_FALLOFF_PISTOL_LIGHT
+	zone_accuracy_type = ZONE_WEIGHT_SHOTGUN
 
 
 /****************/
@@ -368,7 +372,7 @@
 	impact_light_range = 3.75
 	impact_light_color_override = LIGHT_COLOR_BLUE
 	supereffective_damage = 10
-	supereffective_faction = list("hostile", "ant", "supermutant", "deathclaw", "cazador", "raider", "china", "gecko", "wastebot", "yaoguai")
+	supereffective_faction = list("hostile", "ant", "supermutant", "aethergiest", "cazador", "raider", "china", "gecko", "wastebot", "yaoguai")
 
 
 /****************/
@@ -414,3 +418,19 @@
 /obj/item/ammo_casing/magic/kelpmagic/mending // Because the projectile isn't here, heals 15 brute + 10 burn damage and 20 tox/oxy, along with a pittance of clone.
 		projectile_type = /obj/item/projectile/magic/tenderwand
 
+
+/**************/
+//Colfer supermagic hands//
+//Testing phase//
+/**************/
+/*/obj/item/gun/magic/wand/kelpmagic/basiczappies/hand
+	name = "hand of sparks"
+	desc = "A hand of magical energy"
+	icon_state = "improvshock"
+	ammo_type = /obj/item/ammo_casing/magic/kelpmagic/sparks/weak
+	max_charges = 20
+	can_charge = FALSE
+	init_firemodes = list(
+		/datum/firemode/automatic/rpm200
+	)
+*/// Corpse of a project I don't have the time or willpower to finish

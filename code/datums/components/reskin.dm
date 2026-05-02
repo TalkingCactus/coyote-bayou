@@ -20,7 +20,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	/// Actually use the original skin thing
 	var/use_original_skin = TRUE
 	/// The cooldown between reskins
-	var/reskin_cooldown = 5 MINUTES
+	var/reskin_cooldown = 5 SECONDS
 	COOLDOWN_DECLARE(reskin_when)
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
 
@@ -34,6 +34,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	RegisterSignal(parent, list(COMSIG_ITEM_RESKINNABLE),PROC_REF(is_reskinnable))
 	RegisterSignal(parent, list(COMSIG_ITEM_UPDATE_RESKIN),PROC_REF(update_skin))
 	RegisterSignal(parent, list(COMSIG_ITEM_GET_CURRENT_RESKIN),PROC_REF(get_current_skin))
+	RegisterSignal(parent, list(COMSIG_ITEM_SET_SKIN),PROC_REF(force_skin))
 
 /datum/component/reskinnable/UnregisterFromParent()
 	skins = null
@@ -83,6 +84,17 @@ GLOBAL_LIST_EMPTY(reskin_list)
 		return FALSE
 	if(QDELETED(master))
 		return FALSE
+	assign_skin(choice)
+
+/datum/component/reskinnable/proc/force_skin(datum/source, choice)
+	assign_skin(choice, FALSE)
+
+/datum/component/reskinnable/proc/assign_skin(choice, cooldown)
+	if(choice == "Random!")
+		choice = safepick(skins)
+		if(!choice)
+			return FALSE
+	var/obj/item/master = parent
 	var/datum/reskin/skindatum
 	if(choice == RESKIN_SKINDEX_ORIGINAL)
 		skindatum = my_original_skin
@@ -92,7 +104,8 @@ GLOBAL_LIST_EMPTY(reskin_list)
 		return FALSE
 	skindex = skindatum.skin
 	skindatum.apply_to_item(master)
-	COOLDOWN_START(src, reskin_when, reskin_cooldown)
+	if(cooldown)
+		COOLDOWN_START(src, reskin_when, reskin_cooldown)
 	return TRUE
 
 /datum/component/reskinnable/proc/can_reskin(datum/source, mob/user)
@@ -147,7 +160,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	var/desc = "A reskinned item"
 	var/icon
 	var/icon_state
-	var/item_state
+	var/inhand_icon_state
 	var/mob_overlay_icon
 	var/mutantrace_variation
 	/// Some... extra shit to add at the end of the description. Aftger you examine it twice
@@ -175,7 +188,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = template.desc
 	icon = template.icon
 	icon_state = template.icon_state
-	item_state = template.item_state
+	inhand_icon_state = template.inhand_icon_state
 	lefthand_file = template.lefthand_file
 	righthand_file = template.righthand_file
 	mob_overlay_icon = template.mob_overlay_icon
@@ -193,8 +206,8 @@ GLOBAL_LIST_EMPTY(reskin_list)
 		target.icon = icon
 	if(!isnull(icon_state))
 		target.icon_state = icon_state
-	if(!isnull(item_state))
-		target.item_state = item_state
+	if(!isnull(inhand_icon_state))
+		target.inhand_icon_state = inhand_icon_state
 	if(!isnull(lefthand_file))
 		target.lefthand_file = lefthand_file
 	if(!isnull(righthand_file))
@@ -253,7 +266,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 			Has a certain clockwork feel to it, despite its lack of moving parts."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "crowbar"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/crowbar
@@ -265,7 +278,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 			Has a certain clockwork feel to it, despite its lack of moving parts."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "crowbar_clock"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/crowbar/bronze
@@ -276,7 +289,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 			Now in bronze!"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "crowbar_brass"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/crowbar/large
@@ -287,7 +300,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 			This one is really, really big!"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "crowbar_large"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/crowbar/red
@@ -296,7 +309,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "Golly, your own lucky red crowbar!"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "crowbar_red"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 
@@ -315,7 +328,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A hefty device used to turn bolts. Keep out of the works."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "wrench"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/wrench
@@ -325,7 +338,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A hefty device used to turn bolts. Now in honey-glazed flavor."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "wrench_clock"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/wrench/bronze
@@ -334,7 +347,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A hefty device used to turn bolts. Now in orange flavor."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "wrench_brass"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/wrench/old
@@ -352,7 +365,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 			Though on closer inspection, this looks more like a pipe wrench."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "wrench_old"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/wrench/old_medical
@@ -361,7 +374,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A hefty tool used to tighten the bolts on anyone monkeying around in the clinic."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "wrench_medical"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/wrench/medical
@@ -370,7 +383,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A hefty tool used to tighten the bolts on anyone monkeying around in the clinic."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "wrench_medical_old"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 
@@ -381,7 +394,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A long rod with a plump, grabbable knob on the base. Used to screw things."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/screwdriver
@@ -445,7 +458,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A long rod with a plump, grabbable knob on the base. Used to screw things."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/screwdriver
@@ -468,7 +481,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A shiny yellowish screw-driving tool that looks prettier than it has any right to be."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver_clock"
-	item_state = "screwdriver_brass"
+	inhand_icon_state = "screwdriver_brass"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	colorize = null
@@ -478,7 +491,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A long pointy screw-driving tool that was left in the fryer too long."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver_brass"
-	item_state = "screwdriver_brass"
+	inhand_icon_state = "screwdriver_brass"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	colorize = null
@@ -489,7 +502,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "The classic screwing utensil used by Blueberry Bates and his Band of Bate Bonded Bome Bimprovement Bomtractors."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver"
-	item_state = "screwdriver"
+	inhand_icon_state = "screwdriver"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	colorize = "blue"
@@ -499,7 +512,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "Just when you thought the screwdriver companies couldn't be more inventive, bam, they make red."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver"
-	item_state = "screwdriver"
+	inhand_icon_state = "screwdriver"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	colorize = "red"
@@ -509,7 +522,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "You're a Barbie girl, building your Barbie world."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver"
-	item_state = "screwdriver"
+	inhand_icon_state = "screwdriver"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	colorize = "pink"
@@ -519,7 +532,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "Why does it smell like chocolate?"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver"
-	item_state = "screwdriver"
+	inhand_icon_state = "screwdriver"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	colorize = "brown"
@@ -529,7 +542,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "Careful, it's either radioactive, or ready to screw you through a wall."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver"
-	item_state = "screwdriver"
+	inhand_icon_state = "screwdriver"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	colorize = "green"
@@ -542,7 +555,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 			died, the end."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver"
-	item_state = "screwdriver"
+	inhand_icon_state = "screwdriver"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	colorize = "cyan"
@@ -552,7 +565,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "Don't eat the yellow screwdriver."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver"
-	item_state = "screwdriver"
+	inhand_icon_state = "screwdriver"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	colorize = "yellow"
@@ -576,7 +589,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A pair of sharp snipping bits joined to a pair of hard plastic gripping bits. Supposedly cuts wires."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "cutters"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/wirecutters
@@ -599,7 +612,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "An enormous pair of pan-fried scissors."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "cutters_clock"
-	item_state = "cutters_brass"
+	inhand_icon_state = "cutters_brass"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	colorize = null
@@ -609,7 +622,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A set of Ultra Premium Limited Edition Caramel Cutters. Only 1000 were made, and they're all sold out."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "cutters_brass"
-	item_state = "cutters_brass"
+	inhand_icon_state = "cutters_brass"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	colorize = null
@@ -620,7 +633,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "The classic snipping tool used by Blueberry Bates and his Band of Bate Bonded Bome Bimprovement Bomtractors."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "cutters"
-	item_state = "cutters"
+	inhand_icon_state = "cutters"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	colorize = "blue"
@@ -630,7 +643,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "That'll hide the rust for sure."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "cutters"
-	item_state = "cutters"
+	inhand_icon_state = "cutters"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	colorize = "red"
@@ -640,7 +653,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "You're a Barbie girl, cutting the locks off your Barbie world."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "cutters"
-	item_state = "cutters"
+	inhand_icon_state = "cutters"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	colorize = "pink"
@@ -650,7 +663,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "Why does it smell like chocolate?"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "cutters"
-	item_state = "cutters"
+	inhand_icon_state = "cutters"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	colorize = "brown"
@@ -660,7 +673,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "Careful, it's either radioactive, or lime flavored."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "cutters"
-	item_state = "cutters"
+	inhand_icon_state = "cutters"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	colorize = "green"
@@ -673,7 +686,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 			died, the end."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "cutters"
-	item_state = "cutters"
+	inhand_icon_state = "cutters"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	colorize = "cyan"
@@ -683,7 +696,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "Don't eat the yellow wirecutters."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "cutters"
-	item_state = "cutters"
+	inhand_icon_state = "cutters"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	colorize = "yellow"
@@ -703,7 +716,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A standard issue NCR steel helmet. Looks like you can write on it and strap a few items on the helmet band."
 	icon = null
 	icon_state = "ncr_old"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/ncr_helm/medic
@@ -712,7 +725,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "ncr_old_med"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/ncr_helm/mp
@@ -721,7 +734,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "ncr_old_mp"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/ncr_helm/gambler
@@ -730,7 +743,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "ncr_old_gambler"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/ncr_helm/bandolier
@@ -739,7 +752,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "ncr_old_bandolier"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 
@@ -756,7 +769,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "duty"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/khan_boots/alt
@@ -765,7 +778,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "duty_alt"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/khan_boots/long
@@ -774,7 +787,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "duty_long"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 
@@ -790,7 +803,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "duty"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/hos_trench_coat/cloak
@@ -799,7 +812,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "trenchcloak"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 
@@ -818,7 +831,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "It's an expensive Oak fountain pen. The nib is quite sharp."
 	icon = null
 	icon_state = "pen-fountain-o"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/pen/fountain
@@ -828,7 +841,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "It's an expensive Gold fountain pen. The nib is quite sharp."
 	icon = null
 	icon_state = "pen-fountain-g"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/captain_pen/rosewood
@@ -837,7 +850,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "It's an expensive Rosewood fountain pen. The nib is quite sharp."
 	icon = null
 	icon_state = "pen-fountain-r"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/captain_pen/black_and_silver
@@ -846,7 +859,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "It's an expensive Black and Silver fountain pen. The nib is quite sharp."
 	icon = null
 	icon_state = "pen-fountain-b"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/captain_pen/command_blue
@@ -855,7 +868,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "It's an expensive Command Blue fountain pen. The nib is quite sharp."
 	icon = null
 	icon_state = "pen-fountain-cb"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 
@@ -877,7 +890,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "hypovial"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/reagent_containers/glass/bottle/vial
@@ -887,7 +900,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "hypovial-b"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/small_hypovial/blue
@@ -896,7 +909,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "hypovial-d"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/small_hypovial/green
@@ -905,7 +918,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "hypovial-a"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/small_hypovial/orange
@@ -914,7 +927,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "hypovial-k"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/small_hypovial/purple
@@ -923,7 +936,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "hypovial-p"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/small_hypovial/black
@@ -932,7 +945,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "hypovial-t"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/small_hypovial/pink
@@ -941,7 +954,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "hypovial-pink"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 
@@ -962,7 +975,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "hypovial"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/reagent_containers/glass/bottle/vial
@@ -972,7 +985,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "hypoviallarge-b"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/large_hypovial/blue
@@ -981,7 +994,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "hypoviallarge-d"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/large_hypovial/green
@@ -990,7 +1003,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "hypoviallarge-a"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/large_hypovial/orange
@@ -999,7 +1012,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "hypoviallarge-k"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/large_hypovial/purple
@@ -1008,7 +1021,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "hypoviallarge-p"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/large_hypovial/black
@@ -1017,7 +1030,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "hypoviallarge-t"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 
@@ -1033,7 +1046,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "fritz"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
 /datum/reskin/fritz/badboye
@@ -1042,9 +1055,68 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = null
 	icon = null
 	icon_state = "fritz_bad"
-	item_state = null
+	inhand_icon_state = null
 	mob_overlay_icon = null
 	mutantrace_variation = null
+
+GLOBAL_LIST_INIT(pda_skins, list(
+	"Random!",
+	"DataPal",
+	"Medical PDA",
+	"Virology PDA",
+	"Engineering PDA",
+	"Security PDA",
+	"Detective PDA",
+	"Warden PDA",
+	"Janitor PDA",
+	"Scientist PDA",
+	"Head of Personnel PDA",
+	"Head of Security PDA",
+	"Chief Engineer PDA",
+	"Chief Medical Officer PDA",
+	"Research Director PDA",
+	"Captain PDA",
+	"Lieutenant PDA",
+	"Atmospheric Technician PDA",
+	"Chemist PDA",
+	"Geneticist PDA",
+	"Teachboy PDA",
+	"Curator PDA",
+	"Neko PDA",
+	"Handy Orange PDA",
+	"Handy PDA",
+	"Handy Medical PDA",
+	"Handy Virologist PDA",
+	"Handy Engineer PDA",
+	"Handy Security PDA",
+	"Handy Detective PDA",
+	"Handy Warden PDA",
+	"Handy Janitor PDA",
+	"Handy Scientist PDA",
+	"Handy HoP PDA",
+	"Handy HoS PDA",
+	"Handy CE PDA",
+	"Handy CMO PDA",
+	"Handy RD PDA",
+	"Handy Captain PDA",
+	"Handy Lieutenant PDA",
+	"Handy Cargo PDA",
+	"Handy QM PDA",
+	"Handy Miner PDA",
+	"Handy Chaplain PDA",
+	"Handy Cook PDA",
+	"Handy Garden PDA",
+	"Handy Syndicate PDA",
+	"Handy Lawyer PDA",
+	"Handy Roboticist PDA",
+	"Handy Bartender PDA",
+	"Handy Atmos PDA",
+	"Handy Chemist PDA",
+	"Handy Geneticist PDA",
+	"Handy Clear PDA",
+	"Handy Librarian PDA",
+	"Handy Neko PDA",
+	))
 
 /// PDA SKINS ///
 /datum/component/reskinnable/pda
@@ -1105,13 +1177,14 @@ GLOBAL_LIST_EMPTY(reskin_list)
 		"Handy Librarian PDA",
 		"Handy Neko PDA",
 	)
+
 /datum/reskin/pda
 	skin = "Datapal 3000"
 	name = "Datapal 3000"
 	desc = null
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "pda"
-	item_state = "Pip-boy"
+	inhand_icon_state = "Pip-boy"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/pda
@@ -1444,7 +1517,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "Bang!"
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "308"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1457,7 +1530,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	if(!istype(target))
 		return
 	. = TRUE
-	target.item_state = item_state
+	target.inhand_icon_state = inhand_icon_state
 	target.mob_overlay_icon = mob_overlay_icon
 	if(target.sawn_off)
 		target.desc = sawn_desc
@@ -1505,7 +1578,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A sturdy hunting rifle, chambered in .30-06 Springfield."
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "308"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1519,7 +1592,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "An old, worn-in hunting rifle with leather wrapping the stock. Do (no) harm."
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "308special"
-	item_state = "308special"
+	inhand_icon_state = "308special"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1533,7 +1606,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "This bolt action rifle was popular among hunters, police, and the military before whatever the heck happened."
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "308"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1547,7 +1620,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A modified .30-06 hunting rifle with a reduced magazine but an augmented receiver. A Mexican flag is wrapped around the stock. You only have three shots- make them count."
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "paciencia"
-	item_state = "paciencia"
+	inhand_icon_state = "paciencia"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1561,7 +1634,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A rusty old Russian bolt action chambered in .30-06."
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "mosin"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1576,7 +1649,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	icon_state = "arisaka30"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1591,7 +1664,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	icon_state = "arisaka35"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1605,7 +1678,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A bolt action rifle chambered in .30-06. Rumor has it, the Japanese originally chambered it in .38, but changed it to .30-06 once the world's supply ran out."
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "arisaka38"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1619,7 +1692,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A bolt action rifle chambered in .30-06. Rumor has it, the Japanese made this to celebrate 99 years of Arisaka manufacturing. Here's to 99 more!"
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "arisaka99"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1634,7 +1707,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	icon_state = "gewehr71"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1650,7 +1723,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	icon_state = "gewehr88"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1665,7 +1738,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	icon_state = "gewehr98"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1680,7 +1753,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A bolt action rifle chambered in .30-06. Originally made by Nyanco as a solution to their rat problem. After 89 unsuccessful models, they finally cleared out their basement."
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "mauser90"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1694,7 +1767,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A bolt action rifle chambered in .30-06. Nyanco's apology after the Mauser 90 turned out to be a hit with rats."
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "mauser93"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1708,7 +1781,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A bolt action rifle chambered in .30-06. A French design known as 'The Bell'."
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "lebel"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1723,7 +1796,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	icon_state = "murata"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1738,7 +1811,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	icon_state = "carcano"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1752,7 +1825,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A bolt action rifle chambered in .30-06. Chryslus Motors' first attempt at making a rifle that fit on their dashboard. Recalled after numerous reports of it not fitting on the dashboard."
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "kar98a"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1766,7 +1839,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A bolt action rifle chambered in .30-06. Chryslus Motors' eleventh attempt at making a rifle that fit on their dashboard. Reportedly fit better in the cup holder."
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "kar98k"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1780,7 +1853,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A bolt action rifle chambered in .30-06. Developed by Large Lars Francis as a competitor to the Mosin Nagant. Was successful in the fact that it was not a Mosin Nagant."
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "mosin30"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1794,7 +1867,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A bolt action rifle chambered in .30-06. Developed by 11 of the nodes comprising the Great Eastern Hiveblob in Remington Missouri to prove, once and for all, that they were the best hiveblob."
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "remington11"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1808,7 +1881,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A bolt action rifle chambered in .30-06. Developed by nobody in particular. Just a rifle."
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "servicerifle"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1822,7 +1895,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A bolt action rifle chambered in .30-06. Developed by the Great Eastern Hiveblob when dared that it couldn't make a rifle that was also a revolver. Turns out it could."
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "revolving"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1836,7 +1909,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A bolt action rifle chambered in .30-06. The first rifle ever approved for fishing. The fish were not impressed."
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "marlin"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1850,7 +1923,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A bolt action rifle chambered in .30-06. Mad Maddy Madsen's 47th attempt at a bolt action rifle. The previous 46 were okay too."
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "madsenm47"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1864,7 +1937,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A bolt action rifle chambered in .30-06. Easily the most rifle of all time."
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "springfield_ww2"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1878,7 +1951,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A bolt action rifle chambered in .30-06. Easily the most rifle of all time."
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "springfield"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1892,7 +1965,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A bolt-action rifle. Formerly chambered in 14mm, until they missed a payment to the 14mm board. The 'P' remains a mystery."
 	icon = 'icons/fallout/objects/guns/longguns.dmi'
 	icon_state = "p14"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1917,7 +1990,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	icon_state = "smle"
-	item_state = "smle"
+	inhand_icon_state = "smle"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1932,7 +2005,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	mob_overlay_icon = 'modular_coyote/icons/objects/back.dmi'
 	icon_state = "smle"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1946,7 +2019,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A bolt-action rifle. The fourth rifle ever made."
 	icon = 'icons/fallout/objects/guns/longguns.dmi'
 	icon_state = "no_4"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1960,7 +2033,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A bolt-action rifle. The fourth light-brown rifle ever made, senpai."
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "no_4_tan"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1974,7 +2047,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A bolt-action rifle. Rumor has it, the Japanese made this as a prosumer grade rifle. It's also chambered in .308."
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "arisaka"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -1997,7 +2070,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A breech-loading single-shot rifle with a lever action .30-06. The shortened version of Henry Martin's 'Kilometer Gun'. Considerably more portable."
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "martini_henry"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -2016,7 +2089,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "Bang!"
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
 	icon_state = "m3civ"
-	item_state = "m3civ"
+	inhand_icon_state = "m3civ"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun/ballistic
@@ -2033,7 +2106,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 /datum/reskin/gun/pistol/update_skin(obj/item/gun/ballistic/target)
 	if(!istype(target))
 		return
-	target.item_state = item_state
+	target.inhand_icon_state = inhand_icon_state
 	. = TRUE
 	target.mob_overlay_icon = mob_overlay_icon
 	var/chambered = !!target.chambered
@@ -2058,7 +2131,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A 9mm compact pistol, quite useful to have around in a holster or chest draw holster."
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
 	icon_state = "glock"
-	item_state = "glock"
+	inhand_icon_state = "glock"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun/ballistic
@@ -2073,7 +2146,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A 9mm compact pistol, quite useful to have around in a holster or chest draw holster. This one is a very vibrant pink."
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
 	icon_state = "plock"
-	item_state = "plock"
+	inhand_icon_state = "plock"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun/ballistic
@@ -2096,7 +2169,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A 9mm compact pistol, quite useful to have around in a holster or chest draw holster. This one is tan colored!"
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
 	icon_state = "tanm9"
-	item_state = "gun"
+	inhand_icon_state = "gun"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun/ballistic
@@ -2112,7 +2185,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A 9mm compact pistol, quite useful to have around in a holster or chest draw holster. This one is steel and pristine looking!"
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
 	icon_state = "newm9"
-	item_state = "gun"
+	inhand_icon_state = "gun"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun/ballistic
@@ -2136,7 +2209,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A Volcanic Pistol from the Volcanic Repeating Arms Company. The pistol itself is a 6 round capacity rechambered in a much more fitting .45 ACP. The gun's original problems have been seemingly taken care of as to not allow your hand or hands to blow off when using the gun itself."
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
 	icon_state = "volcanic"
-	item_state = "volcanic"
+	inhand_icon_state = "volcanic"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun/ballistic
@@ -2150,7 +2223,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "A Volcanic Pistol from the Volcanic Repeating Arms Company. The pistol itself is a 6 round capacity rechambered in a much more fitting .45 ACP. The gun's original problems have been seemingly taken care of as to not allow your hand or hands to blow off when using the gun itself. Now in lemon-cream flavor."
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
 	icon_state = "customvolcanic"
-	item_state = "customvolcanic"
+	inhand_icon_state = "customvolcanic"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun/ballistic
@@ -2166,7 +2239,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "Bang!"
 	icon = 'modular_coyote/icons/objects/rifles.dmi'
 	icon_state = "308"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun/ballistic
@@ -2195,7 +2268,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	if(!istype(target))
 		return
 	. = TRUE
-	target.item_state = item_state
+	target.inhand_icon_state = inhand_icon_state
 	target.mob_overlay_icon = mob_overlay_icon
 	var/obj/item/ammo_box/magazine/mag = target.magazine
 	var/loaded = istype(mag)
@@ -2234,10 +2307,10 @@ GLOBAL_LIST_EMPTY(reskin_list)
 /datum/reskin/gun/magazine/service_rifle
 	skin = "Service Rifle"
 	name = "service rifle"
-	desc = "A pre-war semi-automatic rifle that saw extensive use with the US military. Chambered in 5.56x45 and capable of accepting bayonets, these rifles remain popular with militas and caravans alike."
+	desc = "A Pre-Fall semi-automatic rifle that saw extensive use with the US military. Chambered in 5.56x45 and capable of accepting bayonets, these rifles remain popular with militas and caravans alike."
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "service_rifle"
-	item_state = "servicerifle"
+	inhand_icon_state = "servicerifle"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -2256,7 +2329,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "Built entirely out of space-age plastic, the Abby-Lante Reciprocator weighs only 15 grams. The rest of the gun is made out of steel, and weighs 15 kilograms. The ALR-15 is chambered in 5.56x45mm, and is capable of accepting bayonets."
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "alr15"
-	item_state = "alr15"
+	inhand_icon_state = "alr15"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -2284,7 +2357,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "The U.S. army carbine version of the R91, made by Colt and issued to special forces."
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
 	icon_state = "assault_carbine"
-	item_state = "assault_carbine"
+	inhand_icon_state = "assault_carbine"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -2303,7 +2376,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "As an ancient modern rifle chambered in 5mm, the Sierra Catgirl Army Rifle - (maLe) is a popular choice for those wanting to patrol the Northwestern Silvervine."
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
 	icon_state = "scarl"
-	item_state = "scarl"
+	inhand_icon_state = "scarl"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -2335,7 +2408,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	lefthand_file = 'icons/fallout/onmob/weapons/melee2h_lefthand.dmi'
 	righthand_file = 'icons/fallout/onmob/weapons/melee2h_righthand.dmi'
 	icon_state = "staff-shaman"
-	item_state = "staff-shaman"
+	inhand_icon_state = "staff-shaman"
 	expected_type = /obj/item/gun
 
 
@@ -2358,7 +2431,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	desc = "Its a gun. It shoots bullets. If it kinda looks like an American 180 by default, something fucked up. but its not."
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "smg22"
-	item_state = "308"
+	inhand_icon_state = "308"
 	mob_overlay_icon = null
 	mutantrace_variation = null
 	expected_type = /obj/item/gun
@@ -2376,7 +2449,7 @@ GLOBAL_LIST_EMPTY(reskin_list)
 	name = "debug rifle"
 	desc = "its a service rifle that turns into other shit. if you see this, call 1-800-IMC-ODER"
 	icon_state = "service_rifle"
-	item_state = "servicerifle"
+	inhand_icon_state = "servicerifle"
 	mag_type = /obj/item/ammo_box/magazine/m556/rifle
 	init_mag_type = /obj/item/ammo_box/magazine/m556/rifle
 	extra_mag_types = list(/obj/item/ammo_box/magazine/m22smg)

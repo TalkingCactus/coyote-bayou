@@ -2,7 +2,7 @@
 	name = "cargo cap"
 	desc = "It's a baseball hat in a tasteless yellow colour."
 	icon_state = "cargosoft"
-	item_state = "helmet"
+	inhand_icon_state = "helmet"
 	var/soft_type = "cargo"
 
 	dog_fashion = /datum/dog_fashion/head/cargo_tech
@@ -30,7 +30,7 @@
 
 
 /obj/item/clothing/head/soft/proc/flip(mob/user)
-	if(!user.incapacitated())
+	if(!user.incapacitated(allow_crit = TRUE))
 		src.flipped = !src.flipped
 		if(src.flipped)
 			icon_state = "[soft_type]soft_flipped"
@@ -134,7 +134,7 @@
 	desc = "It's a robust baseball hat, this one belongs to syndicate major league team."
 	icon_state = "baseballsoft"
 	soft_type = "baseball"
-	item_state = "baseballsoft"
+	inhand_icon_state = "baseballsoft"
 	flags_inv = HIDEEYES|HIDEFACE
 	strip_delay = 90 //You dont take a Major Leage cap
 	dog_fashion = null

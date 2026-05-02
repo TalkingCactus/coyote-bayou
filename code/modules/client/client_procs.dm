@@ -522,7 +522,7 @@ GLOBAL_LIST_INIT(warning_ckeys, list())
 		holder.owner = null
 		GLOB.admins -= src
 		GLOB.adminchat -= src //fortuna add
-		if (!GLOB.admins.len && SSticker.IsRoundInProgress()) //Only report this stuff if we are currently playing.
+		// if (!GLOB.admins.len && SSticker.IsRoundInProgress()) //Only report this stuff if we are currently playing.
 			/*
 			var/cheesy_message = pick(
 				"I have no admins online!",\
@@ -541,7 +541,7 @@ GLOBAL_LIST_INIT(warning_ckeys, list())
 
 			send2irc("Server", "[cheesy_message] (No admins online)")
 			*/
-			send2irc("Server", "No admins online")
+			// send2irc("Server", "No admins online")
 
 	QDEL_LIST_ASSOC_VAL(char_render_holders)
 	if(movingmob != null)
@@ -549,6 +549,8 @@ GLOBAL_LIST_INIT(warning_ckeys, list())
 		UNSETEMPTY(movingmob.client_mobs_in_contents)
 	// seen_messages = null
 	Master.UpdateTickRate()
+	if(click_intercept)
+		call(click_intercept, "ClientDied")()
 	. = ..() //Even though we're going to be hard deleted there are still some things that want to know the destroy is happening
 	return QDEL_HINT_HARDDEL_NOW
 

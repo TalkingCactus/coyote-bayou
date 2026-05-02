@@ -10,7 +10,7 @@
 	desc				= "A sex toy disguised as a flashlight, used to stimulate someones penis, complete with colour changing sleeve."
 	icon 				= 'modular_sand/icons/obj/fleshlight.dmi'
 	icon_state 			= "fleshlight_base"
-	item_state 			= "fleshlight"
+	inhand_icon_state 			= "fleshlight"
 	w_class				= WEIGHT_CLASS_SMALL
 	var/style			= CUM_TARGET_VAGINA
 	var/sleevecolor 	= "#ffcbd4" //pink
@@ -37,12 +37,12 @@
 	return TRUE
 
 /obj/item/fleshlight/proc/customize(mob/living/user)
-	if(src && !user.incapacitated() && in_range(user,src))
+	if(src && !user.incapacitated(allow_crit = TRUE) && in_range(user,src))
 		var/new_style = tgui_input_list(usr, "Choose style", "Customize Fleshlight", list(CUM_TARGET_VAGINA, CUM_TARGET_ANUS))
 		if(new_style)
 			style = new_style
 	update_icon()
-	if(src && !user.incapacitated() && in_range(user,src))
+	if(src && !user.incapacitated(allow_crit = TRUE) && in_range(user,src))
 		var/new_color = input(user, "Choose color.", "Customize Fleshlight", sleevecolor) as color|null
 		if(new_color)
 			sleevecolor = new_color
@@ -79,7 +79,7 @@
 	desc 				= "A silver love(TM) fleshlight, used for self-stimulation, with bluespace tech that allows lovers to hump at a distance. Also functions as a dildo, if your partner has the right parts."
 	icon 				= 'modular_sand/icons/obj/fleshlight.dmi'
 	icon_state 			= "unpaired"
-	item_state 			= "fleshlight"
+	inhand_icon_state 			= "fleshlight"
 	w_class 			= WEIGHT_CLASS_SMALL
 	var/partnercolor 	= "#ffcbd4"
 	var/partnerbase 	= "normal"
@@ -619,7 +619,7 @@
 	desc = "A silver love(TM) pair of portal underwear, with bluespace tech allows lovers to hump at a distance. Needs to be paired with a portal fleshlight before use. Can also be used as a mask."
 	icon = 'modular_sand/icons/obj/fleshlight.dmi'
 	icon_state = "portalpanties"
-	item_state = "fleshlight"
+	inhand_icon_state = "fleshlight"
 	w_class = WEIGHT_CLASS_SMALL
 	var/obj/item/portallight/portallight
 	var/targetting = CUM_TARGET_VAGINA

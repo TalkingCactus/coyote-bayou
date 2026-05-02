@@ -100,7 +100,7 @@
 		for(var/cat in my_upgrades)
 			switch(cat)
 				if(GUN_UPGRADE_DAMAGE_MULT)
-					damage_multiplier *= LAZYACCESS(my_upgrades, cat)
+					damage_multiplier = LAZYACCESS(my_upgrades, cat)
 				if(GUN_UPGRADE_FIRE_DELAY_MULT)
 					shoot_delay *= LAZYACCESS(my_upgrades, cat)
 					burst_delay *= LAZYACCESS(my_upgrades, cat)
@@ -146,6 +146,9 @@
 
 /datum/firemode/semi_auto/slower
 	shoot_delay_default = GUN_FIRE_DELAY_SLOWER
+
+/datum/firemode/semi_auto/slowest
+	shoot_delay_default = GUN_FIRE_DELAY_SLOWEST
 
 /datum/firemode/automatic
 	name = "Fully Automatic"
