@@ -33,30 +33,25 @@
 		min_middle_maps = LAZYLEN(middle_maps)
 		max_middle_maps = max(min_middle_maps, max_middle_maps)
 	exit_chance = clamp(exit_chance, 0, 100)
-	
+
 	MakeMapList()
 
 /// Populates the my_maps list with the weighted list of maps to choose from
 /datum/dungeon_controller/proc/MakeMapList()
 	my_maps += pickweight(start_maps)
 	var/mids = 0
-	var/exited = FALSE
 	for(var/i=0, i<max_middle_maps, i++)
 		if(rand(1,100) <= exit_chance) 							// Rolled an exit map chunk
 			if(mids < min_middle_maps) 							// We haven't rolled enough middle maps yet
 				for(mids, mids < min_middle_maps, mids++) 		// Roll more middle maps until we have enough
 					my_maps += pick(middle_maps)
 					mids++
-			if(mids >= min_middle_maps)							// We have enough middle maps, so we can roll an exit map
-				my_maps += pick(exit_maps)
-				exited = TRUE
+			if(mids >= min_middle_maps)							// We have enough middle maps, so we can exit
 				break
 		else
 			my_maps += pick(middle_maps)						// We rolled a middle map, so add it to the list
 			mids++
-	if(!exited)
-		my_maps += pick(exit_maps)								// We didn't roll an exit map, so add one to the end
-		exited = TRUE
+	my_maps += pick(exit_maps)
 
 	AssociateMapTemplates()
 
@@ -66,19 +61,20 @@
 		if(!ispath(map))
 			continue
 		for(var/datum/map_template/dungeon/template in SSmapping.dungeon_templates)
-			if(istype(template, map))
-				map = template
+			if(istype(SSmapping.dungeon_templates[template], map))
+				map = SSmapping.dungeon_templates[template]
 			message_admins(span_adminnotice("DEBUG: Matched [map] for a map template."))
 		if(ispath(map))
 			message_admins(span_adminnotice("DEBUG: Failed to find dungeon map template for [map]. Report this as a bug!"))
 
 /datum/dungeon_controller/proc/GenerateMap(map_index)
-	var/datum/map_template/dungeon/map
-	if(ispath(my_maps[map_index]))
-		my_maps[map_index] = locate(my_maps[map_index]) in SSmapping.dungeon_templates
+	var/datum/map_template/dungeon/map = my_maps[map_index]
+	if(!istype(map))
+		message_admins(span_adminnotice("DEBUG:Map is not a template reference."))
+		return
 	var/datum/turf_reservation/dungeon/reservation = map.spawn_dungeon_map_chunk()
 	if(!istype(reservation))
-		message_admins(span_adminnotice("DEBUG:Failed to reserve space to spawn a dungeon.")) 											//We couldn't reserve a spot.
+		message_admins(span_adminnotice("DEBUG:Failed to reserve space to spawn a dungeon.")) 				//We couldn't reserve a spot.
 		return
 	my_reservations[map_index] = reservation
 	my_maps[map_index] = map
