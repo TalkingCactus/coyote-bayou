@@ -546,7 +546,7 @@
 	job.standard_assign_skills(character.mind)
 
 	SSticker.minds += character.mind
-	character.client.init_verbs() // init verbs for the late join
+	// Removed duplicate init_verbs() call - verbs already finalized in Login()
 	var/mob/living/carbon/human/humanc
 	if(ishuman(character))
 		humanc = character	//Let's retypecast the var to be human,
@@ -697,13 +697,13 @@
 		C.profilePicture = P.creature_profilepic
 		C.pfphost = P.creature_pfphost
 		C.verbose_species = "[P.creature_species]"
-		C.special_s = P.special_s
-		C.special_p = P.special_p
-		C.special_e = P.special_e
-		C.special_c = P.special_c
-		C.special_i = P.special_i
-		C.special_a = P.special_a
-		C.special_l = P.special_l
+		C.stat_strength = P.stat_strength
+		C.stat_perception = P.stat_perception
+		C.stat_endurance = P.stat_endurance
+		C.stat_charisma = P.stat_charisma
+		C.stat_intelligence = P.stat_intelligence
+		C.stat_agility = P.stat_agility
+		C.stat_luck = P.stat_luck
 		//C.fuzzy = P.creature_fuzzy
 		//C.resize = P.creature_body_size
 		//Disable their mob's AI so they don't wander after the player ghosts out of them
@@ -821,8 +821,8 @@
 		mind.active = 0					//we wish to transfer the key manually
 		mind.transfer_to(H)					//won't transfer key since the mind is not active
 		mind.original_character = H
-	H.name = real_name
-	client.init_verbs()
+
+	// Removed early init_verbs() call - verbs will be initialized after Login() in BYOND 516
 	. = H
 	new_character = .
 	if(transfer_after)
@@ -844,11 +844,10 @@
 		return
 	client.crew_manifest_delay = world.time + (1 SECONDS)
 
-	var/dat = "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'></head><body>"
-	dat += "<h4>Crew Manifest</h4>"
-	// dat += GLOB.data_core.get_manifest_dr(OOC = 1)
+	var/dat = "<h4>Crew Manifest</h4>"
+	dat += GLOB.data_core.get_manifest_dr(OOC = 1)
 
-	src << browse(dat, "window=manifest;size=387x420;can_close=1")
+	src << browse(HTML_SKELETON(dat), "window=manifest;size=387x420;can_close=1")
 
 /mob/dead/new_player/Move()
 	return 0

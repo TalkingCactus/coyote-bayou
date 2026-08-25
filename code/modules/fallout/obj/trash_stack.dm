@@ -13,6 +13,7 @@
 	var/obj/effect/spawner/lootdrop/stuffspawn = /obj/effect/spawner/lootdrop/f13/trash/pile
 	var/howmany_min = 1
 	var/howmany_max = 4
+	var/image/visual
 /*
 /obj/item/storage/trash_stack/proc/initialize_lootable_trash()
 	lootable_trash = list(/obj/effect/spawner/lootdrop/f13/trash)
@@ -25,14 +26,24 @@
 			lootable_trash += ii*/
 */
 
-// /obj/item/storage/trash_stack/Initialize()
-// 	. = ..()
-// 	icon_state = "trash_[rand(1,3)]"
-// 	GLOB.trash_piles += WEAKREF(src)
+/obj/item/storage/trash_stack/Initialize()
+	. = ..()
+	for(var/obj/item/storage/trash_stack/roommate in loc)
+		if(roommate == src)
+			continue
+		//stack_trace("Multiple trash stacks at ([loc.x], [loc.y], [loc.z])!")
+		return INITIALIZE_HINT_QDEL
+	visual = image(icon, src, icon_state)
+	icon_state = "blank"
+	SSlootmanager.add_pile(src)
+	SSlootmanager.send_to_all_players(src)
 
-//	initialize_lootable_trash()
+/obj/item/storage/trash_stack/proc/show(client/showee)
+	showee << visual
 
 /obj/item/storage/trash_stack/Destroy()
+	SSlootmanager.remove_pile(src)
+	qdel(visual)
 	GLOB.trash_piles -= WEAKREF(src)
 	. = ..()
 
@@ -58,7 +69,7 @@
 		playsound(get_turf(src), 'sound/f13effects/loot_trash.ogg', 100, TRUE, 1)
 	to_chat(user, span_smallnoticeital("You start picking through [src]...."))
 	rifling = TRUE
-	if(!do_mob(user, src, 3 SECONDS))
+	if(!do_mob(user, src, 1 SECONDS))
 		rifling = FALSE
 		return
 	rifling = FALSE
@@ -76,6 +87,8 @@
 			var/obj/item/newitem = spawned
 			newitem.from_trash = TRUE
 		SEND_SIGNAL(spawned, COMSIG_ITEM_MOB_DROPPED, src)
+
+	user.client.images -= visual
 
 		// if(isgun(spawned))
 		// 	var/obj/item/gun/trash_gun = spawned
@@ -149,8 +162,8 @@
 
 //common loot pile, drops 1 or 2 of our common loot drops
 /obj/item/storage/trash_stack/loot/common	//obj/effect/spawner/lootdrop/f13/common
-	name = "pile of cool garbage"
-	desc = "A pile of garbage. Smells as good as it looks, though it may contain something useful. Or rats. Probably rats."
+	name = "pile of scrap"
+	desc = "A pile of scrap. You might find something useful if you take a look inside."
 	icon = 'icons/fallout/objects/crafting.dmi'
 	color = "#FFFFFF"
 	icon_state = "Junk_10"
@@ -160,10 +173,10 @@
 	howmany_min = 1
 	howmany_max = 2
 
-//uncommon loot pile, drops 1 or 2 of our common loot drops
-/obj/item/storage/trash_stack/loot/uncommon	//obj/effect/spawner/lootdrop/f13/common
-	name = "pile of really cool garbage"
-	desc = "A pile of garbage. Smells as good as it looks, though it may contain something useful. Or rats. Probably rats."
+//uncommon loot pile, drops 1 or 2 of our uncommon loot drops
+/obj/item/storage/trash_stack/loot/uncommon	//obj/effect/spawner/lootdrop/f13/uncommon
+	name = "pile of shiny scrap"
+	desc = "A pile of scrap. There's probably something cool in it."
 	icon = 'icons/fallout/objects/crafting.dmi'
 	color = "#FFFFFF"
 	icon_state = "Junk_2"
@@ -173,10 +186,10 @@
 	howmany_min = 1
 	howmany_max = 2
 
-//rare loot pile, drops 1 or 2 of our common loot drops
-/obj/item/storage/trash_stack/loot/rare	//obj/effect/spawner/lootdrop/f13/common
-	name = "pile of extra super cool garbage"
-	desc = "A pile of garbage. Smells as good as it looks, though it may contain something useful. Or rats. Probably rats."
+//rare loot pile, drops 1 or 2 of our rare loot drops
+/obj/item/storage/trash_stack/loot/rare	//obj/effect/spawner/lootdrop/f13/rare
+	name = "pile of valuables"
+	desc = "A pile of valuable-looking objects. There's gotta be something useful in there."
 	icon = 'icons/fallout/objects/crafting.dmi'
 	color = "#FFFFFF"
 	icon_state = "Junk_6"

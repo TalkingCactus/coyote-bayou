@@ -293,6 +293,7 @@ touch + help + facing their rear = pat back
 	attack_speed = CLICK_CD_MELEE * 0.7
 	item_flags = PERSONAL_ITEM | ABSTRACT | HAND_ITEM
 	weapon_special_component = /datum/component/weapon_special/single_turf
+	block_parry_data = /datum/block_parry_data/bokken
 	var/can_adjust_unarmed = TRUE
 	var/unarmed_adjusted = TRUE
 
@@ -401,6 +402,7 @@ touch + help + facing their rear = pat back
 	attack_speed = CLICK_CD_MELEE * 0.7
 	item_flags = PERSONAL_ITEM | ABSTRACT | HAND_ITEM
 	weapon_special_component = /datum/component/weapon_special/single_turf
+	block_parry_data = /datum/block_parry_data/bokken
 
 /obj/item/hand_item/clawer/equipped(mob/user, slot)
 	. = ..()
@@ -556,13 +558,14 @@ touch + help + facing their rear = pat back
 /obj/item/hand_item/tail
 	name = "tailwhack"
 	desc = "A tail. Good for whacking."
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "a"
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "severedtail"
 	w_class = WEIGHT_CLASS_TINY
 	force = 15
 	backstab_multiplier = 1.8
 	attack_speed = CLICK_CD_MELEE * 0.7
 	weapon_special_component = /datum/component/weapon_special/single_turf
+	block_parry_data = /datum/block_parry_data/bokken
 	var/list/mytail
 
 /obj/item/hand_item/tail/ComponentInitialize()
@@ -583,13 +586,12 @@ touch + help + facing their rear = pat back
 
 /obj/item/hand_item/tail/proc/tailify(mob/user)
 	if(!iscarbon(user))
-		to_chat(user, span_alert("You aint got a tail!"))
 		return
 	var/datum/genital_images/mynt = SSpornhud.get_genital_datum(user)
 	if(!mynt || !LAZYLEN(mynt.tail))
-		to_chat(user, span_warning("Oh no your tail doesnt seem to be seeable!!!"))
-		qdel(src)
 		return
+	icon = "icons/effects/effects.dmi"
+	icon = "nothing"
 	mytail = mynt.tail.Copy()
 	overlays.Cut()
 	for(var/whatever in mytail)
@@ -653,6 +655,7 @@ touch + help + facing their rear = pat back
 	attack_speed = 0
 	item_flags = DROPDEL | ABSTRACT | HAND_ITEM
 	weapon_special_component = /datum/component/weapon_special/single_turf
+	block_parry_data = /datum/block_parry_data/bokken
 
 /obj/item/hand_item/beans_war
 	name = "war beans"
@@ -669,6 +672,7 @@ touch + help + facing their rear = pat back
 	attack_speed = 0
 	item_flags = DROPDEL | ABSTRACT | HAND_ITEM
 	weapon_special_component = /datum/component/weapon_special/single_turf
+	block_parry_data = /datum/block_parry_data/bokken
 
 /obj/item/hand_item/beans/attack(mob/living/M, mob/living/user)
 	. = ..()
@@ -879,14 +883,14 @@ touch + help + facing their rear = pat back
 /obj/item/hand_item/butt
 	name = "your butt"
 	desc = "Very smoochable."
-	icon = 'icons/obj/in_hands.dmi'
-	icon_state = "biter"
+	icon = 'icons/ass/assfemale.png' // rofl
 	attack_verb = list("smecked", "bwapped", "bumped", "clapped", "quapped", "vooped", "whomped")
 	// hitsound = "sound/weapons/bite.ogg"
 	w_class = WEIGHT_CLASS_GIGANTIC // your butt is HUGE!!!!
 	flags_1 = CONDUCT_1
 	force = 0
 	weapon_special_component = /datum/component/weapon_special/single_turf
+	block_parry_data = /datum/block_parry_data/bokken
 
 /obj/item/hand_item/butt/afterattack(mob/living/M, mob/living/user)
 	. = ..()
@@ -902,14 +906,12 @@ touch + help + facing their rear = pat back
 
 /obj/item/hand_item/butt/proc/buttify(mob/user)
 	if(!iscarbon(user))
-		to_chat(user, span_alert("You aint got a butt!"))
 		return
 	var/mob/living/carbon/human/H = user
 	if(!H.has_butt())
-		to_chat(user, span_alert("[H], you have no butt!"))
-		H.emote("scream")
-		qdel(src)
 		return
+	icon = "icons/effects/effects.dmi"
+	icon = "nothing"
 	var/obj/item/organ/genital/butt/B = H.getorganslot(ORGAN_SLOT_BUTT)
 	var/datum/sprite_accessory/sprite_acc = B.get_sprite_accessory()
 	icon = 'icons/obj/genitals/butt_onmob.dmi'
